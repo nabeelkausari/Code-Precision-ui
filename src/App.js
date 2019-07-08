@@ -1,5 +1,5 @@
 import React from 'react';
-import './Precision/styles/main.scss'
+import './precision/styles/main.scss'
 
 function App() {
   return (
