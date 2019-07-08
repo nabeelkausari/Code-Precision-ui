@@ -1,14 +1,12 @@
 import React from 'react';
 import './precision/styles/main.scss'
+import Header from "./precision/routes/Scenario/components/ScenarioHeader/Header";
 
 function App() {
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-12">
-          <h1>ATH Precision</h1>
+    <div>
+        <div className="container">
         </div>
-      </div>
     </div>
   );
 }

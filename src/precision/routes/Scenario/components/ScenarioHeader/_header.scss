@@ -1,0 +1,26 @@
+.bg-scenario-header {
+
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+
+  .logo{
+    width: 80%;
+    height: 40%;
+  }
+
+  .case-title {
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin: 0 4rem 0 0;
+  }
+
+  .scenario-item  {
+    font-size: 1.4rem;
+    .active {
+
+      border-bottom: 2px solid red;
+    }
+  }
+}
