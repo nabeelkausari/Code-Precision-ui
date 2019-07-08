@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
 
-class Scenario extends Component {
+export class Scenario extends Component {
     render() {
         return (
             <div>
-                Scenario
+                <span>Scenario</span>
             </div>
         );
     }
 }
-
-export default Scenario;
