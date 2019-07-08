@@ -4,6 +4,7 @@
   align-items: center;
   background-color: #FFFFFF;
   box-shadow: 13px 5px 16px -11px rgba(0,0,0,0.26);
+  z-index: 2;
 
   .logo{
     width: 80%;
@@ -11,17 +12,39 @@
   }
 
   .case-title {
-    font-size: 1.8rem;
-    font-weight: 400;
-    letter-spacing: 1px;
+    font-weight: 300;
     margin: 0 4rem 0 0;
+    font-size: 20px;
+    letter-spacing: 0.57px;
+    line-height: 30px;
+    font-family: inherit;
   }
 
   .scenario-item  {
     font-size: 1.4rem;
-    .active {
 
-      border-bottom: 2px solid red;
+    .reference {
+      color: #9B9B9B;
+      letter-spacing: 0.4px;
+      line-height: 21px;
+      text-decoration: none;
+      padding: 15px;
+      font-family: inherit;
+    }
+
+    .scenarios {
+      color: #9B9B9B;
+      font-family: inherit;
+      font-size: 14px;
+      letter-spacing: 0.4px;
+      line-height: 21px;
+      text-decoration: none;
+      padding: 15px;
+    }
+
+    .active {
+      border-bottom: 4px solid #0068E0;
+      color: #0068E0;
     }
   }
 }

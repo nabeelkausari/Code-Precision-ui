@@ -15,10 +15,10 @@ class ScenarioHeader extends Component {
                     <h4 className="case-title">Case: Lowering Attrition Rate</h4>
                     <Nav>
                         <Nav.Item bsPrefix="scenario-item">
-                            <NavLink exact to="/cases/3/4" activeClassName="active">Reference</NavLink>
+                            <NavLink exact to="/cases/3/4" className='reference' activeClassName="active">Reference</NavLink>
                         </Nav.Item>
                         <Nav.Item bsPrefix="scenario-item">
-                            <NavLink to="/cases/3/5" activeClassName="active">Scenario 1</NavLink>
+                            <NavLink to="/cases/3/5" className='scenarios' activeClassName="active">Scenario 1</NavLink>
                         </Nav.Item>
                     </Nav>
                     <div>
