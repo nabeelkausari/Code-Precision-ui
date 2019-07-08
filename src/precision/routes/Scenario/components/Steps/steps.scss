@@ -1,9 +1,20 @@
+@import "../../../../styles/abstracts/variables";
+
 
 //STEPS COMPONENT
 .steps{
   width: 30rem;
   position: absolute;
+  height: calc(100vh - 5.5rem);
   right: 0;
+  top: -5.5rem;
+  z-index: 29;
+  background-color: $color-white;
+  box-shadow: -.3rem .6rem .5rem rgba($color-black, .2) ;
+
+  &__header{
+    padding: 1.5rem 2.5rem .3rem 2.5rem;
+  }
 }
 
 
