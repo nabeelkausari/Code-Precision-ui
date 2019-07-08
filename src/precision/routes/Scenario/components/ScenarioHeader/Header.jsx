@@ -1,9 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {Nav, Navbar} from "react-bootstrap";
 import { NavLink } from 'react-router-dom'
-
 import {Logo} from "../../../../images";
-
 import './_header.scss';
 
 class ScenarioHeader extends Component {

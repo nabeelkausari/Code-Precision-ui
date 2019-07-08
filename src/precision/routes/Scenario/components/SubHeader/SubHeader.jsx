@@ -11,16 +11,16 @@ class SubHeader extends Component {
                 <Navbar bg="scenario-sub-header">
                     <Nav>
                         <Nav.Item bsPrefix="scenario-item">
-                            <NavLink exact to="/cases/3/4/Dashboard" activeClassName="active">Dashboard</NavLink>
+                            <NavLink exact to="/cases/3/4/dashboard" activeClassName="active">Dashboard</NavLink>
                         </Nav.Item>
                         <Nav.Item bsPrefix="scenario-item">
-                            <NavLink to="/cases/3/4/Data_Set" activeClassName="active">Data Set</NavLink>
+                            <NavLink to="/cases/3/4/dataset" activeClassName="active">Data Set</NavLink>
                         </Nav.Item>
                         <Nav.Item bsPrefix="scenario-item">
-                            <NavLink to="/cases/3/5/Console" activeClassName="active">Console</NavLink>
+                            <NavLink to="/cases/3/5/console" activeClassName="active">Console</NavLink>
                         </Nav.Item>
                         <Nav.Item bsPrefix="scenario-item">
-                            <NavLink to="/cases/3/5/Process" activeClassName="active">Process</NavLink>
+                            <NavLink to="/cases/3/5/process" activeClassName="active">Process</NavLink>
                         </Nav.Item>
                     </Nav>
                     <div>

@@ -17,10 +17,10 @@ export default () => {
                         <SubHeader>
                             <Switch>
                             <Route exact path="/cases/:case_id/:scenario_id" component={Scenario}/>
-                            <Route exact path="/cases/:case_id/:scenario_id/Dashboard" component={Dashboard}/>
-                            <Route exact path="/cases/:case_id/:scenario_id/Data_Set" component={Dataset}/>
-                            <Route exact path="/cases/:case_id/:scenario_id/Console" component={Console}/>
-                            <Route exact path="/cases/:case_id/:scenario_id/Process" component={Process}/>
+                            <Route exact path="/cases/:case_id/:scenario_id/dashboard" component={Dashboard}/>
+                            <Route exact path="/cases/:case_id/:scenario_id/dataset" component={Dataset}/>
+                            <Route exact path="/cases/:case_id/:scenario_id/console" component={Console}/>
+                            <Route exact path="/cases/:case_id/:scenario_id/process" component={Process}/>
                             </Switch>
                         </SubHeader>
                     </Header>
