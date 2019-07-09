@@ -9,18 +9,38 @@ class SubHeader extends Component {
             <Fragment>
                 <Navbar bg="scenario-sub-header">
                     <Nav>
-                        <Nav.Item bsPrefix="sub-header-items">
-                            <NavLink exact to="/cases/3/5/dashboard" className='sub-header-text' activeClassName="active">Dashboard</NavLink>
-                        </Nav.Item>
-                        <Nav.Item bsPrefix="sub-header-items">
-                            <NavLink to="/cases/3/5/dataset" className='sub-header-text' activeClassName="active">Data Set</NavLink>
-                        </Nav.Item>
-                        <Nav.Item bsPrefix="sub-header-items">
-                            <NavLink to="/cases/3/5/console" className='sub-header-text' activeClassName="active">Console</NavLink>
-                        </Nav.Item>
-                        <Nav.Item bsPrefix="sub-header-items">
-                            <NavLink to="/cases/3/5/process" className='sub-header-text' activeClassName="active">Process</NavLink>
-                        </Nav.Item>
+                        <div className="dashboard-container">
+                            <Nav.Item bsPrefix="sub-header-items">
+                                <NavLink exact to="/cases/3/5/dashboard"
+                                         className='sub-header-text'
+                                         activeClassName="active"
+                                >Dashboard
+                                </NavLink>
+                            </Nav.Item>
+                        </div>
+                        <div className="dataset-container">
+                            <Nav.Item bsPrefix="sub-header-items">
+                                <NavLink exact to="/cases/3/5/dataset"
+                                         className='sub-header-text'
+                                         activeClassName="active"
+                                >Data Set
+                                </NavLink>
+                            </Nav.Item>
+                            <Nav.Item bsPrefix="sub-header-items">
+                                <NavLink exact to="/cases/3/5/console"
+                                         className='sub-header-text'
+                                         activeClassName="active"
+                                >Console
+                                </NavLink>
+                            </Nav.Item>
+                            <Nav.Item bsPrefix="sub-header-items">
+                                <NavLink exact to="/cases/3/5/process"
+                                         className='sub-header-text'
+                                         activeClassName="active"
+                                >Process
+                                </NavLink>
+                            </Nav.Item>
+                        </div>
                     </Nav>
                 </Navbar>
                 {this.props.children}

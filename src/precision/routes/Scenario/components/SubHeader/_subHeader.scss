@@ -3,15 +3,15 @@
   box-shadow: 13px 5px 16px -11px rgba(0,0,0,0.26);
   padding: 15px;
   z-index: 28;
-  width: calc(100vw - 30rem);
 
-  .case-title {
-    font-weight: 300;
-    margin: 0 4rem 0 0;
-    font-size: 20px;
-    letter-spacing: 0.57px;
-    line-height: 30px;
-    font-family: inherit;
+  .dashboard-container {
+
+  }
+
+  .dataset-container {
+    display: flex;
+    width: calc(100vw - 441px);
+    justify-content: flex-end;
   }
 
   .sub-header-items  {

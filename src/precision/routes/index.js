@@ -16,9 +16,7 @@ export default () => {
                 <Route path="/cases/:case_id/:scenario_id">
                     <Header>
                         <SubHeader>
-                            <Steps />
                             <Switch>
-                            <Route exact path="/cases/:case_id/:scenario_id" component={Scenario}/>
                             <Route exact path="/cases/:case_id/:scenario_id/dashboard" component={Dashboard}/>
                             <Route exact path="/cases/:case_id/:scenario_id/dataset" component={Dataset}/>
                             <Route exact path="/cases/:case_id/:scenario_id/console" component={Console}/>
