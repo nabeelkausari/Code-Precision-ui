@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export class Process extends Component{
+class Process extends Component{
     render() {
         return (
             <div>
@@ -9,3 +9,5 @@ export class Process extends Component{
         );
     };
 };
+
+export default Process;
