@@ -2,7 +2,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import {Button as BootstrapButton} from "react-bootstrap";
 
-import './_button.scss'
+import './Button.scss'
 
 
 export const Button = (props) => {

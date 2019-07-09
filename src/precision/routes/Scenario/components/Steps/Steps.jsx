@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Step from './Step'
 
 
-import './steps.scss'
+import './Steps.scss'
 
 class Steps extends Component {
     render() {

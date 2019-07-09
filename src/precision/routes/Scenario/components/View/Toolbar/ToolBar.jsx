@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import './_toolbar.scss';
+import './Toolbar.scss';
 import {Button} from "../../../../../components/Buttons/Button";
 class ToolBar extends Component {
     render() {

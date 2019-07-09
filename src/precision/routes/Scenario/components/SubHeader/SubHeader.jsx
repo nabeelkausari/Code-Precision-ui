@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {Nav, Navbar} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
-import './_subHeader.scss';
+import './SubHeader.scss';
 
 class SubHeader extends Component {
     render() {
