@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import Route from './precision/routes'
 
+import 'font-awesome/css/font-awesome.min.css';
+
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<Route />, document.getElementById('root'));
