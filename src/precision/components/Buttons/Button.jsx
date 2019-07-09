@@ -6,12 +6,12 @@ import './Button.scss'
 
 
 export const Button = (props) => {
-    const {disabled, styles, buttonType, children} = props;
+    const {disabled, styles, buttonType, children, ...rest} = props;
     return (
         <BootstrapButton
             variant="light"
-            className={cx('cc-button',buttonType)}
-            {...props}
+            className={cx(['cc-button',buttonType])}
+            {...rest}
         >
             {children}
         </BootstrapButton>

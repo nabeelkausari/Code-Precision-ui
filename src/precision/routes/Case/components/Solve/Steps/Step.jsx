@@ -5,9 +5,6 @@ import './Steps.scss'
 
 class Step extends Component {
     render() {
-
-        const { } = this.props
-
         return (
             <div className="step">
 
@@ -20,9 +17,9 @@ class Step extends Component {
                     </div>
 
                     <div className="step__actions-container">
-                        <a href="" className="step__action">Result</a>
-                        <a href="" className="step__action">Notes</a>
-                        <a href="" className="step__action">Delete</a>
+                        <button className="step__action">Result</button>
+                        <button className="step__action">Notes</button>
+                        <button className="step__action">Delete</button>
                     </div>
                 </div>
             </div>
