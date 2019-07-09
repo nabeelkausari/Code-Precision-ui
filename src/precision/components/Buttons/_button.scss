@@ -1,0 +1,22 @@
+@import "../../styles/abstracts/variables";
+.cc-button {
+  padding: 1rem 3rem;
+  outline: none;
+  font-size: 1.6rem;
+  font-weight: 400;
+  border: 1px solid $color-grey-light-1;
+  border-radius: 2px;
+  background-color: #FFFFFF;
+  color: $color-grey-dark;
+  letter-spacing: 0.1rem;
+  text-align: center;
+}
+
+.primary {
+  background-color: $color-primary;
+  color: $color-white;
+}
+
+.secondary {
+
+}

@@ -2,12 +2,10 @@ import * as React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./Scenario/components/ScenarioHeader/Header";
 import SubHeader from "./Scenario/components/SubHeader/SubHeader";
-import { Scenario } from "./Scenario/components";
 import { Dashboard } from "./Scenario/components/View/Dashboard/components/Dashboard";
 import { Dataset } from "./Scenario/components/View/Dataset/components/Dataset";
 import { Console } from "./Scenario/components/View/Console/components/Console";
 import { Process } from "./Scenario/components/View/Process/components/Process";
-import Steps from "./Scenario/components/Steps/Steps";
 
 export default () => {
     return (

@@ -1,0 +1,61 @@
+@import "../../../../../styles/abstracts/variables";
+
+.toolbar-container {
+  display: flex;
+  justify-content: space-between;
+  .tool {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    padding: .2rem .4rem;
+    color: $color-grey-dark-2;
+    border: 1px solid currentColor;
+    border-radius: 2px;
+
+    &:not(:last-child){
+      margin-right: 3rem;
+    }
+
+    &__image {
+
+    }
+
+    &__title {
+      color: #9B9B9B;
+      font-size: 1.4rem;
+      letter-spacing: 0.04rem;
+      margin: 0 .5rem 0 0;
+    }
+
+    .pill-container {
+        display: flex;
+      &__placeholder {
+        font-size: 1.4rem;
+      }
+
+      .pill {
+        border: 1px solid #D6E9FF;
+        border-radius: .6rem;
+        background-color: #F5F7F8;
+        padding: .3rem .5rem;
+
+        &:not(:first-child){
+          margin-left: 2px;
+        }
+
+        &__text {
+          font-size: 1.4rem;
+          white-space: nowrap;
+        }
+
+        &__cancel{
+          margin-left: 5px;
+          font-size: 1.4rem;
+          color: #D6E9FF;
+          cursor: pointer;
+        }
+      }
+    }
+
+  }
+}
