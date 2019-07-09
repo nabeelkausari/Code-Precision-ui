@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Route from './precision/routes'
+import './precision/styles/main.scss'
 
 import * as serviceWorker from './serviceWorker';
 
