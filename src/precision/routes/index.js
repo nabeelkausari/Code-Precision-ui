@@ -1,17 +1,26 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
 import Header from "./Scenario/components/ScenarioHeader/Header";
-import Scenario from "./Scenario/components";
+import SubHeader from "./Scenario/components/SubHeader/SubHeader";
+import { Dashboard } from "./Scenario/components/View/Dashboard/components/Dashboard";
+import { Dataset } from "./Scenario/components/View/Dataset/components/Dataset";
+import { Console } from "./Scenario/components/View/Console/components/Console";
+import { Process } from "./Scenario/components/View/Process/components/Process";
 
-
-export default (props) => {
+export default () => {
     return (
         <Router>
             <Switch>
-                <Route>
+                <Route path="/cases/:case_id/:scenario_id">
                     <Header>
-                        <Route exact path="/cases/:case_id/:scenario_id/" component={Scenario}/>
+                        <SubHeader>
+                            <Switch>
+                            <Route exact path="/cases/:case_id/:scenario_id" component={Dashboard}/>
+                            <Route exact path="/cases/:case_id/:scenario_id/dataset" component={Dataset}/>
+                            <Route exact path="/cases/:case_id/:scenario_id/console" component={Console}/>
+                            <Route exact path="/cases/:case_id/:scenario_id/process" component={Process}/>
+                            </Switch>
+                        </SubHeader>
                     </Header>
                 </Route>
             </Switch>

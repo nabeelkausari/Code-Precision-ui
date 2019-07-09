@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
+import ScenarioHeader from "./ScenarioHeader/Header";
+import ToolBar from "./View/Toolbar/ToolBar";
 
-class Scenario extends Component {
+export class Scenario extends Component {
     render() {
         return (
-            <div>
-                Scenario
+            <div style={{position : "relative"}}>
+                <span>Scenario</span>
+                <ToolBar/>
             </div>
         );
     }
