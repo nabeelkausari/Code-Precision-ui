@@ -18,7 +18,7 @@ class ScenarioHeader extends Component {
                             <NavLink exact to="/cases/3/4" className='reference' activeClassName="active">Reference</NavLink>
                         </Nav.Item>
                         <Nav.Item bsPrefix="scenario-item">
-                            <NavLink to="/cases/3/5" className='scenarios' activeClassName="active">Scenario 1</NavLink>
+                            <NavLink to="/cases/3/5/" className='scenarios' activeClassName="active">Scenario 1</NavLink>
                         </Nav.Item>
                     </Nav>
                     <div>
