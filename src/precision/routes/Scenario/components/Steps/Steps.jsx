@@ -20,7 +20,7 @@ class Steps extends Component {
                     <Step />
                     <Step />
                 </div>
-
+                {this.props.children}
             </div>
         );
     }

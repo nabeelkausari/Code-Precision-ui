@@ -25,7 +25,6 @@ class SubHeader extends Component {
                 </Navbar>
                 {this.props.children}
             </Fragment>
-
         );
     }
 }

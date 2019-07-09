@@ -7,6 +7,7 @@ import { Dashboard } from "./Scenario/components/View/Dashboard/components/Dashb
 import { Dataset } from "./Scenario/components/View/Dataset/components/Dataset";
 import { Console } from "./Scenario/components/View/Console/components/Console";
 import { Process } from "./Scenario/components/View/Process/components/Process";
+import Steps from "./Scenario/components/Steps/Steps";
 
 export default () => {
     return (
@@ -15,6 +16,7 @@ export default () => {
                 <Route path="/cases/:case_id/:scenario_id">
                     <Header>
                         <SubHeader>
+                            <Steps />
                             <Switch>
                             <Route exact path="/cases/:case_id/:scenario_id" component={Scenario}/>
                             <Route exact path="/cases/:case_id/:scenario_id/dashboard" component={Dashboard}/>

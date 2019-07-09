@@ -7,7 +7,6 @@ export class Scenario extends Component {
         return (
             <div style={{position : "relative"}}>
                 <span>Scenario</span>
-                <Steps/>
             </div>
         );
     }
