@@ -1,35 +1,42 @@
-.bg-scenario-sub-header {
+.bg-sub-header {
   background-color: #FFFFFF;
   box-shadow: 13px 5px 16px -11px rgba(0,0,0,0.26);
   padding: 15px;
   z-index: 28;
 
-  .dashboard-container {
+  &__left-container {
 
   }
 
-  .dataset-container {
+  &__right-container {
     display: flex;
     width: calc(100vw - 45rem);
     justify-content: flex-end;
   }
 
-  .sub-header-items  {
+  &__items {
     font-size: 1.4rem;
+  }
 
-    &__text {
+  &__link {
+    &:link, &:visited{
       color: #9B9B9B;
       letter-spacing: 0.4px;
       line-height: 21px;
-      text-decoration: none;
+      //text-decoration: none;
       padding: 15px;
       font-family: inherit;
       font-size: 1.4rem;
     }
 
-    .active {
-      border-bottom: 3px solid #0068E0;
-      color: #0068E0;
+    &:hover{
+      text-decoration: none;
+      color: #0068E0 ;
     }
+  }
+
+  .active {
+    border-bottom: 3px solid #0068E0;
+    color: #0068E0;
   }
 }

@@ -7,35 +7,35 @@ class SubHeader extends Component {
     render() {
         return (
             <Fragment>
-                <Navbar bg="scenario-sub-header">
+                <Navbar bg="sub-header">
                     <Nav>
-                        <div className="dashboard-container">
-                            <Nav.Item bsPrefix="sub-header-items">
+                        <div className="bg-sub-header__left-container">
+                            <Nav.Item bsPrefix="bg-sub-header__items">
                                 <NavLink exact to="/cases/3/5/"
-                                         className='sub-header-items__text'
+                                         className='bg-sub-header__link'
                                          activeClassName="active"
                                 >Dashboard
                                 </NavLink>
                             </Nav.Item>
                         </div>
-                        <div className="dataset-container">
-                            <Nav.Item bsPrefix="sub-header-items">
+                        <div className="bg-sub-header__right-container">
+                            <Nav.Item bsPrefix="bg-sub-header__items">
                                 <NavLink exact to="/cases/3/5/dataset"
-                                         className='sub-header-items__text'
+                                         className='bg-sub-header__link'
                                          activeClassName="active"
                                 >Data Set
                                 </NavLink>
                             </Nav.Item>
-                            <Nav.Item bsPrefix="sub-header-items">
+                            <Nav.Item bsPrefix="bg-sub-header__items">
                                 <NavLink exact to="/cases/3/5/console"
-                                         className='sub-header-items__text'
+                                         className='bg-sub-header__link'
                                          activeClassName="active"
                                 >Console
                                 </NavLink>
                             </Nav.Item>
-                            <Nav.Item bsPrefix="sub-header-items">
+                            <Nav.Item bsPrefix="bg-sub-header__items">
                                 <NavLink exact to="/cases/3/5/process"
-                                         className='sub-header-items__text'
+                                         className='bg-sub-header__link'
                                          activeClassName="active"
                                 >Process
                                 </NavLink>
