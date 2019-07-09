@@ -7,7 +7,6 @@ class ToolBar extends Component {
         return (
             <div className="toolbar-container">
                <div className="tool">
-                   {/*<img className="tool__image" src="" alt="Table"/>*/}
                    <p className="tool__title">Table:</p>
                    <div className="pill-container">
                        {/*<span className="pill-container__placeholder">Select Column</span>*/}

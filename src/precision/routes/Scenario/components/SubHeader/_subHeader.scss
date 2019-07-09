@@ -10,14 +10,14 @@
 
   .dataset-container {
     display: flex;
-    width: calc(100vw - 441px);
+    width: calc(100vw - 45rem);
     justify-content: flex-end;
   }
 
   .sub-header-items  {
     font-size: 1.4rem;
 
-    .sub-header-text {
+    &__text {
       color: #9B9B9B;
       letter-spacing: 0.4px;
       line-height: 21px;

@@ -2,16 +2,22 @@
 
 .toolbar-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  border: 1px solid #DCDCDC;
+  background-color: #FFFFFF;
+  box-shadow: 13px 5px 16px -11px rgba(0,0,0,0.26);
+  width: calc(100vw - 30rem);
   .tool {
     display: flex;
-    flex: 1;
     align-items: center;
     padding: .2rem .4rem;
     color: $color-grey-dark-2;
-    border: 1px solid currentColor;
+    border: 1px solid #DEDEDE;
     border-radius: 2px;
-
+    height: 40px;
+    width: 492px;
+    background-color: #FFFFFF;
+    margin: .3rem;
     &:not(:last-child){
       margin-right: 3rem;
     }

@@ -12,7 +12,7 @@ class SubHeader extends Component {
                         <div className="dashboard-container">
                             <Nav.Item bsPrefix="sub-header-items">
                                 <NavLink exact to="/cases/3/5/"
-                                         className='sub-header-text'
+                                         className='sub-header-items__text'
                                          activeClassName="active"
                                 >Dashboard
                                 </NavLink>
@@ -21,21 +21,21 @@ class SubHeader extends Component {
                         <div className="dataset-container">
                             <Nav.Item bsPrefix="sub-header-items">
                                 <NavLink exact to="/cases/3/5/dataset"
-                                         className='sub-header-text'
+                                         className='sub-header-items__text'
                                          activeClassName="active"
                                 >Data Set
                                 </NavLink>
                             </Nav.Item>
                             <Nav.Item bsPrefix="sub-header-items">
                                 <NavLink exact to="/cases/3/5/console"
-                                         className='sub-header-text'
+                                         className='sub-header-items__text'
                                          activeClassName="active"
                                 >Console
                                 </NavLink>
                             </Nav.Item>
                             <Nav.Item bsPrefix="sub-header-items">
                                 <NavLink exact to="/cases/3/5/process"
-                                         className='sub-header-text'
+                                         className='sub-header-items__text'
                                          activeClassName="active"
                                 >Process
                                 </NavLink>
