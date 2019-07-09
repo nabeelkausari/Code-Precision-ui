@@ -9,12 +9,15 @@ import store from "../config/store"
 
 import requireAuth from '../hoc/require-auth';
 import requireUnAuth from '../hoc/require-un-auth';
-import Header from "./Scenario/components/ScenarioHeader/Header";
-import SubHeader from "./Scenario/components/SubHeader/SubHeader";
-import { Dashboard } from "./Scenario/components/View/Dashboard/components/Dashboard";
-import { Dataset } from "./Scenario/components/View/Dataset/components/Dataset";
-import { Console } from "./Scenario/components/View/Console/components/Console";
-import { Process } from "./Scenario/components/View/Process/components/Process";
+
+import Header from "./Case/components/Solve/ScenarioHeader/Header";
+import SubHeader from "./Case/components/Solve/SubHeader/SubHeader";
+import { Dashboard } from "./Case/components/Solve/View/Dashboard/Dashboard";
+import { Dataset } from "./Case/components/Solve/View/Dataset/Dataset";
+import { Console } from "./Case/components/Solve/View/Console/Console";
+import Process  from "./Case/components/Solve/View/Process/Process";
+import CaseList from "./Case/components/List";
+import CaseDetail from "./Case/components/Detail";
 
 export const history = createBrowserHistory();
 
@@ -31,12 +34,20 @@ const ScenarioRoutes = () => (
   </Header>
 )
 
+const CaseRoutes = () => (
+    <Switch>
+        <Route exact path="/cases" component={CaseList}/>
+        <Route exact path="/cases/:case_id" component={CaseDetail}/>
+    </Switch>
+)
+
 export default (props) => {
     return (
       <Provider store={store}>
           <Router history={history}>
             <Switch>
-              <Route path="/cases" component={requireAuth(ScenarioRoutes)} />
+              <Route path="/cases/:case_id/:scenario_id" component={requireAuth(ScenarioRoutes)} />
+              <Route path="/cases" component={requireAuth(CaseRoutes)} />
               <Route path="/auth/login" component={requireUnAuth(Login)} />
 
               <Redirect from="/" to="/cases" />
