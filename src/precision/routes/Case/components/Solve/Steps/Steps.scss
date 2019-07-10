@@ -36,7 +36,7 @@
     &::after{
       content: " ";
       position: absolute;
-      top: -.15rem;
+      top: -.2rem;
       left: -.4rem;
       height: 2.5rem;
       width: 2.5rem;
@@ -56,8 +56,22 @@
   }
 
   &__actions-container{
-    padding: .5rem 0;
+    padding: 1rem 0;
     display: flex;
     justify-content: space-between;
+  }
+
+  &__action{
+    background: transparent;
+    border: none;
+    color: gray;
+    //padding-bottom: .5rem;
+    border-bottom: 1px solid gray;
+    font-size: 1.3rem;
+
+    &:hover{
+      text-decoration: none;
+      color: gray;
+  }
   }
 }
