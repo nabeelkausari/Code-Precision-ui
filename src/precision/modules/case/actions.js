@@ -41,7 +41,6 @@ export const getSteps = () => (dispatch, getState) => {
                     .shift();
                 if (!matching) {
                     console.log('Cannot find the data set that was modified ', href);
-                    return data_sets.concat(data_sets);
                 }
                 data_sets[matching.index] = {...data_sets[index]}
                 data_sets.splice(index,1);}, []);
