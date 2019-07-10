@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import ToolBar from "./View/Toolbar/ToolBar";
-
-import SolveContainer from '../../containers/solve/solve'
+import {SolveContainer} from '../../containers/solve/solve'
 
 class CaseSolve extends Component {
 
@@ -9,11 +8,20 @@ class CaseSolve extends Component {
     this.props.getCase()
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const {fetch_case_succeeded} = this.props;
+
+    if(fetch_case_succeeded && prevProps.fetch_case_succeeded !== fetch_case_succeeded){
+      this.props.getSteps()
+    }
+
+  }
+
   render() {
     return (
       <div style={{position : "relative"}}>
-        <span>Scenario</span>
         <ToolBar/>
+          <span>Solve</span>
       </div>
     );
   }
