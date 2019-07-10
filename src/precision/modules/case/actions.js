@@ -1,5 +1,4 @@
 import flatten from 'lodash/flatten'
-
 import {fetchLinkAs} from "../../api/helpers";
 import * as types from './types'
 
@@ -29,8 +28,8 @@ export const getSteps = () => (dispatch, getState) => {
         .then(payload => {
             const step_data_sets = flatten(payload.map(data => data.results.filter(ds => ds._links.data !== undefined)));
             dispatch(addDataSets(step_data_sets));
-            const { case: { data_sets } } = getState();
 
+            const { case: { data_sets } } = getState();
             data_sets.reduce((data, data_set, index) => {
                 if (!data_set._links.modifies)
                     return data_sets;
@@ -42,12 +41,14 @@ export const getSteps = () => (dispatch, getState) => {
                 if (!matching) {
                     console.log('Cannot find the data set that was modified ', href);
                 }
-                data_sets[matching.index] = {...data_sets[index]}
-                data_sets.splice(index,1);}, []);
+                data_sets[matching.index] = {...data_sets[index]};
+                data_sets.splice(index,1);
+                }, []);
             dispatch({ type: types.FETCH_STEPS_SUCCEEDED, payload });
         })
         .catch(payload => dispatch({ type: types.FETCH_STEPS_FAILED, payload }));
 };
+
 
 
 
