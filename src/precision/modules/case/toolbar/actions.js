@@ -26,12 +26,9 @@ const getSuggestionsLink = (query) => ({
 export const getCategoryAndFunctions = () => (dispatch, getState) => {
     dispatch({ type: types.FETCH_FUNCTION_CATEGORIES_REQUESTED });
     fetchLinkAs(links.categories)
-        .then(payload => dispatch({ type: types.FETCH_FUNCTION_CATEGORIES_SUCCEEDED, payload }))
-        .then(() => {
-            const { functions : { fetch_function_categories_succeeded }} = getState();
-            if( fetch_function_categories_succeeded ){
-                dispatch(getFunctions())
-            }
+        .then(payload => {
+            dispatch({ type: types.FETCH_FUNCTION_CATEGORIES_SUCCEEDED, payload });
+            dispatch(getFunctions())
         })
         .catch(payload => dispatch({ type: types.FETCH_FUNCTION_CATEGORIES_FAILED, payload }))
 };

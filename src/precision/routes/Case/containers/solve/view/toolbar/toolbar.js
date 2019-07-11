@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-const mapStateToProps = ({ case: { data_sets } , functions: { categories, functions }}) => ({
+const mapStateToProps = ({ cases: { data_sets } , functions: { categories, functions }}) => ({
     data_sets,
     categories: !!categories && categories
         .filter(category => category._links.parent === undefined)
