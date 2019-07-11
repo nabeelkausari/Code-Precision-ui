@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import ToolBar from "./View/Toolbar/ToolBar";
 import {SolveContainer} from '../../containers/solve/solve'
+import Steps from "./Steps/Steps";
+import Dashboard from "./View/Dashboard/Dashboard";
 
 class CaseSolve extends Component {
 
@@ -15,14 +17,14 @@ class CaseSolve extends Component {
     if(fetch_case_succeeded && prevProps.fetch_case_succeeded !== fetch_case_succeeded){
       this.props.getSteps()
     }
-
   }
 
   render() {
     return (
-      <div style={{position : "relative"}}>
+      <div>
+        <Steps />
         <ToolBar/>
-          <span>Solve</span>
+          <Dashboard />
       </div>
     );
   }
