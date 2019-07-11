@@ -7,11 +7,74 @@
   height: calc(100vh - 5.5rem);
   z-index: 29;
   background-color: $color-white;
-  box-shadow: -.3rem .6rem .5rem rgba($color-black, .2) ;
+  box-shadow: -.3rem .6rem .5rem rgba($color-black, .2);
+  transition: transform 1s ease-out;
 
   &__header{
     padding: 1.5rem 2.5rem .3rem 2.5rem;
   }
+
+  &__item{
+    list-style: none;
+  }
+
+  &__toggle-btn{
+
+
+
+    &--1{
+      width: 4rem;
+      height: 4rem;
+      position: absolute;
+      right: 2rem;
+      bottom: 2rem;
+      //clip-path: polygon(0 10% , 100% 0, 100% 100%, 0 90%);
+      background-color: rgba(#777, .3);
+      border-radius: 50%;
+      transition: opacity .1s;
+      &:hover{
+        background-color: rgba(#777, .6);
+      }
+
+      &-hide{
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    &--2{
+      width: 3rem;
+      height: 4rem;
+      position: absolute;
+      left: -3rem;
+      bottom: 5rem;
+      border-top-left-radius: 5rem;
+      border-bottom-left-radius: 5rem;
+      background-color: #28b485;
+      transition: opacity .6s .8s, transform .4s .8s, left .2s;
+      opacity: 1;
+      //z-index: 15;
+
+      &:hover{
+        left : -5rem;
+        width: 5rem;
+      }
+
+      &-hide{
+        opacity: 0;
+        transform: translateX(4rem);
+        transition: opacity .3s .4s, transform .2s 1.2s;
+        visibility: hidden;
+      }
+    }
+  }
+
+  &--closed{
+    transform: translateX(30rem);
+    //display: none;
+  }
+
+
 }
 
 
@@ -29,7 +92,7 @@
     &::after{
       content: " ";
       position: absolute;
-      top: -.15rem;
+      top: -.2rem;
       left: -.4rem;
       height: 2.5rem;
       width: 2.5rem;
@@ -49,8 +112,22 @@
   }
 
   &__actions-container{
-    padding: .5rem 0;
+    padding: 1rem 0;
     display: flex;
     justify-content: space-between;
+  }
+
+  &__action{
+    background: transparent;
+    border: none;
+    color: gray;
+    //padding-bottom: .5rem;
+    border-bottom: 1px solid gray;
+    font-size: 1.3rem;
+
+    &:hover{
+      text-decoration: none;
+      color: gray;
+  }
   }
 }

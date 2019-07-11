@@ -1,3 +1,10 @@
+//to limit text to one line
+.u-limit-to-1-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .--flex-basis {
   &-40 {
     flex-basis: 40%;
