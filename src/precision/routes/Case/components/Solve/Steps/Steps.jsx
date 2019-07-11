@@ -42,7 +42,7 @@ class Steps extends Component {
                     <span className="steps__toggle-icon">&rarr;</span>
                 </div>
 
-                <div className={is_steps_open? "steps__toggle-btn--2-hide" : "steps__toggle-btn--2"} onClick={this.toggleSteps}>
+                <div className={is_steps_open? "steps__toggle-btn--2 steps__toggle-btn--2-hide" : "steps__toggle-btn--2"} onClick={this.toggleSteps}>
                     <span className="steps__toggle-icon">&larr;</span>
                 </div>
 
