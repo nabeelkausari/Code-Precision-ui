@@ -33,7 +33,7 @@ export const getCategoryAndFunctions = () => (dispatch, getState) => {
         .catch(payload => dispatch({ type: types.FETCH_FUNCTION_CATEGORIES_FAILED, payload }))
 };
 
-export const getFunctions = () => (dispatch) => {
+const getFunctions = () => (dispatch) => {
     dispatch({ type: types.FETCH_FUNCTIONS_REQUESTED });
     fetchLinkAs(links.functions)
         .then(payload => dispatch({ type: types.FETCH_FUNCTIONS_SUCCEEDED , payload }))
