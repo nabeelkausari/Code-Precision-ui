@@ -3,8 +3,8 @@
 .toolbar-container {
   display: flex;
   justify-content: flex-start;
-  border: 1px solid #DCDCDC;
-  background-color: #FFFFFF;
+  border: 1px solid $color-grey-light-1;
+  background-color: $color-white;
   box-shadow: 13px 5px 16px -11px rgba(0,0,0,0.26);
   padding: .5rem 0;
 
@@ -14,9 +14,9 @@
     align-items: center;
     padding: 0.4rem;
     color: $color-grey-dark-2;
-    border: 1px solid #DEDEDE;
+    border: 1px solid $color-grey-light-1;
     border-radius: 2px;
-    background-color: #FFFFFF;
+    background-color: $color-white;
     margin: .3rem;
     cursor: pointer;
     &:not(:last-child){
@@ -28,7 +28,7 @@
     }
 
     &__title {
-      color: #9B9B9B;
+      color: $color-grey-dark-2;
       font-size: 1.2rem;
       letter-spacing: 0.04rem;
       margin: 0 .5rem 0 0;
@@ -42,7 +42,7 @@
       }
 
       .pill {
-        border: 1px solid #D6E9FF;
+        border: 1px solid $color-primary-light-1;
         border-radius: .6rem;
         background-color: #F5F7F8;
         padding: 0 .5rem;
@@ -59,7 +59,7 @@
         &__cancel{
           margin-left: 5px;
           font-size: 1.4rem;
-          color: #D6E9FF;
+          color: $color-primary-light-1;
           cursor: pointer;
         }
       }
@@ -85,7 +85,7 @@
   }
 
   &__right {
-    background: #7ed56f;
+    background: $color-white;
     width: 38vw;
     &__description{
 
@@ -114,9 +114,8 @@
 
   &__menu {
     width: 30%;
-    height: 600px;
     background: white;
-    box-shadow: 4px 0px 17px #cccccc
+    box-shadow: 4px 0px 17px $color-grey-light-3;
 
   }
 
@@ -124,7 +123,7 @@
     display: flex;
     width: 100%;
     padding: 2rem;
-    height: calc(100vh - 16rem);
+    height: calc(100vh - 25rem);
 
     &-left {
       flex: 1;
@@ -176,7 +175,7 @@
   &__search {
 
     &-results {
-      height: calc(100vh - 16rem);
+      height: calc(100vh - 25rem);
     }
 
     &-items {
@@ -202,7 +201,7 @@
   left: 0;
   z-index: 40;
   width: 100vw;
-  height: 100vh;
-  background-color: #000;
+  height: calc(100vh - 15.5rem);
+  background-color: $color-black;
   opacity: 0.5;
 }
