@@ -1,7 +1,8 @@
 .card-container {
   display: flex;
-  justify-content: space-evenly;
   width: calc(100vw - 30rem);
+  flex-wrap: wrap;
+  margin: 2.5rem;
 }
 
 
@@ -9,15 +10,15 @@
   padding: 1.5rem 2rem 1.5rem 4rem;
   position: relative;
   font-size: 1.4rem;
-  width: 62rem;
+  width: 50rem;
   height: 30rem;
   z-index: -10;
-
   border: 1px solid #EAF0F7;
-  border-radius: 4px;
+  border-radius: 0.4rem;
   background-color: #FFFFFF;
-  box-shadow: 0 5px 10px -10px rgba(0, 0, 0, 0.2);
-
+  box-shadow: 0 0.5rem 1rem -1rem rgba(0, 0, 0, 0.2);
+  margin-bottom: 3rem;
+  margin-right: 3rem;
   &__index-no{
     position: absolute;
     top: 1.5rem;

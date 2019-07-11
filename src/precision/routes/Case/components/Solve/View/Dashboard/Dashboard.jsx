@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {DashboardContainer} from "../../../../containers/solve/view/dashboard/dashboard";
-import './dashboard.scss'
+import './dashboard.scss';
+
+
 class Dashboard extends Component {
     render() {
         return (
