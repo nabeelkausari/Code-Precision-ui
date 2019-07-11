@@ -1,10 +1,17 @@
 import React, {Component} from 'react';
+import ReactTruncate from 'react-truncate'
+
+import Tooltip from '../../../../../components/Tooltip/Tooltip'
 
 import './Steps.scss'
 
 
 class Step extends Component {
 
+    state = {
+        is_function_truncated : false,
+        is_column_truncated : false
+    }
 
     // Function to determine whether the sequence of the step needs to have an appended 0
     getPrefix = (sequence_number) => {
@@ -35,13 +42,25 @@ class Step extends Component {
         else{
             return ""
         }
+    }
 
+
+    didTruncate = (truncated, ele) => {
+
+        console.log("NAME : ", ele, "Trunacted : ", truncated)
+        if (this.state[ele] !== truncated) {
+            this.setState({
+                [ele]: truncated
+            });
+
+        }
     }
 
     render() {
 
+        console.log("STATE : ",this.state)
         const {step} = this.props
-
+        const {is_column_truncated , is_function_truncated} = this.state
         return (
             <div className="step">
 
@@ -49,8 +68,41 @@ class Step extends Component {
 
                 <div className="step__main-container">
                     <div className="step__info-container">
-                        <div className="step__function-name"><span className="step__function-icon"></span>{step.operation_name}</div>
-                        <div className="step__selected-columns"><span className="step__column-icon"></span> {this.getSelectedColumns(step.selections)}</div>
+
+
+
+                        <div className="step__functions-wrapper">
+                            <ReactTruncate lines={1} onTruncate={(default_value) => this.didTruncate(default_value, "is_function_truncated")}>
+                                <div className="step__function-name"><span className="step__function-icon"></span>{step.operation_name}</div>
+                            </ReactTruncate>
+                        </div>
+
+
+                        {is_column_truncated?
+                            <Tooltip placement={"bottom"} text={this.getSelectedColumns(step.selections)}>
+                                <div className="step__columns-wrapper">
+                                    <ReactTruncate lines={1} onTruncate={(default_value) => this.didTruncate(default_value, "is_column_truncated")}>
+                                        <div className="step__function-name">{this.getSelectedColumns(step.selections)}</div>
+                                    </ReactTruncate>
+                                </div>
+                            </Tooltip>
+
+                            :
+                            <div className="step__columns-wrapper">
+                                <ReactTruncate lines={1} onTruncate={(default_value) => this.didTruncate(default_value, "is_column_truncated")}>
+                                    <div className="step__function-name">{this.getSelectedColumns(step.selections)}</div>
+                                </ReactTruncate>
+                            </div>
+                        }
+
+
+
+
+
+
+
+
+
                     </div>
 
                     <div className="step__actions-container">

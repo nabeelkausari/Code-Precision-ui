@@ -16,7 +16,12 @@ export const getCase = () => (dispatch) => {
       dispatch({ type: types.FETCH_CASE_SUCCEEDED, payload })
       return fetchLinkAs(payload._links.user_steps)
     })
-    .then(payload => dispatch({ type: types.FETCH_STEPS_SUCCEEDED, payload }))
+    .then(payload => {
+
+      //order the steps in the sequence they were performed
+      payload.sort((a, b) => parseFloat(a.sequence_number) - parseFloat(b.sequence_number));
+
+      dispatch({ type: types.FETCH_STEPS_SUCCEEDED, payload })})
     .catch(payload => dispatch({ type: types.FETCH_CASE_FAILED, payload }))
 }
 
