@@ -27,27 +27,21 @@ class Step extends Component {
 
     // Function to get the string of all selected columns
     getSelectedColumns = (selections) => {
-        console.log('selections ; ', selections)
         if(selections !== null){
             let selected_column_string = ""
 
             let selections_key =  Object.keys(selections);
-            console.log('selections key ; ', selections_key)
             selections[selections_key].forEach((column) => (
                 selected_column_string += column.label + ", "
             ))
             return selected_column_string.slice(0,selected_column_string.length - 2);
         }
 
-        else{
-            return ""
-        }
+        else{ return "" }
     }
 
 
     didTruncate = (truncated, ele) => {
-
-        console.log("NAME : ", ele, "Trunacted : ", truncated)
         if (this.state[ele] !== truncated) {
             this.setState({
                 [ele]: truncated
@@ -58,9 +52,8 @@ class Step extends Component {
 
     render() {
 
-        console.log("STATE : ",this.state)
         const {step} = this.props
-        const {is_column_truncated , is_function_truncated} = this.state
+        const {is_column_truncated} = this.state
         return (
             <div className="step">
 

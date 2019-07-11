@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Step from './Step'
 
+
 import StepsContainer from '../../../containers/solve/steps'
 
 
@@ -19,7 +20,6 @@ class Steps extends Component {
     render() {
         const {steps} = this.props
         const {is_steps_open} = this.state
-        console.log(steps)
         return (
             <div className={is_steps_open ? 'steps' : 'steps steps--closed'}>
 
