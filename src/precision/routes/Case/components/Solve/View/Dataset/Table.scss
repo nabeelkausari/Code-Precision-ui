@@ -1,0 +1,16 @@
+@import "../../../../../../styles/abstracts/variables";
+
+.table {
+  display: flex;
+  margin: 2rem;
+
+  &__name {
+    height: 3rem;
+    width: 15rem;
+    border: 1px solid $color-grey-light-3;
+    border-radius: 2px;
+    background-color: $color-table-name-bg;
+    padding: 0.2rem;
+    font-size: 1.5rem;
+  }
+}

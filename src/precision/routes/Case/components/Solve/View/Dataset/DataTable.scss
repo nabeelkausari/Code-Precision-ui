@@ -1,0 +1,30 @@
+.table-container {
+     right: 0;
+     bottom: 0;
+     overflow: auto;
+     padding: 0;
+     font-size: 12px;
+     white-space: nowrap;
+     padding-bottom: 15px;
+     .loadedContent {
+       height: 100%;
+     }
+}
+
+
+.table {
+     height: 100%;
+     width: 100%;
+     p {
+       padding-left: 15px;
+       font-size: 14px;
+     }
+     table {
+       border-left: 1px solid lightgray;
+       height: 100%;
+       padding-bottom: 15px;
+       padding-left: 15px;
+       margin: 0;
+       overflow: auto;
+     }
+}

@@ -3,7 +3,7 @@ import ToolBar from "./View/Toolbar/ToolBar";
 
 import SubHeader from "./SubHeader/SubHeader";
 import Steps from "./Steps/Steps";
-import {Dataset} from "./View/Dataset/Dataset";
+import Dataset from "./View/Dataset/Dataset";
 
 
 import {SolveContainer} from '../../containers/solve/solve'
@@ -27,15 +27,14 @@ class CaseSolve extends Component {
   }
 
     renderCaseView = () =>{
-      console.log(this.props.match.params.view)
+      console.log(this.props.match.params.view);
       switch (this.props.match.params.view) {
           case 'dataset': return <Dataset/>;
           case 'console': return <Console/>;
           case 'process': return <Process/>;
           default: return  <Dashboard />
-
       }
-    }
+    };
 
   render() {
 
