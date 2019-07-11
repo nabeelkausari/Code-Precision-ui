@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
-import Steps from "../../Steps/Steps";
-import ToolBar from "../Toolbar/ToolBar";
+import {DashboardContainer} from "../../../../containers/solve/view/dashboard/dashboard";
+import './dashboard.scss';
 
-export class Dashboard extends Component {
+
+class Dashboard extends Component {
     render() {
         return (
-            <div>
-                <Steps />
-                <ToolBar/>
-                Dashboard
+            <div className="card-container">
+                {this.props.steps && this.props.steps.map((step, index) =>
+                <div className="card">
+                    <div>
+                    <span className="card__index-no">{index+1}</span>
+                    </div>
+                </div>
+                )}
             </div>
         );
     };
 };
+
+export default DashboardContainer(Dashboard)

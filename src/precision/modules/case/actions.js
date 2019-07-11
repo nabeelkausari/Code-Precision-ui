@@ -23,13 +23,13 @@ export const getCase = () => (dispatch, getState) => {
 
 export const getSteps = () => (dispatch, getState) => {
     dispatch({ type: types.FETCH_STEPS_REQUESTED });
-    const { case: { info: { _links } } } = getState();
+    const { cases: { info: { _links } } } = getState();
     fetchLinkAs(_links.user_steps)
         .then(payload => {
             const step_data_sets = flatten(payload.map(data => data.results.filter(ds => ds._links.data !== undefined)));
             dispatch(addDataSets(step_data_sets));
 
-            const { case: { data_sets } } = getState();
+            const { cases: { data_sets } } = getState();
             data_sets.reduce((data, data_set, index) => {
                 if (!data_set._links.modifies)
                     return data_sets;

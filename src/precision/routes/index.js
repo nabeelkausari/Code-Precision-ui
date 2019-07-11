@@ -32,14 +32,14 @@ const ScenarioRoutes = () => (
       </Switch>
     </SubHeader>
   </Header>
-)
+);
 
 const CaseRoutes = () => (
     <Switch>
         <Route exact path="/cases" component={CaseList}/>
         <Route exact path="/cases/:case_id" component={CaseDetail}/>
     </Switch>
-)
+);
 
 export default (props) => {
     return (

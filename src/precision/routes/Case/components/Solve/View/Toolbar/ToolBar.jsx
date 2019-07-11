@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 
 import './Toolbar.scss';
 import {Button} from "../../../../../../components/Buttons/Button";
+import {ToolbarContainer} from "../../../../containers/solve/view/toolbar/toolbar";
+
+
 class ToolBar extends Component {
     render() {
         return (
@@ -42,4 +45,4 @@ class ToolBar extends Component {
     }
 }
 
-export default ToolBar;
+export default ToolbarContainer(ToolBar);
