@@ -33,25 +33,25 @@ export default (state = initialState, { type, payload }) => {
         case types.FETCH_FUNCTIONS_REQUESTED:
             return {
                 ...state,
-                function_loading: true,
-                fetch_function_error: null,
+                functions_loading: true,
+                fetch_functions_error: null,
                 fetch_function_succeeded: null
             };
 
         case types.FETCH_FUNCTIONS_SUCCEEDED:
             return {
                 ...state,
-                function_loading: false,
-                fetch_function_succeeded: true,
-                functions: payload
+                functions_loading: false,
+                fetch_functions_succeeded: true,
+                list: payload
             };
 
         case types.FETCH_FUNCTIONS_FAILED:
             return {
                 ...state,
-                function_loading: false,
-                fetch_function_succeeded: false,
-                fetch_function_error: payload
+                functions_loading: false,
+                fetch_functions_succeeded: false,
+                fetch_functions_error: payload
             };
 
         default:
