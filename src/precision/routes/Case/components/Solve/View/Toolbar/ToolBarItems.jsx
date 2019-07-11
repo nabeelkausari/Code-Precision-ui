@@ -5,7 +5,7 @@ class ToolBarItems extends Component {
     render() {
         return (
             <div className="toolbar-container">
-                <div className="tool" onClick={this.props.onTableItemClick}>
+                <div className="tool --flex-basis-30" onClick={this.props.onTableItemClick}>
                     <p className="tool__title">Table:</p>
                     <div className="pill-container">
                         {/*<span className="pill-container__placeholder">Select Column</span>*/}
@@ -19,7 +19,7 @@ class ToolBarItems extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="tool" onClick={this.props.onFunctionItemClick}>
+                <div className="tool --flex-basis-25" onClick={this.props.onFunctionItemClick}>
                     {/*<img className="tool__image" src="" alt="Table"/>*/}
                     <p className="tool__title">Function:</p>
                     <div className="pill-container">
@@ -32,7 +32,7 @@ class ToolBarItems extends Component {
                 </div>
                 <Button
                     buttonType="primary"
-                    style={{flexBasis:"20%"}}
+                    // className="--flex-basis-20"
                 >
                     Run Function
                 </Button>

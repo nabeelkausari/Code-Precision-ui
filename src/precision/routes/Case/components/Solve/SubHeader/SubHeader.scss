@@ -4,13 +4,18 @@
   padding: 15px;
   z-index: 28;
 
+  .navbar-nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
   &__left-container {
 
   }
 
   &__right-container {
     display: flex;
-    width: calc(100vw - 45rem);
     justify-content: flex-end;
   }
 

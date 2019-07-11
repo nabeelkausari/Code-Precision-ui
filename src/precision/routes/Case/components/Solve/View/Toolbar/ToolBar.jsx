@@ -1,7 +1,6 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 
 import './Toolbar.scss';
-import {Button} from "../../../../../../components/Buttons/Button";
 import FunctionsFlyout from "./FunctionsFlyout";
 import TablesFlyout from "./TablesFlyout";
 import ToolBarItems from "./ToolBarItems";
@@ -34,6 +33,7 @@ class ToolBar extends Component {
     };
 
     render() {
+        const {is_function_flyout_open, is_table_flyout_open} = this.state;
         return (
             <div style={{position:"relative"}}>
                 <ToolBarItems
@@ -41,12 +41,17 @@ class ToolBar extends Component {
                     onFunctionItemClick={this.toggleFunction}
                 />
                 {
-                    this.state.is_function_flyout_open &&
+                    is_function_flyout_open &&
                         <FunctionsFlyout/>
                 }
                 {
-                    this.state.is_table_flyout_open &&
+                    is_table_flyout_open &&
                         <TablesFlyout/>
+                }
+
+                {
+                    is_function_flyout_open  &&
+                    <div className="fx-flyout__backdrop"></div>
                 }
             </div>
         );

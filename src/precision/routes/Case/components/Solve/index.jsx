@@ -1,7 +1,14 @@
 import React, {Component} from 'react';
 import ToolBar from "./View/Toolbar/ToolBar";
-import {SolveContainer} from '../../containers/solve/solve'
+
+import SubHeader from "./SubHeader/SubHeader";
 import Steps from "./Steps/Steps";
+import {Dataset} from "./View/Dataset/Dataset";
+
+
+import {SolveContainer} from '../../containers/solve/solve'
+import {Console} from "./View/Console/Console";
+import Process from "./View/Process/Process";
 import Dashboard from "./View/Dashboard/Dashboard";
 
 class CaseSolve extends Component {
@@ -19,12 +26,27 @@ class CaseSolve extends Component {
     }
   }
 
+    renderCaseView = () =>{
+      console.log(this.props.match.params.view)
+      switch (this.props.match.params.view) {
+          case 'dataset': return <Dataset/>;
+          case 'console': return <Console/>;
+          case 'process': return <Process/>;
+          default: return  <Dashboard />
+
+      }
+    }
+
   render() {
-    return (
-      <div>
-        <Steps />
-        <ToolBar/>
-          <Dashboard />
+
+      return (
+      <div style={{display:"flex"}}>
+        <div style={{flex:"1"}}>
+            <SubHeader/>
+            <ToolBar/>
+            {this.renderCaseView()}
+        </div>
+          <Steps/>
       </div>
     );
   }

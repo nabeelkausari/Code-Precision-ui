@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Route from './precision/routes'
-import './precision/styles/main.scss'
+import './precision/styles/main.scss';
+
+import 'font-awesome/css/font-awesome.min.css';
 
 import * as serviceWorker from './serviceWorker';
 

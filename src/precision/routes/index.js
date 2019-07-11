@@ -23,14 +23,12 @@ export const history = createBrowserHistory();
 
 const ScenarioRoutes = () => (
   <Header>
-    <SubHeader>
       <Switch>
-        <Route exact path="/cases/:case_id/:scenario_id" component={CaseSolve}/>
-        <Route exact path="/cases/:case_id/:scenario_id/dataset" component={Dataset}/>
-        <Route exact path="/cases/:case_id/:scenario_id/console" component={Console}/>
-        <Route exact path="/cases/:case_id/:scenario_id/process" component={Process}/>
+        <Route exact path="/cases/:case_id/:scenario_id/:view" component={CaseSolve}/>
+        {/*<Route exact path="/cases/:case_id/:scenario_id/dataset" component={Dataset}/>*/}
+        {/*<Route exact path="/cases/:case_id/:scenario_id/console" component={Console}/>*/}
+        {/*<Route exact path="/cases/:case_id/:scenario_id/process" component={Process}/>*/}
       </Switch>
-    </SubHeader>
   </Header>
 );
 

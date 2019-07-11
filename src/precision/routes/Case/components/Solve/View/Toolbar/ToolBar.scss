@@ -3,16 +3,16 @@
 .toolbar-container {
   display: flex;
   justify-content: flex-start;
-  border-bottom: 1px solid #DCDCDC;
+  border: 1px solid #DCDCDC;
   background-color: #FFFFFF;
   box-shadow: 13px 5px 16px -11px rgba(0,0,0,0.26);
-  width: calc(100vw - 30rem);
-  padding: .2rem 0;
+  padding: .5rem 0;
+
   .tool {
     display: flex;
     flex-basis: 20%;
     align-items: center;
-    padding: 0 .4rem;
+    padding: 0.4rem;
     color: $color-grey-dark-2;
     border: 1px solid #DEDEDE;
     border-radius: 2px;
@@ -20,7 +20,7 @@
     margin: .3rem;
     cursor: pointer;
     &:not(:last-child){
-      margin-right: 3rem;
+      margin-right: 1rem;
     }
 
     &__image {
@@ -29,7 +29,7 @@
 
     &__title {
       color: #9B9B9B;
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       letter-spacing: 0.04rem;
       margin: 0 .5rem 0 0;
     }
@@ -45,14 +45,14 @@
         border: 1px solid #D6E9FF;
         border-radius: .6rem;
         background-color: #F5F7F8;
-        padding: .3rem .5rem;
+        padding: 0 .5rem;
 
         &:not(:first-child){
           margin-left: 2px;
         }
 
         &__text {
-          font-size: 1rem;
+          font-size: 1.1rem;
           white-space: nowrap;
         }
 
@@ -75,36 +75,135 @@
 .fx{
   display: flex;
   position: absolute;
-  width: 100%;
-  height: calc(100vh - 16rem);
-  left: 0;
-  z-index: 2;
-  background: rgba(white, 0.4);
+  left: 1vw;
+  z-index: 50;
+  background: $color-white;
+  border: 1px solid #E9E9E9;
+  box-shadow: 0 .2rem .7rem .1rem rgba($color-white,0.06);
   &__left {
-    flex: 1;
-    background: orangered;
+    width: 58vw;
   }
 
   &__right {
-    flex: 1;
-    background: yellowgreen;
+    background: #7ed56f;
+    width: 38vw;
+    &__description{
+
+    }
+
   }
 
   &__header {
     padding: 1rem .4rem .8rem 1rem ;
+    display: flex;
+    justify-content: space-between;
+
+    &-title {
+      font-size: 1.8rem;
+      font-weight: 300;
+    }
   }
 
   &__content {
+    display: flex;
+  }
 
+  &__search-results {
+    padding: 2rem;
   }
 
   &__menu {
-    width: 100px;
-    height: 100px;
+    width: 30%;
+    height: 600px;
+    background: white;
     box-shadow: 4px 0px 17px #cccccc
+
   }
 
   &__list {
+    display: flex;
+    width: 100%;
+    padding: 2rem;
     height: calc(100vh - 16rem);
+
+    &-left {
+      flex: 1;
+    }
+
+    &-right {
+      flex: 1;
+    }
   }
+
+  &-menu {
+    &__item {
+      padding: 2rem;
+      cursor: pointer;
+
+      &:hover {
+        color: $color-primary-light;
+        border-right: .3rem solid currentColor;
+      }
+    }
+
+    .active-fx-category {
+      color: $color-primary-light;
+      border-right: .3rem solid currentColor;
+    }
+    &__title {
+      font-size: 1.2rem;
+      color: $color-grey-light-2;
+      font-weight: 400;
+    }
+  }
+
+  &-list {
+    &__item{
+      margin-bottom: 1rem;
+    }
+
+    &__title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    &__subtitle {
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+  }
+
+  &__search {
+
+    &-results {
+      height: calc(100vh - 16rem);
+    }
+
+    &-items {
+      padding: 1.5rem 1rem;
+      font-size: 1rem;
+      color: $color-grey-light-2;
+    }
+
+    &-name {
+      font-weight: 700;
+      margin-right: 1.4rem;
+    }
+
+    &-category {
+     font-weight: 300;
+    }
+  }
+}
+
+.fx-flyout__backdrop {
+  position: absolute;
+  top: 5.3rem;
+  left: 0;
+  z-index: 40;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  opacity: 0.5;
 }
