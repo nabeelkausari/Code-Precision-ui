@@ -1,45 +1,58 @@
 import React, {Component} from 'react';
 
 import './Toolbar.scss';
-import {Button} from "../../../../../../components/Buttons/Button";
+import FunctionsFlyout from "./FunctionsFlyout";
+import TablesFlyout from "./TablesFlyout";
+import ToolBarItems from "./ToolBarItems";
+
 import {ToolbarContainer} from "../../../../containers/solve/view/toolbar/toolbar";
 
-
 class ToolBar extends Component {
+    state = {
+        is_function_flyout_open: false,
+        is_table_flyout_open: false
+    };
+
+    toggleTable = () => {
+        if(this.state.is_function_flyout_open)
+            this.setState({is_function_flyout_open:false});
+
+        this.setState((state) => {
+            return {is_table_flyout_open: !state.is_table_flyout_open};
+        });
+
+    };
+
+    toggleFunction = () =>{
+        if(this.state.is_table_flyout_open)
+            this.setState({is_table_flyout_open:false});
+
+        this.setState((state) => {
+            return {is_function_flyout_open: !state.is_function_flyout_open};
+        });
+    };
+
     render() {
+        const {is_function_flyout_open, is_table_flyout_open} = this.state;
         return (
-            <div className="toolbar-container">
-               <div className="tool">
-                   <p className="tool__title">Table:</p>
-                   <div className="pill-container">
-                       {/*<span className="pill-container__placeholder">Select Column</span>*/}
-                       <div className="pill">
-                           <span className="pill__text">Table 1: 10 column selected</span>
-                           <span className="pill__cancel"><i className="fa fa-times"></i></span>
-                       </div>
-                       <div className="pill">
-                           <span className="pill__text">Table 1: 10 column selected</span>
-                           <span className="pill__cancel"><i className="fa fa-times"></i></span>
-                       </div>
-                   </div>
-               </div>
-                <div className="tool">
-                    {/*<img className="tool__image" src="" alt="Table"/>*/}
-                    <p className="tool__title">Function:</p>
-                    <div className="pill-container">
-                        {/*<span className="pill-container__placeholder">Select Function</span>*/}
-                        <div className="pill">
-                            <span className="pill__text">Bar Chart</span>
-                            <span className="pill__cancel"><i className="fa fa-times"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <Button
-                    buttonType="primary"
-                    style={{flexBasis: "20%"}}
-                >
-                    Run Function
-                </Button>
+            <div style={{position:"relative"}}>
+                <ToolBarItems
+                    onTableItemClick={this.toggleTable}
+                    onFunctionItemClick={this.toggleFunction}
+                />
+                {
+                    is_function_flyout_open &&
+                        <FunctionsFlyout/>
+                }
+                {
+                    is_table_flyout_open &&
+                        <TablesFlyout/>
+                }
+
+                {
+                    is_function_flyout_open  &&
+                    <div className="fx-flyout__backdrop"></div>
+                }
             </div>
         );
     }

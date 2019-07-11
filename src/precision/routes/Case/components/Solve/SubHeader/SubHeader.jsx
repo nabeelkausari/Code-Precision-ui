@@ -11,7 +11,7 @@ class SubHeader extends Component {
                     <Nav>
                         <div className="bg-sub-header__left-container">
                             <Nav.Item bsPrefix="bg-sub-header__items">
-                                <NavLink exact to="/cases/3/5/"
+                                <NavLink exact to="/cases/3/5/dashboard"
                                          className='bg-sub-header__link'
                                          activeClassName="active"
                                 >Dashboard

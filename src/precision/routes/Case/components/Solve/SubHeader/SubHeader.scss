@@ -1,8 +1,14 @@
 .bg-sub-header {
   background-color: #FFFFFF;
-  box-shadow: 13px 5px 16px -11px rgba(0,0,0,0.26);
+  border-bottom: 1px solid #DCDCDC;
   padding: 15px;
   z-index: 28;
+
+  .navbar-nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
 
   &__left-container {
 
@@ -10,7 +16,6 @@
 
   &__right-container {
     display: flex;
-    width: calc(100vw - 45rem);
     justify-content: flex-end;
   }
 

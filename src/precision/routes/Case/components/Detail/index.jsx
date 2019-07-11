@@ -6,7 +6,7 @@ class CaseDetail extends Component {
         return (
             <div>
                 Case detail <br/>
-                <Link to={'/cases/4/4'}>Scenario</Link>
+                <Link to={'/cases/4/4/dashboard'}>Scenario</Link>
             </div>
         );
     }
