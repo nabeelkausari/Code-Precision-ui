@@ -6,6 +6,6 @@ import functionsReducer from '../modules/case/toolbar/reducer';
 
 export default combineReducers({
   auth: authReducer,
-  case: caseReducer,
+  cases: caseReducer,
   functions: functionsReducer
 })
