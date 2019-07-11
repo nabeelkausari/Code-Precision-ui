@@ -5,7 +5,8 @@ import {SolveContainer} from '../../containers/solve/solve'
 class CaseSolve extends Component {
 
   componentDidMount() {
-    this.props.getCase()
+    this.props.getCase();
+    this.props.getCategoryAndFunctions()
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
