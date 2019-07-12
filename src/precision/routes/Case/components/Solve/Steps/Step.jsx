@@ -57,7 +57,7 @@ class Step extends Component {
         return (
             <div className="step">
 
-                <span className="step__index-no">{this.getPrefix(step.sequence_number)}</span>
+                <span className="index-no">{this.getPrefix(step.sequence_number)}</span>
 
                 <div className="step__main-container">
                     <div className="step__info-container">

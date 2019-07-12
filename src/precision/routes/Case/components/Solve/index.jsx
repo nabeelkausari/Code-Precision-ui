@@ -10,6 +10,9 @@ import {SolveContainer} from '../../containers/solve/solve'
 import {Console} from "./View/Console/Console";
 import Process from "./View/Process/Process";
 import Dashboard from "./View/Dashboard/Dashboard";
+import Step from "./Steps/Step";
+import Flyout from "../../../../components/Flyout/Flyout";
+import ResultsFlyout from "./Results/ResultsFlyout";
 
 class CaseSolve extends Component {
 
@@ -37,16 +40,35 @@ class CaseSolve extends Component {
       }
     }
 
+    renderSteps = () => {
+      let route = this.props.match.params.view
+        if(route === 'dataset' || route === 'dashboard')
+        {
+            return <Steps/>
+        }
+    }
+
   render() {
 
       return (
-      <div style={{display:"flex"}}>
-        <div style={{flex:"1"}}>
-            <SubHeader/>
-            <ToolBar/>
-            {this.renderCaseView()}
-        </div>
-          <Steps/>
+      <div>
+       <div style={{display:"flex"}}>
+           <div style={{flex:"1", position:'relative'}}>
+               <SubHeader/>
+               <ToolBar/>
+               {this.renderCaseView()}
+               <ResultsFlyout/>
+               <ResultsFlyout secondary/>
+           </div>
+
+           {this.renderSteps()}
+
+       </div>
+          <div>
+
+
+          </div>
+
       </div>
     );
   }

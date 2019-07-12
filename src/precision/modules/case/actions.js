@@ -44,11 +44,29 @@ export const getSteps = () => (dispatch, getState) => {
                 data_sets[matching.index] = {...data_sets[index]};
                 data_sets.splice(index,1);
                 }, []);
+            payload.sort((a, b) => (a.sequence_number) - (b.sequence_number));
             dispatch({ type: types.FETCH_STEPS_SUCCEEDED, payload });
         })
         .catch(payload => dispatch({ type: types.FETCH_STEPS_FAILED, payload }));
 };
 
+export const getResultsError = (payload) => (dispatch, getState) => {
+
+    dispatch({ type: types.FETCH_RESULTS_ERR0R_REQUESTED });
+    const headers = new Headers();
+    fetch(payload, { method: 'GET', headers })
+        .then(response => {
+            console.log("RESPONSE",response)
+        })
+}
+
+export const setPrimaryFlyout = (payload) => (dispatch, getState) => {
+    dispatch({type : types.SET_PRIMARY_FLYOUT, payload})
+}
+
+export const setSecondaryFlyout = (payload) => (dispatch, getState) => {
+
+}
 
 
 

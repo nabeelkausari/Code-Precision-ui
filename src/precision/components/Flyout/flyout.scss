@@ -1,0 +1,81 @@
+//<div className="flyout-container">
+//
+//<div className="flyout-container__header">
+//<div className="flyout-container__index-no-wrapper">
+//<span className="flyout-container__index-no">{sequence_no}</span>
+//</div>
+//<h6 className="flyout-container__title">{title}</h6>
+//<div className="flyout-container__options">
+//                                          { require_download && <button className="flyout-container__download-option">Download</button>}
+//{ require_pin && <button className="flyout-container__pin-option">Pin</button>}
+//{require_full_screen && <button className="flyout-container__full-screen-option">Full Screen</button>}
+//</div>
+//<div className="flyout-container__close-btn">&times;</div>
+//</div>
+//
+//<div className="flyout-container__content">
+//                                          {children}
+//</div>
+//</div>
+//
+
+
+.flyout-container{
+
+  position: absolute;
+  width: 49.5%;
+  height: calc(100vh - 16rem);
+  top : 10.5rem;
+  border: .1rem solid black;
+  //padding: 1rem 2rem;
+
+  &--1{
+    right: .5rem;
+  }
+
+  &--2{
+    right: calc(50% + .2rem);
+  }
+
+
+  //Flyout Header
+  &__header{
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: lightgray;
+    position: relative;
+  }
+
+  &__index-no-wrapper{
+
+  }
+
+
+  &__title{
+    margin: 0 auto 0 5rem;
+    font-size: 2rem;
+  }
+
+  &__options{
+
+  }
+
+  &__download-option{
+
+  }
+
+  &__pin-option{
+
+  }
+
+  &__full-screen-option{
+
+  }
+
+  //Flyout Content
+
+  &__content{
+    padding: 1rem 4rem;
+  }
+}
