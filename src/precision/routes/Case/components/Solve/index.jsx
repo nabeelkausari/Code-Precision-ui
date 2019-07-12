@@ -10,6 +10,7 @@ import {SolveContainer} from '../../containers/solve/solve'
 import {Console} from "./View/Console/Console";
 import Process from "./View/Process/Process";
 import Dashboard from "./View/Dashboard/Dashboard";
+import Notes from "./View/Notes/Notes";
 
 class CaseSolve extends Component {
 
@@ -37,7 +38,7 @@ class CaseSolve extends Component {
     };
 
   render() {
-
+      const {show_notes_flyout, notes_info} = this.props;
       return (
       <div style={{display:"flex"}}>
         <div style={{flex:"1"}}>
@@ -46,6 +47,7 @@ class CaseSolve extends Component {
             {this.renderCaseView()}
         </div>
           <Steps/>
+          {!!show_notes_flyout && <Notes notes={notes_info}/>}
       </div>
     );
   }
