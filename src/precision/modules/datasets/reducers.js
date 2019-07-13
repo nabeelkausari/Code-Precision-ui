@@ -9,7 +9,8 @@ const initialState = {
         items:[],
         by_uri:{}
     },
-    selected_table_reference:""
+    selected_table_reference:"",
+    selections:{}
 
 };
 
@@ -27,7 +28,7 @@ export default (state = initialState, { type, payload }) => {
                     items: payload,
                     by_uri: map((payload) => payload.shift(), groupBy(item => item.ref, payload))
 
-    },
+                },
 
             };
 
@@ -45,6 +46,13 @@ export default (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 [payload.dataset_reference]: (state[payload.dataset_reference] || []).filter(h => payload.header.key !== h.key).concat(payload.header)
+            };
+
+
+        case types.SET_DATASET_SELECTIONS:
+            return {
+                ...state,
+                selections: payload
             };
 
 

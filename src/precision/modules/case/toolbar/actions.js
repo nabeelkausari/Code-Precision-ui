@@ -1,6 +1,7 @@
 import {FUNCTION_CATEGORY_COLLECTION, FUNCTION_COLLECTION, FUNCTION_SUGGESTIONS} from "../../../api/media-types";
 import * as types from './types'
 import {fetchLinkAs} from "../../../api/helpers";
+import {setDatasetSelection} from "../../datasets/actions";
 
 
 const links = {
@@ -54,7 +55,9 @@ export const setColumnSelections = (current_dataset_ref, column) => (dispatch, g
     }
 
     if(current_selections[current_dataset_ref].length === 0) delete current_selections[current_dataset_ref];
-    dispatch({type:types.SET_COLUMN_SELECTION, payload:current_selections})
+    dispatch({type:types.SET_COLUMN_SELECTION, payload:current_selections});
+    dispatch(setDatasetSelection());
+
 };
 
 export const deleteColumnSelection = (current_dataset_ref) => (dispatch, getState) => {

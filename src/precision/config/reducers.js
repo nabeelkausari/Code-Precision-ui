@@ -10,6 +10,6 @@ export default combineReducers({
   auth: authReducer,
   cases: caseReducer,
   functions: functionsReducer,
-  dataset: datasetReducer,
+  datasets: datasetReducer,
   notes: notesReducer
 })

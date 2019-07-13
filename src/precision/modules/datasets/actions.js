@@ -13,3 +13,16 @@ export const selectColumn = (dataset_reference, header) => dispatch => {
     dispatch({type:types.SELECT_COLUMN, payload:{dataset_reference,header}})
 };
 
+export const setDatasetSelection = () => (dispatch, getState) => {
+    const {functions, datasets} = getState();
+    let column_selections = functions.selections;
+    let dataset_selections ={};
+
+    for(let key in column_selections){
+        dataset_selections[key] = {
+            name: datasets.list.by_uri[key].name,
+            uri: datasets.list.by_uri[key].datasetPath
+        }
+    }
+    dispatch({type:types.SET_DATASET_SELECTIONS, payload:dataset_selections})
+};

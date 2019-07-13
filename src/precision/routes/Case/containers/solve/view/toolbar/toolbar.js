@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import {deleteColumnSelection, setColumnSelections} from "../../../../../../modules/case/toolbar/actions";
 
-const mapStateToProps = ({ cases: { data_sets } , functions: { categories, functions, selections }, dataset: { list }}) => ({
+const mapStateToProps = ({ cases: { data_sets } , functions: { categories, functions, selections }, datasets: { list }}) => ({
     dataset_list: list,
     selections,
     categories: !!categories && categories
