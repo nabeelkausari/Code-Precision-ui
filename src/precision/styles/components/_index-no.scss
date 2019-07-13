@@ -1,0 +1,40 @@
+.index-no{
+  position: absolute;
+  top: 1.5rem;
+  left: 2.5rem;
+
+  &::after{
+    content: " ";
+    position: absolute;
+    top: -.2rem;
+    left: -.4rem;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    background-color: $pill-fill-color;
+    z-index: -5;
+    border: 1px solid $pill-border-color;
+  }
+
+  &--1{
+    position: absolute;
+    top: 2.1rem;
+    left: 2.5rem;
+    z-index: 1;
+    font-size: 1.4rem;
+
+    &::after{
+      content: " ";
+      position: absolute;
+      top: -0.3rem;
+      left: -.4rem;
+      height: 2.5rem;
+      width: 2.5rem;
+      border-radius: 50%;
+      background-color: $pill-fill-color;
+      z-index: -1;
+      border: 1px solid $pill-border-color;
+    }
+  }
+
+}

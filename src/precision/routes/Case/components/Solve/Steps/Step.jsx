@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import ReactTruncate from 'react-truncate'
+
 import Tooltip from '../../../../../components/Tooltip/Tooltip'
+import './StepList.scss'
 import {StepContainer} from "../../../containers/solve/steps/step";
-import './Steps.scss'
+
 
 class Step extends Component {
 
@@ -49,15 +51,19 @@ class Step extends Component {
     };
 
     render() {
-        const {step} = this.props;
-        const {is_column_truncated} = this.state;
+
+        const {step, onShowResultClick, resetResultsFlyouts, resetNotesFlyout} = this.props
+        const {is_column_truncated} = this.state
         return (
             <div className="step">
 
-                <span className="step__index-no">{this.getPrefix(step.sequence_number)}</span>
+                <span className="index-no">{this.getPrefix(step.sequence_number)}</span>
 
                 <div className="step__main-container">
                     <div className="step__info-container">
+
+
+
                         <div className="step__functions-wrapper">
                             <ReactTruncate lines={1} onTruncate={(default_value) => this.didTruncate(default_value, "is_function_truncated")}>
                                 <div className="step__function-name">
@@ -81,10 +87,20 @@ class Step extends Component {
                                 </ReactTruncate>
                             </div>
                         }
+
+
+
+
+
+
+
+
+
                     </div>
+
                     <div className="step__actions-container">
-                        <button className="step__action btn-link">Result</button>
-                        <button className="step__action btn-link" onClick={() => this.props.getUserNotes(step)}>Notes</button>
+                        <button className="step__action btn-link" onClick={() => {resetNotesFlyout(); onShowResultClick(this.props.step)}}>Result</button>
+                        <button className="step__action btn-link" onClick={() => {resetResultsFlyouts(); this.props.getUserNotes(step)}}>Notes</button>
                         <button className="step__action btn-link">Delete</button>
                     </div>
                 </div>

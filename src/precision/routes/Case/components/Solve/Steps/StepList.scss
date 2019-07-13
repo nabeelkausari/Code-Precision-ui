@@ -84,25 +84,6 @@
   position: relative;
   font-size: 1.4rem;
 
-  &__index-no{
-    position: absolute;
-    top: 1.5rem;
-    left: 2.5rem;
-
-    &::after{
-      content: " ";
-      position: absolute;
-      top: -.2rem;
-      left: -.4rem;
-      height: 2.5rem;
-      width: 2.5rem;
-      border-radius: 50%;
-      background-color: lightblue;
-      z-index: -5;
-      border: 1px solid blue;
-    }
-  }
-
   &__main-container{
     padding: 0 1.5rem;
   }

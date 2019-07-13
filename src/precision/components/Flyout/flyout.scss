@@ -1,0 +1,94 @@
+//<div className="flyout-container">
+//
+//<div className="flyout-container__header">
+//<div className="flyout-container__index-no-wrapper">
+//<span className="flyout-container__index-no">{sequence_no}</span>
+//</div>
+//<h6 className="flyout-container__title">{title}</h6>
+//<div className="flyout-container__options">
+//                                          { require_download && <button className="flyout-container__download-option">Download</button>}
+//{ require_pin && <button className="flyout-container__pin-option">Pin</button>}
+//{require_full_screen && <button className="flyout-container__full-screen-option">Full Screen</button>}
+//</div>
+//<div className="flyout-container__close-btn">&times;</div>
+//</div>
+//
+//<div className="flyout-container__content">
+//                                          {children}
+//</div>
+//</div>
+//
+
+@import "../../styles/abstracts/variables";
+
+
+.flyout-container{
+
+  position: absolute;
+  width: 50%;
+  height: calc(100vh - 15.8rem);
+  top : 10.2rem;
+  //border: .1rem solid black;
+  //padding: 1rem 2rem;
+  background-color: $color-white;
+
+  &--1{
+    right: 0;
+  }
+
+  &--2{
+    right: 50%;
+  }
+
+
+  //Flyout Header
+  &__header{
+    display: flex;
+    align-items: center;
+    padding: 1rem 1rem;
+    background-color: $color-tertiary;
+    position: relative;
+  }
+
+  &__index-no-wrapper{
+
+  }
+
+
+  &__title{
+    margin: 0 auto 0 5rem;
+    font-size: 2rem;
+    font-weight: 400;
+  }
+
+  &__options{
+
+  }
+
+  &__download-option{
+    margin-left: 1rem;
+  }
+
+  &__pin-option{
+    margin-left: 1rem;
+  }
+
+  &__full-screen-option{
+    margin-left: 1rem;
+  }
+
+  &__close-btn{
+    cursor: pointer;
+    font-size: 4rem;
+    font-weight: 200;
+    line-height: 1;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  //Flyout Content
+
+  &__content{
+    padding: 1rem 2.5rem;
+  }
+}

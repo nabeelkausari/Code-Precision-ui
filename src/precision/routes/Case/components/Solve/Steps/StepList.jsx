@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import Step from './Step'
-import {StepsContainer} from "../../../containers/solve/steps/steps";
-import './Steps.scss'
 
-class Steps extends Component {
+import StepsContainer from '../../../containers/solve/steps'
+import './StepList.scss'
+
+class StepList extends Component {
 
     state = {
         is_steps_open : true
@@ -14,7 +15,7 @@ class Steps extends Component {
     };
 
     render() {
-        const {steps} = this.props
+        const {steps, onShowResultClick } = this.props
         const {is_steps_open} = this.state
         return (
             <div className={is_steps_open ? 'steps' : 'steps steps--closed'}>
@@ -28,7 +29,7 @@ class Steps extends Component {
                     <ul className="steps__list">
                         { steps &&
                             steps.map((step, index) => (
-                                <li className="steps__item" key={index}> <Step step={step} /> </li>
+                                <li className="steps__item" key={index}> <Step step={step} onShowResultClick = {onShowResultClick} /> </li>
                             ))
                         }
                     </ul>
@@ -48,4 +49,4 @@ class Steps extends Component {
     }
 }
 
-export default StepsContainer(Steps);
+export default StepsContainer(StepList);

@@ -24,3 +24,10 @@ export const handleSave = (payload) => (dispatch, getState) => {
         })
         .catch(reason => console.log(reason));
 };
+
+export const resetNotesFlyout = () => (dispatch, getState) => {
+    const {notes : {show_notes_flyout}} = getState()
+    if(show_notes_flyout){
+        dispatch({type : types.CLOSE_NOTES_FLYOUT})
+    }
+}

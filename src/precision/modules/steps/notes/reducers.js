@@ -1,6 +1,7 @@
 import * as types from "./types";
 
 const initialState = {
+
 };
 
 export default (state = initialState, { type, payload }) => {

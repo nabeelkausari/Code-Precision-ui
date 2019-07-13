@@ -7,4 +7,4 @@ const mapStateToProps = ({notes: { notes_info, fetch_notes_succeeded }}) => ({
 });
 
 
-export const NotesContainer = connect( mapStateToProps, { closeNotesFlyout, handleSave });
+export const NotesContainer = connect( mapStateToProps, { closeNotesFlyout, handleSave  });

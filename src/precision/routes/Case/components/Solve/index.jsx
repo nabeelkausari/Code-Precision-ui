@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ToolBar from "./View/Toolbar/ToolBar";
 
 import SubHeader from "./SubHeader/SubHeader";
-import Steps from "./Steps/Steps";
+import Steps from "./Steps/StepList";
 import Dataset from "./View/Dataset/Dataset";
 
 
@@ -10,6 +10,8 @@ import {SolveContainer} from '../../containers/solve/solve'
 import {Console} from "./View/Console/Console";
 import Process from "./View/Process/Process";
 import Dashboard from "./View/Dashboard/Dashboard";
+import ResultsFlyout from "./Result/ResultFlyout";
+import {hidePrimaryFlyout, hideSecondaryFlyout} from "../../../../modules/case/actions";
 import Notes from "./View/Notes/Notes";
 
 class CaseSolve extends Component {
@@ -28,26 +30,55 @@ class CaseSolve extends Component {
   }
 
     renderCaseView = () =>{
-      console.log(this.props.match.params.view);
+      console.log(this.props.match.params.view)
       switch (this.props.match.params.view) {
           case 'dataset': return <Dataset/>;
           case 'console': return <Console/>;
           case 'process': return <Process/>;
           default: return  <Dashboard />
+
       }
     };
 
+    renderSteps = () => {
+      let route = this.props.match.params.view
+        if(route === 'dataset' || route === 'dashboard')
+        {
+            return <Steps/>
+        }
+    }
+
   render() {
-      const {show_notes_flyout, notes_info} = this.props;
+
+      const {is_primary_flyout_open, is_secondary_flyout_open, hidePrimaryFlyout, hideSecondaryFlyout, show_notes_flyout, notes_info} = this.props
+      console.log("PRIMARY FLYOUT : ",is_primary_flyout_open)
+
+      const {} = this.props;
       return (
-      <div style={{display:"flex"}}>
-        <div style={{flex:"1"}}>
-            <SubHeader/>
-            <ToolBar/>
-            {this.renderCaseView()}
-        </div>
-          <Steps/>
-          {!!show_notes_flyout && <Notes notes={notes_info}/>}
+      <div>
+       <div style={{display:"flex"}}>
+           <div style={{flex:"1", position:'relative'}}>
+               <SubHeader/>
+               <ToolBar/>
+               {this.renderCaseView()}
+               { (is_primary_flyout_open || is_secondary_flyout_open) &&
+                   <div className="flyoutContainer">
+                       {is_primary_flyout_open && <ResultsFlyout hideFlyout = {hidePrimaryFlyout}/>}
+                       {is_secondary_flyout_open && <ResultsFlyout secondary hideFlyout={hideSecondaryFlyout}/>}
+                   </div>
+               }
+               {!!show_notes_flyout && <Notes notes={notes_info}/>}
+           </div>
+
+           {this.renderSteps()}
+
+
+       </div>
+          <div>
+
+
+          </div>
+
       </div>
     );
   }
