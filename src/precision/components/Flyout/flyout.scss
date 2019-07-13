@@ -19,22 +19,25 @@
 //</div>
 //
 
+@import "../../styles/abstracts/variables";
+
 
 .flyout-container{
 
   position: absolute;
-  width: 49.5%;
-  height: calc(100vh - 16rem);
-  top : 10.5rem;
-  border: .1rem solid black;
+  width: 50%;
+  height: calc(100vh - 15.8rem);
+  top : 10.2rem;
+  //border: .1rem solid black;
   //padding: 1rem 2rem;
+  background-color: $color-white;
 
   &--1{
-    right: .5rem;
+    right: 0;
   }
 
   &--2{
-    right: calc(50% + .2rem);
+    right: 50%;
   }
 
 
@@ -42,8 +45,8 @@
   &__header{
     display: flex;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: lightgray;
+    padding: 1rem 1rem;
+    background-color: $color-tertiary;
     position: relative;
   }
 
@@ -55,6 +58,7 @@
   &__title{
     margin: 0 auto 0 5rem;
     font-size: 2rem;
+    font-weight: 400;
   }
 
   &__options{
@@ -62,20 +66,29 @@
   }
 
   &__download-option{
-
+    margin-left: 1rem;
   }
 
   &__pin-option{
-
+    margin-left: 1rem;
   }
 
   &__full-screen-option{
+    margin-left: 1rem;
+  }
 
+  &__close-btn{
+    cursor: pointer;
+    font-size: 4rem;
+    font-weight: 200;
+    line-height: 1;
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
 
   //Flyout Content
 
   &__content{
-    padding: 1rem 4rem;
+    padding: 1rem 2.5rem;
   }
 }

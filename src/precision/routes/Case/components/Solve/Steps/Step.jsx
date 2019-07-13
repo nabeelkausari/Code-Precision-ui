@@ -3,7 +3,9 @@ import ReactTruncate from 'react-truncate'
 
 import Tooltip from '../../../../../components/Tooltip/Tooltip'
 
-import './Steps.scss'
+import './StepList.scss'
+
+import StepsContainer from '../../../containers/solve/steps'
 
 
 class Step extends Component {
@@ -52,7 +54,7 @@ class Step extends Component {
 
     render() {
 
-        const {step} = this.props
+        const {step, onShowResultClick} = this.props
         const {is_column_truncated} = this.state
         return (
             <div className="step">
@@ -99,7 +101,7 @@ class Step extends Component {
                     </div>
 
                     <div className="step__actions-container">
-                        <button className="step__action btn-link">Result</button>
+                        <button className="step__action btn-link" onClick={() => {onShowResultClick(this.props.step)}}>Result</button>
                         <button className="step__action btn-link">Notes</button>
                         <button className="step__action btn-link">Delete</button>
                     </div>

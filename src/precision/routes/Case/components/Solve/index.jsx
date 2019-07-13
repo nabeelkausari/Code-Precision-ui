@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ToolBar from "./View/Toolbar/ToolBar";
 
 import SubHeader from "./SubHeader/SubHeader";
-import Steps from "./Steps/Steps";
+import Steps from "./Steps/StepList";
 import {Dataset} from "./View/Dataset/Dataset";
 
 
@@ -12,7 +12,8 @@ import Process from "./View/Process/Process";
 import Dashboard from "./View/Dashboard/Dashboard";
 import Step from "./Steps/Step";
 import Flyout from "../../../../components/Flyout/Flyout";
-import ResultsFlyout from "./Results/ResultsFlyout";
+import ResultsFlyout from "./Result/ResultFlyout";
+import {hidePrimaryFlyout, hideSecondaryFlyout} from "../../../../modules/case/actions";
 
 class CaseSolve extends Component {
 
@@ -50,6 +51,9 @@ class CaseSolve extends Component {
 
   render() {
 
+      const {is_primary_flyout_open, is_secondary_flyout_open, hidePrimaryFlyout, hideSecondaryFlyout} = this.props
+      console.log("PRIMARY FLYOUT : ",is_primary_flyout_open)
+
       return (
       <div>
        <div style={{display:"flex"}}>
@@ -57,8 +61,12 @@ class CaseSolve extends Component {
                <SubHeader/>
                <ToolBar/>
                {this.renderCaseView()}
-               <ResultsFlyout/>
-               <ResultsFlyout secondary/>
+               { (is_primary_flyout_open || is_secondary_flyout_open) &&
+                   <div className="flyoutContainer">
+                       {is_primary_flyout_open && <ResultsFlyout hideFlyout = {hidePrimaryFlyout}/>}
+                       {is_secondary_flyout_open && <ResultsFlyout secondary hideFlyout={hideSecondaryFlyout}/>}
+                   </div>
+               }
            </div>
 
            {this.renderSteps()}

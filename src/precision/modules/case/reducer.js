@@ -2,6 +2,10 @@ import * as types from './types';
 
 const initialState = {
   data_sets: [],
+  results : {
+    is_primary_flyout_open : false,
+    is_secondary_flyout_open : false
+  }
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -32,6 +36,65 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         data_sets: [...state.data_sets, ...payload],
       };
+
+    case types.SET_CURRENT_STEP :
+      return {
+        ...state, results: {
+          ...state.results,
+          is_primary_step_set: true,
+          results1: payload
+        }
+      };
+
+
+    case types.SET_PREVIOUS_STEP :
+      return {
+        ...state,
+        results: {
+          ...state.results,
+          results2: state.results.results1,
+          is_secondary_step_set: true
+        }
+      }
+
+    case types.OPEN_FLYOUT_PRIMARY :
+      return {
+        ...state,
+        results: {
+          ...state.results,
+          is_primary_flyout_open: true
+        }
+      }
+
+    case types.CLOSE_FLYOUT_PRIMARY :
+      return {
+        ...state,
+        results: {
+          ...state.results,
+          is_primary_flyout_open: false,
+          // results1: undefined,
+          // is_primary_step_set: false
+        }
+      }
+
+    case types.OPEN_FLYOUT_SECONDARY :
+      return {
+        ...state,
+        results: {
+          ...state.results,
+          is_secondary_flyout_open: true
+        }
+      }
+
+    case types.CLOSE_FLYOUT_SECONDARY :
+      return {
+        ...state, results: {
+          ...state.results,
+          is_secondary_flyout_open: false,
+          results2: undefined,
+          is_secondary_step_set: false
+        }
+      }
 
     default:
       return state;
