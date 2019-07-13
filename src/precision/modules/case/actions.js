@@ -1,5 +1,5 @@
 import flatten from 'lodash/flatten'
-import {fetchLinkAs} from "../../api/helpers";
+import {fetchLink, fetchLinkAs} from "../../api/helpers";
 import * as types from './types'
 import {getDatasets} from "../datasets/actions";
 
@@ -17,7 +17,6 @@ export const getCase = () => (dispatch, getState) => {
     fetchLinkAs(url)
         .then(({ data_sets, ...payload }) => {
             dispatch(getDatasets(payload));
-            dispatch(addDataSets(data_sets));
             dispatch({ type: types.FETCH_CASE_SUCCEEDED, payload });
         })
         .catch(payload => dispatch({ type: types.FETCH_CASE_FAILED, payload }));
@@ -28,25 +27,8 @@ export const getSteps = () => (dispatch, getState) => {
     const { cases: { info } } = getState();
     fetchLinkAs(info._links.user_steps)
         .then(payload => {
-            const step_data_sets = flatten(payload.map(data => data.results.filter(ds => ds._links.data !== undefined)));
-            dispatch(addDataSets(step_data_sets));
-
-            const { cases: { data_sets } } = getState();
-            data_sets.reduce((data, data_set, index) => {
-                if (!data_set._links.modifies)
-                    return data_sets;
-                const href = data_set._links.modifies.href;
-                const matching = data_sets
-                    .map((ds, index) => ({ ds, index }))
-                    .filter(({ ds }) => !!ds._links.self.href.match(href))
-                    .shift();
-                if (!matching) {
-                    console.log('Cannot find the data set that was modified ', href);
-                }
-                data_sets[matching.index] = {...data_sets[index]};
-                data_sets.splice(index,1);
-                }, []);
             payload.sort((a, b) => (a.sequence_number) - (b.sequence_number));
+            payload = payload.slice(1);
             dispatch(getDatasets(info));
             dispatch({ type: types.FETCH_STEPS_SUCCEEDED, payload });
         })
@@ -116,6 +98,23 @@ export const resetResultsFlyouts = () => (dispatch, getState) => {
     dispatch({type : types.CLOSE_FLYOUT_SECONDARY})
 }
 
+export const undo = (link) => (dispatch, getState) => {
+    fetchLink(link)
+        .then(() => {
+            dispatch(getCase())
+        }).then(() =>{
+            dispatch(getSteps())
+    })
+}
+
+export const redo = (link) => (dispatch, getState) => {
+    fetchLink(link)
+        .then(() => {
+            dispatch(getCase())
+        }).then(() =>{
+        dispatch(getSteps())
+    })
+}
 
 
 

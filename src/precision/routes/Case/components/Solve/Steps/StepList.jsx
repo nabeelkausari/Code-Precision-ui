@@ -15,7 +15,7 @@ class StepList extends Component {
     };
 
     render() {
-        const {steps, onShowResultClick } = this.props
+        const {steps, onShowResultClick, undo_available, redo_available, last_step, onUndoClick, onRedoClick } = this.props
         const {is_steps_open} = this.state
         return (
             <div className={is_steps_open ? 'steps' : 'steps steps--closed'}>
@@ -23,6 +23,8 @@ class StepList extends Component {
                 <div className="steps__header">
                     <h3 className="steps__title">STEPS</h3>
                     <span className="steps__number-of-selected">0 selected</span>
+                    {undo_available && <button onClick={() => onUndoClick(last_step._links.undo)}>undo</button>}
+                    {redo_available && <button onClick={() => onRedoClick(last_step._links.redo)}>redo</button>}
                 </div>
                 <hr/>
                 <div className="steps__list-container">
