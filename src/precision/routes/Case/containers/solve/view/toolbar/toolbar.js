@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import {setColumnSelections} from "../../../../../../modules/case/toolbar/actions";
+import {deleteColumnSelection, setColumnSelections} from "../../../../../../modules/case/toolbar/actions";
 
 const mapStateToProps = ({ cases: { data_sets } , functions: { categories, functions, selections }, dataset: { list }}) => ({
     dataset_list: list,
@@ -20,4 +20,4 @@ const mapStateToProps = ({ cases: { data_sets } , functions: { categories, funct
 });
 
 
-export const ToolbarContainer = connect(mapStateToProps, {setColumnSelections} );
+export const ToolbarContainer = connect(mapStateToProps, {setColumnSelections, deleteColumnSelection} );

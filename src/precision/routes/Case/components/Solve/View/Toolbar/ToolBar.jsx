@@ -18,7 +18,7 @@ class ToolBar extends Component {
             this.setState({is_function_flyout_open:false});
 
         this.setState((state) => {
-            return {is_table_flyout_open: !state.is_table_flyout_open};
+            return {is_table_flyout_open: true};
         });
 
     };

@@ -38,7 +38,7 @@ class TablesFlyout extends Component {
 
     render() {
         const {current_dataset, columns} = this.state;
-        const something = this.props.selections[current_dataset] || [];
+        const selected = this.props.selections[current_dataset] || [];
         return (
             <div className="table-flyout-container">
                 <div className="table-box">
@@ -51,10 +51,10 @@ class TablesFlyout extends Component {
                     )}
                 </div>
                 <div className="columns-box">
-                    <h6>{something.length}Selected</h6>
+                    <h6>{selected.length}Selected</h6>
                     {columns.length > 0 && columns.map(column =>
                         <div className={this.state.selected ? "columns-box__title--selected": "columns-box__title"}>
-                            <input type="checkbox" checked={something.indexOf(column) >= 0} onChange={() => this.handleAvailableColumnSelect(column)}/>
+                            <input type="checkbox" checked={selected.indexOf(column) >= 0} onChange={() => this.handleAvailableColumnSelect(column)}/>
                             {column.name}
                         </div>
                     )}

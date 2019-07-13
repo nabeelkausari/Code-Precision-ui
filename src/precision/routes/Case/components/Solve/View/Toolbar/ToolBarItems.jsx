@@ -11,7 +11,7 @@ class ToolBarItems extends Component {
                 output.push(
                     <div className="pill">
                         <span className="pill__text">{by_uri[key].name}: {selections[key].length} column selected</span>
-                        <span className="pill__cancel"><i className="fa fa-times"></i></span>
+                        <span className="pill__cancel" onClick={() =>this.props.deleteColumnSelection(key)}><i className="fa fa-times" /></span>
                     </div>
                 )
             }
