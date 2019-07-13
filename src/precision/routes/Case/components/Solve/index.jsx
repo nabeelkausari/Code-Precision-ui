@@ -14,6 +14,7 @@ import Step from "./Steps/Step";
 import Flyout from "../../../../components/Flyout/Flyout";
 import ResultsFlyout from "./Result/ResultFlyout";
 import {hidePrimaryFlyout, hideSecondaryFlyout} from "../../../../modules/case/actions";
+import Notes from "./View/Notes/Notes";
 
 class CaseSolve extends Component {
 
@@ -39,7 +40,7 @@ class CaseSolve extends Component {
           default: return  <Dashboard />
 
       }
-    }
+    };
 
     renderSteps = () => {
       let route = this.props.match.params.view
@@ -51,9 +52,10 @@ class CaseSolve extends Component {
 
   render() {
 
-      const {is_primary_flyout_open, is_secondary_flyout_open, hidePrimaryFlyout, hideSecondaryFlyout} = this.props
+      const {is_primary_flyout_open, is_secondary_flyout_open, hidePrimaryFlyout, hideSecondaryFlyout, show_notes_flyout, notes_info} = this.props
       console.log("PRIMARY FLYOUT : ",is_primary_flyout_open)
 
+      const {} = this.props;
       return (
       <div>
        <div style={{display:"flex"}}>
@@ -70,6 +72,7 @@ class CaseSolve extends Component {
            </div>
 
            {this.renderSteps()}
+           {!!show_notes_flyout && <Notes notes={notes_info}/>}
 
        </div>
           <div>

@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
+import {DatasetContainer} from "../../../../containers/solve/view/dataset/dataset";
+import Table from "./Table";
 
-export class Dataset extends Component {
+class Dataset extends Component {
     render() {
         return (
             <div>
-                Data Set
+                <Table />
             </div>
         );
     };
 };
+
+
+export default DatasetContainer(Dataset)

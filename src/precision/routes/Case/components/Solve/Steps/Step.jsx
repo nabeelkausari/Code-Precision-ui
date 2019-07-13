@@ -2,10 +2,8 @@ import React, {Component} from 'react';
 import ReactTruncate from 'react-truncate'
 
 import Tooltip from '../../../../../components/Tooltip/Tooltip'
-
 import './StepList.scss'
-
-import StepsContainer from '../../../containers/solve/steps'
+import {StepContainer} from "../../../containers/solve/steps/step";
 
 
 class Step extends Component {
@@ -13,7 +11,7 @@ class Step extends Component {
     state = {
         is_function_truncated : false,
         is_column_truncated : false
-    }
+    };
 
     // Function to determine whether the sequence of the step needs to have an appended 0
     getPrefix = (sequence_number) => {
@@ -25,7 +23,7 @@ class Step extends Component {
         else {
             return string_number
         }
-    }
+    };
 
     // Function to get the string of all selected columns
     getSelectedColumns = (selections) => {
@@ -40,7 +38,7 @@ class Step extends Component {
         }
 
         else{ return "" }
-    }
+    };
 
 
     didTruncate = (truncated, ele) => {
@@ -50,7 +48,7 @@ class Step extends Component {
             });
 
         }
-    }
+    };
 
     render() {
 
@@ -68,11 +66,11 @@ class Step extends Component {
 
                         <div className="step__functions-wrapper">
                             <ReactTruncate lines={1} onTruncate={(default_value) => this.didTruncate(default_value, "is_function_truncated")}>
-                                <div className="step__function-name"><span className="step__function-icon"></span>{step.operation_name}</div>
+                                <div className="step__function-name">
+                                    <span className="step__function-icon"></span>{step.operation_name}
+                                </div>
                             </ReactTruncate>
                         </div>
-
-
                         {is_column_truncated?
                             <Tooltip placement={"bottom"} text={this.getSelectedColumns(step.selections)}>
                                 <div className="step__columns-wrapper">
@@ -102,7 +100,7 @@ class Step extends Component {
 
                     <div className="step__actions-container">
                         <button className="step__action btn-link" onClick={() => {onShowResultClick(this.props.step)}}>Result</button>
-                        <button className="step__action btn-link">Notes</button>
+                        <button className="step__action btn-link" onClick={() => this.props.getUserNotes(step)}>Notes</button>
                         <button className="step__action btn-link">Delete</button>
                     </div>
                 </div>
@@ -111,4 +109,4 @@ class Step extends Component {
     }
 }
 
-export default Step;
+export default StepContainer(Step);

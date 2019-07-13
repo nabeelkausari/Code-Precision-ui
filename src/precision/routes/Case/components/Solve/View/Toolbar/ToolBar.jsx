@@ -18,7 +18,7 @@ class ToolBar extends Component {
             this.setState({is_function_flyout_open:false});
 
         this.setState((state) => {
-            return {is_table_flyout_open: !state.is_table_flyout_open};
+            return {is_table_flyout_open: true};
         });
 
     };
@@ -33,12 +33,13 @@ class ToolBar extends Component {
     };
 
     render() {
-        const {is_function_flyout_open, is_table_flyout_open} = this.state;
+        const {is_function_flyout_open, is_table_flyout_open, data_sets} = this.state;
         return (
             <div style={{position:"relative"}}>
                 <ToolBarItems
                     onTableItemClick={this.toggleTable}
                     onFunctionItemClick={this.toggleFunction}
+                    {...this.props}
                 />
                 {
                     is_function_flyout_open &&
@@ -46,7 +47,7 @@ class ToolBar extends Component {
                 }
                 {
                     is_table_flyout_open &&
-                        <TablesFlyout/>
+                        <TablesFlyout data_sets={this.props.dataset_list.items} {...this.props} />
                 }
 
                 {
