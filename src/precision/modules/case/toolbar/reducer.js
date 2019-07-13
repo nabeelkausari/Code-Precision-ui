@@ -1,6 +1,7 @@
 import * as types from './types';
 
 const initialState = {
+    selections:{}
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -52,6 +53,12 @@ export default (state = initialState, { type, payload }) => {
                 functions_loading: false,
                 fetch_functions_succeeded: false,
                 fetch_functions_error: payload
+            };
+
+        case types.SET_COLUMN_SELECTION:
+            return {
+                ...state,
+               selections:payload
             };
 
         default:

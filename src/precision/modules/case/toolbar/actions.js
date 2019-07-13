@@ -40,4 +40,21 @@ const getFunctions = () => (dispatch) => {
         .catch(payload => dispatch({ type: types.FETCH_FUNCTIONS_FAILED, payload }))
 };
 
+export const setColumnSelections = (current_dataset_ref, column) => (dispatch, getState) => {
+    const { functions: {selections} }  = getState();
+    let current_selections = selections;
+
+    if(current_selections[current_dataset_ref] === undefined) current_selections[current_dataset_ref] = [];
+
+    const columnIndex = current_selections[current_dataset_ref].findIndex(item => item.index === column.index);
+    if(columnIndex < 0 ) {
+        current_selections[current_dataset_ref].push(column);
+    } else{
+        current_selections[current_dataset_ref] = current_selections[current_dataset_ref].filter((item) => item.index !== column.index)
+    }
+
+    if(current_selections[current_dataset_ref].length === 0) delete current_selections[current_dataset_ref];
+    dispatch({type:types.SET_COLUMN_SELECTION, payload:current_selections})
+};
+
 
