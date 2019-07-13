@@ -52,7 +52,7 @@ class Step extends Component {
 
     render() {
 
-        const {step, onShowResultClick} = this.props
+        const {step, onShowResultClick, resetResultsFlyouts, resetNotesFlyout} = this.props
         const {is_column_truncated} = this.state
         return (
             <div className="step">
@@ -99,8 +99,8 @@ class Step extends Component {
                     </div>
 
                     <div className="step__actions-container">
-                        <button className="step__action btn-link" onClick={() => {onShowResultClick(this.props.step)}}>Result</button>
-                        <button className="step__action btn-link" onClick={() => this.props.getUserNotes(step)}>Notes</button>
+                        <button className="step__action btn-link" onClick={() => {resetNotesFlyout(); onShowResultClick(this.props.step)}}>Result</button>
+                        <button className="step__action btn-link" onClick={() => {resetResultsFlyouts(); this.props.getUserNotes(step)}}>Notes</button>
                         <button className="step__action btn-link">Delete</button>
                     </div>
                 </div>

@@ -3,6 +3,7 @@ import {NotesContainer} from "../../../../containers/solve/view/Notes/notes";
 import './Notes.scss'
 import FormControl from "react-bootstrap/es/FormControl";
 import {Button} from "../../../../../../components/Buttons/Button";
+import Flyout from "../../../../../../components/Flyout/Flyout";
 
 class Notes extends Component {
 
@@ -62,13 +63,7 @@ class Notes extends Component {
         const {notes_details, closeNotesFlyout} = this.props;
         const {sequence, notes} = this.state;
         return (
-            <div className="notes-container">
-                <div className="notes-header">
-                    <span className="notes-header__index-no">{sequence && sequence}</span>
-                    <span className="notes-header__title">Notes</span>
-                    <i className="fa fa-times" onClick={closeNotesFlyout}
-                       style={{fontSize: '25px', float: 'right'}}/>
-                </div>
+            <Flyout  require_full_screen ={true} sequence_no = {sequence} title={"Notes"} hideFlyout = {closeNotesFlyout}>
                 <div className="tool">
                     {notes_details.note !== null &&
                     <i className='fa fa-edit' style={{ height: '27px', marginBottom: '2px', cursor: 'pointer' }} onClick={this.handleEditNotes}/>
@@ -99,7 +94,8 @@ class Notes extends Component {
                     <Button primary disabled={this.state.notes === null || this.state.notes === ""} onClick={this.handleUpdate} style={{ marginRight: '20px' }}>Save</Button>
                     <Button default onClick={closeNotesFlyout}>Cancel</Button>
                 </div>}
-            </div>
+            </Flyout>
+
         )
     }
 }

@@ -3,15 +3,13 @@ import ToolBar from "./View/Toolbar/ToolBar";
 
 import SubHeader from "./SubHeader/SubHeader";
 import Steps from "./Steps/StepList";
-import {Dataset} from "./View/Dataset/Dataset";
+import Dataset from "./View/Dataset/Dataset";
 
 
 import {SolveContainer} from '../../containers/solve/solve'
 import {Console} from "./View/Console/Console";
 import Process from "./View/Process/Process";
 import Dashboard from "./View/Dashboard/Dashboard";
-import Step from "./Steps/Step";
-import Flyout from "../../../../components/Flyout/Flyout";
 import ResultsFlyout from "./Result/ResultFlyout";
 import {hidePrimaryFlyout, hideSecondaryFlyout} from "../../../../modules/case/actions";
 import Notes from "./View/Notes/Notes";
@@ -69,10 +67,11 @@ class CaseSolve extends Component {
                        {is_secondary_flyout_open && <ResultsFlyout secondary hideFlyout={hideSecondaryFlyout}/>}
                    </div>
                }
+               {!!show_notes_flyout && <Notes notes={notes_info}/>}
            </div>
 
            {this.renderSteps()}
-           {!!show_notes_flyout && <Notes notes={notes_info}/>}
+
 
        </div>
           <div>

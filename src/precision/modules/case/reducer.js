@@ -72,8 +72,8 @@ export default (state = initialState, { type, payload }) => {
         results: {
           ...state.results,
           is_primary_flyout_open: false,
-          // results1: undefined,
-          // is_primary_step_set: false
+          results1: undefined,
+          is_primary_step_set: false
         }
       }
 

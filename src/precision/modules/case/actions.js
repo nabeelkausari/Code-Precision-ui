@@ -111,6 +111,11 @@ export const hideFlyout = (close_secondary) => (dispatch, getState) => {
     }
 }
 
+export const resetResultsFlyouts = () => (dispatch, getState) => {
+    dispatch({type : types.CLOSE_FLYOUT_PRIMARY})
+    dispatch({type : types.CLOSE_FLYOUT_SECONDARY})
+}
+
 
 
 
