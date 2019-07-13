@@ -52,8 +52,8 @@ class Notes extends Component {
     };
 
     handleUpdate = () => {
-        const { sequence, notes } = this.state;
-        const payload = { stepNotes: [{ sequence: sequence, note: notes }] };
+        const {sequence, notes} = this.state;
+        const payload = {stepNotes: [{sequence: sequence, note: notes}]};
         if (notes === null && sequence === 0)
             return;
         this.props.handleSave(payload);
@@ -63,27 +63,32 @@ class Notes extends Component {
         const {notes_details, closeNotesFlyout} = this.props;
         const {sequence, notes} = this.state;
         return (
-            <Flyout  require_full_screen ={true} sequence_no = {sequence} title={"Notes"} hideFlyout = {closeNotesFlyout}>
+            <Flyout require_full_screen={true} sequence_no={sequence} title={"Notes"} hideFlyout={closeNotesFlyout}>
                 <div className="tool">
                     {notes_details.note !== null &&
-                    <i className='fa fa-edit' style={{ height: '27px', marginBottom: '2px', cursor: 'pointer' }} onClick={this.handleEditNotes}/>
+                    <i className='fa fa-edit' style={{height: '27px', marginBottom: '2px', cursor: 'pointer'}}
+                       onClick={this.handleEditNotes}/>
                     }
                 </div>
-                {
-                    notes === null ?
-                        <div className="notes-info">
-
-                    <textarea rows="8" cols="50" className="text-area" onChange={ev => this.handleChangeNote(ev.target.value)}>
-                        {notes}
-                    </textarea>
+                {this.props.notes_details.note === null ?
+                    <div className="notes-info">
+                        <textarea rows="8" cols="50"
+                                  className="text-area"
+                                  style={{minHeight: '220px', maxHeight: '220px', minWidth: '520px', maxWidth: '520px', padding: '20px', fontSize: '16px'}}
+                                  onChange={ev => this.handleChangeNote(ev.target.value)}>
+                            {notes}
+                         </textarea>
 
                         </div> :
                         !this.state.editNotes
                             ? <div className="notes-info">
                                 {notes}
-                            </div>
+                              </div>
                             : <div className="notes-info">
-                            <textarea rows="8" cols="50" className="text-area" onChange={ev => this.handleChangeNote(ev.target.value)}>
+                            <textarea rows="8" cols="50"
+                                      className="text-area"
+                                      style={{minHeight: '220px', maxHeight: '220px', minWidth: '520px', maxWidth: '520px', padding: '20px', fontSize: '16px'}}
+                                      onChange={ev => this.handleChangeNote(ev.target.value)}>
                                 {notes}
                             </textarea>
 
@@ -91,7 +96,8 @@ class Notes extends Component {
                 }
                 {(!!this.state.editNotes || notes_details.note === null) &&
                 <div className="button-wrapper">
-                    <Button primary disabled={this.state.notes === null || this.state.notes === ""} onClick={this.handleUpdate} style={{ marginRight: '20px' }}>Save</Button>
+                    <Button primary disabled={this.state.notes === null || this.state.notes === ""}
+                            onClick={this.handleUpdate} style={{marginRight: '20px'}}>Save</Button>
                     <Button default onClick={closeNotesFlyout}>Cancel</Button>
                 </div>}
             </Flyout>
