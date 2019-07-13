@@ -3,13 +3,14 @@ import ToolBar from "./View/Toolbar/ToolBar";
 
 import SubHeader from "./SubHeader/SubHeader";
 import Steps from "./Steps/Steps";
-import {Dataset} from "./View/Dataset/Dataset";
+import Dataset from "./View/Dataset/Dataset";
 
 
 import {SolveContainer} from '../../containers/solve/solve'
 import {Console} from "./View/Console/Console";
 import Process from "./View/Process/Process";
 import Dashboard from "./View/Dashboard/Dashboard";
+import Notes from "./View/Notes/Notes";
 
 class CaseSolve extends Component {
 
@@ -27,18 +28,17 @@ class CaseSolve extends Component {
   }
 
     renderCaseView = () =>{
-      console.log(this.props.match.params.view)
+      console.log(this.props.match.params.view);
       switch (this.props.match.params.view) {
           case 'dataset': return <Dataset/>;
           case 'console': return <Console/>;
           case 'process': return <Process/>;
           default: return  <Dashboard />
-
       }
-    }
+    };
 
   render() {
-
+      const {show_notes_flyout, notes_info} = this.props;
       return (
       <div style={{display:"flex"}}>
         <div style={{flex:"1"}}>
@@ -47,6 +47,7 @@ class CaseSolve extends Component {
             {this.renderCaseView()}
         </div>
           <Steps/>
+          {!!show_notes_flyout && <Notes notes={notes_info}/>}
       </div>
     );
   }

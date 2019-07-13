@@ -1,21 +1,17 @@
 import React, {Component} from 'react';
 import Step from './Step'
-
-
-import StepsContainer from '../../../containers/solve/steps'
-
-
+import {StepsContainer} from "../../../containers/solve/steps/steps";
 import './Steps.scss'
 
 class Steps extends Component {
 
     state = {
         is_steps_open : true
-    }
+    };
 
     toggleSteps = () => {
         this.setState((state) => ({is_steps_open: !state.is_steps_open}))
-    }
+    };
 
     render() {
         const {steps} = this.props
