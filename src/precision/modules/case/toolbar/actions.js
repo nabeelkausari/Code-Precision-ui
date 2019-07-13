@@ -1,32 +1,15 @@
-import {FUNCTION_CATEGORY_COLLECTION, FUNCTION_COLLECTION, FUNCTION_SUGGESTIONS} from "../../../api/media-types";
 import * as types from './types'
+import {functions} from "../../../api/functions";
 import {fetchLinkAs} from "../../../api/helpers";
+import {getMaterialLink} from "../../../api/material";
 import {setDatasetSelection} from "../../datasets/actions";
 
 
-const links = {
-    categories: {
-        href: '/function/categories',
-        accept: FUNCTION_CATEGORY_COLLECTION,
-        method: 'GET'
-    },
-    functions: {
-        href: '/functions',
-        accept: FUNCTION_COLLECTION,
-        method: 'GET'
-    }
-};
-
-const getSuggestionsLink = (query) => ({
-    href: `/functions/suggestions?query=${query}`,
-    accept: FUNCTION_SUGGESTIONS,
-    method: 'GET'
-});
 
 
 export const getCategoryAndFunctions = () => (dispatch, getState) => {
     dispatch({ type: types.FETCH_FUNCTION_CATEGORIES_REQUESTED });
-    fetchLinkAs(links.categories)
+    functions.categories()
         .then(payload => {
             dispatch({ type: types.FETCH_FUNCTION_CATEGORIES_SUCCEEDED, payload });
             dispatch(getFunctions())
@@ -36,10 +19,49 @@ export const getCategoryAndFunctions = () => (dispatch, getState) => {
 
 const getFunctions = () => (dispatch) => {
     dispatch({ type: types.FETCH_FUNCTIONS_REQUESTED });
-    fetchLinkAs(links.functions)
+    functions.get()
         .then(payload => dispatch({ type: types.FETCH_FUNCTIONS_SUCCEEDED , payload }))
         .catch(payload => dispatch({ type: types.FETCH_FUNCTIONS_FAILED, payload }))
 };
+
+export const suggestFunctions = (query) => (dispatch, getState) => {
+    const { functions: { categories, list: { by_uri } } } = getState();
+    const categories_by_uri = categories.by_uri;
+    dispatch({type:types.FETCH_FUNCTION_SUGGESTIONS_REQUESTED})
+    return functions
+        .getSuggestions(query)
+        .then(response => {
+            const suggestions = response.map(({ _links: { function: { href } } }) => {
+            const { name, title } = by_uri[href];
+            const parent_category = categories.items
+                .filter(category => category.functions.some(function_reference => function_reference === href))
+                .shift();
+            return {
+                label: name || title,
+                value: href,
+                sub_category: parent_category !== undefined ? parent_category.name: 'Unknown category',
+                category: parent_category !== undefined ? categories_by_uri[parent_category._links.parent.href].name : ''
+            }
+        })
+            dispatch({type:types.FETCH_FUNCTION_SUGGESTIONS_SUCCEEDED, payload:suggestions})
+        })
+        .catch(payload => dispatch({ type: types.FETCH_FUNCTION_SUGGESTIONS_FAILED, payload }))
+};
+
+
+export const getFunctionDescription = (material) => (dispatch, getState) => {
+    dispatch({type:types.FETCH_FUNCTION_DESCRIPTION_REQUESTED})
+    return fetchLinkAs(getMaterialLink(material.href))
+        .then(payload => {
+            dispatch({type:types.FETCH_FUNCTION_DESCRIPTION_SUCCEEDED, payload});
+        })
+        .catch(payload =>  dispatch({type:types.FETCH_FUNCTION_DESCRIPTION_SUCCEEDED, payload}))
+};
+
+export const getFunctionParameters = () => (dispatch, getState) => {
+    dispatch({type:types.FETCH_FUNCTION_PARAMETERS_REQUESTED})
+
+}
 
 export const setColumnSelections = (current_dataset_ref, column) => (dispatch, getState) => {
     const { functions: {selections} }  = getState();

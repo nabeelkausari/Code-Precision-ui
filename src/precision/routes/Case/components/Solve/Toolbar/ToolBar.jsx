@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import FunctionsFlyout from "./FunctionsFlyout";
+
+import FunctionsFlyout from "./FunctionFlyout";
 import TablesFlyout from "./TablesFlyout";
 import ToolBarItems from "./ToolBarItems";
 import './ToolBar.scss';
-import {ToolbarContainer} from "../../../../containers/solve/view/toolbar/toolbar";
+import {ToolbarContainer} from "../../../containers/solve/view/toolbar/toolbar";
 
 class ToolBar extends Component {
     state = {
@@ -41,11 +42,16 @@ class ToolBar extends Component {
                 />
                 {
                     is_function_flyout_open &&
-                        <FunctionsFlyout/>
+                        <FunctionsFlyout
+                            {...this.props}
+                        />
                 }
                 {
                     is_table_flyout_open &&
-                        <TablesFlyout data_sets={this.props.dataset_list.items} {...this.props} />
+                        <TablesFlyout
+                            data_sets={this.props.dataset_list.items}
+                            {...this.props}
+                        />
                 }
 
                 {

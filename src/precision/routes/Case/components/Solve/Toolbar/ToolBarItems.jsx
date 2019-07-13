@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {Button} from "../../../../../../components/Buttons/Button";
+import {Button} from "../../../../../components/Buttons/Button";
 
 class ToolBarItems extends Component {
 

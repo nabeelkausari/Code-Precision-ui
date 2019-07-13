@@ -1,4 +1,4 @@
-@import "../../../../../../styles/abstracts/variables";
+@import "../../../../../styles/abstracts/variables";
 
 .toolbar-container {
   display: flex;
@@ -82,13 +82,17 @@
   box-shadow: 0 .2rem .7rem .1rem rgba($color-white,0.06);
   &__left {
     width: 58vw;
+    border-right: 1px solid $color-grey-light-1;
+    box-shadow: .4rem 0px 1.7rem #ccc;
+    z-index: 100;
   }
 
   &__right {
     background: $color-white;
     width: 38vw;
-    &__description{
-
+    z-index: 50;
+    &-details{
+      padding: 3rem;
     }
 
   }
@@ -124,6 +128,8 @@
     width: 100%;
     padding: 2rem;
     height: calc(100vh - 25rem);
+    overflow-y: scroll;
+    margin-bottom: 2rem;
 
     &-left {
       flex: 1;
@@ -145,10 +151,6 @@
       }
     }
 
-    .active-fx-category {
-      color: $color-primary-light;
-      border-right: .3rem solid currentColor;
-    }
     &__title {
       font-size: 1.2rem;
       font-weight: 400;
@@ -169,6 +171,11 @@
     &__subtitle {
       font-size: 1.2rem;
       font-weight: 300;
+      cursor: pointer;
+
+      &:hover {
+        color: $color-primary-light;
+      }
     }
   }
 
@@ -181,7 +188,7 @@
     &-items {
       padding: 1.5rem 1rem;
       font-size: 1rem;
-      color: $color-grey-light-2;
+      color: $color-grey-dark;
     }
 
     &-name {
@@ -192,6 +199,14 @@
     &-category {
      font-weight: 300;
     }
+  }
+
+  &-active__category {
+    color: $color-primary-light;
+    border-right: .3rem solid currentColor;
+  }
+  &-active {
+    color: $color-primary-light;
   }
 }
 
