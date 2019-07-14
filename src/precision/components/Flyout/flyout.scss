@@ -90,5 +90,7 @@
 
   &__content{
     padding: 1rem 2.5rem;
+    height: calc(100vh - 15.8rem);
+    overflow: auto;
   }
 }

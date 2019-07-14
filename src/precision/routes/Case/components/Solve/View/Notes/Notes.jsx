@@ -74,7 +74,7 @@ class Notes extends Component {
                     <div className="notes-info">
                         <textarea rows="8" cols="50"
                                   className="text-area"
-                                  style={{minHeight: '220px', maxHeight: '220px', minWidth: '520px', maxWidth: '520px', padding: '20px', fontSize: '16px'}}
+                                  style={{minHeight: '220px', maxHeight: '220px', minWidth: '500px', maxWidth: '500px', padding: '20px', fontSize: '16px'}}
                                   onChange={ev => this.handleChangeNote(ev.target.value)}>
                             {notes}
                          </textarea>
@@ -87,7 +87,7 @@ class Notes extends Component {
                             : <div className="notes-info">
                             <textarea rows="8" cols="50"
                                       className="text-area"
-                                      style={{minHeight: '220px', maxHeight: '220px', minWidth: '520px', maxWidth: '520px', padding: '20px', fontSize: '16px'}}
+                                      style={{minHeight: '220px', maxHeight: '220px', minWidth: '500px', maxWidth: '500px', padding: '20px', fontSize: '16px'}}
                                       onChange={ev => this.handleChangeNote(ev.target.value)}>
                                 {notes}
                             </textarea>

@@ -1,89 +1,19 @@
 @import "../../../../../../styles/abstracts/variables";
 
-.notes-container {
-  z-index: 1045;
-  position: absolute;
-  right: 30rem;
-  top: 6rem;
-  bottom: 0;
-  background: $color-white;
-  overflow-y: auto;
-  overflow-x: hidden;
-  margin-top: 1px;
+.tool {
+  font-size: 2rem;
+  padding: 2rem 2rem 2rem 7rem;
+  display: flex;
+  justify-content: flex-end;
+}
 
-  height: 91.1rem;
-  width: 65.5rem;
-  border: 1px solid #E0E0E0;
-  box-shadow: 0 5px 10px -10px rgba(0, 0, 0, 0.2);
-  &::-webkit-scrollbar-track
-  {
-    background-color: $color-grey-light-3;
-  }
+.notes-info {
+  font-size: 1.5rem;
+  word-break: break-word;
+  width: 500px;
+}
 
-  &::-webkit-scrollbar
-  {
-    width: 7px;
-    background-color: $color-grey-light-3;
-  }
-
-  &::-webkit-scrollbar-thumb
-  {
-    background-color: darkgray;
-  }
-
-  .notes-header {
-    height: 6rem;
-    background-color: #EFF5FC;
-    padding: 1.3rem 2rem;
-
-    &__index-no{
-      position: absolute;
-      top: 1.5rem;
-      left: 2.5rem;
-      z-index: 1;
-      font-size: 1.3rem;
-      padding: 0.2rem 0.4rem;
-
-      &::after{
-        content: " ";
-        position: absolute;
-        top: -.1rem;
-        left: -.4rem;
-        height: 2.5rem;
-        width: 2.5rem;
-        border-radius: 50%;
-        background-color: lightblue;
-        z-index: -5;
-        border: 1px solid blue;
-      }
-    }
-
-    &__title {
-      color: $color-black;
-      font-family: inherit;
-      font-size: 18px;
-      letter-spacing: 0.51px;
-      line-height: 2.7rem;
-      margin-left: 5rem;
-    }
-  }
-
-  .tool {
-    font-size: 2rem;
-    padding: 2rem 2rem 2rem 7rem;
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .notes-info {
-    padding: 1rem 2rem 6rem 2rem;
-    font-size: 1.5rem;
-    word-break: break-word;
-    width: 650px;
-  }
-
-  .button-wrapper {
-    display: flex;
-    justify-content: center;
-  }
+.button-wrapper {
+  display: flex;
+  justify-content: center;
 }
