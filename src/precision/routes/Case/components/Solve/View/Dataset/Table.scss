@@ -2,7 +2,7 @@
 
 .table {
   display: flex;
-  margin: 2rem;
+  margin: 2rem 0 0 2rem;;
 
   &__name {
     height: 3rem;
@@ -14,3 +14,18 @@
     font-size: 1.5rem;
   }
 }
+
+.data-table {
+  width: calc(100vw - 34rem);
+  margin: 0 2rem;
+  font-size: 12px;
+}
+
+.ReactTable {
+  height: calc(100vh - 130px) !important;
+  .rt-thead,
+  .rt-tr {
+    text-align: left !important;
+  }
+}
+

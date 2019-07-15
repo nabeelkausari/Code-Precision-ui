@@ -81,6 +81,7 @@ export const setColumnSelections = (current_dataset_ref, column) => (dispatch, g
     const { functions: {selections} }  = getState();
     let current_selections = {...selections};
 
+
     if(current_selections[current_dataset_ref] === undefined) current_selections[current_dataset_ref] = [];
 
     const columnIndex = current_selections[current_dataset_ref].findIndex(item => item.index === column.index);

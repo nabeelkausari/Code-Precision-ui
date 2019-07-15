@@ -15,24 +15,14 @@ class Table extends Component{
             <div>
                 <div className="table">
                     {fetch_steps_succeeded && data_sets.map((ds, i) => (
-                        <div className="table__name" onClick={() => this.handleSelectTable(ds._links.self.href)}>
+                        <div className="table__name" onClick={() => this.handleSelectTable(ds.ref)}>
                             {ds.name}
                         </div>
                     ))}
                 </div>
-                {/*{*/}
-                {/*    selected_table_reference ?*/}
-                {/*        <DataTable dataset_reference={ selected_table_reference }/>*/}
-                {/*        : data_sets.length >0 ?*/}
-                {/*        <DataTable dataset_reference={data_sets[0]._links.self.href}/>: null*/}
-
-                {/*}*/}
-                {/*{data_sets.length >0  && <DataTable dataset_reference={data_sets[0]._links.self.href}/>}*/}
-
-
-                {selected_table_reference
-                    ? <DataTable dataset_reference={selected_table_reference}/>
-                    : data_sets.length >0  && <DataTable dataset_reference={data_sets[0].ref}/>}
+                {selected_table_reference !== ""
+                    ? <DataTable dataset_reference={selected_table_reference} selections={this.props.selections}/>
+                    : data_sets.length >0  && <DataTable dataset_reference={data_sets[0].ref} selections={this.props.selections}/>}
             </div>
 
         )
