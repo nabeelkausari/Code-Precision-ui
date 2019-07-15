@@ -1,17 +1,15 @@
 import React, {Component} from 'react';
-
-import './Toolbar.scss';
 import FunctionsFlyout from "./FunctionsFlyout";
 import TablesFlyout from "./TablesFlyout";
 import ToolBarItems from "./ToolBarItems";
-
+import './ToolBar.scss';
 import {ToolbarContainer} from "../../../../containers/solve/view/toolbar/toolbar";
 
 class ToolBar extends Component {
     state = {
         is_function_flyout_open: false,
         is_table_flyout_open: false
-    };
+    };Ï
 
     toggleTable = () => {
         if(this.state.is_function_flyout_open)

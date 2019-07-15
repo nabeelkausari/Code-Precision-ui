@@ -64,7 +64,7 @@ class Notes extends Component {
         const {sequence, notes} = this.state;
         return (
             <Flyout require_full_screen={true} sequence_no={sequence} title={"Notes"} hideFlyout={closeNotesFlyout}>
-                <div className="tool">
+                <div className="note-tool">
                     {notes_details.note !== null &&
                     <i className='fa fa-edit' style={{height: '27px', marginBottom: '2px', cursor: 'pointer'}}
                        onClick={this.handleEditNotes}/>
