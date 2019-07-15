@@ -32,7 +32,7 @@ class Table extends Component{
 
                 {selected_table_reference
                     ? <DataTable dataset_reference={selected_table_reference}/>
-                    : data_sets.length >0  && <DataTable dataset_reference={data_sets[0]._links.self.href}/>}
+                    : data_sets.length >0  && <DataTable dataset_reference={data_sets[0].ref}/>}
             </div>
 
         )
