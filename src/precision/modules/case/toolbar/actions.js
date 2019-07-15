@@ -3,6 +3,7 @@ import {functions} from "../../../api/functions";
 import {fetchLinkAs} from "../../../api/helpers";
 import {getMaterialLink} from "../../../api/material";
 import {setDatasetSelection} from "../../datasets/actions";
+import {fromPairs, toPairs} from "ramda";
 
 
 
@@ -32,15 +33,16 @@ export const suggestFunctions = (query) => (dispatch, getState) => {
         .getSuggestions(query)
         .then(response => {
             const suggestions = response.map(({ _links: { function: { href } } }) => {
-            const { name, title } = by_uri[href];
+            const function_obj = by_uri[href];
             const parent_category = categories.items
                 .filter(category => category.functions.some(function_reference => function_reference === href))
                 .shift();
             return {
-                label: name || title,
-                value: href,
+                // label: name || title,
+                // value: href,
                 sub_category: parent_category !== undefined ? parent_category.name: 'Unknown category',
-                category: parent_category !== undefined ? categories_by_uri[parent_category._links.parent.href].name : ''
+                category: parent_category !== undefined ? categories_by_uri[parent_category._links.parent.href].name : '',
+                function_obj
             }
         })
             dispatch({type:types.FETCH_FUNCTION_SUGGESTIONS_SUCCEEDED, payload:suggestions})
@@ -58,9 +60,21 @@ export const getFunctionDescription = (material) => (dispatch, getState) => {
         .catch(payload =>  dispatch({type:types.FETCH_FUNCTION_DESCRIPTION_SUCCEEDED, payload}))
 };
 
-export const getFunctionParameters = () => (dispatch, getState) => {
-    dispatch({type:types.FETCH_FUNCTION_PARAMETERS_REQUESTED})
+export const getFunctionParameters = (fx) => (dispatch, getState) => {
+    const {functions:{selections}, datasets} = getState();
+    let fx_selections_copy = selections;
 
+    const solve = {
+        "method": "GET",
+        "href": "/users/3820/marketplace-courses/1180/solves/1530",
+        "accept": "application/vnd.Analyttica.TreasureHunt.UserSolve+json"
+    };
+
+    dispatch({type:types.FETCH_FUNCTION_PARAMETERS_REQUESTED});
+    return functions
+        .getParameters(fx, fx_selections_copy,datasets.selections, solve )
+        .then(payload => dispatch({type:types.FETCH_FUNCTION_PARAMETERS_SUCCEEDED,payload}))
+        .catch(payload =>  dispatch({type:types.FETCH_FUNCTION_PARAMETERS_FAILED, payload}))
 }
 
 export const setColumnSelections = (current_dataset_ref, column) => (dispatch, getState) => {
@@ -93,4 +107,111 @@ export const deleteColumnSelection = (current_dataset_ref) => (dispatch, getStat
     dispatch({type:types.SET_COLUMN_SELECTION, payload:current_selections})
 };
 
+export const formValueMultiChange = (name, value) => (dispatch, getState) => {
+    const new_values = value;
+    return dispatch(formValueChanged(name, new_values));
+};
 
+const formValueChanged = (name, value) => ({
+    type: types.SET_FUNCTION_PARAMETERS,
+    payload:{name, value}
+});
+
+
+const getTypedValue = (type, value) => {
+    switch (type) {
+        case 'int':
+            const intValue = parseInt(value);
+            return isNaN(intValue) ? value : intValue;
+        case 'float':
+            const floatValue = parseFloat(value);
+            return isNaN(floatValue) ? value : floatValue;
+        default:
+            return value;
+    }
+};
+
+const validateSpecialCharacters = (value, paramValidation) => {
+    return (!(/[!"#$%&'()*+,-./:;<=>?@[\]^`{|}~\s]/).test(value));
+};
+const validateBeginingWithNumber = (value, paramValidation) => {
+    return !(/^\d/).test(value);
+};
+
+const validateParams = (value, paramValidation) => {
+    switch (paramValidation.type) {
+        case "SPECIAL_CHARACTER":
+            return validateSpecialCharacters(value, paramValidation);
+        case "START_WITH_NUMBER":
+            return validateBeginingWithNumber(value, paramValidation);
+    }
+    return true;
+};
+
+export const setSelectedFunctionParameters = (name, value) => (dispatch, getState) => {
+    const { functions: { parameters, execution } } = getState();
+    const { type, multi_select, multi_table } = parameters.list.filter(p => p.name === name).shift();
+    const is_array = type === 'select' && multi_select;
+    const is_multi_table_array = multi_table;
+    if (!is_array) {
+        if (type !== 'select' && parameters.list.length > 0) {
+            const function_params = parameters.list.filter(function_param => function_param.name === name);
+            const validations = function_params[0].validations ? function_params[0].validations : [];
+            const validationFailed = validations.some(validation => {
+                if (!validateParams(value, validation)) {
+                    console.log('Validation error' , validation.description);
+                    return true;
+                }
+                return false;
+            });
+            if (validationFailed) {
+                if (!!execution.selected_parameters[name])
+                    return;
+                return dispatch(formValueChanged(name, ''));
+            }
+        }
+        return dispatch(formValueChanged(name, getTypedValue(type, value)));
+    }
+    const current_values = parameters[name] || [];
+    const new_values = current_values.some(v => v === value)
+        ? current_values.filter(v => v !== value)
+        : current_values.concat(value);
+    return dispatch(formValueChanged(name, new_values));
+};
+
+const cleanHeaders = (selectedDatasets, all_headers) => fromPairs(toPairs(all_headers).filter(([key, value]) => selectedDatasets.indexOf(key) >= 0));
+
+
+export const executeFunction = () => (dispatch, getState) => {
+    const {cases, functions, datasets} = getState();
+
+    const param = {
+        selections: functions.selections,
+        all_headers: cleanHeaders(datasets.selections, datasets.columns),
+        parameters: functions.execution.selected_parameters,
+        function_id: functions.execution.current_function.function_id
+    };
+
+
+    return fetchLinkAs(cases.info._links.create_user_step, param)
+        .then(payload => console.log(payload))
+        .catch(payload => console.log(payload))
+};
+
+
+export const removeSelectedFunctionsAndParameters = () => (dispatch, getState) => {
+    dispatch({type:types.UNSET_CURRENT_FUNCTION});
+    dispatch({type:types.UNSET_FUNCTION_PARAMETERS});
+    dispatch({type:types.UNSET_CURRENT_FUNCTION_CATEGORY});
+};
+
+export const setSelectedFunction = (payload) => (dispatch, getState) => {
+    dispatch({type:types.SET_CURRENT_FUNCTION, payload});
+    dispatch({type:types.SET_PARAMETER_FLYOUT})
+};
+export const setSelectedFunctionCategory = (payload) => (dispatch, getState) => {
+    dispatch({type:types.SET_CURRENT_FUNCTION_CATEGORY, payload});
+};
+export const closeParameterFlyout = () => (dispatch, getState) => {
+    dispatch({type:types.UNSET_PARAMETER_FLYOUT})
+};

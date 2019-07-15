@@ -28,7 +28,19 @@ const initialState = {
         fetch_description_succeeded: null,
         fetch_description_error: null,
     },
-    selections:{}
+    selections:{},
+    parameters:{
+        list:[],
+        fetch_function_parameters_loading: null,
+        fetch_function_parameters_succeeded: null,
+        fetch_function_parameters_error: null,
+    },
+    execution:{
+        selected_parameters: {},
+        current_function:{},
+        current_function_category:{},
+    },
+    parameter_flyout_open: false
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -151,6 +163,105 @@ export default (state = initialState, { type, payload }) => {
             return {
                 ...state,
                selections:payload
+            };
+
+        case types.FETCH_FUNCTION_PARAMETERS_REQUESTED:
+            return {
+                ...state,
+                parameters:{
+                    ...state.parameters,
+                    fetch_function_parameters_loading: true
+                }
+            };
+
+        case types.FETCH_FUNCTION_PARAMETERS_SUCCEEDED:
+            return {
+                ...state,
+                parameters:{
+                    ...state.parameters,
+                    fetch_function_parameters_loading: false,
+                    fetch_function_parameters_succeeded: true,
+                    list: payload
+                }
+            };
+
+        case types.FETCH_FUNCTION_PARAMETERS_FAILED:
+            return {
+                ...state,
+                parameters:{
+                    ...state.parameters,
+                    fetch_function_parameters_loading: false,
+                    fetch_function_parameters_error: payload
+                }
+            };
+
+        case types.SET_CURRENT_FUNCTION:
+            return {
+                ...state,
+                execution:{
+                    ...state.execution,
+                    current_function: payload
+                }
+            };
+
+        case types.SET_FUNCTION_PARAMETERS:
+            return {
+                ...state,
+                execution:{
+                    ...state.execution,
+                    selected_parameters:{
+                        ...state.execution.selected_parameters,
+                        [payload.name]: payload.value
+                    }
+                }
+            };
+
+        case types.UNSET_CURRENT_FUNCTION:
+            return {
+                ...state,
+                execution:{
+                    ...state.execution,
+                    current_function:{}
+                }
+            };
+
+        case types.UNSET_FUNCTION_PARAMETERS:
+            return {
+                ...state,
+                execution:{
+                    ...state.execution,
+                    selected_parameters:{}
+                }
+            };
+
+        case types.SET_CURRENT_FUNCTION_CATEGORY:
+            return {
+                ...state,
+                execution:{
+                    ...state.execution,
+                    current_function_category:payload
+                }
+            };
+
+        case types.UNSET_CURRENT_FUNCTION_CATEGORY:
+            return {
+                ...state,
+                execution:{
+                    ...state.execution,
+                    current_function_category:{}
+                }
+            };
+
+        case types.SET_PARAMETER_FLYOUT:
+            return {
+                ...state,
+                parameter_flyout_open: true
+            };
+
+        case types.UNSET_PARAMETER_FLYOUT:
+            return {
+                ...state,
+                parameter_flyout_open: false
             };
 
         default:

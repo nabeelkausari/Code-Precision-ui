@@ -1,14 +1,28 @@
 import { connect } from 'react-redux';
-import {getFunctionDescription, suggestFunctions, deleteColumnSelection, setColumnSelections} from "../../../../../../modules/case/toolbar/actions";
+import {
+    getFunctionDescription,
+    suggestFunctions,
+    deleteColumnSelection,
+    setColumnSelections,
+    getFunctionParameters,
+    executeFunction,
+    removeSelectedFunctionsAndParameters,
+    setSelectedFunction,
+    setSelectedFunctionCategory, closeParameterFlyout
+} from "../../../../../../modules/case/toolbar/actions";
 
 const mapStateToProps = (state) => {
-    const { cases: { data_sets } , functions: { categories, list:{items}, suggestions, description, selections }, datasets: { list }} = state;
+    const {  functions: { categories, list:{items}, suggestions, description, selections, parameters, execution, parameter_flyout_open }, datasets: { list }} = state;
     const is_fetched = state.functions.fetch_functions_succeeded && state.functions.fetch_function_categories_succeeded;
     return {
-        dataset_list: list,
         suggestions,
         is_fetched,
         description,
+        dataset_list: list,
+        selections,
+        parameters,
+        execution,
+        parameter_flyout_open,
         categories: is_fetched && items && categories.items
             .filter(category => category._links.parent === undefined)
             .map(cat => ({
@@ -28,4 +42,7 @@ const mapStateToProps = (state) => {
 };
 
 
-export const ToolbarContainer = connect(mapStateToProps, {suggestFunctions,getFunctionDescription, setColumnSelections, deleteColumnSelection} );
+export const ToolbarContainer = connect(mapStateToProps, {suggestFunctions,getFunctionDescription,
+    deleteColumnSelection, setColumnSelections,
+    getFunctionParameters, executeFunction, removeSelectedFunctionsAndParameters,
+    setSelectedFunction, setSelectedFunctionCategory, closeParameterFlyout} );

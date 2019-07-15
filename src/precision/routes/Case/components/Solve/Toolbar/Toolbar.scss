@@ -151,6 +151,10 @@
       }
     }
 
+    .active-fx-category {
+      color: $color-primary-light;
+      border-right: .3rem solid currentColor;
+    }
     &__title {
       font-size: 1.2rem;
       font-weight: 400;
@@ -188,7 +192,12 @@
     &-items {
       padding: 1.5rem 1rem;
       font-size: 1rem;
-      color: $color-grey-dark;
+      color: $color-grey-light-2;
+      cursor: pointer;
+
+      &:hover {
+        color: $color-primary;
+      }
     }
 
     &-name {

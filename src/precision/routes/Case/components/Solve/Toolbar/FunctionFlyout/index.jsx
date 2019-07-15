@@ -3,6 +3,7 @@ import {FormInput} from "../../../../../../components/Forms/FormInput/FormInput"
 import {Button} from "../../../../../../components/Buttons/Button";
 import {SearchResults} from "./SearchResults";
 import {FunctionsMenu} from "./FunctionsMenu";
+import FunctionParams from "./FunctionParams";
 
 class FunctionsFlyout extends Component {
 
@@ -14,9 +15,9 @@ class FunctionsFlyout extends Component {
         active_function:{}
     };
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if(this.props.is_fetched && this.props.is_fetched !== prevProps.is_fetched ){
-            this.setState({active_category:this.props.categories[0]});
+    componentDidMount() {
+        if(Object.keys(this.props.execution.current_function_category).length === 0 ){
+            this.props.setSelectedFunctionCategory(this.props.categories[0])
         }
     }
 
@@ -26,18 +27,19 @@ class FunctionsFlyout extends Component {
     };
 
     onCategorySelect = (category) => {
-        this.setState({active_category: category});
+        this.props.setSelectedFunctionCategory(category)
     };
 
     onFunctionClick = (fx) => {
-        this.setState({active_function: fx,function_selected:true});
-        this.props.getFunctionDescription(fx._links.material)
-        console.log(fx)
+        this.setState({function_selected:true});
+        this.props.setSelectedFunction(fx);
+        this.props.getFunctionDescription(fx._links.material);
+        this.props.getFunctionParameters(fx);
     };
 
     render() {
-        const {function_selected, search_text,active_category, active_function} = this.state;
-        const {categories,suggestions,description} = this.props;
+        const {search_text} = this.state;
+        const {categories,suggestions,description, parameters, parameter_flyout_open, addFunction, execution} = this.props;
         return (
             <div className="fx">
               <div className="fx__left">
@@ -52,10 +54,10 @@ class FunctionsFlyout extends Component {
                 </div>
                    {
                        search_text !== ""  ?
-                           <SearchResults suggestions={suggestions}/> :
+                           <SearchResults suggestions={suggestions}  onFunctionClick={this.onFunctionClick}/> :
                            <FunctionsMenu
-                               active_category={active_category}
-                               active_function={active_function}
+                               active_category={execution.current_function_category}
+                               active_function={execution.current_function}
                                categories={categories}
                                onCategoryChange={this.onCategorySelect}
                                onFunctionClick={this.onFunctionClick}
@@ -64,15 +66,23 @@ class FunctionsFlyout extends Component {
               </div>
 
              {
-                 function_selected && <div className="fx__right">
+                 parameter_flyout_open && <div className="fx__right">
                  <div className="fx__right-details">
                      <div className="fx__header">
-                        <h2 className="fx__header-title">{active_function.name}</h2>
-                         <Button buttonType="primary">Add</Button>
+                        <h2 className="fx__header-title">{execution.current_function.name}</h2>
+                         <Button buttonType="primary" onClick={addFunction}>Add</Button>
                      </div>
                      <div className="">
                         <div className="fx__parameters">
-                            parameters
+                            { parameters.fetch_function_parameters_succeeded &&
+                                parameters.list.map(({ name, multi_table }) =>
+                                <FunctionParams
+                                    key={name}
+                                    parameter_name={name}
+                                    readonly={false}
+                                    multi_table={multi_table}/>
+                                    )
+                            }
                         </div>
                          <div className="fx__description">
                              {description.info.text}

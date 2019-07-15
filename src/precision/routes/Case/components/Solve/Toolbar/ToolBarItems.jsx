@@ -20,7 +20,7 @@ class ToolBarItems extends Component {
     };
 
     render() {
-        const {selections} = this.props;
+        const {selections, fx_selected, fx_name, removeSelectedFunction} = this.props;
         return (
             <div className="toolbar-container">
                 <div className="tool --flex-basis-30" onClick={this.props.onTableItemClick}>
@@ -39,16 +39,17 @@ class ToolBarItems extends Component {
                     {/*<img className="tool__image" src="" alt="Table"/>*/}
                     <p className="tool__title">Function:</p>
                     <div className="pill-container">
-                        {/*<span className="pill-container__placeholder">Select Function</span>*/}
+                        {!fx_selected ?<span className="pill-container__placeholder">Select Function</span>:
                         <div className="pill">
-                            <span className="pill__text">Bar Chart</span>
-                            <span className="pill__cancel"><i className="fa fa-times"></i></span>
-                        </div>
+                            <span className="pill__text">{fx_name}</span>
+                            <span className="pill__cancel" onClick={removeSelectedFunction}><i className="fa fa-times"></i></span>
+                        </div>}
                     </div>
                 </div>
                 <Button
                     buttonType="primary"
                     // className="--flex-basis-20"
+                    onClick={this.props.executeFunction}
                 >
                     Run Function
                 </Button>

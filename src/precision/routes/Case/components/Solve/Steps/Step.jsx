@@ -28,16 +28,16 @@ class Step extends Component {
     // Function to get the string of all selected columns
     getSelectedColumns = (selections) => {
         if(selections !== null){
-            let selected_column_string = ""
+            let selected_column_string = [];
 
-            let selections_key =  Object.keys(selections);
-            selections[selections_key].forEach((column) => (
-                selected_column_string += column.label + ", "
-            ))
-            return selected_column_string.slice(0,selected_column_string.length - 2);
+            for (let key in selections) {
+                selected_column_string.push(selections[key].map(column => column.key));
+            }
+
+            return selected_column_string.join(', ');
+        } else {
+            return ""
         }
-
-        else{ return "" }
     };
 
 
