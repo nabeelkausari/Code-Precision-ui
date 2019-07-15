@@ -62,7 +62,7 @@ export class DataTable extends Component {
                this.props.setColumnSelections(this.props.dataset_reference, selected_column )
             },
             style: {
-                "color": "#52a7dc"
+                backgroundColor: "#EFF5FC"
             }
         };
     };
@@ -73,9 +73,12 @@ export class DataTable extends Component {
         const selection_arr = this.props.column_selections[this.props.dataset_reference];
         let headerRow = [...this.state.headerRow];
             headerRow = headerRow.map(item => {
+                const bgColorObject = selection_arr && selection_arr.some(column => column.key === item.Header) ? {backgroundColor:"rgba(0, 104, 224, .12)"} : {};
             return {
                 ...item,
-                style: selection_arr && selection_arr.some(column => column.key === item.Header) ? {backgroundColor:"rgba(0, 104, 224, .12)"} : {}
+                style: bgColorObject,
+                headerStyle: bgColorObject
+
             }
         });
         return(
