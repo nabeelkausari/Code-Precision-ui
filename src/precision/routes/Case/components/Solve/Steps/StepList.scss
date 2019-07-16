@@ -19,9 +19,6 @@
   }
 
   &__toggle-btn{
-
-
-
     &--1{
       width: 4rem;
       height: 4rem;
@@ -80,16 +77,26 @@
 
 //STEP COMPONENT (individual step)
 .step{
-  padding: 1.5rem 2rem 1.5rem 4rem;
-  position: relative;
+  padding: 1.5rem 2rem;
   font-size: 1.4rem;
+  display: flex;
 
   &__main-container{
     padding: 0 1.5rem;
+    flex: 1;
   }
 
   &__info-container{
 
+  }
+
+  &__functions-wrapper, &__columns-wrapper{
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon-wrapper{
+    margin-right: 1rem;
   }
 
   &__actions-container{
@@ -110,5 +117,9 @@
       text-decoration: none;
       color: gray;
   }
+  }
+
+  &--undo{
+    background-color: black;
   }
 }

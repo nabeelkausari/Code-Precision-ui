@@ -96,6 +96,35 @@ export default (state = initialState, { type, payload }) => {
         }
       }
 
+
+    case types.UNDO_REQUESTED : {
+      return{...state, undo_requested : true, undo_error : false }
+    }
+
+    case types.UNDO_SUCCEEDED: {
+      return{...state, undo_requested : false, undo_error : false, steps : payload}
+    }
+
+    case types.UNDO_FAILED : {
+      return{...state, undo_requested : false, undo_error : true, error_message : payload }
+    }
+
+
+
+
+    case types.REDO_REQUESTED : {
+      return{...state, redo_requested : true, redo_error : false }
+    }
+
+    case types.REDO_SUCCEEDED: {
+      return{...state, redo_requested : false, redo_error : false }
+    }
+
+    case types.REDO_FAILED : {
+      return{...state, redo_requested : false, redo_error : true, error_message : payload }
+    }
+
+
     default:
       return state;
   }

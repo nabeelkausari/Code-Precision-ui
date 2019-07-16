@@ -11,7 +11,7 @@ export const getCase = () => (dispatch, getState) => {
 
     const url = {
         "method": "GET",
-        "href": "/users/3820/marketplace-courses/1180/solves/1530",
+        "href": "/users/3820/marketplace-courses/1180/solves/1696",
         "accept": "application/vnd.Analyttica.TreasureHunt.UserSolve+json"
     };
     fetchLinkAs(url)
@@ -28,7 +28,7 @@ export const getSteps = () => (dispatch, getState) => {
     fetchLinkAs(info._links.user_steps)
         .then(payload => {
             payload.sort((a, b) => (a.sequence_number) - (b.sequence_number));
-            payload = payload.slice(1);
+            //payload = payload.slice(1);
             dispatch(getDatasets(info));
             dispatch({ type: types.FETCH_STEPS_SUCCEEDED, payload });
         })
@@ -99,21 +99,30 @@ export const resetResultsFlyouts = () => (dispatch, getState) => {
 }
 
 export const undo = (link) => (dispatch, getState) => {
+
+    const {cases : {steps}} = getState();
+    dispatch({type : types.UNDO_REQUESTED})
     fetchLink(link)
         .then(() => {
-            dispatch(getCase())
-        }).then(() =>{
             dispatch(getSteps())
+            dispatch({type : types.UNDO_SUCCEEDED})
+    }).catch((payload) => {
+        dispatch({type : types.UNDO_FAILED, payload})
     })
 }
 
-export const redo = (link) => (dispatch, getState) => {
+export const redo = (link) => (dispatch, getState) =>
+{
+    dispatch({type : types.REDO_REQUESTED})
     fetchLink(link)
         .then(() => {
+            dispatch({type: types.REDO_SUCCEEDED})
             dispatch(getCase())
         }).then(() =>{
         dispatch(getSteps())
-    })
+    }).catch((payload)=>{
+    dispatch({type : types.REDO_FAILED, payload})
+})
 }
 
 
