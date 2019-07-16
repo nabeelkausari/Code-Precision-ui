@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ToolBar from "./View/Toolbar/ToolBar";
+import ToolBar from "./Toolbar/ToolBar";
 
 import SubHeader from "./SubHeader/SubHeader";
 import Steps from "./Steps/StepList";
@@ -30,7 +30,6 @@ class CaseSolve extends Component {
   }
 
     renderCaseView = () =>{
-      console.log(this.props.match.params.view)
       switch (this.props.match.params.view) {
           case 'dataset': return <Dataset/>;
           case 'console': return <Console/>;

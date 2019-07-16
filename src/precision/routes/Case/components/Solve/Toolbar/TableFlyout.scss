@@ -1,0 +1,46 @@
+.table-flyout-container {
+  box-sizing: border-box;
+  height: 352px;
+  width: 375px;
+  border: 1px solid #E9E9E9;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 7px 1px rgba(0, 0, 0, 0.06);
+  position: absolute;
+  left: 2rem;
+  display: flex;
+
+  .table-box {
+    height: 350px;
+    width: 168px;
+    background-color: #FFFFFF;
+    box-shadow: -6px 2px 25px 15px rgba(0, 0, 0, 0.06);
+
+    &__title {
+      font-size: 1.4rem;
+      letter-spacing: 0.04rem;
+      line-height: 3rem;
+      padding: 1rem 4rem;
+      cursor: pointer;
+    }
+  }
+
+  .columns-box {
+    min-height: 35rem;
+    width: 20rem;
+    background-color: #FFFFFF;
+    margin-left: 0.3rem;
+    overflow: auto;
+
+    &__title {
+      font-size: 1.4rem;
+      letter-spacing: 0.04rem;
+      line-height: 3rem;
+      padding: 1rem 4rem;
+      cursor: pointer;
+
+      &--selected {
+        color: #52a7dc;
+      }
+    }
+  }
+}

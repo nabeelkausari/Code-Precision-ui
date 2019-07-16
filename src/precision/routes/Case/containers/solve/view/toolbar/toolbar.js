@@ -1,23 +1,48 @@
 import { connect } from 'react-redux';
-import {deleteColumnSelection, setColumnSelections} from "../../../../../../modules/case/toolbar/actions";
+import {
+    getFunctionDescription,
+    suggestFunctions,
+    deleteColumnSelection,
+    setColumnSelections,
+    getFunctionParameters,
+    executeFunction,
+    removeSelectedFunctionsAndParameters,
+    setSelectedFunction,
+    setSelectedFunctionCategory, closeParameterFlyout
+} from "../../../../../../modules/case/toolbar/actions";
 
-const mapStateToProps = ({ cases: { data_sets } , functions: { categories, functions, selections }, datasets: { list }}) => ({
-    dataset_list: list,
-    selections,
-    categories: !!categories && categories
-        .filter(category => category._links.parent === undefined)
-        .map(cat => ({
-            category: cat,
-            sub_categories: categories
-                .filter(c => c._links.parent !== undefined && c._links.parent.href === cat._links.self.href)
-                .map(cat => ({
-                    subCategory: cat,
-                    functions: !!functions && functions
-                            .filter((f) => f._links.self !== undefined)
-                            .filter(fn => cat.functions.indexOf(fn._links.self.href) >= 0).map(fn => fn)
-                }))
-        }))
-});
+const mapStateToProps = (state) => {
+    const {  functions: { categories, list:{items}, suggestions, description, selections, parameters, execution, parameter_flyout_open }, datasets: { list }} = state;
+    const is_fetched = state.functions.fetch_functions_succeeded && state.functions.fetch_function_categories_succeeded;
+    return {
+        suggestions,
+        is_fetched,
+        description,
+        dataset_list: list,
+        selections,
+        parameters,
+        execution,
+        parameter_flyout_open,
+        categories: is_fetched && items && categories.items
+            .filter(category => category._links.parent === undefined)
+            .map(cat => ({
+                ...cat,
+                sub_categories: categories.items
+                    .filter(c => c._links.parent && c._links.parent.href === cat._links.self.href)
+                    .map(subcat => ({
+                        ...subcat,
+                        functions_list: items && items
+                            .filter((f) => f._links.self)
+                            .filter(fn => subcat.functions.indexOf(fn._links.self.href) !== -1)
+
+                    }))
+            }))
+
+    }
+};
 
 
-export const ToolbarContainer = connect(mapStateToProps, {setColumnSelections, deleteColumnSelection} );
+export const ToolbarContainer = connect(mapStateToProps, {suggestFunctions,getFunctionDescription,
+    deleteColumnSelection, setColumnSelections,
+    getFunctionParameters, executeFunction, removeSelectedFunctionsAndParameters,
+    setSelectedFunction, setSelectedFunctionCategory, closeParameterFlyout} );

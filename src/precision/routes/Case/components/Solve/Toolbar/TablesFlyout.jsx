@@ -52,10 +52,10 @@ class TablesFlyout extends Component {
                 </div>
                 <div className="columns-box">
                     <h6>{selected.length}Selected</h6>
-                    {columns.length > 0 && columns.map(column =>
-                        <div className={this.state.selected ? "columns-box__title--selected": "columns-box__title"}>
+                    {columns.length > 0 && columns.map((column,i) =>
+                        <div className={this.state.selected ? "columns-box__title--selected": "columns-box__title"} key={i}>
                             <input type="checkbox" checked={selected.indexOf(column) >= 0} onChange={() => this.handleAvailableColumnSelect(column)}/>
-                            {column.name}
+                            {column.key}
                         </div>
                     )}
                 </div>
