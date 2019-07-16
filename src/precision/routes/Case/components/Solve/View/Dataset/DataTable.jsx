@@ -1,41 +1,97 @@
-import * as React from 'react';
-import * as $ from 'jquery';
-import { Component } from 'react';
-import { CsvTable } from './CsvTable';
+import React , { Component } from 'react';
+import Papa from 'papaparse';
+import ReactTable from 'react-table';
+import 'react-table/react-table.css'
+import './Table.scss';
 import {DataTableContainer} from "../../../../containers/solve/view/dataset/dataTable";
-import './DataTable.scss';
 
-const selected_style = { background: 'rgb(229, 247, 247)' };
+export class DataTable extends Component {
 
-class DataTable extends Component {
-
-    handleScroll = (evt) => {
-        const currentScrollTopOffset = evt.target.scrollTop;
-        if (!!this.props.className)
-            $('.' + this.props.className + ' .fixedTableHeaderWrapper').css('top', currentScrollTopOffset);
-        else
-            $('.fixedTableHeaderWrapper:last').css('top', currentScrollTopOffset);
+    state = {
+        csvData: [],
+        headerRow: [],
+        selectedHeaders: []
     };
 
+
+
+    componentDidMount() {
+        this.fetchCsv();
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(this.props.fetch_steps_succeeded && this.props.fetch_steps_succeeded !== prevProps.fetch_steps_succeeded){
+            this.fetchCsv()
+        }
+        if(this.props.csv !== "" && this.props.csv !== prevProps.csv){
+            this.fetchCsv()
+        }
+
+    }
+
+    fetchCsv = () => {
+        let csvData = [];
+        let headerRow = [];
+        Papa.parse(this.props.csv || "", {
+            download: true,
+            complete: (results) => {
+                csvData=results.data;
+                headerRow = csvData[0];
+                csvData.splice(0, 1);
+                let csv_rows = csvData.map((row, index) => {
+                    let row_obj = {};
+                    headerRow.map((header, i) => {
+                        row_obj[header]= row[i];
+                    });
+                    return row_obj
+                });
+                this.setState({
+                    csvData: csv_rows.splice(0,csv_rows.length -1),
+                    headerRow: headerRow.map((item, i) => ({Header: item, accessor: item, index:i+1}))
+            })
+        }});
+    };
+
+    getTheadThProps = (state, rowInfo, column, instance) => {
+        const selected_column = {
+            index: column.index,
+            key: column.Header,
+        };
+        return {
+            onClick: (e) => {
+               this.props.setColumnSelections(this.props.dataset_reference, selected_column )
+            },
+            style: {
+                backgroundColor: "#EFF5FC"
+            }
+        };
+    };
+
+
     render() {
-        const { csv, selections, onColumnClick, onError, getHeaders, getRow, className, addHeaders, disable_selection, onDisableClick , top} = this.props;
-        return (
-            <div className={className || 'table-container'} style={{ top : `${top !== undefined ? top : '78px'}`}}  onScroll={(evt) => this.handleScroll(evt)}>
-            {csv !== undefined && <CsvTable className="table"
-                      bordered csv={csv}
-                      download={true}
-                      getHeaders={getHeaders}
-                      getRow={getRow}
-                      delimiter=';'
-                      onColumnHeaderClick={!disable_selection ? onColumnClick : onDisableClick}
-                      preview={201}
-                      selectedColumnIndices={selections}
-                      selectedStyle={selected_style}
-                      onError={onError}
-                      fixedHeader={true}
-                      addHeaders={addHeaders}/>}
-        </div>);
+        let rows = this.state.csvData;
+        const selection_arr = this.props.column_selections[this.props.dataset_reference];
+        let headerRow = [...this.state.headerRow];
+            headerRow = headerRow.map(item => {
+                const bgColorObject = selection_arr && selection_arr.some(column => column.key === item.Header) ? {backgroundColor:"rgba(0, 104, 224, .12)"} : {};
+            return {
+                ...item,
+                style: bgColorObject,
+                headerStyle: bgColorObject
+
+            }
+        });
+        return(
+            <div className="data-table">
+                <ReactTable
+                    data={rows}
+                    columns={headerRow}
+                    getTheadThProps={this.getTheadThProps}
+                />
+            </div>
+        )
     }
 }
+
 
 export default DataTableContainer(DataTable)

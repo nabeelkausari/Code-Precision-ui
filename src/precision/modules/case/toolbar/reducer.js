@@ -162,7 +162,7 @@ export default (state = initialState, { type, payload }) => {
         case types.SET_COLUMN_SELECTION:
             return {
                 ...state,
-               selections:payload
+               selections: payload
             };
 
         case types.FETCH_FUNCTION_PARAMETERS_REQUESTED:

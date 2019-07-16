@@ -19,10 +19,12 @@ class ToolBar extends Component {
         if(this.state.is_function_flyout_open)
             this.setState({is_function_flyout_open:false});
 
+        if(this.state.is_table_flyout_open)
+          return this.setState({is_table_flyout_open: false});
+
         this.setState((state) => {
             return {is_table_flyout_open: true};
         });
-
     };
 
     toggleFunction = () =>{

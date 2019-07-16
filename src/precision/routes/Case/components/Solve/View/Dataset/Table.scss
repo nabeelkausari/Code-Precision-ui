@@ -2,15 +2,41 @@
 
 .table {
   display: flex;
-  margin: 2rem;
+  margin: 2rem 0 0 2rem;;
 
   &__name {
     height: 3rem;
     width: 15rem;
-    border: 1px solid $color-grey-light-3;
+    border: 1px solid #EEEEEE;
     border-radius: 2px;
-    background-color: $color-table-name-bg;
     padding: 0.2rem;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    background-color: #F8F8F8;
+    color: #9B9B9B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover, &-active {
+      background-color: $color-white;
+      border: 1px solid #D4E5F9;
+      color: $color-primary;
+    }
   }
 }
+
+.data-table {
+  width: calc(100vw - 34rem);
+  margin: 0 2rem;
+  font-size: 12px;
+}
+
+.ReactTable {
+  height: calc(100vh - 130px) !important;
+  .rt-thead,
+  .rt-tr {
+    text-align: left !important;
+  }
+}
+
