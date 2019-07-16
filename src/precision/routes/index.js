@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Switch, Route, Redirect } from "react-router-dom";
 
 import { createBrowserHistory } from "history";
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
 
 import Login from "./Auth/components";
 import store from "../config/store"
@@ -11,13 +11,10 @@ import requireAuth from '../hoc/require-auth';
 import requireUnAuth from '../hoc/require-un-auth';
 
 import Header from "./Case/components/Solve/ScenarioHeader/Header";
-import SubHeader from "./Case/components/Solve/SubHeader/SubHeader";
-import { Dataset } from "./Case/components/Solve/View/Dataset/Dataset";
-import { Console } from "./Case/components/Solve/View/Console/Console";
-import Process  from "./Case/components/Solve/View/Process/Process";
 import CaseList from "./Case/components/List";
 import CaseDetail from "./Case/components/Detail";
-import CaseSolve from "./Case/components/Solve"
+import CaseSolve from "./Case/components/Solve";
+
 
 export const history = createBrowserHistory();
 
@@ -53,3 +50,4 @@ export default (props) => {
         </Provider>
     );
 };
+

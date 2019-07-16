@@ -29,7 +29,7 @@ class Step extends Component {
             let selected_column_string = [];
 
             for (let key in selections) {
-                selected_column_string.push(selections[key].map(column => column.key).join(', '));
+                selected_column_string.push(selections[key].map(column => column.key));
             }
 
             return selected_column_string.join(', ');
