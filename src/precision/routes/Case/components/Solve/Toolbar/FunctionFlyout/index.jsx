@@ -27,7 +27,6 @@ class FunctionsFlyout extends Component {
     handleInputChange = (e) => {
         this.setState({[e.target.name]:e.target.value});
         this.props.suggestFunctions(e.target.value);
-       notify("error","title","message")
     };
 
     onCategorySelect = (category) => {
