@@ -21,7 +21,7 @@ class Table extends Component{
             <div>
                 <div className="table-tabs__container">
                     {fetch_steps_succeeded && data_sets.map((ds, i) => (
-                        <div className={ds.ref === selected_table_reference ? "table-tabs__name table-tabs__name-active": "table-tabs__name" } onClick={() => this.handleSelectTable(ds.ref)}>
+                        <div key={i} className={ds.ref === selected_table_reference ? "table-tabs__name table-tabs__name-active": "table-tabs__name" } onClick={() => this.handleSelectTable(ds.ref)}>
                             {ds.name}
                         </div>
                     ))}

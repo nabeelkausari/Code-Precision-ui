@@ -4432,6 +4432,11 @@ fresh@0.5.2:
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.5.2.tgz#3d8cadd90d976569fa835ab1f8e4b23a105605a7"
   integrity sha1-PYyt2Q2XZWn6g1qx+OSyOhBWBac=
 
+froala-editor@3.0.3, froala-editor@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/froala-editor/-/froala-editor-3.0.3.tgz#56a4552b8bbaa933b3ed257ab1974a7dfdf771c3"
+  integrity sha512-KIMSYV1u+jxl10fgn8RRbLI0Vzs6FfLfdV7lgI9FEevHKSN3yQzxe7eZ3qVKpI2W/Miv3oZ5/QlYRFHvVC6MHA==
+
 from2@^2.1.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/from2/-/from2-2.3.0.tgz#8bfb5502bde4a4d36cfdeea007fcca21d7e382af"
@@ -8582,6 +8587,14 @@ react-error-overlay@^5.1.6:
   version "5.1.6"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.6.tgz#0cd73407c5d141f9638ae1e0c63e7b2bf7e9929d"
   integrity sha512-X1Y+0jR47ImDVr54Ab6V9eGk0Hnu7fVWGeHQSOXHf/C2pF9c6uy3gef8QUeuUiWlNb0i08InPSE5a/KJzNzw1Q==
+
+react-froala-wysiwyg@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/react-froala-wysiwyg/-/react-froala-wysiwyg-3.0.3.tgz#3e338bb42ee5302dedcfd1c66576dbf907021e42"
+  integrity sha512-MMsqxQZpBPr4H6bnB/IIUcV0RFBpGxdXF01k+EXMKVNl3et206wtrtYT853vf+7HDbuPm4rtTDY3jeO3PTxKWQ==
+  dependencies:
+    create-react-class "^15.5.2"
+    froala-editor "3.0.3"
 
 react-input-autosize@^2.2.1:
   version "2.2.1"

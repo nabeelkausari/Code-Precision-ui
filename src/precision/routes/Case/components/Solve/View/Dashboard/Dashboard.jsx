@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import {DashboardContainer} from "../../../../containers/solve/view/dashboard/dashboard";
 import './dashboard.scss';
+import Editor from "../../../../../../components/Editor";
 
 
 class Dashboard extends Component {
     render() {
         return (
             <div className="card-container">
+                <Editor/>
+
                 {this.props.steps && this.props.steps.map((step, index) =>
                 <div className="card" >
                     <div>
@@ -14,6 +17,7 @@ class Dashboard extends Component {
                     </div>
                 </div>
                 )}
+
             </div>
         );
     };
