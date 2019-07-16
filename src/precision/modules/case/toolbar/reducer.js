@@ -264,6 +264,33 @@ export default (state = initialState, { type, payload }) => {
                 parameter_flyout_open: false
             };
 
+
+        case types.FUNCTION_EXECUTION_REQUESTED:
+            return {
+                ...state,
+                function_execution_loading: true,
+                function_execution_failed: null,
+                function_execution_succeeded: null
+            };
+
+
+        case types.FUNCTION_EXECUTION_SUCCEEDED:
+            return {
+                ...state,
+                function_execution_loading: false,
+                function_execution_failed: null,
+                function_execution_succeeded: true,
+                items: payload
+            };
+
+        case types.FUNCTION_EXECUTION_FAILED:
+            return {
+                ...state,
+                function_execution_loading: false,
+                function_execution_succeeded: false,
+                function_execution_failed: payload,
+            };
+
         default:
             return state;
     }

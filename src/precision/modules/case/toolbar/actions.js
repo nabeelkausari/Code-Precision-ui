@@ -193,19 +193,17 @@ const cleanHeaders = (selectedDatasets, all_headers) => fromPairs(toPairs(all_he
 
 
 export const executeFunction = () => (dispatch, getState) => {
+    dispatch({ type: types.FUNCTION_EXECUTION_REQUESTED });
     const {cases, functions, datasets} = getState();
-
     const param = {
         selections: functions.selections,
         all_headers: cleanHeaders(datasets.selections, datasets.columns),
         parameters: functions.execution.selected_parameters,
         function_id: functions.execution.current_function.function_id
     };
-
-
     return fetchLinkAs(cases.info._links.create_user_step, param)
-        .then(payload => console.log(payload))
-        .catch(payload => console.log(payload))
+        .then(payload => dispatch({ type: types.FUNCTION_EXECUTION_SUCCEEDED, payload }))
+        .catch(payload => dispatch({ type: types.FUNCTION_EXECUTION_FAILED , payload }))
 };
 
 
