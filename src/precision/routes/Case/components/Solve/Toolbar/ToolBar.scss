@@ -19,6 +19,8 @@
     background-color: $color-white;
     margin: .3rem;
     cursor: pointer;
+    z-index: 50;
+
     &:not(:last-child){
       margin-right: 1rem;
     }
@@ -220,12 +222,12 @@
 }
 
 .fx-flyout__backdrop {
-  position: absolute;
-  top: 5.3rem;
+  position: fixed;
+  top: 0;
   left: 0;
   z-index: 40;
   width: 100vw;
-  height: calc(100vh - 15.5rem);
-  background-color: $color-black;
-  opacity: 0.5;
+  height: 100vh;
+  background-color: #ffffff;
+  opacity: 0.4;
 }
