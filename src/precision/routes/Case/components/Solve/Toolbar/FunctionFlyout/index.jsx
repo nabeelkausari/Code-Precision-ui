@@ -5,6 +5,9 @@ import {SearchResults} from "./SearchResults";
 import {FunctionsMenu} from "./FunctionsMenu";
 import FunctionParams from "./FunctionParams";
 
+import {notify} from "../../../../../../utils/notification"
+
+
 class FunctionsFlyout extends Component {
 
     state = {
@@ -24,6 +27,7 @@ class FunctionsFlyout extends Component {
     handleInputChange = (e) => {
         this.setState({[e.target.name]:e.target.value});
         this.props.suggestFunctions(e.target.value);
+       notify("error","title","message")
     };
 
     onCategorySelect = (category) => {
