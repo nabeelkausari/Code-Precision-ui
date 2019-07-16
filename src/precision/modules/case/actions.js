@@ -119,7 +119,7 @@ export const redo = (link) => (dispatch, getState) =>
     }).catch((payload)=>{
     dispatch({type : types.REDO_FAILED, payload})
 })
-}
+};
 
 
 

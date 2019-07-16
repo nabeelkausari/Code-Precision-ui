@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
-import {setCurrentStep, undo, redo} from '../../../../modules/case/actions'
-import {getSteps, setCurrentStep} from '../../../../modules/case/actions'
+import {setCurrentStep, undo, redo, getSteps} from '../../../../modules/case/actions'
 
 function mapStateToProps(state, ownProps) {
 
