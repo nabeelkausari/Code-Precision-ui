@@ -15,7 +15,7 @@ class StepList extends Component {
     };
 
     render() {
-        const {steps, onShowResultClick } = this.props
+        const {steps, onShowResultClick, undo_available, redo_available, last_step, onUndoClick, onRedoClick, redo_requested } = this.props
         const {is_steps_open} = this.state
         return (
             <div className={is_steps_open ? 'steps' : 'steps steps--closed'}>
@@ -23,15 +23,22 @@ class StepList extends Component {
                 <div className="steps__header">
                     <h3 className="steps__title">STEPS</h3>
                     <span className="steps__number-of-selected">0 selected</span>
+                    {undo_available && <button onClick={() => onUndoClick(last_step._links.undo)}>undo</button>}
+                    {redo_available && <button onClick={() => onRedoClick(last_step._links.redo)}>redo</button>}
                 </div>
                 <hr/>
                 <div className="steps__list-container">
                     <ul className="steps__list">
                         { steps &&
-                            steps.map((step, index) => (
-                                <li className="steps__item" key={index}> <Step step={step} onShowResultClick = {onShowResultClick} /> </li>
+                            steps.slice(1).map((step, index) => (
+                                (index !== (steps.length -1))?
+
+                                    <li className="steps__item" key={index}> <Step step={step} onShowResultClick = {onShowResultClick} /> </li>
+                                :
+                                    <li className="steps__item" key={index}> <Step step={step} onShowResultClick = {onShowResultClick} lastChild/> </li>
                             ))
                         }
+                        {redo_requested && <li>LOADING</li>}
                     </ul>
                 </div>
 

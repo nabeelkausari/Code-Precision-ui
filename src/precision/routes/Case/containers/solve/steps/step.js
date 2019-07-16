@@ -3,8 +3,12 @@ import {getUserNotes, resetNotesFlyout} from "../../../../../modules/steps/notes
 import {resetResultsFlyouts} from "../../../../../modules/case/actions"
 
 
-const mapStateToProps = () => ({
+const mapStateToProps = (state, ownProps ) => {
 
-});
+    const undo_requested = state.cases.undo_requested;
+    return {
+        undo_requested
+    }
+};
 
 export const StepContainer = connect(mapStateToProps, { getUserNotes, resetNotesFlyout, resetResultsFlyouts });

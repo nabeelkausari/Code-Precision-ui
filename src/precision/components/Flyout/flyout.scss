@@ -26,11 +26,12 @@
 
   position: absolute;
   width: 50%;
-  height: calc(100vh - 15.8rem);
-  top : 10.2rem;
+  height: calc(100vh - 5.8rem);
+  top : .1rem;
   //border: .1rem solid black;
   //padding: 1rem 2rem;
   background-color: $color-white;
+  z-index: 31;
 
   &--1{
     right: 0;

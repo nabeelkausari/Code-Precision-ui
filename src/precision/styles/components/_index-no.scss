@@ -37,4 +37,17 @@
     }
   }
 
+&__wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  height: 2.5rem;
+  width: 2.5rem;
+  background-color: $pill-fill-color;
+  border: 1px solid $pill-border-color;
+}
+
+
+
 }
