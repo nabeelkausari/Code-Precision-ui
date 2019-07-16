@@ -94,6 +94,18 @@ export const setColumnSelections = (current_dataset_ref, column) => (dispatch, g
 
 };
 
+
+export const setAllColumnSelections = (current_dataset_ref) => (dispatch, getState) => {
+    const {datasets: {list: {by_uri}},functions: {selections}} = getState();
+    let current_selections = {...selections};
+    if(current_selections[current_dataset_ref] === undefined){
+        current_selections[current_dataset_ref] = [...by_uri[current_dataset_ref].columns]
+    }else{
+       delete current_selections[current_dataset_ref]
+    }
+    dispatch({type:types.SET_COLUMN_SELECTION, payload:current_selections})
+};
+
 export const deleteColumnSelection = (current_dataset_ref) => (dispatch, getState) => {
 
     const { functions: {selections} }  = getState();
