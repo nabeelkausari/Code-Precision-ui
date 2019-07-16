@@ -4,6 +4,9 @@ import { Router, Switch, Route, Redirect } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import {Provider} from 'react-redux';
 
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Login from "./Auth/components";
 import store from "../config/store"
 
@@ -15,6 +18,7 @@ import CaseList from "./Case/components/List";
 import CaseDetail from "./Case/components/Detail";
 import CaseSolve from "./Case/components/Solve";
 
+toast.configure({autoClose:1000})
 
 export const history = createBrowserHistory();
 
@@ -40,6 +44,7 @@ export default (props) => {
     return (
       <Provider store={store}>
           <Router history={history}>
+              <ToastContainer  transition={Slide}/>
             <Switch>
               <Route path="/cases/:case_id/:scenario_id" component={requireAuth(ScenarioRoutes)} />
               <Route path="/cases" component={requireAuth(CaseRoutes)} />

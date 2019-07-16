@@ -5,6 +5,9 @@ import {SearchResults} from "./SearchResults";
 import {FunctionsMenu} from "./FunctionsMenu";
 import FunctionParams from "./FunctionParams";
 
+import {notify} from "../../../../../../utils/notification"
+
+
 class FunctionsFlyout extends Component {
 
     state = {
