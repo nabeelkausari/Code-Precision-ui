@@ -10,7 +10,7 @@ export const getCase = () => (dispatch, getState) => {
 
     const url = {
         "method": "GET",
-        "href": "/users/3820/marketplace-courses/1180/solves/1696",
+        "href": "/users/3820/marketplace-courses/1180/solves/1530",
         "accept": "application/vnd.Analyttica.TreasureHunt.UserSolve+json"
     };
     fetchLinkAs(url)
