@@ -8,8 +8,6 @@ class Dashboard extends Component {
     render() {
         return (
             <div className="card-container">
-                <Editor/>
-
                 {this.props.steps && this.props.steps.map((step, index) =>
                 <div className="card" >
                     <div>
