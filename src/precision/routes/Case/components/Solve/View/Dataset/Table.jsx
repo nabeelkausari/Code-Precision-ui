@@ -16,7 +16,7 @@ class Table extends Component{
     }
 
     render() {
-        const { data_sets, fetch_steps_succeeded, selectTable, selected_table_reference } =this.props;
+        const { data_sets, fetch_steps_succeeded, dataset_loading, selected_table_reference } =this.props;
         return(
             <div>
                 <div className="table-tabs__container">
@@ -26,7 +26,8 @@ class Table extends Component{
                         </div>
                     ))}
                 </div>
-                {selected_table_reference !== "" && <DataTable dataset_reference={selected_table_reference} selections={this.props.selections}/>}
+                {selected_table_reference !== "" &&
+                <DataTable dataset_reference={selected_table_reference} selections={this.props.selections} />}
             </div>
 
         )

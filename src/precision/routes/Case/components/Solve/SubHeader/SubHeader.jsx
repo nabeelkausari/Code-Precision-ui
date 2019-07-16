@@ -33,13 +33,6 @@ class SubHeader extends Component {
                                 >Console
                                 </NavLink>
                             </Nav.Item>
-                            <Nav.Item bsPrefix="bg-sub-header__items">
-                                <NavLink exact to="/cases/3/5/process"
-                                         className='bg-sub-header__link'
-                                         activeClassName="active"
-                                >Process
-                                </NavLink>
-                            </Nav.Item>
                         </div>
                     </Nav>
                 </Navbar>

@@ -4,6 +4,8 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css'
 import './Table.scss';
 import {DataTableContainer} from "../../../../containers/solve/view/dataset/dataTable";
+import * as Loader from 'react-loader';
+
 
 export class DataTable extends Component {
 
@@ -88,6 +90,7 @@ export class DataTable extends Component {
             }
         });
         return(
+            <Loader loaded={!this.props.dataset_loading}>
             <div className="data-table">
                 <ReactTable
                     data={rows}
@@ -97,6 +100,7 @@ export class DataTable extends Component {
                     defaultPageSize = {200}
                 />
             </div>
+            </Loader>
         )
     }
 }
