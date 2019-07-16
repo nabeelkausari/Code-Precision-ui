@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
     return {
-     steps: state.cases.steps
+     steps: state.cases.steps,
  }
 };
 

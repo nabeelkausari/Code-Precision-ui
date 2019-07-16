@@ -14,6 +14,12 @@ class StepList extends Component {
         this.setState((state) => ({is_steps_open: !state.is_steps_open}))
     };
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(this.props.function_execution_succeeded && this.props.function_execution_succeeded !== prevProps.function_execution_succeeded){
+            this.props.getSteps()
+        }
+    }
+
     render() {
         const {steps, onShowResultClick, undo_available, redo_available, last_step, onUndoClick, onRedoClick, redo_requested } = this.props
         const {is_steps_open} = this.state

@@ -1,5 +1,8 @@
 import * as types from './types'
 import {fetchLinkAs} from "../../api/helpers";
+import Papa from "papaparse";
+
+
 export const selectTable = (payload) => ({ type: types.SELECT_TABLE, payload });
 
 export const getDatasets = (payload) => (dispatch) => {
@@ -25,4 +28,25 @@ export const setDatasetSelection = () => (dispatch, getState) => {
         }
     }
     dispatch({type:types.SET_DATASET_SELECTIONS, payload:dataset_selections})
+};
+
+
+export const fetchStepDetailsCsv = (csv) => (dispatch) => {
+    dispatch({type: types.FETCH_DATASET_CSV_REQUESTED});
+    Papa.parse(csv || "", {
+        download: true,
+        complete: (results) => {
+            let headers = results.data[0];
+            let rows = [...results.data.splice(1, results.data.length)];
+            rows = rows
+                .map(row => row[0].split(';'))
+                .filter(row => row.length !== headers.length)
+
+            let payload = {
+                csvData: headers[0].split(';'),
+                headerRow: rows
+            };
+            dispatch({type: types.FETCH_DATASET_CSV_SUCCEEDED, payload})
+        }
+    });
 };

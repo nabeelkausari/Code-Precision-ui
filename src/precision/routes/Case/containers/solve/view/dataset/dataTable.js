@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { path } from 'ramda';
-import {setColumnSelections} from "../../../../../../modules/case/toolbar/actions";
+import {setAllColumnSelections, setColumnSelections} from "../../../../../../modules/case/toolbar/actions";
 
 const mapStateToProps = (state, props) => {
     const matched_data_set =
@@ -14,4 +14,4 @@ const mapStateToProps = (state, props) => {
     };
 };
 
-export const DataTableContainer = connect(mapStateToProps, { setColumnSelections });
+export const DataTableContainer = connect(mapStateToProps, { setColumnSelections, setAllColumnSelections });

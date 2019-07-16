@@ -43,11 +43,13 @@ export class DataTable extends Component {
                     headerRow.map((header, i) => {
                         return row_obj[header] = row[i];
                     });
+                    row_obj[" "] = index;
                     return row_obj
                 });
+                headerRow.unshift(" ");
                 this.setState({
                     csvData: csv_rows.splice(0,csv_rows.length -1),
-                    headerRow: headerRow.map((item, i) => ({Header: item, accessor: item, index:i+1}))
+                    headerRow: headerRow.map((item, i) => ({ Header: item, accessor: item, index:i, width: item === " " ? '50' : '150' }))
             })
         }});
     };
@@ -59,7 +61,12 @@ export class DataTable extends Component {
         };
         return {
             onClick: (e) => {
-               this.props.setColumnSelections(this.props.dataset_reference, selected_column )
+                if(column.index > 0){
+                    this.props.setColumnSelections(this.props.dataset_reference, selected_column )
+                }else{
+                    //select all
+                    this.props.setAllColumnSelections(this.props.dataset_reference)
+                }
             },
             style: {
                 backgroundColor: "#EFF5FC"
@@ -78,7 +85,6 @@ export class DataTable extends Component {
                 ...item,
                 style: bgColorObject,
                 headerStyle: bgColorObject
-
             }
         });
         return(
@@ -87,6 +93,8 @@ export class DataTable extends Component {
                     data={rows}
                     columns={headerRow}
                     getTheadThProps={this.getTheadThProps}
+                    showPagination= {false}
+                    defaultPageSize = {200}
                 />
             </div>
         )

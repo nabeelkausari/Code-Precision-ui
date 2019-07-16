@@ -54,7 +54,19 @@ export default (state = initialState, { type, payload }) => {
                 selections: payload
             };
 
+        case types.FETCH_DATASET_CSV_REQUESTED:
+            return { ...state, dataset_csv_loading: true, fetch_dataset_csv_error: null, fetch_dataset_csv_succeeded: null };
 
+        case types.FETCH_DATASET_CSV_SUCCEEDED:
+            return {
+                ...state,
+                dataset_csv_loading: false,
+                fetch_dataset_csv_succeeded: true,
+                csv_info: {
+                    csvData: payload.csvData,
+                    headerRow: payload.headerRow
+                },
+            };
 
         default:
             return state;

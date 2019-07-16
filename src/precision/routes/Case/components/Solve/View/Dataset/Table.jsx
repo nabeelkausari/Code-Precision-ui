@@ -16,16 +16,12 @@ class Table extends Component{
     }
 
     render() {
-        const { data_sets, fetch_steps_succeeded, selected_table_reference } =this.props;
+        const { data_sets, fetch_steps_succeeded, selectTable, selected_table_reference } =this.props;
         return(
             <div>
-                <div className="table">
+                <div className="table-tabs__container">
                     {fetch_steps_succeeded && data_sets.map((ds, i) => (
-                        <div
-                          key={i}
-                          className={ds.ref === selected_table_reference ? "table__name table__name-active": "table__name" }
-                          onClick={() => this.handleSelectTable(ds.ref)}
-                        >
+                        <div className={ds.ref === selected_table_reference ? "table-tabs__name table-tabs__name-active": "table-tabs__name" } onClick={() => this.handleSelectTable(ds.ref)}>
                             {ds.name}
                         </div>
                     ))}
