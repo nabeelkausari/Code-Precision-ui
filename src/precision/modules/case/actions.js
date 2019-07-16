@@ -52,17 +52,17 @@ export const setCurrentStep = (payload) => (dispatch, getState) => {
         {
             if(is_primary_step_set)
             {
-                dispatch({type : types.SET_PREVIOUS_STEP})
+                dispatch({type : types.SET_PREVIOUS_STEP});
                 dispatch({type : types.OPEN_FLYOUT_SECONDARY})
             }
-            dispatch({type : types.SET_CURRENT_STEP, payload})
+            dispatch({type : types.SET_CURRENT_STEP, payload});
             dispatch({type : types.OPEN_FLYOUT_PRIMARY})
         }
     else if(results1 === undefined || !is_primary_flyout_open){
-        dispatch({type : types.SET_CURRENT_STEP, payload})
+        dispatch({type : types.SET_CURRENT_STEP, payload});
         dispatch({type : types.OPEN_FLYOUT_PRIMARY})
         }
-    }
+    };
 
 
 

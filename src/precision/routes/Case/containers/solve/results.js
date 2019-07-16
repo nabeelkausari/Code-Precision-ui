@@ -12,4 +12,4 @@ function mapStateToProps({ cases: {  results : {results1, results2, is_primary_f
     }
 }
 
-export default connect( mapStateToProps, {getResultsError, showPrimaryFlyout, hideFlyout})
+export default connect( mapStateToProps, {getResultsError, showPrimaryFlyout, hideFlyout })

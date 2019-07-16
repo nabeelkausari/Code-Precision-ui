@@ -1,8 +1,11 @@
 @import "../../../../../../styles/abstracts/variables";
 
-.table {
-  display: flex;
-  margin: 2rem 0 0 2rem;;
+.table-tabs {
+  &__container {
+    display: flex;
+    margin: 2rem 0 0 2rem;
+  }
+
 
   &__name {
     height: 3rem;
