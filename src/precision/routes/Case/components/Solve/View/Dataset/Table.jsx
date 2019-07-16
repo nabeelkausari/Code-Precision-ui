@@ -10,7 +10,7 @@ class Table extends Component{
     };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(this.props.fetch_steps_succeeded && this.props.fetch_steps_succeeded !== prevProps.fetch_steps_succeeded){
+        if(this.props.fetch_dataset_succeeded && this.props.fetch_dataset_succeeded !== prevProps.fetch_dataset_succeeded){
             this.props.selectTable(this.props.data_sets[0].ref)
         }
     }
