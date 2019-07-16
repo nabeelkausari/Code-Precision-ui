@@ -118,7 +118,7 @@ export class CsvTable extends Component {
                     const table_infos = getTableInfos(data);
                     const tables = table_infos.map(table_info => {
                         const raw_rows = table_info.rows;
-                        const headers = getHeaders(raw_rows.shift()).map((header, index) => ({
+                        const headers = raw_rows && getHeaders(raw_rows.shift()).map((header, index) => ({
                             label: transformHeader(header),
                             key: header,
                             index

@@ -8,6 +8,7 @@
   position: absolute;
   left: 2rem;
   display: flex;
+  z-index: 99;
 
   .table-box {
     height: 350px;
