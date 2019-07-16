@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import OutsideClickHandler from 'react-outside-click-handler';
 
 import FunctionsFlyout from "./FunctionFlyout";
 import TablesFlyout from "./TablesFlyout";
@@ -68,9 +67,6 @@ class ToolBar extends Component {
     render() {
         const {is_function_flyout_open, is_table_flyout_open, fx_selected, fx_name} = this.state;
         return (
-            <OutsideClickHandler
-                onOutsideClick={() => this.onOutsideClick()}
-            >
                 <div style={{position:"relative"}}>
                     <ToolBarItems
                         onTableItemClick={this.toggleTable}
@@ -94,8 +90,12 @@ class ToolBar extends Component {
                             {...this.props}
                         />
                     }
+
+                    {
+                       ( is_function_flyout_open || is_table_flyout_open) &&
+                           <div className="fx-flyout__backdrop" onClick={() => this.onOutsideClick()}></div>
+                    }
                 </div>
-            </OutsideClickHandler>
 
         );
     }
