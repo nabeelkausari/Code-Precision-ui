@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import OutsideClickHandler from 'react-outside-click-handler';
 
 import FunctionsFlyout from "./FunctionFlyout";
 import TablesFlyout from "./TablesFlyout";
@@ -31,10 +32,20 @@ class ToolBar extends Component {
         if(this.state.is_table_flyout_open)
             this.setState({is_table_flyout_open:false});
 
+        if(this.state.is_function_flyout_open)
+            return this.setState({is_function_flyout_open: false});
+
         this.setState((state) => {
             return {is_function_flyout_open: !state.is_function_flyout_open};
         });
     };
+
+    onOutsideClick = () => {
+        this.setState({
+            is_function_flyout_open: false,
+            is_table_flyout_open: false,
+        });
+    }
 
     addFunction = () => {
         const {execution} = this.props;
@@ -57,35 +68,35 @@ class ToolBar extends Component {
     render() {
         const {is_function_flyout_open, is_table_flyout_open, fx_selected, fx_name} = this.state;
         return (
-            <div style={{position:"relative"}}>
-                <ToolBarItems
-                    onTableItemClick={this.toggleTable}
-                    onFunctionItemClick={this.toggleFunction}
-                    fx_selected={fx_selected}
-                    fx_name={fx_name}
-                    removeSelectedFunction={this.removeFunction}
-                    {...this.props}
-                />
-                {
-                    is_function_flyout_open &&
+            <OutsideClickHandler
+                onOutsideClick={() => this.onOutsideClick()}
+            >
+                <div style={{position:"relative"}}>
+                    <ToolBarItems
+                        onTableItemClick={this.toggleTable}
+                        onFunctionItemClick={this.toggleFunction}
+                        fx_selected={fx_selected}
+                        fx_name={fx_name}
+                        removeSelectedFunction={this.removeFunction}
+                        {...this.props}
+                    />
+                    {
+                        is_function_flyout_open &&
                         <FunctionsFlyout
                             {...this.props}
                             addFunction={this.addFunction}
                         />
-                }
-                {
-                    is_table_flyout_open &&
+                    }
+                    {
+                        is_table_flyout_open &&
                         <TablesFlyout
                             data_sets={this.props.dataset_list.items}
                             {...this.props}
                         />
-                }
+                    }
+                </div>
+            </OutsideClickHandler>
 
-                {
-                    is_function_flyout_open  &&
-                    <div className="fx-flyout__backdrop"></div>
-                }
-            </div>
         );
     }
 }
