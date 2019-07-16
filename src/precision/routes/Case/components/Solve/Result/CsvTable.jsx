@@ -100,7 +100,7 @@ export class CsvTable extends Component {
                 preview: preview,
                 delimiter,
                 error: ({ message }) => {
-                    if (onError != undefined)
+                    if (onError !== undefined)
                         onError(message);
                     this.setState({
                         processing: false,
@@ -126,7 +126,7 @@ export class CsvTable extends Component {
                         const rows = raw_rows
                             .map((row, i) => getRow(row, i))
                             .filter(row => row.length === headers.length)
-                            .filter(row => !row.every(datum => datum == undefined || datum == ''));
+                            .filter(row => !row.every(datum => datum === undefined || datum === ''));
                         if (rows.length !== raw_rows.length)
                             console.log('Some rows don\'t have the required number of columns, or didn\t have data, and have been ignored.');
                         return {
@@ -177,8 +177,8 @@ export class CsvTable extends Component {
         const { tables, processing, message } = this.state;
         const { onColumnHeaderClick, selectedColumnIndices, selectedStyle, responsive, bordered, className, height, fixedHeader } = this.props;
         return (<Loader loaded={!processing} loadedClassName={className}>
-            {message != undefined && <NoDataSetText>{message || 'Could not load data set'}</NoDataSetText>}
-            {message == undefined &&
+            {message !== undefined && <NoDataSetText>{message || 'Could not load data set'}</NoDataSetText>}
+            {message === undefined &&
             tables.map(({ headers, rows, name, widths, width }, index) => <div className='dataTableParentWrapper' key={index} ref={element => this.tableDivs[index] = element} style={{ height: height || '100%' }}>
                 {name && <h5>{name}</h5>}
                 <div className='dataTableWrapper' style={{ position: 'relative' }}>
@@ -205,7 +205,7 @@ class FixedTableHeader extends Component {
         };
     }
     shouldComponentUpdate(nextProps, nextState) {
-        return JSON.stringify(nextProps) != JSON.stringify(this.props);
+        return JSON.stringify(nextProps) !== JSON.stringify(this.props);
     }
     render() {
         console.log('Table header re-rendered');
@@ -230,7 +230,7 @@ class ContentTable extends Component {
         };
     }
     shouldComponentUpdate(nextProps, nextState) {
-        return JSON.stringify(nextProps) != JSON.stringify(this.props);
+        return JSON.stringify(nextProps) !== JSON.stringify(this.props);
     }
     render() {
         console.log('Table got re-rendered');

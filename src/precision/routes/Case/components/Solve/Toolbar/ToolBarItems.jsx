@@ -9,7 +9,7 @@ class ToolBarItems extends Component {
         for (let key in selections) {
             if (selections.hasOwnProperty(key)) {
                 output.push(
-                    <div className="pill">
+                    <div key={key} className="pill">
                         <span className="pill__text">{by_uri[key].name}: {selections[key].length} column selected</span>
                         <span className="pill__cancel" onClick={() =>this.props.deleteColumnSelection(key)}><i className="fa fa-times" /></span>
                     </div>

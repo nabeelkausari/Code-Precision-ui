@@ -36,7 +36,7 @@ class FunctionParams extends Component {
 
 
     render() {
-        const { type, label, multi_table, value, pattern, onChange, required, name, options, step, multi_select, readonly, note, data_set } = this.props;
+        const { type, label, multi_table, value, pattern, onChange, required, options, multi_select, readonly, note, data_set } = this.props;
         const datasetOptions = data_set && data_set.map(ds => ({value:ds.path,label:ds.name}));
         const datasetColumnOptions = this.state.columns && this.state.columns.map(column => ({value:column,label:column}));
         return (<div>{!!multi_table ?
@@ -56,7 +56,7 @@ class FunctionParams extends Component {
                 <ReactSelect
                     options={datasetColumnOptions}
                     onChange={this.onColumnChange}
-                    isMulti={multi_select && multi_table || false}
+                    isMulti={multi_select && multi_table}
                 />
                 }
                 {note &&

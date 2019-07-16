@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import './TableFlyout.scss';
 
 class TablesFlyout extends Component {
@@ -42,8 +42,8 @@ class TablesFlyout extends Component {
         return (
             <div className="table-flyout-container">
                 <div className="table-box">
-                    {this.props.data_sets.length > 0 && this.props.data_sets.map(ds =>
-                        <div className="table-box__title"
+                    {this.props.data_sets.length > 0 && this.props.data_sets.map((ds, i) =>
+                        <div key={i} className="table-box__title"
                              style={current_dataset === ds.ref ? {color: '#52a7dc'} : {}}
                              onClick={() => this.handleDisplayColumns(ds)}
                         >{ds.name}

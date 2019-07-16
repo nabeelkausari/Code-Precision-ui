@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {NotesContainer} from "../../../../containers/solve/view/Notes/notes";
 import './Notes.scss'
-import FormControl from "react-bootstrap/es/FormControl";
 import {Button} from "../../../../../../components/Buttons/Button";
 import Flyout from "../../../../../../components/Flyout/Flyout";
 

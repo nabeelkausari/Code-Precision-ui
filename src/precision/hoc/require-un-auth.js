@@ -6,7 +6,7 @@ export default ComposedComponent => {
     checkUnAuth = () => {
       let token = localStorage.getItem('__auth');
       if (token) {
-        this.props.history.push('/cases/3/4');
+        this.props.history.push('/cases/3/4/dataset');
       }
     }
 

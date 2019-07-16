@@ -41,7 +41,7 @@ export class DataTable extends Component {
                 let csv_rows = csvData.map((row, index) => {
                     let row_obj = {};
                     headerRow.map((header, i) => {
-                        row_obj[header]= row[i];
+                        return row_obj[header] = row[i];
                     });
                     return row_obj
                 });

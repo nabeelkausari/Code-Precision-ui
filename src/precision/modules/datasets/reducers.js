@@ -1,5 +1,4 @@
 import * as types from "./types";
-import {byUri} from "../../utils/byUri";
 import {groupBy, map} from "ramda";
 
 const initialState = {

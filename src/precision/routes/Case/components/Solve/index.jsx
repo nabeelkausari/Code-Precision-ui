@@ -11,7 +11,6 @@ import {Console} from "./View/Console/Console";
 import Process from "./View/Process/Process";
 import Dashboard from "./View/Dashboard/Dashboard";
 import ResultsFlyout from "./Result/ResultFlyout";
-import {hidePrimaryFlyout, hideSecondaryFlyout} from "../../../../modules/case/actions";
 import Notes from "./View/Notes/Notes";
 
 class CaseSolve extends Component {
@@ -50,9 +49,7 @@ class CaseSolve extends Component {
   render() {
 
       const {is_primary_flyout_open, is_secondary_flyout_open, hidePrimaryFlyout, hideSecondaryFlyout, show_notes_flyout, notes_info} = this.props
-      console.log("PRIMARY FLYOUT : ",is_primary_flyout_open)
 
-      const {} = this.props;
       return (
       <div>
        <div style={{display:"flex"}}>

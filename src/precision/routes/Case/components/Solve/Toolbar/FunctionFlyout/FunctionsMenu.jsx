@@ -23,8 +23,8 @@ export const FunctionsMenu = (props) => {
                             <div className="fx-list__item" key={i}>
                                 <h4 className="fx-list__title">{sub_category.name}</h4>
                                 {
-                                    sub_category.functions_list && sub_category.functions_list.map(fx =>
-                                        <p className={cx("fx-list__subtitle",{'fx-active':active_function.function_id === fx.function_id})}
+                                    sub_category.functions_list && sub_category.functions_list.map((fx, i) =>
+                                        <p key={i} className={cx("fx-list__subtitle",{'fx-active':active_function.function_id === fx.function_id})}
                                            onClick={() =>onFunctionClick(fx)}
                                         >
                                             {fx.name}

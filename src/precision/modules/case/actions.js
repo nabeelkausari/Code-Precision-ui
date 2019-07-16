@@ -1,4 +1,3 @@
-import flatten from 'lodash/flatten'
 import {fetchLink, fetchLinkAs} from "../../api/helpers";
 import * as types from './types'
 import {getDatasets} from "../datasets/actions";
@@ -17,7 +16,7 @@ export const getCase = () => (dispatch, getState) => {
     fetchLinkAs(url)
         .then(({ data_sets, ...payload }) => {
             dispatch(getDatasets(payload));
-            dispatch({ type: types.FETCH_CASE_SUCCEEDED, payload });
+            return dispatch({ type: types.FETCH_CASE_SUCCEEDED, payload });
         })
         .catch(payload => dispatch({ type: types.FETCH_CASE_FAILED, payload }));
 };
@@ -30,7 +29,7 @@ export const getSteps = () => (dispatch, getState) => {
             payload.sort((a, b) => (a.sequence_number) - (b.sequence_number));
             //payload = payload.slice(1);
             dispatch(getDatasets(info));
-            dispatch({ type: types.FETCH_STEPS_SUCCEEDED, payload });
+            return dispatch({ type: types.FETCH_STEPS_SUCCEEDED, payload });
         })
         .catch(payload => dispatch({ type: types.FETCH_STEPS_FAILED, payload }));
 };
@@ -99,16 +98,13 @@ export const resetResultsFlyouts = () => (dispatch, getState) => {
 }
 
 export const undo = (link) => (dispatch, getState) => {
-
-    const {cases : {steps}} = getState();
     dispatch({type : types.UNDO_REQUESTED})
     fetchLink(link)
-        .then(() => {
-            dispatch(getSteps())
-            dispatch({type : types.UNDO_SUCCEEDED})
-    }).catch((payload) => {
-        dispatch({type : types.UNDO_FAILED, payload})
-    })
+      .then(() => {
+          dispatch(getSteps())
+          dispatch({type : types.UNDO_SUCCEEDED})
+      })
+      .catch((payload) => dispatch({type : types.UNDO_FAILED, payload}))
 }
 
 export const redo = (link) => (dispatch, getState) =>

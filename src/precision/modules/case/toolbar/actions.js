@@ -5,22 +5,19 @@ import {getMaterialLink} from "../../../api/material";
 import {setDatasetSelection} from "../../datasets/actions";
 import {fromPairs, toPairs} from "ramda";
 
-
-
-
 export const getCategoryAndFunctions = () => (dispatch, getState) => {
     dispatch({ type: types.FETCH_FUNCTION_CATEGORIES_REQUESTED });
     functions.categories()
         .then(payload => {
             dispatch({ type: types.FETCH_FUNCTION_CATEGORIES_SUCCEEDED, payload });
-            dispatch(getFunctions())
+            return dispatch(getFunctions())
         })
         .catch(payload => dispatch({ type: types.FETCH_FUNCTION_CATEGORIES_FAILED, payload }))
 };
 
 const getFunctions = () => (dispatch) => {
     dispatch({ type: types.FETCH_FUNCTIONS_REQUESTED });
-    functions.get()
+    return functions.get()
         .then(payload => dispatch({ type: types.FETCH_FUNCTIONS_SUCCEEDED , payload }))
         .catch(payload => dispatch({ type: types.FETCH_FUNCTIONS_FAILED, payload }))
 };
@@ -145,15 +142,15 @@ const validateParams = (value, paramValidation) => {
             return validateSpecialCharacters(value, paramValidation);
         case "START_WITH_NUMBER":
             return validateBeginingWithNumber(value, paramValidation);
+        default:
+            return true;
     }
-    return true;
 };
 
 export const setSelectedFunctionParameters = (name, value) => (dispatch, getState) => {
     const { functions: { parameters, execution } } = getState();
-    const { type, multi_select, multi_table } = parameters.list.filter(p => p.name === name).shift();
+    const { type, multi_select } = parameters.list.filter(p => p.name === name).shift();
     const is_array = type === 'select' && multi_select;
-    const is_multi_table_array = multi_table;
     if (!is_array) {
         if (type !== 'select' && parameters.list.length > 0) {
             const function_params = parameters.list.filter(function_param => function_param.name === name);

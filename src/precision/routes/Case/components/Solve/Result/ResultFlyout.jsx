@@ -3,7 +3,6 @@ import Error from './Error'
 import { CsvTable } from './CsvTable'
 import Flyout from "../../../../../components/Flyout/Flyout";
 import resultsContainer from '../../../containers/solve/results'
-import {hideSecondaryFlyout} from "../../../../../modules/case/actions";
 
 class ResultFlyout extends Component {
     render() {
@@ -42,12 +41,12 @@ export default resultsContainer(ResultFlyout);
 export const renderResult = ({ name, _links: { data, image, table, error, chart, pdf } }) => {
 
 
-    if (data != undefined) {
+    if (data !== undefined) {
         return <p key={data.href}>{!!name && <b>{`${name}: `}</b>}The data is updated in the table</p>;
     }
 
 
-    if (image != undefined) {
+    if (image !== undefined) {
         return (<div key={image.href}>
             {name && <h6>{name}</h6>}
             <img key={image.href} src={image.href} alt={name} width="fit-content"/>
@@ -55,7 +54,7 @@ export const renderResult = ({ name, _links: { data, image, table, error, chart,
     }
 
 
-    if (table != undefined) {
+    if (table !== undefined) {
         return (<div key={table.href}>
             {name && <h6>{formatHeader(name)}</h6>}
             <CsvTable csv={table.href} download={true}
@@ -70,7 +69,7 @@ export const renderResult = ({ name, _links: { data, image, table, error, chart,
     }
 
 
-    if (error != undefined) {
+    if (error !== undefined) {
         return (<div key={error.href}>
             {name && <h6>{name}</h6>}
             <Error error_text={error.href} download={true}/>

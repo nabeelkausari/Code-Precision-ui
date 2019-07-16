@@ -4,7 +4,7 @@ export const selectTable = (payload) => ({ type: types.SELECT_TABLE, payload });
 
 export const getDatasets = (payload) => (dispatch) => {
     dispatch({ type: types.FETCH_DATASET_REQUESTED });
-    fetchLinkAs(payload._links.tables_with_columns)
+    return fetchLinkAs(payload._links.tables_with_columns)
         .then(payload => dispatch({ type: types.FETCH_DATASET_SUCCEEDED, payload }))
         .catch(payload => dispatch({ type: types.FETCH_DATASET_FAILED, payload }))
 };

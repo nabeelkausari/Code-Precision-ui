@@ -6,4 +6,4 @@ const mapStateToProps = (state) => {
  }
 };
 
-export const StepsContainer = connect( mapStateToProps,  null);
+export const StepsContainer = connect(mapStateToProps);
