@@ -27,7 +27,7 @@ const getFunctions = () => (dispatch) => {
 
 export const suggestFunctions = (query) => (dispatch, getState) => {
     const { functions: { categories, list: { by_uri } } } = getState();
-    const categories_by_uri = categories.by_uri;
+    const categories_by_uri = {...categories.by_uri};
     dispatch({type:types.FETCH_FUNCTION_SUGGESTIONS_REQUESTED})
     return functions
         .getSuggestions(query)
@@ -62,7 +62,7 @@ export const getFunctionDescription = (material) => (dispatch, getState) => {
 
 export const getFunctionParameters = (fx) => (dispatch, getState) => {
     const {functions:{selections}, datasets} = getState();
-    let fx_selections_copy = selections;
+    let fx_selections_copy = {...selections};
 
     const solve = {
         "method": "GET",
@@ -79,7 +79,7 @@ export const getFunctionParameters = (fx) => (dispatch, getState) => {
 
 export const setColumnSelections = (current_dataset_ref, column) => (dispatch, getState) => {
     const { functions: {selections} }  = getState();
-    let current_selections = selections;
+    let current_selections = {...selections};
 
     if(current_selections[current_dataset_ref] === undefined) current_selections[current_dataset_ref] = [];
 
@@ -100,7 +100,7 @@ export const deleteColumnSelection = (current_dataset_ref) => (dispatch, getStat
 
     const { functions: {selections} }  = getState();
 
-    let current_selections = selections;
+    let current_selections = {...selections};
 
     delete current_selections[current_dataset_ref];
 
