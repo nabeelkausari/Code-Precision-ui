@@ -28,14 +28,12 @@ class CaseSolve extends Component {
         }
     }
 
-    renderCaseView = () => {
+    renderCaseView = () =>{
         switch (this.props.match.params.view) {
-            case 'dataset':
-                return <Dataset/>;
-            case 'process':
-                return <Process/>;
-            default:
-                return <Dashboard/>
+            case 'dataset': return <Dataset/>;
+            case 'console': return <Console/>;
+            case 'process': return <Process/>;
+            default: return  <Dashboard />
 
         }
     };
@@ -47,38 +45,26 @@ class CaseSolve extends Component {
         }
     };
 
-    renderConsole = () => {
-        let route = this.props.match.params.view;
-        if (route === 'console') {
-            return <Console/>
-        }
-    };
-
     render() {
-        const {is_primary_flyout_open, is_secondary_flyout_open, hidePrimaryFlyout, hideSecondaryFlyout, show_notes_flyout, notes_info} = this.props
+        const {is_primary_flyout_open, is_secondary_flyout_open, hidePrimaryFlyout, hideSecondaryFlyout, show_notes_flyout, notes_info} = this.props;
+        const is_console = this.props.match.params.view === 'console';
         return (
             <div>
-                {this.props.match.params.view !== 'console'
-                    ? <div style={{display: "flex"}}>
+                <div style={{display: "flex"}}>
                         <div style={{flex: "1", position: 'relative'}}>
                             <SubHeader/>
-                            <ToolBar/>
+                            {!is_console && <ToolBar/>}
                             {this.renderCaseView()}
                             {(is_primary_flyout_open || is_secondary_flyout_open) &&
-                            <div className="flyoutContainer">
-                                {is_primary_flyout_open && <ResultsFlyout hideFlyout={hidePrimaryFlyout}/>}
-                                {is_secondary_flyout_open &&
-                                <ResultsFlyout secondary hideFlyout={hideSecondaryFlyout}/>}
-                            </div>
+                                <div className="flyoutContainer">
+                                    {is_primary_flyout_open && <ResultsFlyout hideFlyout={hidePrimaryFlyout}/>}
+                                    {is_secondary_flyout_open &&
+                                    <ResultsFlyout secondary hideFlyout={hideSecondaryFlyout}/>}
+                                </div>
                             }
                             {!!show_notes_flyout && <Notes notes={notes_info}/>}
                         </div>
                         {this.renderSteps()}
-                        }
-                    </div>
-                    : <div style={{flex: "1", position: 'relative'}}>
-                        <SubHeader/>
-                        {this.renderConsole()}
                     </div>
                 }
             </div>)
