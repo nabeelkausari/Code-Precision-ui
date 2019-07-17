@@ -39,9 +39,13 @@ class StepList extends Component {
                             steps.slice(1).map((step, index) => (
                                 (index !== (steps.length -1))?
 
-                                    <li className="steps__item" key={index}> <Step step={step} onShowResultClick = {onShowResultClick} /> </li>
+                                    <li className="steps__item" key={index}>
+                                        <Step step={step} onShowResultClick = {onShowResultClick}/>
+                                    </li>
                                 :
-                                    <li className="steps__item" key={index}> <Step step={step} onShowResultClick = {onShowResultClick} lastChild/> </li>
+                                    <li className="steps__item" key={index}>
+                                        <Step step={step} onShowResultClick = {onShowResultClick} lastChild/>
+                                    </li>
                             ))
                         }
                         {redo_requested && <li>LOADING</li>}

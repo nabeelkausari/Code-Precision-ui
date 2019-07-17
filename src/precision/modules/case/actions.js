@@ -2,9 +2,6 @@ import {fetchLink, fetchLinkAs} from "../../api/helpers";
 import * as types from './types'
 import {getDatasets} from "../datasets/actions";
 
-
-export const addDataSets = (payload) => ({ type: types.ADD_DATASETS, payload });
-
 export const getCase = () => (dispatch, getState) => {
     dispatch({ type: types.FETCH_CASE_REQUESTED });
 
@@ -75,7 +72,7 @@ export const showPrimaryFlyout = () => (dispatch, getState) => {
     else{
         dispatch({type : types.OPEN_FLYOUT_PRIMARY})
     }
-}
+};
 
 export const hideFlyout = (close_secondary) => (dispatch, getState) => {
     const {cases : {results : { is_secondary_flyout_open, results2 }} } = getState();
@@ -90,12 +87,12 @@ export const hideFlyout = (close_secondary) => (dispatch, getState) => {
     else{
         dispatch({type : types.CLOSE_FLYOUT_PRIMARY})
     }
-}
+};
 
 export const resetResultsFlyouts = () => (dispatch, getState) => {
     dispatch({type : types.CLOSE_FLYOUT_PRIMARY})
     dispatch({type : types.CLOSE_FLYOUT_SECONDARY})
-}
+};
 
 export const undo = (link) => (dispatch, getState) => {
     dispatch({type : types.UNDO_REQUESTED})
@@ -105,7 +102,7 @@ export const undo = (link) => (dispatch, getState) => {
           dispatch({type : types.UNDO_SUCCEEDED})
       })
       .catch((payload) => dispatch({type : types.UNDO_FAILED, payload}))
-}
+};
 
 export const redo = (link) => (dispatch, getState) =>
 {
@@ -119,6 +116,16 @@ export const redo = (link) => (dispatch, getState) =>
     }).catch((payload)=>{
     dispatch({type : types.REDO_FAILED, payload})
 })
+};
+
+export const rollback = (link) => (dispatch) => {
+    dispatch({type : types.ROLLBACK_REQUESTED});
+    fetchLink(link)
+        .then(() => {
+            dispatch(getSteps());
+            dispatch({ type: types.ROLLBACK_SUCCEEDED });
+        })
+        .catch((payload)=> {dispatch({ type: types.ROLLBACK_FAILED, payload })})
 };
 
 

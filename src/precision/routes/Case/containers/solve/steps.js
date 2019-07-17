@@ -8,8 +8,8 @@ function mapStateToProps(state, ownProps) {
     if (!steps) return{};
 
     const last_step = steps[steps.length - 1];
-    const undo_available = !!last_step && !!last_step._links.undo
-    const redo_available = !!last_step && !!last_step._links.redo
+    const undo_available = !!last_step && !!last_step._links.undo;
+    const redo_available = !!last_step && !!last_step._links.redo;
     const redo_requested = state.cases.redo_requested;
     return {
         steps,
