@@ -10,16 +10,13 @@ export const fetchConsole = () => (dispatch, getState) => {
         method: info._links.console.method,
         type: info._links.console.type
     })
-        .then((res) => {
-            res.json()
-                .then(data => {
-                    if (!!data.path && !!data.path) {
-                        dispatch({ type: types.FETCH_CONSOLE_SUCCEEDED, payload: data.path})
-                    }
-                    else {
-                        console.log("Error")
-                    }
-                });
+        .then((res) => res.json())
+        .then(data => {
+            if (!!data.path && !!data.path) {
+                dispatch({ type: types.FETCH_CONSOLE_SUCCEEDED, payload: data.path})
+            } else {
+                console.log("Error")
+            }
         })
         .catch(payload => dispatch({ type: types.FETCH_CONSOLE_SUCCEEDED, payload }));
 };
