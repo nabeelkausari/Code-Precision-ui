@@ -2,6 +2,9 @@ import {fetchLink, fetchLinkAs} from "../../api/helpers";
 import * as types from './types'
 import {getDatasets} from "../datasets/actions";
 
+
+export const addDataSets = (payload) => ({ type: types.ADD_DATASETS, payload });
+
 export const getCase = () => (dispatch, getState) => {
     dispatch({ type: types.FETCH_CASE_REQUESTED });
 
