@@ -124,6 +124,18 @@ export default (state = initialState, { type, payload }) => {
       return{...state, redo_requested : false, redo_error : true, error_message : payload }
     }
 
+    case types.RESET_REQUESTED : {
+      return{...state, reset_requested : true, reset_error : false, reset_succeeded: null }
+    }
+
+    case types.RESET_SUCCEEDED: {
+      return{...state, reset_requested : false, reset_error : false, reset_succeeded: true }
+    }
+
+    case types.RESET_FAILED : {
+      return{...state, reset_requested : false, reset_error : true,reset_succeeded: false, error_message : payload }
+    }
+
     case types.ROLLBACK_REQUESTED : {
       return{...state, rollback_requested : true, rollback_error : false, rollback_succeeded: null }
     }

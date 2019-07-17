@@ -39,9 +39,7 @@ export const getResultsError = (payload) => (dispatch, getState) => {
         .then(response => {
             console.log("RESPONSE",response)
         })
-}
-
-
+};
 
 export const setCurrentStep = (payload) => (dispatch, getState) => {
     const {cases : {results : { is_primary_step_set, is_primary_flyout_open, results1 }} } = getState();
@@ -116,6 +114,19 @@ export const redo = (link) => (dispatch, getState) =>
     }).catch((payload)=>{
     dispatch({type : types.REDO_FAILED, payload})
 })
+};
+
+export const reset = () => (dispatch, getState) => {
+    dispatch({type : types.RESET_REQUESTED});
+    const { cases : {info: {_links: { reset }}}} = getState();
+    fetchLink(reset)
+        .then(() => {dispatch(getCase())})
+        .then(() =>{
+        dispatch(getSteps());
+        dispatch({type: types.RESET_SUCCEEDED});
+    })
+        .catch((payload)=>{dispatch({type : types.REDO_FAILED, payload})
+ })
 };
 
 export const rollback = (link) => (dispatch) => {
