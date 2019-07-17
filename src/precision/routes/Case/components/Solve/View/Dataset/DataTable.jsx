@@ -1,11 +1,10 @@
 import React , { Component } from 'react';
 import Papa from 'papaparse';
 import ReactTable from 'react-table';
-import 'react-table/react-table.css'
+import 'react-table/react-table.css';
 import './Table.scss';
 import {DataTableContainer} from "../../../../containers/solve/view/dataset/dataTable";
 import * as Loader from 'react-loader';
-
 
 export class DataTable extends Component {
 
@@ -51,7 +50,7 @@ export class DataTable extends Component {
                 headerRow.unshift(" ");
                 this.setState({
                     csvData: csv_rows.splice(0,csv_rows.length -1),
-                    headerRow: headerRow.map((item, i) => ({ Header: item, accessor: item, index:i, width: item === " " ? '50' : '150' }))
+                    headerRow: headerRow.map((item, i) => ({ Header: item, accessor: item, index:i }))
             })
         }});
     };
@@ -98,6 +97,7 @@ export class DataTable extends Component {
                     getTheadThProps={this.getTheadThProps}
                     showPagination= {false}
                     defaultPageSize = {200}
+                    resizable={false}
                 />
             </div>
             </Loader>
