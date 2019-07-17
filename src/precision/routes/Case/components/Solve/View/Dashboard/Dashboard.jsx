@@ -3,7 +3,6 @@ import {DashboardContainer} from "../../../../containers/solve/view/dashboard/da
 import './dashboard.scss';
 import Editor from "../../../../../../components/Editor";
 
-
 class Dashboard extends Component {
     render() {
         return (
