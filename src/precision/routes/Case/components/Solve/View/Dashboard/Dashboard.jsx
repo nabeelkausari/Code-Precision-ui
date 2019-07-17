@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {DashboardContainer} from "../../../../containers/solve/view/dashboard/dashboard";
 import './dashboard.scss';
+import Editor from "../../../../../../components/Editor";
 
 
 class Dashboard extends Component {
@@ -14,6 +15,7 @@ class Dashboard extends Component {
                     </div>
                 </div>
                 )}
+
             </div>
         );
     };
