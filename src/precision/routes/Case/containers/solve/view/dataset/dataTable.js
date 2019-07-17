@@ -10,7 +10,8 @@ const mapStateToProps = (state, props) => {
     return {
         csv,
         fetch_steps_succeeded: state.cases.fetch_steps_succeeded,
-        column_selections: state.functions.selections
+        column_selections: state.functions.selections,
+        dataset_loading: state.datasets.dataset_loading
     };
 };
 
