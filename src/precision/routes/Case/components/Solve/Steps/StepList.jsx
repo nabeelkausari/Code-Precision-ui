@@ -3,6 +3,8 @@ import Step from './Step'
 
 import StepsContainer from '../../../containers/solve/steps'
 import './StepList.scss'
+import {undo_icon, redo_icon} from '../../../../../images/index'
+
 
 class StepList extends Component {
 
@@ -21,16 +23,29 @@ class StepList extends Component {
     }
 
     render() {
-        const {steps, onShowResultClick, undo_available, redo_available, last_step, onUndoClick, onRedoClick, redo_requested } = this.props
+        const {steps, onShowResultClick, undo_available, redo_available, last_step, onUndoClick, onRedoClick, redo_requested, undo_requested } = this.props
         const {is_steps_open} = this.state
         return (
             <div className={is_steps_open ? 'steps' : 'steps steps--closed'}>
 
                 <div className="steps__header">
                     <h3 className="steps__title">STEPS</h3>
-                    <span className="steps__number-of-selected">0 selected</span>
-                    {undo_available && <button onClick={() => onUndoClick(last_step._links.undo)}>undo</button>}
-                    {redo_available && <button onClick={() => onRedoClick(last_step._links.redo)}>redo</button>}
+                    <div className="steps__sub-container">
+                        <span className="steps__number-of-selected">0 selected</span>
+                        <div className="steps__action-wrapper u-margin-right-small">
+                            {undo_available &&
+                            <img src={undo_icon} alt="undo icon" className={undo_requested? "steps__action-icon steps__action-icon--active u-disable" : "steps__action-icon"}
+                                 onClick={() => onUndoClick(last_step._links.undo)}/>
+                            }
+                        </div>
+
+                        <div className="steps__action-wrapper">
+                            {redo_available &&
+                            <img src={redo_icon} alt="undo icon" className={redo_requested? "steps__action-icon steps__action-icon--active  u-disable" : "steps__action-icon"}
+                                 onClick={() => onRedoClick(last_step._links.redo)}/>
+                            }
+                        </div>
+                    </div>
                 </div>
                 <hr/>
                 <div className="steps__list-container">
