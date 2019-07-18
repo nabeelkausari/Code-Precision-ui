@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {sortedUniq} from "lodash-es";
 import {CreatePloadDataset} from "../../../../../containers/solve/view/dataset/createDataset/createPreloadDatasetModal";
+import {Button} from "../../../../../../../components/Buttons/Button";
 
 const SELECT_CATEGORY = 'Select Category';
 const SELECT_SUBCATEGORY = 'Select Sub-Category';
@@ -110,25 +111,25 @@ class CreatePreloadDatasetModal extends Component{
         const {categories, datasets, sub_categories, titles} = this.state;
         return(
             <div className="upload-container">
-                <div style={{marginBottom: '20px'}}>
+                <div style={{marginBottom: '20px', display: 'flex', flexFlow: 'column'}}>
                 <label>Category </label>
-                <select ref={ref => (this.categoryInputSelect = ref)} onChange={ev => this.handleCategoryChange(ev.target.value)}>
+                <select ref={ref => (this.categoryInputSelect = ref)} onChange={ev => this.handleCategoryChange(ev.target.value)} style={{width: '300px'}}>
                     {categories && categories.map((category, i) => <option key={i}>{category}</option>)}
                 </select>
                 </div>
-                <div style={{marginBottom: '20px'}}>
+                <div style={{marginBottom: '20px', display: 'flex', flexFlow: 'column'}}>
                     <label>Sub-category </label>
-                    <select ref={ref => (this.subcategoryInputSelect = ref)} onChange={ev => this.handleSubCategoryChange(ev.target.value)}>
+                    <select ref={ref => (this.subcategoryInputSelect = ref)} onChange={ev => this.handleSubCategoryChange(ev.target.value)} style={{width: '300px'}}>
                         {sub_categories && sub_categories.map((subcategory, i) => <option key={i}>{subcategory}</option>)}
                     </select>
                 </div>
-                <div style={{marginBottom: '20px'}}>
+                <div style={{marginBottom: '20px', display: 'flex', flexFlow: 'column'}}>
                     <label>Dataset </label>
-                    <select style={{marginRight: '25px'}} ref={ref => (this.datasetInputSelect = ref)} onChange={ev => this.handleTitleChange(ev.target.value)}>
+                    <select style={{marginRight: '25px'}} ref={ref => (this.datasetInputSelect = ref)} onChange={ev => this.handleTitleChange(ev.target.value)} style={{width: '300px'}}>
                         {titles && titles.map((title, i) => <option key={i}>{title}</option>)}
                     </select>
                 </div>
-                <button onClick={this.handleSubmit}>Create</button>
+                <Button buttonType="primary" onClick={this.handleSubmit}>Create</Button>
             </div>
         )
     }
