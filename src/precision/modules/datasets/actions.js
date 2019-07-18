@@ -80,7 +80,7 @@ export const createDatasetModal = (formData) =>(dispatch, getState) => {
         .then(data => dispatch(handleSubmitModal(data)))
 };
 
-const handleSubmitModal = (data) => (dispatch, getState) => {
+export const handleSubmitModal = (data) => (dispatch, getState) => {
     const {cases : {info: {_links}}} = getState();
         const payload = {
             path: JSON.stringify([data.filename]),
@@ -116,7 +116,7 @@ export const connectToExternalDatabase = (payload) => (dispatch, getState) => {
 };
 
 export const fetchPreloadDatasets = () => (dispatch, getState) => {
-    debugger
+    dispatch({ type: types.FETCH_PRELOAD_DATASET_REQUESTED });
     const link = {
         href: "/projects/datasets/preloaded",
         method:"GET",
@@ -124,6 +124,18 @@ export const fetchPreloadDatasets = () => (dispatch, getState) => {
     };
 
     fetchLink(link)
-        .then(payload => console.log(payload))
-        .catch(payload => console.log(payload))
+        .then(res => res.json())
+        .then(payload => dispatch({ type: types.FETCH_PRELOAD_DATASET_SUCCEEDED, payload}))
+        .catch(payload => dispatch({ type: types.FETCH_PRELOAD_DATASET_FAILED, payload}))
+};
+
+
+export const handleSubmitPreloadModal = (data) => (dispatch, getState) => {
+    const {cases : {info: {_links}}} = getState();
+    const payload = {
+        path: JSON.stringify([data]),
+    };
+    fetchLink(_links.add_data_sets, payload)
+        .then(() => dispatch({ type: types.DATASET_CREATED_SUCCEEDED }))
+        .catch(payload => dispatch({ type: types.DATASET_CREATED_FAILED, payload }));
 };

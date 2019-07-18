@@ -15,8 +15,8 @@ const initialState = {
         sql_parameters_loading: null,
         sql_parameters_succeeded: null,
         sql_parameters_error: null,
-    }
-
+    },
+    preload_datasets: []
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -150,6 +150,30 @@ export default (state = initialState, { type, payload }) => {
                     sql_parameters_loading: false,
                     sql_parameters_error: payload
                 }
+            };
+
+
+        case types.FETCH_PRELOAD_DATASET_REQUESTED:
+            return {
+                ...state,
+                preload_datasets_loading: true,
+                preload_dataset_succeeded: null,
+                preload_dataset_error: null
+            };
+
+        case types.FETCH_PRELOAD_DATASET_SUCCEEDED:
+            return {
+                ...state,
+                preload_datasets_loading: false,
+                preload_dataset_succeeded: true,
+                preload_datasets: payload
+            };
+
+        case types.FETCH_PRELOAD_DATASET_FAILED:
+            return {
+                ...state,
+                preload_dataset_succeeded: false,
+                preload_dataset_error: true
             };
 
         default:
