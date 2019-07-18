@@ -50,7 +50,7 @@ class CaseSolve extends Component {
         const is_console = this.props.match.params.view === 'console';
         return (
             <div>
-                <div style={{display: "flex"}}>
+                <div style={{display: "flex", overflow : "hidden"}}>
                         <div style={{flex: "1", position: 'relative'}}>
                             <SubHeader/>
                             {!is_console && <ToolBar/>}
@@ -66,7 +66,6 @@ class CaseSolve extends Component {
                         </div>
                         {this.renderSteps()}
                     </div>
-                }
             </div>)
     }
 }

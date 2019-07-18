@@ -30,9 +30,11 @@
 }
 
 .data-table {
-  width: calc(100vw - 34rem);
-  margin: 0 2rem;
+  width: calc(100vw - 32rem);
+  height: calc(100vh - 20.3rem);
+  margin: 0 0 0 2rem;
   font-size: 12px;
+  overflow-y: hidden;
 }
 
 .ReactTable {

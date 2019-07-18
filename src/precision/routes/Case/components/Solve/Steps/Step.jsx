@@ -30,10 +30,11 @@ class Step extends Component {
             let selected_column_string = [];
 
             for (let key in selections) {
-                selected_column_string.push(selections[key].map(column => column.key));
+                selected_column_string.push(selections[key].map(column => (" " + column.key)));
             }
-
-            return selected_column_string.join(', ');
+            // debugger
+            console.log("SELCTED COLUMNS : ", selected_column_string.join(","))
+            return selected_column_string.join(",");
         } else {
             return ""
         }
@@ -83,14 +84,15 @@ class Step extends Component {
                                 </div>
                             </ReactTruncate>
                         </div>
+
                         {is_column_truncated?
                             <Tooltip placement={"bottom"} text={this.getSelectedColumns(step.selections)}>
                                 <div className="step__columns-wrapper">
                                     <div className="step__icon-wrapper">
                                         <img src={column_icon} alt="" className="step__icon step__icon--column"/>
                                     </div>
-                                    <ReactTruncate lines={1} onTruncate={(default_value) => this.didTruncate(default_value, "is_column_truncated")}>
-                                        <div className="step__function-name">{this.getSelectedColumns(step.selections)}</div>
+                                    <ReactTruncate lines={1} onTruncate={(default_value) => this.didTruncate(default_value, "is_column_truncated")} width={185}>
+                                        <div className="step__columns-name">{this.getSelectedColumns(step.selections)}</div>
                                     </ReactTruncate>
                                 </div>
                             </Tooltip>
@@ -100,11 +102,12 @@ class Step extends Component {
                                 <div className="step__icon-wrapper step__icon--column">
                                     <img src={column_icon} alt="" className="step__icon step__icon--column"/>
                                 </div>
-                                <ReactTruncate lines={1} onTruncate={(default_value) => this.didTruncate(default_value, "is_column_truncated")}>
-                                    <div className="step__function-name">{this.getSelectedColumns(step.selections)}</div>
+                                <ReactTruncate lines={1} onTruncate={(default_value) => this.didTruncate(default_value, "is_column_truncated")} width={185}>
+                                    <span className="step__columns-name">{this.getSelectedColumns(step.selections)}</span>
                                 </ReactTruncate>
                             </div>
                         }
+
                     </div>
                     <div className="step__actions-container">
                         <button className="step__action btn-link" onClick={() => {resetNotesFlyout(); onShowResultClick(this.props.step)}}>Result</button>
