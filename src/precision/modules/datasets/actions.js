@@ -80,7 +80,8 @@ export const createDatasetModal = (formData) =>(dispatch, getState) => {
         .then(data => dispatch(handleSubmitModal(data)))
 };
 
-export const handleSubmitModal = (data) => (dispatch, getState) => {
+const handleSubmitModal = (data) => (dispatch, getState) => {
+    dispatch({ type: types.DATASET_CREATED_REQUESTED });
     const {cases : {info: {_links}}} = getState();
         const payload = {
             path: JSON.stringify([data.filename]),
@@ -131,6 +132,7 @@ export const fetchPreloadDatasets = () => (dispatch, getState) => {
 
 
 export const handleSubmitPreloadModal = (data) => (dispatch, getState) => {
+    dispatch({ type: types.DATASET_CREATED_REQUESTED });
     const {cases : {info: {_links}}} = getState();
     const payload = {
         path: JSON.stringify([data]),

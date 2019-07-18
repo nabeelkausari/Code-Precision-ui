@@ -4,6 +4,8 @@
   &__container {
     display: flex;
     margin: 2rem 0 0 2rem;
+    width: calc(100vw - 35rem);
+    overflow: auto;
   }
 
 

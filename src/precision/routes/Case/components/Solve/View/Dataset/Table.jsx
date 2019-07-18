@@ -12,6 +12,7 @@ class Table extends Component {
 
     handleSelectTable = (href) => {
         this.props.selectTable(href);
+        this.closeCreateDataset()
     };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -41,9 +42,7 @@ class Table extends Component {
         const {handleCreateDataset} = this.state;
         return (
             <div>
-                {handleCreateDataset
-                    ? <CreateDataset closeCreateDataset={this.closeCreateDataset}/>
-                    : <div>
+                 <div>
                         <div className="table-tabs__container">
                             {fetch_steps_succeeded && data_sets.map((ds, i) => (
                                 <div key={i}
@@ -54,9 +53,12 @@ class Table extends Component {
                             ))}
                             <button onClick={this.handleCreateDataset}>Add Dataset</button>
                         </div>
-                        {selected_table_reference !== "" &&
-                        <DataTable dataset_reference={selected_table_reference} selections={this.props.selections}/>}
-                    </div>}
+                     {handleCreateDataset
+                         ? <CreateDataset closeCreateDataset={this.closeCreateDataset}/>
+                         : selected_table_reference !== "" &&
+                        <DataTable dataset_reference={selected_table_reference} selections={this.props.selections}/>
+                     }
+                    </div>
             </div>)
     }
 }
