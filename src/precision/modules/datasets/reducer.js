@@ -9,7 +9,13 @@ const initialState = {
         by_uri:{}
     },
     selected_table_reference:"",
-    selections:{}
+    selections:{},
+    sql_parameters:{
+        list:[],
+        sql_parameters_loading: null,
+        sql_parameters_succeeded: null,
+        sql_parameters_error: null,
+    }
 
 };
 
@@ -98,6 +104,37 @@ export default (state = initialState, { type, payload }) => {
                 create_dataset_modal_loading: false,
                 create_dataset_modal_succeeded: true,
                 upload_dataset: payload,
+            };
+
+
+        case types.FETCH_SQL_FORM_REQUESTED:
+            return {
+                ...state,
+                sql_parameters: {
+                    ...state.sql_parameters,
+                    sql_parameters_loading: true
+                }
+            };
+
+        case types.FETCH_SQL_FORM_SUCCEEDED:
+            return {
+                ...state,
+                    sql_parameters: {
+                    ...state.sql_parameters,
+                    sql_parameters_loading: false,
+                    sql_parameters_succeeded: true,
+                    list: payload
+                }
+            };
+
+        case types.FETCH_SQL_FORM_FAILED:
+            return {
+                ...state,
+                sql_parameters: {
+                    ...state.sql_parameters,
+                    sql_parameters_loading: false,
+                    sql_parameters_error: payload
+                }
             };
 
         default:

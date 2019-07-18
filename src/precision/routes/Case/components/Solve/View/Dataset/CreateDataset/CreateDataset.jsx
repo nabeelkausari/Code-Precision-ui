@@ -3,8 +3,13 @@ import {CreateDatasetContainer} from "../../../../../containers/solve/view/datas
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import CreateDataSetModal from "./CreateDataSetModal";
+import ConnectToExternalDatabase from "./ConnectToExternalDatatbase";
 
 class CreateDataset extends Component{
+    componentDidMount() {
+        this.props.fetchSqlForm()
+    }
+
     render() {
         return(
             <Tabs defaultActiveKey="upload-dataset" id="uncontrolled-tab-example">
@@ -12,7 +17,7 @@ class CreateDataset extends Component{
                     <CreateDataSetModal />
                 </Tab>
                 <Tab eventKey="connect-to-database" title="Connect To Database">
-
+                    <ConnectToExternalDatabase />
                 </Tab>
                 <Tab eventKey="upload-preload-dataset" title="Upload Preload Dataset">
 

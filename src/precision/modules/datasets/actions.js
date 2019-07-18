@@ -1,6 +1,7 @@
 import * as types from './types'
 import {fetchLink, fetchLinkAs} from "../../api/helpers";
 import Papa from "papaparse";
+import {cleanHeaders} from "../case/toolbar/actions";
 
 
 export const selectTable = (payload) => ({ type: types.SELECT_TABLE, payload });
@@ -75,4 +76,29 @@ export const createDatasetModal = (formData) =>(dispatch, getState) => {
         body: formData,
     })
         .then(data => console.log(data))
+};
+
+
+export const fetchSqlForm = () => (dispatch, getState) => {
+    dispatch({ type: types.FETCH_SQL_FORM_REQUESTED });
+    const {functions : { list: { by_uri }}} = getState();
+    const sql_form = by_uri['/functions/FUNC0473'];
+    const payload = {};
+    fetchLinkAs(sql_form._links.parameters , payload)
+        .then(payload => dispatch({ type: types.FETCH_SQL_FORM_SUCCEEDED, payload }))
+        .catch(payload => dispatch({ type: types.FETCH_SQL_FORM_FAILED, payload}))
+};
+
+
+export const connectToExternalDatabase = (payload) => (dispatch, getState) => {
+    const {cases} = getState();
+    const param = {
+        selections: {},
+        all_headers: {},
+        parameters: payload,
+        function_id: "FUNC0473"
+    };
+    return fetchLinkAs(cases.info._links.create_user_step, param)
+        .then(payload => console.log(payload))
+        .catch(payload => console.log(payload))
 };

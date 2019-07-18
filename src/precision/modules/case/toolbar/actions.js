@@ -76,7 +76,7 @@ export const getFunctionParameters = (fx) => (dispatch, getState) => {
         .getParameters(fx, fx_selections_copy, datasets.selections, solve )
         .then(payload => dispatch({type:types.FETCH_FUNCTION_PARAMETERS_SUCCEEDED,payload}))
         .catch(payload =>  dispatch({type:types.FETCH_FUNCTION_PARAMETERS_FAILED, payload}))
-}
+};
 
 export const setColumnSelections = (current_dataset_ref, column) => (dispatch, getState) => {
     const { functions: {selections} }  = getState();
@@ -193,7 +193,7 @@ export const setSelectedFunctionParameters = (name, value) => (dispatch, getStat
     return dispatch(formValueChanged(name, new_values));
 };
 
-const cleanHeaders = (selectedDatasets, all_headers) => fromPairs(toPairs(all_headers).filter(([key, value]) => selectedDatasets.indexOf(key) >= 0));
+export const cleanHeaders = (selectedDatasets, all_headers) => fromPairs(toPairs(all_headers).filter(([key, value]) => selectedDatasets.indexOf(key) >= 0));
 
 
 export const executeFunction = () => (dispatch, getState) => {
