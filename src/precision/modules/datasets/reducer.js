@@ -106,6 +106,21 @@ export default (state = initialState, { type, payload }) => {
                 upload_dataset: payload,
             };
 
+            case types.DATASET_CREATED_REQUESTED:
+            return {
+                ...state,
+                dataset_created_loading: true,
+                dataset_created_error: null,
+                dataset_created_succeeded: null
+            };
+
+        case types.DATASET_CREATED_SUCCEEDED:
+            return {
+                ...state,
+                dataset_created_loading: false,
+                dataset_created_succeeded: true,
+            };
+
 
         case types.FETCH_SQL_FORM_REQUESTED:
             return {

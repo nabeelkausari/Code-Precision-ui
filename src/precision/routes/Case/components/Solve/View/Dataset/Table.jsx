@@ -18,12 +18,21 @@ class Table extends Component {
         if (this.props.fetch_dataset_succeeded && this.props.fetch_dataset_succeeded !== prevProps.fetch_dataset_succeeded) {
             this.props.selectTable(this.props.data_sets[0].ref)
         }
+        if(this.props.dataset_created_succeeded && this.props.dataset_created_succeeded !== prevProps.dataset_created_succeeded){
+            this.props.getCase();
+            this.closeCreateDataset()
+        }
     }
-
 
     handleCreateDataset = () => {
         this.setState({
             handleCreateDataset: true
+        })
+    };
+
+    closeCreateDataset = () => {
+        this.setState({
+            handleCreateDataset: false
         })
     };
 
@@ -33,7 +42,7 @@ class Table extends Component {
         return (
             <div>
                 {handleCreateDataset
-                    ? <CreateDataset />
+                    ? <CreateDataset closeCreateDataset={this.closeCreateDataset}/>
                     : <div>
                         <div className="table-tabs__container">
                             {fetch_steps_succeeded && data_sets.map((ds, i) => (

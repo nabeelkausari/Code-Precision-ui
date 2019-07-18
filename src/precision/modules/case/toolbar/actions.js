@@ -67,7 +67,7 @@ export const getFunctionParameters = (fx) => (dispatch, getState) => {
 
     const solve = {
         "method": "GET",
-        "href": "/users/3820/marketplace-courses/1362/solves/1701",
+        "href": "/users/3820/marketplace-courses/1180/solves/1701",
         "accept": "application/vnd.Analyttica.TreasureHunt.UserSolve+json"
     };
 

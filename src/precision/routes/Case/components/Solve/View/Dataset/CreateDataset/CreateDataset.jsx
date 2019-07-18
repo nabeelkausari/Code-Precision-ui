@@ -4,23 +4,26 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import CreateDataSetModal from "./CreateDataSetModal";
 import ConnectToExternalDatabase from "./ConnectToExternalDatatbase";
+import CreatePreloadDatasetModal from "./CreatePreloadDatasetModal";
 
 class CreateDataset extends Component{
+
     componentDidMount() {
-        this.props.fetchSqlForm()
+        this.props.fetchSqlForm();
+        this.props.fetchPreloadDatasets()
     }
 
     render() {
         return(
             <Tabs defaultActiveKey="upload-dataset" id="uncontrolled-tab-example">
-                <Tab eventKey="upload-dataset" title="Upload Dataset">
-                    <CreateDataSetModal />
+                <Tab eventKey="upload-dataset" title="Upload Dataset" >
+                     <CreateDataSetModal />
                 </Tab>
-                <Tab eventKey="connect-to-database" title="Connect To Database">
+                <Tab eventKey="connect-to-database" title="Connect To Database" >
                     <ConnectToExternalDatabase />
                 </Tab>
-                <Tab eventKey="upload-preload-dataset" title="Upload Preload Dataset">
-
+                <Tab eventKey="upload-preload-dataset" title="Upload Preload Dataset" >
+                    <CreatePreloadDatasetModal />
                 </Tab>
             </Tabs>
         )

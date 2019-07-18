@@ -70,19 +70,31 @@ export const getUploadLink = () => (dispatch)  => {
 
 
 export const createDatasetModal = (formData) =>(dispatch, getState) => {
+    dispatch({ type: types.DATASET_CREATED_REQUESTED});
     const { datasets: { upload_dataset }} = getState();
     fetch(`${upload_dataset.uploadLink.href}`, {
         method: 'POST',
         body: formData,
     })
-        .then(data => console.log(data))
+        .then(res => res.json())
+        .then(data => dispatch(handleSubmitModal(data)))
 };
 
+const handleSubmitModal = (data) => (dispatch, getState) => {
+    const {cases : {info: {_links}}} = getState();
+        const payload = {
+            path: JSON.stringify([data.filename]),
+        };
+        fetchLink(_links.add_data_sets, payload)
+            .then(() => dispatch({ type: types.DATASET_CREATED_SUCCEEDED }))
+            .catch(payload => dispatch({ type: types.DATASET_CREATED_FAILED, payload }));
+};
 
 export const fetchSqlForm = () => (dispatch, getState) => {
     dispatch({ type: types.FETCH_SQL_FORM_REQUESTED });
     const {functions : { list: { by_uri }}} = getState();
     const sql_form = by_uri['/functions/FUNC0473'];
+    if(sql_form === undefined) return;
     const payload = {};
     fetchLinkAs(sql_form._links.parameters , payload)
         .then(payload => dispatch({ type: types.FETCH_SQL_FORM_SUCCEEDED, payload }))
@@ -99,6 +111,19 @@ export const connectToExternalDatabase = (payload) => (dispatch, getState) => {
         function_id: "FUNC0473"
     };
     return fetchLinkAs(cases.info._links.create_user_step, param)
+        .then(payload => console.log(payload))
+        .catch(payload => console.log(payload))
+};
+
+export const fetchPreloadDatasets = () => (dispatch, getState) => {
+    debugger
+    const link = {
+        href: "/projects/datasets/preloaded",
+        method:"GET",
+        type: "application/json"
+    };
+
+    fetchLink(link)
         .then(payload => console.log(payload))
         .catch(payload => console.log(payload))
 };

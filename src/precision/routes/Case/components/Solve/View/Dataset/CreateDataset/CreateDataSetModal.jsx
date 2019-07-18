@@ -13,7 +13,8 @@ class CreateDataSetModal extends Component{
         files: {
             filename: []
         },
-        file: {}
+        file: {},
+        toggleCsv: true
     };
 
     componentDidMount() {
@@ -49,16 +50,26 @@ class CreateDataSetModal extends Component{
         this.props.createDatasetModal(formData)
     };
 
+    toggleCsv = () => this.setState({ toggleCsv: true });
+
+    onExcelSelect = () => {
+        this.setState({
+            separator: ' ',
+            toggleCsv: false
+        });
+    };
+
     render() {
         return(
             <div>
                 <form>
                     <div>
-                        <input type="radio" name="radioGroup"  inline />
+                        <input type="radio" name="radioGroup" checked={this.state.toggleCsv} onChange={this.toggleCsv} inline />
                         <span>CSV</span>
-                        <input type="radio" name="radioGroup"  value='\0'  inline />
+                        <input type="radio" name="radioGroup" checked={!this.state.toggleCsv} onChange={this.onExcelSelect} value='\0'  inline />
                         <span>Excel</span>
                     </div>
+                    {this.state.toggleCsv &&
                     <div>
                         <label>Column separator</label>
                         <select onChange={this.handleEventChange} name="separator">
@@ -66,7 +77,7 @@ class CreateDataSetModal extends Component{
                             <option value=','>Comma</option>
                             <option value={`\t`}>Tab</option>
                         </select>
-                    </div>
+                    </div>}
                     <input type="file" accept="text/csv" ref={ref => (this.fileInput = ref)} onChange={this.handleFileChange} />
                 </form>
                 <button onClick={this.handleSubmit}>Create</button>

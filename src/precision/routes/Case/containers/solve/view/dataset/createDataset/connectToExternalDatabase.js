@@ -6,6 +6,6 @@ const mapStateToProps = (state) => {
     return {
         sql_form: state.datasets.sql_parameters.list
     }
-}
+};
 
 export const ConnectToExternalDataBase = connect(mapStateToProps, { fetchSqlForm, connectToExternalDatabase });
