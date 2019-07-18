@@ -39,7 +39,8 @@ class FunctionsFlyout extends Component {
 
     render() {
         const {search_text} = this.state;
-        const {categories,suggestions,description, parameters, parameter_flyout_open, addFunction, execution} = this.props;
+        const {categories,suggestions,description,selections, parameters, parameter_flyout_open, addFunction, execution} = this.props;
+        const is_fx_add_disabled = Object.keys(selections).length === 0 || parameters.list.length === 0;
         return (
             <div className="fx">
               <div className="fx__left">
@@ -70,11 +71,11 @@ class FunctionsFlyout extends Component {
                  <div className="fx__right-details">
                      <div className="fx__header">
                         <h2 className="fx__header-title">{execution.current_function.name}</h2>
-                         <Button buttonType="primary" onClick={addFunction}>Add</Button>
+                         <Button buttonType="primary" disabled={is_fx_add_disabled} onClick={addFunction}>Add</Button>
                      </div>
                      <div className="">
-                        <div className="fx__parameters">
-                            { parameters.fetch_function_parameters_succeeded &&
+                       { Object.keys(selections).length > 0 && <div className="fx__parameters">
+                            {
                                 parameters.list.map(({ name, multi_table }) =>
                                 <FunctionParams
                                     key={name}
@@ -83,7 +84,7 @@ class FunctionsFlyout extends Component {
                                     multi_table={multi_table}/>
                                     )
                             }
-                        </div>
+                        </div>}
                          <div className="fx__description">
                              {description.info.text}
                          </div>

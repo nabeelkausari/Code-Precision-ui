@@ -5,6 +5,8 @@ import {getMaterialLink} from "../../../api/material";
 import {setDatasetSelection} from "../../datasets/actions";
 import {fromPairs, toPairs} from "ramda";
 
+import {notify} from '../../../utils/notification'
+
 export const getCategoryAndFunctions = () => (dispatch, getState) => {
     dispatch({ type: types.FETCH_FUNCTION_CATEGORIES_REQUESTED });
     functions.categories()
@@ -59,6 +61,8 @@ export const getFunctionDescription = (material) => (dispatch, getState) => {
 
 export const getFunctionParameters = (fx) => (dispatch, getState) => {
     const {functions:{selections}, datasets} = getState();
+
+    if(Object.keys(selections).length === 0) return ;
     let fx_selections_copy = {...selections};
 
     const solve = {
@@ -69,7 +73,7 @@ export const getFunctionParameters = (fx) => (dispatch, getState) => {
 
     dispatch({type:types.FETCH_FUNCTION_PARAMETERS_REQUESTED});
     return functions
-        .getParameters(fx, fx_selections_copy,datasets.selections, solve )
+        .getParameters(fx, fx_selections_copy, datasets.selections, solve )
         .then(payload => dispatch({type:types.FETCH_FUNCTION_PARAMETERS_SUCCEEDED,payload}))
         .catch(payload =>  dispatch({type:types.FETCH_FUNCTION_PARAMETERS_FAILED, payload}))
 }
@@ -203,7 +207,9 @@ export const executeFunction = () => (dispatch, getState) => {
     };
     return fetchLinkAs(cases.info._links.create_user_step, param)
         .then(payload => dispatch({ type: types.FUNCTION_EXECUTION_SUCCEEDED, payload }))
-        .catch(payload => dispatch({ type: types.FUNCTION_EXECUTION_FAILED , payload }))
+        .catch(payload => {
+            notify("error",payload.message)
+        })
 };
 
 

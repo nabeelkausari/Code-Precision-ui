@@ -12,6 +12,7 @@ import Process from "./View/Process/Process";
 import Dashboard from "./View/Dashboard/Dashboard";
 import ResultsFlyout from "./Result/ResultFlyout";
 import Notes from "./View/Notes/Notes";
+import Loader from "../../../../components/Loader";
 
 class CaseSolve extends Component {
 
@@ -46,10 +47,11 @@ class CaseSolve extends Component {
     };
 
     render() {
-        const {is_primary_flyout_open, is_secondary_flyout_open, hidePrimaryFlyout, hideSecondaryFlyout, show_notes_flyout, notes_info} = this.props;
+        const {is_primary_flyout_open, is_secondary_flyout_open, hidePrimaryFlyout, hideSecondaryFlyout, show_notes_flyout, notes_info, is_fetching} = this.props;
         const is_console = this.props.match.params.view === 'console';
         return (
             <div>
+                <Loader loading={is_fetching}/>
                 <div style={{display: "flex", overflow : "hidden"}}>
                         <div style={{flex: "1", position: 'relative'}}>
                             <SubHeader/>
