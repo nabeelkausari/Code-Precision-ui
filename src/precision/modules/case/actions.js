@@ -2,15 +2,12 @@ import {fetchLink, fetchLinkAs} from "../../api/helpers";
 import * as types from './types'
 import {getDatasets} from "../datasets/actions";
 
-
-export const addDataSets = (payload) => ({ type: types.ADD_DATASETS, payload });
-
 export const getCase = () => (dispatch, getState) => {
     dispatch({ type: types.FETCH_CASE_REQUESTED });
 
     const url = {
         "method": "GET",
-        "href": "/users/3820/marketplace-courses/1180/solves/1530",
+        "href": "/users/3820/marketplace-courses/1180/solves/1701",
         "accept": "application/vnd.Analyttica.TreasureHunt.UserSolve+json"
     };
     fetchLinkAs(url)
@@ -42,9 +39,7 @@ export const getResultsError = (payload) => (dispatch, getState) => {
         .then(response => {
             console.log("RESPONSE",response)
         })
-}
-
-
+};
 
 export const setCurrentStep = (payload) => (dispatch, getState) => {
     const {cases : {results : { is_primary_step_set, is_primary_flyout_open, results1 }} } = getState();
@@ -75,7 +70,7 @@ export const showPrimaryFlyout = () => (dispatch, getState) => {
     else{
         dispatch({type : types.OPEN_FLYOUT_PRIMARY})
     }
-}
+};
 
 export const hideFlyout = (close_secondary) => (dispatch, getState) => {
     const {cases : {results : { is_secondary_flyout_open, results2 }} } = getState();
@@ -90,12 +85,12 @@ export const hideFlyout = (close_secondary) => (dispatch, getState) => {
     else{
         dispatch({type : types.CLOSE_FLYOUT_PRIMARY})
     }
-}
+};
 
 export const resetResultsFlyouts = () => (dispatch, getState) => {
     dispatch({type : types.CLOSE_FLYOUT_PRIMARY})
     dispatch({type : types.CLOSE_FLYOUT_SECONDARY})
-}
+};
 
 export const undo = (link) => (dispatch, getState) => {
     dispatch({type : types.UNDO_REQUESTED})
@@ -105,7 +100,7 @@ export const undo = (link) => (dispatch, getState) => {
           dispatch({type : types.UNDO_SUCCEEDED})
       })
       .catch((payload) => dispatch({type : types.UNDO_FAILED, payload}))
-}
+};
 
 export const redo = (link) => (dispatch, getState) =>
 {
@@ -119,6 +114,29 @@ export const redo = (link) => (dispatch, getState) =>
     }).catch((payload)=>{
     dispatch({type : types.REDO_FAILED, payload})
 })
+};
+
+export const reset = () => (dispatch, getState) => {
+    dispatch({type : types.RESET_REQUESTED});
+    const { cases : {info: {_links: { reset }}}} = getState();
+    fetchLink(reset)
+        .then(() => {dispatch(getCase())})
+        .then(() =>{
+        dispatch(getSteps());
+        dispatch({type: types.RESET_SUCCEEDED});
+    })
+        .catch((payload)=>{dispatch({type : types.REDO_FAILED, payload})
+ })
+};
+
+export const rollback = (link) => (dispatch) => {
+    dispatch({type : types.ROLLBACK_REQUESTED});
+    fetchLink(link)
+        .then(() => {
+            dispatch(getSteps());
+            dispatch({ type: types.ROLLBACK_SUCCEEDED });
+        })
+        .catch((payload)=> {dispatch({ type: types.ROLLBACK_FAILED, payload })})
 };
 
 
