@@ -11,6 +11,7 @@ export const Button = (props) => {
         <BootstrapButton
             variant="light"
             className={cx(['cc-button',buttonType])}
+            disabled={disabled}
             {...rest}
         >
             {children}

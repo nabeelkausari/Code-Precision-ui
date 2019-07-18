@@ -1,0 +1,13 @@
+.ath-loading {
+  height: 100vh;
+  width: 100vw;
+  background: #ffffff;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__title {
+    text-align: center;
+  }
+}

@@ -3,7 +3,7 @@ import {  toast } from 'react-toastify';
 
 
 const Notification = (props) => {
-    const {title, message} = props
+    const {title, message} = props;
     return (
         <div>
             <h3>{title}</h3>
