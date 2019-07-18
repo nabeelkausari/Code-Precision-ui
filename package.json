@@ -37,7 +37,8 @@
   "scripts": {
     "start": "HTTPS=true REACT_APP_API_GATEWAY_URL=https://devapi.analyttica.com REACT_APP_APP_URL=http://localhost:3030 PORT=3030 react-scripts start",
     "build:dev": "REACT_APP_API_GATEWAY_URL=https://devapi.analyttica.com REACT_APP_APP_URL=https://devprecision.analyttica.com yarn run build",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": "react-app"
