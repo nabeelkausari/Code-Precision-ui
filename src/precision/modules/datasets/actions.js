@@ -1,5 +1,5 @@
 import * as types from './types'
-import {fetchLinkAs} from "../../api/helpers";
+import {fetchLink, fetchLinkAs} from "../../api/helpers";
 import Papa from "papaparse";
 
 
@@ -49,4 +49,30 @@ export const fetchStepDetailsCsv = (csv) => (dispatch) => {
             dispatch({type: types.FETCH_DATASET_CSV_SUCCEEDED, payload})
         }
     });
+};
+
+
+export const getUploadLink = () => (dispatch)  => {
+    dispatch({ type: types.FETCH_UPLOAD_LINK_REQUESTED });
+    fetchLink({href: '/course/upload', type: "application/json", accept: 'application/json'})
+        .then((res) => res.json())
+        .then((result) => {
+            const payload = {
+                uploadLink: result.file_upload_url,
+                sampleCSVLink: result.sample_data_url,
+                deleteLink: result.delete_dataset_file
+            };
+            dispatch({ type: types.FETCH_UPLOAD_LINK_SUCCEEDED, payload})
+        })
+        .catch(payload => dispatch({ type: types.FETCH_UPLOAD_LINK_FAILED, payload }))
+};
+
+
+export const createDatasetModal = (formData) =>(dispatch, getState) => {
+    const { datasets: { upload_dataset }} = getState();
+    fetch(`${upload_dataset.uploadLink.href}`, {
+        method: 'POST',
+        body: formData,
+    })
+        .then(data => console.log(data))
 };

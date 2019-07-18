@@ -68,6 +68,38 @@ export default (state = initialState, { type, payload }) => {
                 },
             };
 
+        case types.FETCH_UPLOAD_LINK_REQUESTED:
+            return {
+                ...state,
+                upload_link_loading: true,
+                fetch_upload_link_error: null,
+                fetch_upload_link_succeeded: null
+            };
+
+        case types.FETCH_UPLOAD_LINK_SUCCEEDED:
+            return {
+                ...state,
+                upload_link_loading: false,
+                fetch_upload_link_succeeded: true,
+                upload_dataset: payload,
+            };
+
+            case types.CREATE_DTATASET_MODAL_REQUESTED:
+            return {
+                ...state,
+                create_dataset_modal_loading: true,
+                create_dataset_modal_error: null,
+                create_dataset_modal_succeeded: null
+            };
+
+        case types.CREATE_DTATASET_MODAL_SUCCEEDED:
+            return {
+                ...state,
+                create_dataset_modal_loading: false,
+                create_dataset_modal_succeeded: true,
+                upload_dataset: payload,
+            };
+
         default:
             return state;
     }
