@@ -1,7 +1,6 @@
 import * as types from './types'
 import {fetchLink, fetchLinkAs} from "../../api/helpers";
 import Papa from "papaparse";
-import {cleanHeaders} from "../case/toolbar/actions";
 
 
 export const selectTable = (payload) => ({ type: types.SELECT_TABLE, payload });

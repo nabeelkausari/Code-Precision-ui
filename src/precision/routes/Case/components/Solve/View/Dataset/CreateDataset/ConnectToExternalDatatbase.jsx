@@ -15,10 +15,10 @@ class ConnectToExternalDatabase extends Component {
 
     render(){
         return(
-            <div>
+            <div className="upload-container">
                 {
                     this.props.sql_form.length > 0 && this.props.sql_form.map(sql =>
-                    <div>
+                    <div style={{marginBottom: '20px'}}>
                         <label>{sql.label}</label>
                         <input type={sql.type} onChange={this.onChange} name={sql.name}/>
                     </div>

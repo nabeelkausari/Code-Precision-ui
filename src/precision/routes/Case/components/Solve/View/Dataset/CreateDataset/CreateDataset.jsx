@@ -5,7 +5,7 @@ import Tab from "react-bootstrap/Tab";
 import CreateDataSetModal from "./CreateDataSetModal";
 import ConnectToExternalDatabase from "./ConnectToExternalDatatbase";
 import CreatePreloadDatasetModal from "./CreatePreloadDatasetModal";
-
+import './CreateDataset.scss'
 class CreateDataset extends Component{
 
     componentDidMount() {

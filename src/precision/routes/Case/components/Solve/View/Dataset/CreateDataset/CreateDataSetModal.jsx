@@ -1,5 +1,6 @@
 import React , { Component } from 'react';
 import {CreateDatasetModalContainer} from "../../../../../containers/solve/view/dataset/createDataset/createDatatSetModal";
+import './CreateDataset.scss'
 
 class CreateDataSetModal extends Component{
     fileInput = "";
@@ -61,16 +62,16 @@ class CreateDataSetModal extends Component{
 
     render() {
         return(
-            <div>
+            <div className="upload-container">
                 <form>
-                    <div>
-                        <input type="radio" name="radioGroup" checked={this.state.toggleCsv} onChange={this.toggleCsv} inline />
+                    <div style={{marginBottom:"20px"}}>
+                        <input type="radio" name="radioGroup" checked={this.state.toggleCsv} onChange={this.toggleCsv} inline style={{marginRight:"5px"}}/>
                         <span>CSV</span>
-                        <input type="radio" name="radioGroup" checked={!this.state.toggleCsv} onChange={this.onExcelSelect} value='\0'  inline />
+                        <input type="radio" name="radioGroup" checked={!this.state.toggleCsv} onChange={this.onExcelSelect} value='\0'  inline style={{marginLeft:"15px", marginRight: '5px'}}/>
                         <span>Excel</span>
                     </div>
                     {this.state.toggleCsv &&
-                    <div>
+                    <div style={{marginBottom:"20px"}}>
                         <label>Column separator</label>
                         <select onChange={this.handleEventChange} name="separator">
                             <option value=';'>Semicolon</option>
@@ -78,7 +79,7 @@ class CreateDataSetModal extends Component{
                             <option value={`\t`}>Tab</option>
                         </select>
                     </div>}
-                    <input type="file" accept="text/csv" ref={ref => (this.fileInput = ref)} onChange={this.handleFileChange} />
+                    <input type="file" accept="text/csv" ref={ref => (this.fileInput = ref)} onChange={this.handleFileChange} style={{marginBottom:"20px"}}/>
                 </form>
                 <button onClick={this.handleSubmit}>Create</button>
             </div>
