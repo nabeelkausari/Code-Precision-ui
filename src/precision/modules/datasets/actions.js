@@ -86,7 +86,10 @@ const handleSubmitModal = (data) => (dispatch, getState) => {
             path: JSON.stringify([data.filename]),
         };
         fetchLink(_links.add_data_sets, payload)
-            .then(() => dispatch({ type: types.DATASET_CREATED_SUCCEEDED }))
+            .then(() => {
+                dispatch({ type: types.DATASET_CREATED_SUCCEEDED });
+                dispatch(selectTable(data.filename))
+            })
             .catch(payload => dispatch({ type: types.DATASET_CREATED_FAILED, payload }));
 };
 
