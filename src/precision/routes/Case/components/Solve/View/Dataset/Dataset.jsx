@@ -9,10 +9,7 @@ class Dataset extends Component {
         return (
             <div>
                 {
-                    fetch_dataset_succeeded && !dataset_loading?
-                        <Table />
-                        :
-                        <TableSkeleton/>
+                    <Table />
                 }
             </div>
         );

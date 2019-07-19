@@ -1,5 +1,5 @@
 $base-color: #f2f2f2;
-$shine-color: #e8e8e8;
+$shine-color: rgba(255,255,255,0.6);
 
 @mixin background-gradient-step{
   background-image: linear-gradient(90deg, $base-color 0px, $shine-color 40px, $base-color 80px);
@@ -66,15 +66,14 @@ $shine-color: #e8e8e8;
 
   height: calc(100vh - 20.3rem);
   width: calc(100vw - 32rem);
-  margin-left: 2rem;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
 
   &__header{
     display: flex;
     height: 3.5rem;
     margin-bottom: .8rem;
     @include background-gradient-table;
-    animation: animate-table-lines 1.6s infinite linear;
+    animation: animate-table-lines 1s infinite linear;
   }
 
   &__row-container{
@@ -108,7 +107,7 @@ $shine-color: #e8e8e8;
     justify-content: space-around;
     height: 2.5rem;
     @include background-gradient-table;
-    animation: animate-table-lines 1.6s infinite linear;
+    animation: animate-table-lines 1s infinite linear;
 
     &:not(:last-child){
       border-right: .1rem solid #d9d9d9;
@@ -155,7 +154,7 @@ $shine-color: #e8e8e8;
 @keyframes animate-table-lines {
 
   0% {
-    background-position: -10rem;
+    background-position: 0rem;
   }
 
   70%, 100%{

@@ -4,14 +4,15 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import './Table.scss';
 import {DataTableContainer} from "../../../../containers/solve/view/dataset/dataTable";
-import * as Loader from 'react-loader';
+import TableSkeleton from "../../../../../../components/Skeletons/TableSkeleton";
 
 export class DataTable extends Component {
 
     state = {
         csvData: [],
         headerRow: [],
-        selectedHeaders: []
+        selectedHeaders: [],
+        table_loading:false
     };
 
 
@@ -31,6 +32,7 @@ export class DataTable extends Component {
     }
 
     fetchCsv = () => {
+        this.setState({table_loading:true});
         let csvData = [];
         let headerRow = [];
         Papa.parse(this.props.csv || "", {
@@ -50,9 +52,12 @@ export class DataTable extends Component {
                 headerRow.unshift(" ");
                 this.setState({
                     csvData: csv_rows.splice(0,csv_rows.length -1),
-                    headerRow: headerRow.map((item, i) => ({ Header: item, accessor: item, index:i }))
-            })
-        }});
+                    headerRow: headerRow.map((item, i) => ({ Header: item, accessor: item, index:i })),
+            });
+
+                setTimeout(() => this.setState({ table_loading: false}),1000)
+            }
+        });
     };
 
     getTheadThProps = (state, rowInfo, column, instance) => {
@@ -89,18 +94,19 @@ export class DataTable extends Component {
             }
         });
         return(
-            <Loader loaded={!this.props.dataset_loading}>
             <div className="data-table">
-                <ReactTable
+               {!this.state.table_loading ?
+                   <ReactTable
                     data={rows}
                     columns={headerRow}
                     getTheadThProps={this.getTheadThProps}
                     showPagination= {false}
                     defaultPageSize = {200}
                     resizable={false}
-                />
+                /> :
+                   <TableSkeleton/>
+               }
             </div>
-            </Loader>
         )
     }
 }
