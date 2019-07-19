@@ -53,7 +53,11 @@ class TablesFlyout extends Component {
                     )}
                 </div>
                 <div className="columns-box">
-                    <h6 className="columns-box__selected-text">{selected.length}Selected</h6>
+                    {(selected.length !== 0)?
+                        <h6 className="columns-box__selected-text">{selected.length}&nbsp;Selected</h6>
+                        :
+                        <h6 className="columns-box__selected-text">&nbsp;</h6>
+                    }
                     {columns.length > 0 && columns.map((column,i) =>
 
                         <Checkbox checked={selected.indexOf(column) >= 0}  onChange={() => this.handleAvailableColumnSelect(column)} label={column.key}/>

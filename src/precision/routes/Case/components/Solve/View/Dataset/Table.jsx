@@ -3,6 +3,8 @@ import {TableContainer} from "../../../../containers/solve/view/dataset/table";
 import './Table.scss';
 import DataTable from "./DataTable";
 import CreateDataset from './CreateDataset/CreateDataset';
+import {add_button_icon} from "../../../../../../images/index"
+import Tooltip from "../../../../../../components/Tooltip/Tooltip"
 
 class Table extends Component {
 
@@ -51,7 +53,14 @@ class Table extends Component {
                                     {ds.name}
                                 </div>
                             ))}
-                            <button onClick={this.handleCreateDataset}>Add Dataset</button>
+                            <Tooltip placement="right" text="Add Dataset">
+                                <div className="table-tabs__btn-container" onClick={this.handleCreateDataset}>
+
+                                        <img src={add_button_icon} alt="add button" className="table-tabs__add-btn"/>
+
+                                </div>
+                            </Tooltip>
+
                         </div>
                      {handleCreateDataset
                          ? <CreateDataset closeCreateDataset={this.closeCreateDataset}/>
