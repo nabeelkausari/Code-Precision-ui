@@ -15,6 +15,9 @@ class StepList extends Component {
         open_user_steps: false,
     };
 
+    toggleSteps = () => {
+        this.setState((state) => ({is_steps_open: !state.is_steps_open}))
+    };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(this.props.function_execution_succeeded && this.props.function_execution_succeeded !== prevProps.function_execution_succeeded){
@@ -53,7 +56,7 @@ class StepList extends Component {
                         {
                         <Tooltip placement={"bottom"} text={"Show User Steps"}>
                             <div className="steps__action-wrapper">
-                                <div onClick={this.handleUserStepDetails}>User Steps</div>
+                                <div onClick={this.handleUserStepDetails}>Show Steps</div>
                             </div>
                         </Tooltip>
                         }
@@ -88,6 +91,7 @@ class StepList extends Component {
                         }
                     </div>
                 </div>
+                <hr/>
                 <div className="steps__list-container">
                     <ul className="steps__list">
                         { steps &&
