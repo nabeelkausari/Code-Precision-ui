@@ -8,6 +8,7 @@ import full_screen_icon from './icons/icon-full-screen.svg'
 import print_icon from './icons/icon-print.svg'
 import pin_icon from './icons/icon-pin.svg'
 import pin_active_icon from './icons/icon-pin-active.svg'
+import add_button_icon from './icons/icon-add-button.svg'
 
 
 
@@ -24,5 +25,6 @@ export {
     full_screen_icon,
     print_icon,
     pin_icon,
-    pin_active_icon
+    pin_active_icon,
+    add_button_icon
 }

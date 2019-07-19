@@ -21,9 +21,9 @@ class ScenarioHeader extends Component {
                             <NavLink to="/cases/3/5/" className='scenarios' activeClassName="active">Scenario 1</NavLink>
                         </Nav.Item>
                     </Nav>
-                    <div>
-                        <img src="" alt="Add Scenario"/>
-                    </div>
+                    {/*<div>*/}
+                        {/*<img src="" alt="Add Scenario"/>*/}
+                    {/*</div>*/}
                 </Navbar>
                 {this.props.children}
             </Fragment>

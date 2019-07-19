@@ -29,21 +29,32 @@
     height: 3rem;
     width: 15rem;
     border: 1px solid #EEEEEE;
-    border-radius: 2px;
-    padding: 0.2rem;
-    font-size: 1.2rem;
+    padding: 1rem;
+    font-size: 1rem;
     cursor: pointer;
     background-color: #F8F8F8;
     color: #9B9B9B;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0 .1rem;
 
     &:hover, &-active {
       background-color: $color-white;
       border: 1px solid #D4E5F9;
       color: $color-primary;
     }
+  }
+
+  &__btn-container{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 1rem;
+  }
+
+  &__add-btn{
+    height: 2rem;
   }
 }
 
