@@ -48,3 +48,16 @@
     border: 1px solid $pill-border-color;
   }
 }
+
+.skeleton-index-no {
+
+
+  &__wrapper{
+    position: absolute;
+    top: -.3rem;
+    left: -.7rem;
+    border-radius: 50%;
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+}

@@ -41,6 +41,14 @@
     right: 50%;
   }
 
+  &__action-icon{
+    height: 2rem;
+  }
+
+  &__action-wrapper{
+      margin-right: 2rem;
+  }
+
 
   //Flyout Header
   &__header{
@@ -63,7 +71,8 @@
   }
 
   &__options{
-
+    display: flex;
+    align-items: center;
   }
 
   &__download-option{
