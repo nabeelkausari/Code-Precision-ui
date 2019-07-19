@@ -59,7 +59,7 @@ class Step extends Component {
         const has_rollback_link = pathOr(undefined, ['_links', 'rollback'], step) !== undefined;
         return (
             <div>
-            {is_step_active &&
+            {is_step_active ?
             <div className = {lastChild? undo_requested? "step step--undo":"step":"step"} >
 
                 {!is_rollback_step &&
@@ -67,13 +67,10 @@ class Step extends Component {
                         <span className="index-no__text">{this.getPrefix(step.sequence_number)}</span>
                     </div>
                 }
-
                 {is_rollback_step?
-
                     <div>{step.description}</div>
                     :
                     <div className="step__main-container">
-
                         <div className="step__info-container">
                             <div className="step__functions-wrapper">
                             <div className="step__icon-wrapper">
@@ -85,9 +82,8 @@ class Step extends Component {
                                 </div>
                             </ReactTruncate>
                         </div>
-
-                        {is_column_truncated?
-                            <Tooltip placement={"bottom"} text={this.getSelectedColumns(step.selections)}>
+                            {is_column_truncated
+                            ? <Tooltip placement={"bottom"} text={this.getSelectedColumns(step.selections)}>
                                 <div className="step__columns-wrapper">
                                     <div className="step__icon-wrapper">
                                         <img src={column_icon} alt="" className="step__icon step__icon--column"/>
@@ -97,9 +93,7 @@ class Step extends Component {
                                     </ReactTruncate>
                                 </div>
                             </Tooltip>
-
-                            :
-                            <div className="step__columns-wrapper">
+                            : <div className="step__columns-wrapper">
                                 <div className="step__icon-wrapper step__icon--column">
                                     <img src={column_icon} alt="" className="step__icon step__icon--column"/>
                                 </div>
@@ -116,7 +110,52 @@ class Step extends Component {
                         {has_rollback_link && <button className="step__action btn-link" onClick={() => this.props.rollback(step._links.rollback)}>Rollback</button>}
                     </div>
                 </div>}
-            </div>}
+            </div>
+                :<div className = {lastChild? undo_requested? "step step--undo":"step":"step"} style={{color: '#ccc'}}>
+                    <div className="index-no__wrapper">
+                        <span className="index-no__text">{this.getPrefix(step.sequence_number)}</span>
+                    </div>
+                    <div className="step__main-container">
+                        <div className="step__info-container">
+                            <div className="step__functions-wrapper">
+                            <div className="step__icon-wrapper">
+                                <img src={function_icon} alt="" className="step__icon step__icon--function"/>
+                            </div>
+                            <ReactTruncate lines={1} onTruncate={(default_value) => this.didTruncate(default_value, "is_function_truncated")}>
+                                <div className="step__function-name">
+                                   {step.operation_name}
+                                </div>
+                            </ReactTruncate>
+                        </div>
+                            {is_column_truncated
+                                ? <Tooltip placement={"bottom"} text={this.getSelectedColumns(step.selections)}>
+                                    <div className="step__columns-wrapper">
+                                        <div className="step__icon-wrapper">
+                                            <img src={column_icon} alt="" className="step__icon step__icon--column"/>
+                                        </div>
+                                        <ReactTruncate lines={1}
+                                                       onTruncate={(default_value) => this.didTruncate(default_value, "is_column_truncated")}
+                                                       width={185}>
+                                            <div
+                                                className="step__columns-name">{this.getSelectedColumns(step.selections)}</div>
+                                        </ReactTruncate>
+                                    </div>
+                                </Tooltip>
+                                : <div className="step__columns-wrapper">
+                                    <div className="step__icon-wrapper step__icon--column">
+                                        <img src={column_icon} alt="" className="step__icon step__icon--column"/>
+                                    </div>
+                                    <ReactTruncate lines={1}
+                                                   onTruncate={(default_value) => this.didTruncate(default_value, "is_column_truncated")}
+                                                   width={185}>
+                                        <span
+                                            className="step__columns-name">{this.getSelectedColumns(step.selections)}</span>
+                                    </ReactTruncate>
+                                </div>
+                        }
+                        </div>
+                    </div>
+                </div>}
             </div>
         );
     }
