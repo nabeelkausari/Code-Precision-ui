@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import Step from './Step'
 
+import Tooltip from '../../../../../components/Tooltip/Tooltip'
 import StepsContainer from '../../../containers/solve/steps'
 import './StepList.scss'
-import {undo_icon, redo_icon} from '../../../../../images/index'
+import {undo_icon, redo_icon, reset_icon} from '../../../../../images/index'
+import StepSkeleton from '../../../../../components/Skeletons/StepSkeleton'
 
 
 class StepList extends Component {
@@ -23,8 +25,12 @@ class StepList extends Component {
     }
 
     render() {
-        const {steps, onShowResultClick, undo_available, redo_available, last_step, onUndoClick, onRedoClick, redo_requested , undo_requested, can_reset, onResetClick} = this.props;
-        const {is_steps_open} = this.state;
+        const {
+            steps, onShowResultClick, undo_available, redo_available, last_step, onUndoClick,
+            onRedoClick, redo_requested, undo_requested, can_reset, onResetClick, reset_requested
+        } = this.props
+
+        const {is_steps_open} = this.state
         return (
             <div className={is_steps_open ? 'steps' : 'steps steps--closed'}>
 
@@ -32,21 +38,37 @@ class StepList extends Component {
                     <h3 className="steps__title">STEPS</h3>
                     <div className="steps__sub-container">
                         <span className="steps__number-of-selected">0 selected</span>
-                        <div className="steps__action-wrapper u-margin-right-small">
-                            {undo_available &&
-                            <img src={undo_icon} alt="undo icon" className={undo_requested? "steps__action-icon steps__action-icon--active u-disable" : "steps__action-icon"}
-                                 onClick={() => onUndoClick(last_step._links.undo)}/>
-                            }
-                        </div>
 
-                        <div className="steps__action-wrapper">
-                            {redo_available &&
-                            <img src={redo_icon} alt="undo icon" className={redo_requested? "steps__action-icon steps__action-icon--active  u-disable" : "steps__action-icon"}
-                                 onClick={() => onRedoClick(last_step._links.redo)}/>
-                            }
-                        </div>
+
+                        {undo_available &&
+                        <Tooltip placement={"bottom"} text={"Undo"}>
+                            <div className="steps__action-wrapper">
+
+                                <img src={undo_icon} alt="undo icon"
+                                     className={undo_requested ? "steps__action-icon steps__action-icon--active u-disable" : "steps__action-icon"}
+                                     onClick={() => onUndoClick(last_step._links.undo)}/>
+                            </div>
+                        </Tooltip>
+                        }
+
+                        {redo_available &&
+                        <Tooltip placement={"bottom"} text={"Redo"}>
+                            <div className="steps__action-wrapper">
+                                <img src={redo_icon} alt="redo icon" className={redo_requested? "steps__action-icon steps__action-icon--active  u-disable" : "steps__action-icon"}
+                                     onClick={() => onRedoClick(last_step._links.redo)}/>
+                            </div>
+                        </Tooltip>
+                        }
+
+                        {can_reset &&
+                        <Tooltip placement={"bottom"} text={"Reset"}>
+                            <div className="steps__action-wrapper">
+                                <img src={reset_icon} alt="reset icon" className={reset_requested? "steps__action-icon steps__action-icon--active  u-disable" : "steps__action-icon"}
+                                     onClick={() => onResetClick()}/>
+                            </div>
+                        </Tooltip>
+                        }
                     </div>
-                    {can_reset && <button onClick={() => onResetClick()}>reset</button>}
                 </div>
                 <hr/>
                 <div className="steps__list-container">
@@ -55,12 +77,16 @@ class StepList extends Component {
                             steps.slice(1).map((step, index) => (
                                 (index !== (steps.length -1))?
 
-                                    <li className="steps__item" key={index}> <Step step={step} onShowResultClick = {onShowResultClick} /> </li>
+                                    <li className="steps__item" key={index}>
+                                        <Step step={step} onShowResultClick = {onShowResultClick}/>
+                                    </li>
                                 :
-                                    <li className="steps__item" key={index}> <Step step={step} onShowResultClick = {onShowResultClick} lastChild/> </li>
+                                    <li className="steps__item" key={index}>
+                                        <Step step={step} onShowResultClick = {onShowResultClick} lastChild/>
+                                    </li>
                             ))
                         }
-                        {redo_requested && <li>LOADING</li>}
+                        {redo_requested && <li className="steps__item"><StepSkeleton/></li>}
                     </ul>
                 </div>
 
@@ -71,8 +97,6 @@ class StepList extends Component {
                 <div className={is_steps_open? "steps__toggle-btn--2 steps__toggle-btn--2-hide" : "steps__toggle-btn--2"} onClick={this.toggleSteps}>
                     <span className="steps__toggle-icon">&larr;</span>
                 </div>
-
-
             </div>
         );
     }

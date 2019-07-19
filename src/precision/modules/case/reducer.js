@@ -102,7 +102,14 @@ export default (state = initialState, { type, payload }) => {
     }
 
     case types.UNDO_SUCCEEDED: {
-      return{...state, undo_requested : false, undo_error : false, steps : payload}
+
+      return{
+        ...state, undo_requested : false, undo_error : false,
+        steps : [
+            ...state.steps.slice(0, state.steps.length - 2),
+            ...payload.slice(payload.length - 1)
+            ]
+        }
     }
 
     case types.UNDO_FAILED : {
@@ -117,12 +124,18 @@ export default (state = initialState, { type, payload }) => {
     }
 
     case types.REDO_SUCCEEDED: {
-      return{...state, redo_requested : false, redo_error : false }
+      return{...state, redo_requested : false, redo_error : false,
+      steps : [
+          ...state.steps,
+          ...payload.slice(payload.length - 1)
+      ]}
     }
 
     case types.REDO_FAILED : {
       return{...state, redo_requested : false, redo_error : true, error_message : payload }
     }
+
+
 
     case types.RESET_REQUESTED : {
       return{...state, reset_requested : true, reset_error : false, reset_succeeded: null }

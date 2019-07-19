@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+
+import Checkbox from '../../../../../components/Checkbox/Checkbox'
 import './TableFlyout.scss';
 
 class TablesFlyout extends Component {
@@ -51,12 +53,11 @@ class TablesFlyout extends Component {
                     )}
                 </div>
                 <div className="columns-box">
-                    <h6>{selected.length}Selected</h6>
+                    <h6 className="columns-box__selected-text">{selected.length}Selected</h6>
                     {columns.length > 0 && columns.map((column,i) =>
-                        <div className={this.state.selected ? "columns-box__title--selected": "columns-box__title"} key={i}>
-                            <input type="checkbox" checked={selected.indexOf(column) >= 0} onChange={() => this.handleAvailableColumnSelect(column)}/>
-                            {column.key}
-                        </div>
+
+                        <Checkbox checked={selected.indexOf(column) >= 0}  onChange={() => this.handleAvailableColumnSelect(column)} label={column.key}/>
+
                     )}
                 </div>
             </div>
@@ -65,3 +66,8 @@ class TablesFlyout extends Component {
 }
 
 export default TablesFlyout;
+
+{/*<div className={this.state.selected ? "columns-box__title--selected": "columns-box__title"} key={i}>*/}
+{/*<input className="u-margin-right-small" type="checkbox" checked={selected.indexOf(column) >= 0} onChange={() => this.handleAvailableColumnSelect(column)}/>*/}
+{/*{column.key}*/}
+{/*</div>*/}
