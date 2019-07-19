@@ -6,12 +6,14 @@ import StepsContainer from '../../../containers/solve/steps'
 import './StepList.scss'
 import {undo_icon, redo_icon, reset_icon} from '../../../../../images/index'
 import StepSkeleton from '../../../../../components/Skeletons/StepSkeleton'
+import UserStepDetails from "./StepDetails/UserStepDetails";
 
 
 class StepList extends Component {
 
     state = {
-        is_steps_open : true
+        is_steps_open : true,
+        open_user_steps: false,
     };
 
     toggleSteps = () => {
@@ -24,13 +26,24 @@ class StepList extends Component {
         }
     }
 
+    handleUserStepDetails = () => {
+        this.setState({
+            open_user_steps: true
+        })
+    };
+
+    closeUserStepDetails = () => {
+        this.setState({
+            open_user_steps: false
+        })
+    };
+
     render() {
         const {
             steps, onShowResultClick, undo_available, redo_available, last_step, onUndoClick,
             onRedoClick, redo_requested, undo_requested, can_reset, onResetClick, reset_requested
-        } = this.props
-
-        const {is_steps_open} = this.state
+        } = this.props;
+        const {is_steps_open} = this.state;
         return (
             <div className={is_steps_open ? 'steps' : 'steps steps--closed'}>
 
@@ -39,6 +52,14 @@ class StepList extends Component {
                     <div className="steps__sub-container">
                         <span className="steps__number-of-selected">0 selected</span>
 
+
+                        {
+                        <Tooltip placement={"bottom"} text={"Show User Steps"}>
+                            <div className="steps__action-wrapper">
+                                <div onClick={this.handleUserStepDetails}>Show Steps</div>
+                            </div>
+                        </Tooltip>
+                        }
 
                         {undo_available &&
                         <Tooltip placement={"bottom"} text={"Undo"}>
@@ -90,13 +111,14 @@ class StepList extends Component {
                     </ul>
                 </div>
 
-                {/*<div className={is_steps_open? "steps__toggle-btn--1" : "steps__toggle-btn--1-hide"} onClick={this.toggleSteps}>*/}
-                    {/*<span className="steps__toggle-icon">&rarr;</span>*/}
-                {/*</div>*/}
+                <div className={is_steps_open? "steps__toggle-btn--1" : "steps__toggle-btn--1-hide"} onClick={this.toggleSteps}>
+                    <span className="steps__toggle-icon">&rarr;</span>
+                </div>
 
-                {/*<div className={is_steps_open? "steps__toggle-btn--2 steps__toggle-btn--2-hide" : "steps__toggle-btn--2"} onClick={this.toggleSteps}>*/}
-                    {/*<span className="steps__toggle-icon">&larr;</span>*/}
-                {/*</div>*/}
+                <div className={is_steps_open? "steps__toggle-btn--2 steps__toggle-btn--2-hide" : "steps__toggle-btn--2"} onClick={this.toggleSteps}>
+                    <span className="steps__toggle-icon">&larr;</span>
+                </div>
+                {this.state.open_user_steps && <UserStepDetails show={this.state.open_user_steps} handleClose={this.closeUserStepDetails}/>}
             </div>
         );
     }
