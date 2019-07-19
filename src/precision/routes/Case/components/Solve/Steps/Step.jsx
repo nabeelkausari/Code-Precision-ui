@@ -62,16 +62,17 @@ class Step extends Component {
             {is_step_active &&
             <div className = {lastChild? undo_requested? "step step--undo":"step":"step"} >
 
-                {!is_rollback_step && <div className="index-no__wrapper">
-                    <span className="index-no__text">{this.getPrefix(step.sequence_number)}</span>
-                </div>
+                {!is_rollback_step &&
+                    <div className="index-no__wrapper">
+                        <span className="index-no__text">{this.getPrefix(step.sequence_number)}</span>
+                    </div>
                 }
 
-                {is_rollback_step
+                {is_rollback_step?
 
-                    ? <div>{step.description}</div>
-
-                    :<div className="step__main-container">
+                    <div>{step.description}</div>
+                    :
+                    <div className="step__main-container">
 
                         <div className="step__info-container">
                             <div className="step__functions-wrapper">

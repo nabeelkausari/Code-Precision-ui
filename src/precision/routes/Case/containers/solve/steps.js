@@ -6,13 +6,13 @@ function mapStateToProps(state, ownProps) {
     // if()
     const steps = state.cases.steps;
     if (!steps) return{};
-
     const last_step = steps[steps.length - 1];
     const undo_available = !!last_step && !!last_step._links.undo
     const undo_requested = state.cases.undo_requested;
     const redo_available = !!last_step && !!last_step._links.redo
     const redo_requested = state.cases.redo_requested;
     const can_reset = !!state.cases.info._links.reset || undefined;
+    const reset_requested = !!state.cases.reset_requested
     return {
         steps,
         last_step ,
@@ -21,7 +21,8 @@ function mapStateToProps(state, ownProps) {
         redo_available,
         redo_requested,
         function_execution_succeeded: state.functions.function_execution_succeeded,
-        can_reset
+        can_reset,
+        reset_requested
     }
 }
 

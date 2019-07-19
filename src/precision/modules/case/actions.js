@@ -2,6 +2,9 @@ import {fetchLink, fetchLinkAs} from "../../api/helpers";
 import * as types from './types'
 import {getDatasets} from "../datasets/actions";
 
+
+export const addDataSets = (payload) => ({ type: types.ADD_DATASETS, payload });
+
 export const getCase = () => (dispatch, getState) => {
     dispatch({ type: types.FETCH_CASE_REQUESTED });
 
@@ -93,24 +96,27 @@ export const resetResultsFlyouts = () => (dispatch, getState) => {
 };
 
 export const undo = (link) => (dispatch, getState) => {
-    dispatch({type : types.UNDO_REQUESTED})
+    const { cases: { info } } = getState();
+    dispatch({type : types.UNDO_REQUESTED});
+
     fetchLink(link)
-      .then(() => {
-          dispatch(getSteps())
-          dispatch({type : types.UNDO_SUCCEEDED})
-      })
-      .catch((payload) => dispatch({type : types.UNDO_FAILED, payload}))
+        .then(() => fetchLinkAs(info._links.user_steps))
+        .then(payload => {
+            payload.sort((a, b) => (a.sequence_number) - (b.sequence_number));
+            dispatch({type : types.UNDO_SUCCEEDED, payload})
+        })
+        .catch((payload) => dispatch({type : types.UNDO_FAILED, payload}))
 };
 
 export const redo = (link) => (dispatch, getState) =>
 {
+    const { cases: { info } } = getState();
     dispatch({type : types.REDO_REQUESTED})
     fetchLink(link)
-        .then(() => {
-            dispatch({type: types.REDO_SUCCEEDED})
-            dispatch(getCase())
-        }).then(() =>{
-        dispatch(getSteps())
+        .then(() => fetchLinkAs(info._links.user_steps))
+        .then(payload => {
+            payload.sort((a, b) => (a.sequence_number) - (b.sequence_number));
+            dispatch({type: types.REDO_SUCCEEDED, payload})
     }).catch((payload)=>{
     dispatch({type : types.REDO_FAILED, payload})
 })
