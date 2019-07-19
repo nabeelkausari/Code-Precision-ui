@@ -1,0 +1,26 @@
+.nav-tabs {
+    border-bottom: 1px solid #dee2e6;
+    margin: 2rem;
+    font-size: 14px;
+    text-decoration: none;
+
+    .nav-link.active {
+        color: white;
+        background-color: #fff;
+        border-color: #002f6f #dee2e6 #fff;
+        background: #002f6f;
+    }
+
+    .nav-link {
+        border: 1px solid transparent;
+        border-top-left-radius: .25rem;
+        border-top-right-radius: .25rem;
+        color: #002d70;
+    }
+}
+
+
+.upload-container {
+      margin: 2rem;
+      font-size: 1.5rem;
+}
