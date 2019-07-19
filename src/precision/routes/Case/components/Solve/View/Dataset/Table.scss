@@ -113,3 +113,8 @@
   transform: translateY(50%)
 }
 
+.ReactTable .rt-thead .rt-th,
+.ReactTable .rt-thead .rt-td {
+  padding: 10px !important;
+}
+
