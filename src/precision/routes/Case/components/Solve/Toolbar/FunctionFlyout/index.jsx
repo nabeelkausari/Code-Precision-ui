@@ -40,7 +40,7 @@ class FunctionsFlyout extends Component {
     render() {
         const {search_text} = this.state;
         const {categories,suggestions,description,selections, parameters, parameter_flyout_open, addFunction, execution} = this.props;
-        const is_fx_add_disabled = Object.keys(selections).length === 0 || parameters.list.length === 0;
+        const is_fx_add_disabled = Object.keys(selections).length === 0 ;
         return (
             <div className="fx">
               <div className="fx__left">
