@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {ConsoleContainer} from "../../../../containers/solve/view/console/console";
+import './Console.scss'
 
 class Console extends Component {
 
@@ -15,7 +16,7 @@ class Console extends Component {
     render() {
         const {console_url} = this.props;
         return (
-            <div>
+            <div className="console-container">
                 <iframe src={console_url} id='myIFrame' style={{ width: '100%', height: '-webkit-fill-available' }}/>
             </div>
         );
