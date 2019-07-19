@@ -15,8 +15,11 @@ import requireUnAuth from '../hoc/require-un-auth';
 
 import Header from "./Case/components/Solve/ScenarioHeader/Header";
 import CaseList from "./Case/components/List";
+import AllCases from "./Case/components/List/AllCases";
 import CaseDetail from "./Case/components/Detail";
 import CaseSolve from "./Case/components/Solve";
+import CaseListHeader from "./Case/components/List/CaseListHeader";
+import CreateCase from "./Case/components/Create";
 
 toast.configure({autoClose:1000})
 
@@ -35,7 +38,12 @@ const ScenarioRoutes = () => (
 
 const CaseRoutes = () => (
     <Switch>
-        <Route exact path="/cases" component={CaseList}/>
+        <Route path="/cases">
+            <CaseListHeader>
+                <Route exact path="/cases" component={CaseList}/>
+                <Route exact path="/cases/all_cases" component={AllCases}/>
+            </CaseListHeader>
+        </Route>
         <Route exact path="/cases/:case_id" component={CaseDetail}/>
     </Switch>
 );
@@ -47,6 +55,7 @@ export default (props) => {
               <ToastContainer  transition={Slide}/>
             <Switch>
               <Route path="/cases/:case_id/:scenario_id" component={requireAuth(ScenarioRoutes)} />
+              {/*<Route  path="/cases/create" component={requireAuth(CreateCase)}/>*/}
               <Route path="/cases" component={requireAuth(CaseRoutes)} />
               <Route path="/auth/login" component={requireUnAuth(Login)} />
               <Redirect from="/" to="/cases" />

@@ -1,4 +1,4 @@
-import {fetchLink, fetchLinkAs} from "../../api/helpers";
+import {fetchLink, fetchLinkAs, fetchLinkDirectly, fetchLinkDirectlyAs} from "../../api/helpers";
 import * as types from './types'
 import {getDatasets} from "../datasets/actions";
 
@@ -139,6 +139,41 @@ export const rollback = (link) => (dispatch) => {
         .catch((payload)=> {dispatch({ type: types.ROLLBACK_FAILED, payload })})
 };
 
+export const getCases = () => (dispatch, getState) =>{
+    dispatch({type:types.FETCH_CASES_REQUESTED});
+    const end_point ={
+        href: '/user/1/case/all',
+        method: 'GET',
+        type: 'application/json'
+    };
+   return  fetchLinkAs(end_point)
+        .then(payload => dispatch({type:types.FETCH_CASES_SUCCEEDED, payload}))
+        .catch(error => dispatch({type:types.FETCH_CASES_FAILED, error}))
+};
+export const getAllCases = () => (dispatch, getState) =>{
+    const end_point ={
+        href: '/case/all',
+        method: 'GET',
+        type: 'application/json'
+    };
+    console.log("alll cse")
+    dispatch({type:types.FETCH_ALL_CASES_REQUESTED});
+    return fetchLinkAs(end_point)
+        .then(payload => dispatch({type:types.FETCH_ALL_CASES_SUCCEEDED, payload}))
+        .catch(error => dispatch({type:types.FETCH_ALL_CASES_FAILED, error}))
+};
+
+export const getCaseCategories = () => (dispatch, getState) =>{
+    const end_point ={
+        href: '/case/categories',
+        method: 'GET',
+        type: 'application/json'
+    };
+    dispatch({type:types.FETCH_CASE_CATEGORIES_REQUESTED});
+    return fetchLinkAs(end_point)
+        .then(payload => dispatch({type:types.FETCH_CASE_CATEGORIES_SUCCEEDED, payload}))
+        .catch(error => dispatch({type:types.FETCH_CASE_CATEGORIES_FAILED, error}))
+};
 
 
 

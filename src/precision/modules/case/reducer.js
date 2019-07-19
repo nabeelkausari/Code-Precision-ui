@@ -1,10 +1,32 @@
 import * as types from './types';
+import {byUri} from "../../utils/byUri";
 
 const initialState = {
   data_sets: [],
   results : {
     is_primary_flyout_open : false,
     is_secondary_flyout_open : false
+  },
+  list:{
+    items:[],
+    by_uri:{},
+    fetch_cases_requested: null,
+    fetch_cases_succeeded: null,
+    fetch_cases_error: null,
+  },
+  all_cases:{
+    items:[],
+    by_uri:{},
+    fetch_all_cases_requested: null,
+    fetch_all_cases_succeeded: null,
+    fetch_all_cases_error: null,
+  },
+  categories:{
+    list:[],
+    fetch_case_categories_requested: null,
+    fetch_case_categories_succeeded: null,
+    fetch_case_categories_error: null,
+
   }
 };
 
@@ -23,6 +45,65 @@ export default (state = initialState, { type, payload }) => {
 
     case types.FETCH_CASE_FAILED:
       return { ...state, case_loading: false, fetch_case_succeeded: false, fetch_case_error: payload };
+
+    case types.FETCH_CASES_REQUESTED:
+      return {
+        ...state,
+        list:{
+          ...state.list,
+          fetch_cases_requested: true
+        }
+      };
+    case types.FETCH_CASES_SUCCEEDED:
+      return {
+        ...state,
+        list: {
+          ...state.list,
+          items: payload,
+          // by_uri: byUri(payload),
+          fetch_cases_requested: false,
+          fetch_cases_succeeded: true
+        }
+    };
+
+    case types.FETCH_CASES_FAILED:
+      return {
+        ...state,
+        list:{
+          ...state.list,
+          fetch_cases_requested: false,
+          fetch_cases_error: payload
+        }
+      };
+    case types.FETCH_ALL_CASES_REQUESTED:
+      return {
+        ...state,
+        all_cases:{
+          ...state.all_cases,
+          fetch_all_cases_requested: true
+        }
+      };
+    case types.FETCH_ALL_CASES_SUCCEEDED:
+      return {
+        ...state,
+        all_cases: {
+          ...state.all_cases,
+          items: payload,
+          // by_uri: byUri(payload),
+          fetch_all_cases_requested: false,
+          fetch_all_cases_succeeded: true
+        }
+    };
+
+    case types.FETCH_ALL_CASES_FAILED:
+      return {
+        ...state,
+        all_cases:{
+          ...state.all_cases,
+          fetch_all_cases_requested: false,
+          fetch_all_cases_error: payload
+        }
+      };
 
     case types.FETCH_STEPS_REQUESTED:
       return { ...state, steps_loading: true, fetch_steps_error: null, fetch_steps_succeeded: null };
@@ -146,6 +227,39 @@ export default (state = initialState, { type, payload }) => {
 
     case types.ROLLBACK_FAILED : {
       return{...state, rollback_requested : false, rollback_error : true, rollback_succeeded: false, error_message : payload }
+    }
+
+    case types.FETCH_CASE_CATEGORIES_REQUESTED : {
+      return{
+        ...state,
+        categories: {
+          ...state.categories,
+          fetch_case_categories_requested: true
+        }
+      }
+    }
+
+    case types.FETCH_CASE_CATEGORIES_SUCCEEDED : {
+      return{
+        ...state,
+        categories: {
+          ...state.categories,
+          fetch_case_categories_requested: false,
+          fetch_case_categories_succeeded: true,
+          list:payload
+        }
+      }
+    }
+
+    case types.FETCH_CASE_CATEGORIES_FAILED : {
+      return{
+        ...state,
+        categories: {
+          ...state.categories,
+          fetch_case_categories_requested: false,
+          fetch_case_categories_error: payload
+        }
+      }
     }
 
     default:
