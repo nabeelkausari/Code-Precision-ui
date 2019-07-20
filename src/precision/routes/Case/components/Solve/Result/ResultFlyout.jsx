@@ -25,7 +25,7 @@ export const renderResult = ({ name, _links: { data, image, table, error, chart,
     if (error !== undefined) {
         return (<div key={error.href}>
             {name && <h6>{name}</h6>}
-            <Error error_text={error.href} download={true}/>
+            <div>Error - {error.text}</div>
         </div>);
     }
     if (pdf !== undefined) {
@@ -61,7 +61,7 @@ class ResultFlyout extends Component {
                            {
                                results2 && is_secondary_step_set?
                                    <Flyout require_pin = {true} require_download = {true} require_full_screen ={true} sequence_no = {results2.sequence_number} title={results2.operation_name} secondary = {secondary} hideFlyout = {hideFlyout}>
-                                       {is_secondary_step_set && results1.results[0]._links !== undefined && renderResult(results2.results[0])}
+                                       {is_secondary_step_set && results2.results[0]._links !== undefined && renderResult(results2.results[0])}
                                    </Flyout>
                                    :
                                    <Fragment></Fragment>
