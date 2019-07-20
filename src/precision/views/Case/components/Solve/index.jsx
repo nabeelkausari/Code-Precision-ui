@@ -16,6 +16,7 @@ import Dashboard from "./View/Dashboard/Dashboard";
 import ResultsFlyout from "./Result/ResultFlyout";
 import Notes from "./View/Notes/Notes";
 import Loader from "../../../../components/Loader";
+import OutputFlyout from "./Result/OutputFlyout";
 
 class CaseSolve extends Component {
 
@@ -80,9 +81,9 @@ class CaseSolve extends Component {
                             </div>
                             {(is_primary_flyout_open || is_secondary_flyout_open) &&
                                 <div className="flyoutContainer">
-                                    {is_primary_flyout_open && <ResultsFlyout hideFlyout={hidePrimaryFlyout}/>}
+                                    {is_primary_flyout_open && <OutputFlyout hideFlyout={hidePrimaryFlyout}/>}
                                     {is_secondary_flyout_open &&
-                                    <ResultsFlyout secondary hideFlyout={hideSecondaryFlyout}/>}
+                                    <OutputFlyout secondary hideFlyout={hideSecondaryFlyout}/>}
                                 </div>
                             }
                             {!!show_notes_flyout && <Notes notes={notes_info}/>}
