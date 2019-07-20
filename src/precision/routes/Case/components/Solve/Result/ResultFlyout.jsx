@@ -54,14 +54,14 @@ class ResultFlyout extends Component {
                    is_primary_step_set &&
                    (results1 && !secondary?
                        <Flyout require_pin = {true} require_download = {true} require_full_screen ={true} sequence_no = {results1.sequence_number} title={results1.operation_name} secondary = {secondary} hideFlyout = {hideFlyout}>
-                           {is_primary_step_set && renderResult(results1.results[0])}
+                           {is_primary_step_set && results1.results[0] !== undefined && renderResult(results1.results[0])}
                        </Flyout>
                        :
                        <Fragment>
                            {
                                results2 && is_secondary_step_set?
                                    <Flyout require_pin = {true} require_download = {true} require_full_screen ={true} sequence_no = {results2.sequence_number} title={results2.operation_name} secondary = {secondary} hideFlyout = {hideFlyout}>
-                                       {is_secondary_step_set && renderResult(results2.results[0])}
+                                       {is_secondary_step_set && results2.results[0] !== undefined  &&renderResult(results2.results[0])}
                                    </Flyout>
                                    :
                                    <Fragment></Fragment>
