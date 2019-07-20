@@ -1,0 +1,30 @@
+@import "../../../../../../styles/abstracts/variables";
+
+.flyout{
+  background-color: $color-primary-bg-2;
+  position: absolute;
+  top: 0;
+  left: 16rem;
+  height: 100%;
+  z-index: 45;
+  //height: 100%;
+  box-shadow: -.2rem 0 .5rem rgba($color-black, .2);
+  padding: 1rem;
+}
+
+.function-flyout{
+
+  display: flex;
+  color: $color-white;
+
+  &__left{
+    width: 60rem;
+  }
+
+  &__right{
+    width: 36rem;
+    height: calc(100vh - 10.9rem);
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+}

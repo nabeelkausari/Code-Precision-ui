@@ -3,15 +3,21 @@
 
 //STEPS COMPONENT
 .steps{
-  width: 30rem;
+  width: 25rem;
   height: calc(100vh - 5.5rem);
   z-index: 29;
-  background-color: $color-white;
-  box-shadow: -.3rem .6rem .5rem rgba($color-black, .2);
+  background-color: $color-primary-bg-3;
+  box-shadow: -.4rem 0 2rem rgba($color-black, .4);
   transition: transform .5s ease-out, width .6s .1s;
+  color: $color-grey-light-1;
 
   &__header{
-    padding: 1.5rem 2.5rem .3rem 2.5rem;
+    padding: 1.5rem 2.5rem 3rem 2.5rem;
+  }
+
+  &__list-container{
+    height: calc(100vh - 12.5rem);
+    overflow: scroll;
   }
 
   &__item{
@@ -20,13 +26,15 @@
 
   &__toggle-btn{
     &--1{
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 4rem;
       height: 4rem;
       position: absolute;
       right: 2rem;
       bottom: 2rem;
-      //clip-path: polygon(0 10% , 100% 0, 100% 100%, 0 90%);
-      background-color: rgba(#777, .3);
+      background-color: $color-grey-light-1;
       border-radius: 50%;
       transition: opacity .1s;
       &:hover{
@@ -40,14 +48,16 @@
     }
 
     &--2{
+      display: flex;
+      align-items: center;
       width: 3rem;
       height: 4rem;
       position: absolute;
-      left: -33rem;
+      left: -31rem;
       bottom: 5rem;
       border-top-left-radius: 5rem;
       border-bottom-left-radius: 5rem;
-      background-color: #28b485;
+      background-color: $color-primary;
       transition: all .2s .8s, left .2s, opacity .2s .8s, width .2s;
       opacity: 1;
 
@@ -81,6 +91,10 @@
     }
   }
 
+  &__toggle-icon{
+    height: 1.5rem;
+  }
+
   &__action-icon{
     height: 1.2rem;
     cursor: pointer;
@@ -96,7 +110,7 @@
   }
 
   &--closed{
-    transform: translateX(30rem);
+    transform: translateX(25rem);
     width: 0;
     //display: none;
   }
@@ -107,9 +121,10 @@
 
 //STEP COMPONENT (individual step)
 .step{
-  padding: 1.5rem 2rem;
+  padding: 2rem 1rem 2.5rem 1.5rem;
   font-size: 1.4rem;
   display: flex;
+  border-bottom: .1rem solid rgba($color-white, 0.1);
 
   &__main-container{
     padding: 0 1.5rem;
@@ -123,6 +138,8 @@
   &__functions-wrapper, &__columns-wrapper{
     display: flex;
     align-items: center;
+    font-size: 1.2rem;
+    font-weight: 200;
   }
 
   &__icon-wrapper{

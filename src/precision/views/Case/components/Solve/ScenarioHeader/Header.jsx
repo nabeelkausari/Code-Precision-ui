@@ -12,8 +12,7 @@ class ScenarioHeader extends Component {
                     <Navbar.Brand href="/">
                         <img className="logo" src={Logo} alt="Logo"/>
                     </Navbar.Brand>
-                    <h4 className="case-title">Case: Lowering Attrition Rate</h4>
-                    <Nav>
+                    <Nav >
                         <Nav.Item bsPrefix="scenario-item">
                             <NavLink exact to="/cases/3/4" className='reference' activeClassName="active">Reference</NavLink>
                         </Nav.Item>
@@ -21,6 +20,8 @@ class ScenarioHeader extends Component {
                             <NavLink to="/cases/3/5/" className='scenarios' activeClassName="active">Scenario 1</NavLink>
                         </Nav.Item>
                     </Nav>
+                    <h4 className="case-title">Case: Lowering Attrition Rate</h4>
+
                     {/*<div>*/}
                         {/*<img src="" alt="Add Scenario"/>*/}
                     {/*</div>*/}

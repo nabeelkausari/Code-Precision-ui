@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import ToolBar from "./Toolbar/ToolBar";
+import ToolBar from "./ToolbarVertical/ToolbarVertical";
+// import ToolBar from "./Toolbar/ToolBar";
+
 
 import SubHeader from "./SubHeader/SubHeader";
 import Steps from "./Steps/StepList";
@@ -16,6 +18,11 @@ import Loader from "../../../../components/Loader";
 
 class CaseSolve extends Component {
 
+
+    state = {
+        is_steps_open : true
+    };
+
     componentDidMount() {
         this.props.getCase();
         this.props.getCategoryAndFunctions()
@@ -31,7 +38,7 @@ class CaseSolve extends Component {
 
     renderCaseView = () =>{
         switch (this.props.match.params.view) {
-            case 'dataset': return <Dataset/>;
+            case 'dataset': return <Dataset is_steps_open={this.state.is_steps_open}/>;
             case 'console': return <Console/>;
             case 'process': return <Process/>;
             default: return  <Dashboard />
@@ -42,8 +49,12 @@ class CaseSolve extends Component {
     renderSteps = () => {
         let route = this.props.match.params.view;
         if (route === 'dataset' || route === 'dashboard') {
-            return <Steps/>
+            return <Steps is_steps_open={this.state.is_steps_open} toggleSteps={this.toggleSteps}/>
         }
+    };
+
+    toggleSteps = () => {
+        this.setState((state) => ({is_steps_open: !state.is_steps_open}))
     };
 
     render() {
@@ -52,11 +63,13 @@ class CaseSolve extends Component {
         return (
             <div>
                 <Loader loading={is_fetching}/>
-                <div style={{display: "flex", overflow : "hidden"}}>
-                        <div style={{flex: "1", position: 'relative'}}>
+                <div className="scenario">
+                        <div className="scenario__container">
                             <SubHeader/>
-                            {!is_console && <ToolBar/>}
-                            {this.renderCaseView()}
+                            <div className="scenario__main-content">
+                                {!is_console && <ToolBar/>}
+                                {this.renderCaseView()}
+                            </div>
                             {(is_primary_flyout_open || is_secondary_flyout_open) &&
                                 <div className="flyoutContainer">
                                     {is_primary_flyout_open && <ResultsFlyout hideFlyout={hidePrimaryFlyout}/>}
