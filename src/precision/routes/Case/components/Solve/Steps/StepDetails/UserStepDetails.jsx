@@ -1,19 +1,20 @@
 import React, { Component } from 'react'
 import {flatten, toPairs, values} from "ramda";
 import Modal from "react-bootstrap/Modal";
-import {UserStepDetailsContainer} from "../../../../containers/solve/steps/stepDetails/userStepDetails";
-import FileViewer from './FileViewer'
-import './UserStepDetails.scss'
 import Tab from "react-bootstrap/Tab";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
+import {UserStepDetailsContainer} from "../../../../containers/solve/steps/stepDetails/userStepDetails";
+import FileViewer from './FileViewer'
+import './UserStepDetails.scss'
 
-
-const generateFileViewers = (step) => !!step && !!step.code_files !== undefined && step.code_files.map(codeFile => <FileViewer key={codeFile._links.code_file.href} file_link={codeFile._links.code_file} function_language={codeFile.function_language}/>);
+const generateFileViewers = (step) =>
+    !!step && !!step.code_files !== undefined &&
+    step.code_files.map(codeFile =>
+        <FileViewer key={codeFile._links.code_file.href} file_link={codeFile._links.code_file} function_language={codeFile.function_language}/>);
 
 class UserStepDetails extends Component{
-
     state = {
         collapseID: null
     };
