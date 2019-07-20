@@ -25,7 +25,7 @@ export const renderResult = ({ name, _links: { data, image, table, error, chart,
     if (error !== undefined) {
         return (<div key={error.href}>
             {name && <h6>{name}</h6>}
-            <Error error_text={error.href} download={true}/>
+            <div>Error - {error.text}</div>
         </div>);
     }
     if (pdf !== undefined) {
