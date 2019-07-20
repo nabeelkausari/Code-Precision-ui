@@ -3,13 +3,20 @@ import {flatten, toPairs, values} from "ramda";
 import Modal from "react-bootstrap/Modal";
 import {Button} from "../../../../../../components/Buttons/Button";
 import {UserStepDetailsContainer} from "../../../../containers/solve/steps/stepDetails/userStepDetails";
-import Accordion from "react-bootstrap/Accordion";
-import Card from "react-bootstrap/Card";
 import FileViewer from './FileViewer'
-
+import './UserStepDetails.scss'
+import Tab from "react-bootstrap/Tab";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Nav from "react-bootstrap/Nav";
 const generateFileViewers = (step) => !!step && !!step.code_files !== undefined && step.code_files.map(codeFile => <FileViewer key={codeFile._links.code_file.href} file_link={codeFile._links.code_file} function_language={codeFile.function_language}/>);
 
 class UserStepDetails extends Component{
+
+    state = {
+        collapseID: null
+    };
+
     componentDidMount() {
         this.props.fetchShowCodeTabs()
     }
@@ -41,49 +48,84 @@ class UserStepDetails extends Component{
         }
     }
 
+    toggleCollapse = collapseID => () => {
+        this.setState({
+            collapseID: collapseID
+        });
+    };
+
     render() {
         const { show, handleClose, userSteps, userCode, userCodeSteps, learnRSteps, learnSasSteps, learnPythonSteps} = this.props;
         return(
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose} size="lg" aria-labelledby="example-modal-sizes-title-lg" bsPrefix="">
                 <Modal.Header closeButton>
                     <Modal.Title>User Step Details</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>{
-                    <Accordion defaultActiveKey="0">
+                    <Tab.Container id="left-tabs-example" defaultActiveKey={0}>
                         {userSteps !== undefined && userSteps.length > 0 && userSteps.map((step, index) =>
                             <div>
-                                <Accordion.Toggle as={Card.Header} eventKey="0">
-                                    {
-                                        userCodeSteps !== undefined && userCodeSteps[index] &&
-                                        (step.isUdf === true && step.isUdf !== undefined ? `${userCodeSteps[index].name} (UDF)` : userCodeSteps[index].name)
-                                    }
-                                </Accordion.Toggle>
-                                <Accordion.Collapse eventKey="0">
-                                    <Card.Body>
-                                        <label>Selected Columns</label>
-                                        <div>{this.getSelectedColumns(step)}</div>
-                                        <label>Parameters</label>
-                                        <div>
-                                            {this.getParameterName(step).map(parameter =>
-                                            <p>{parameter.name} : {parameter.value} </p>)}
-                                        </div>
-                                        <label>Function Description</label>
-                                        <div></div>
-                                        <label>Results</label>
-                                        <div></div>
-                                        <label>Code</label>
-                                        <div>{generateFileViewers(userCodeSteps !== undefined && userCodeSteps[index] && userCodeSteps[index])}</div>
-                                        <label>Learn R</label>
-                                        <div>{generateFileViewers(learnRSteps !== undefined  && learnRSteps[index])}</div>
-                                        <label>Learn SASS</label>
-                                        <div>{generateFileViewers(learnSasSteps !== undefined && learnSasSteps[index])}</div>
-                                        <label>Learn Python</label>
-                                        <div>{generateFileViewers(learnPythonSteps !== undefined && learnPythonSteps[index])}</div>
-                                    </Card.Body>
-                                </Accordion.Collapse>
+                                <Row>
+                                    <Col sm={3}>
+                                        <Nav variant="pills" className="flex-column">
+                                            <Nav.Item>
+                                                <Nav.Link eventKey={index}>
+                                                    {
+                                                        userCodeSteps !== undefined && userCodeSteps[index] &&
+                                                        (step.isUdf === true && step.isUdf !== undefined ? `${userCodeSteps[index].name} (UDF)` : userCodeSteps[index].name)
+                                                    }
+                                                </Nav.Link>
+                                            </Nav.Item>
+                                        </Nav>
+                                    </Col>
+                                    <Col sm={9}>
+                                        <Tab.Content>
+                                            <Tab.Pane eventKey={index}>
+                                                {this.getSelectedColumns(step).length > 0 &&
+                                                <div>
+                                                    <h4>Selected Columns</h4>
+                                                    <div>{this.getSelectedColumns(step)}</div>
+                                                </div>
+                                                }
+                                                {this.getParameterName(step).length > 0 &&
+                                                <div>
+                                                    <h4>Parameters</h4>
+                                                    <div>
+                                                        {this.getParameterName(step).map(parameter =>
+                                                            <p>{parameter.name} : {parameter.value} </p>)}
+                                                    </div>
+                                                </div>
+                                                }
+                                                <h4>Function Description</h4>
+                                                <div></div>
+                                                <h4>Results</h4>
+                                                <div></div>
+                                                {userCodeSteps !== undefined && userCodeSteps[index] &&
+                                                <div>
+                                                    <h4>Code</h4>
+                                                    <div>{generateFileViewers( userCodeSteps[index])}</div>
+                                                </div>}
+                                                {learnRSteps !== undefined  && <div>
+                                                    <h4>Learn R</h4>
+                                                    <div>{generateFileViewers(learnRSteps[index])}</div>
+                                                </div>}
+                                               {learnSasSteps !== undefined &&
+                                               <div>
+                                                    <h4>Learn SASS</h4>
+                                                    <div>{generateFileViewers(learnSasSteps[index])}</div>
+                                                </div>}
+                                                {learnPythonSteps !== undefined &&
+                                                <div>
+                                                    <h4>Learn Python</h4>
+                                                    <div>{generateFileViewers(learnPythonSteps[index])}</div>
+                                                </div>}
+                                            </Tab.Pane>
+                                        </Tab.Content>
+                                    </Col>
+                                </Row>
                             </div>
                         )}
-                    </Accordion>}
+                    </Tab.Container>}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>Close</Button>
@@ -95,28 +137,3 @@ class UserStepDetails extends Component{
 }
 
 export default UserStepDetailsContainer(UserStepDetails)
-
-
-{/*<span style={{display: 'block'}} className='bluearrow1'>*/}
-// {/*  {userCodeSteps !== undefined && userCodeSteps[index] && (step.isUdf === true && step.isUdf !== undefined ? `${userCodeSteps[index].name} (UDF)` : userCodeSteps[index].name)}*/}
-{/*</span>*/}
-
-
-{/*<Accordion defaultActiveKey="0">*/}
-{/*    <Card>*/}
-{/*        <Accordion.Toggle as={Card.Header} eventKey="0">*/}
-{/*            Click me!*/}
-{/*        </Accordion.Toggle>*/}
-{/*        <Accordion.Collapse eventKey="0">*/}
-{/*            <Card.Body>Hello! I'm the body</Card.Body>*/}
-{/*        </Accordion.Collapse>*/}
-{/*    </Card>*/}
-{/*    <Card>*/}
-{/*        <Accordion.Toggle as={Card.Header} eventKey="1">*/}
-{/*            Click me!*/}
-{/*        </Accordion.Toggle>*/}
-{/*        <Accordion.Collapse eventKey="1">*/}
-{/*            <Card.Body>Hello! I'm another body</Card.Body>*/}
-{/*        </Accordion.Collapse>*/}
-{/*    </Card>*/}
-{/*</Accordion>*/}

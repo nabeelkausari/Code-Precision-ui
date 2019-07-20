@@ -21,7 +21,6 @@ const mapStateToProps = (state) => {
     const learnRTab = user_step_details_info.filter(tab => tab.category.toUpperCase() === 'USER').filter(tab => tab.name.toUpperCase() === "LEARN R").shift();
     const learnSassTab = user_step_details_info.filter(tab => tab.category.toUpperCase() === 'USER').filter(tab => tab.name.toUpperCase() === "LEARN SAS").shift();
     const learnPythonTab = user_step_details_info.filter(tab => tab.category.toUpperCase() === 'USER').filter(tab => tab.name.toUpperCase() === "LEARN PYTHON").shift();
-debugger
     const userCodeSteps = (userCodeTab && userCodeTab._links) ? by_uri[userCodeTab._links.self.href] : [];
     const learnRSteps = (learnRTab && learnRTab._links) ? by_uri[learnRTab._links.self.href] : [];
     const learnSasSteps = (learnSassTab && learnSassTab._links) ? by_uri[learnSassTab._links.self.href] : [];
