@@ -1,5 +1,41 @@
-.user-step-container {
+.bg-user-step-container {
+
   .modal-content{
-    width: 900px;
+    width: 90rem;
+    margin: auto -8rem;
+    height: 70rem;
   }
+
+  .nav {
+    font-size: 14px;
+    padding: 0 1rem 2rem 1rem;
+  }
+
+  .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: white;
+    background-color: #002d70;
+  }
+
+  .nav-link {
+    color: #002d70;
+  }
+
+  .code-block {
+    border: 1px solid #cccccc;
+    padding: 2rem;
+    border-radius: 5px;
+    background-color: rgb(255, 254, 239);
+    margin-bottom: 2.5rem;
+  }
+
+}
+
+.steps-list{
+  height: 60rem;
+  overflow: auto;
+}
+
+.code-list {
+  height: 60rem;
+  overflow: auto;
 }

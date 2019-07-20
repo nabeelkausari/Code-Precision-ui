@@ -6,6 +6,7 @@ import StepDataset from "../View/Dataset/StepDatasets";
 
 
 export const renderResult = ({ name, _links: { data, image, table, error, chart, pdf } }) => {
+    debugger
     if (data !== undefined) {
         return <p key={data.href}>{!!name && <b>{`${name}: `}</b>}The data is updated in the table</p>;
     }
