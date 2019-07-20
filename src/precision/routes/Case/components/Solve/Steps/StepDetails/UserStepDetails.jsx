@@ -6,7 +6,6 @@ import {UserStepDetailsContainer} from "../../../../containers/solve/steps/stepD
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import FileViewer from './FileViewer'
-import {fetchShowCodeSteps} from "../../../../../../modules/steps/userStepDetails/actions";
 
 const generateFileViewers = (step) => !!step && !!step.code_files !== undefined && step.code_files.map(codeFile => <FileViewer key={codeFile._links.code_file.href} file_link={codeFile._links.code_file} function_language={codeFile.function_language}/>);
 
@@ -30,20 +29,20 @@ class UserStepDetails extends Component{
     };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        // dispatch(fetchShowCodeSteps())
-
         if(this.props.fetch_user_step && this.props.fetch_user_step !== prevProps.fetch_user_step){
             this.props.fetchShowCodeSteps()
         }
 
         if (prevProps.userCodeSteps !== this.props.userCodeSteps && this.props.userCodeSteps !== undefined && !!this.props.learnRStepsReference && this.props.show) {
-            console.log("Coming here....")
+            console.log("Coming here....");
             this.props.setCurrentShowCodeTab(this.props.learnRStepsReference);
+            this.props.setCurrentShowCodeTab(this.props.learnSassStepsReference);
+            this.props.setCurrentShowCodeTab(this.props.learnPythonStepsReference);
         }
     }
 
     render() {
-        const { show, handleClose, userSteps, userCode, userCodeSteps, learnRSteps} = this.props;
+        const { show, handleClose, userSteps, userCode, userCodeSteps, learnRSteps, learnSasSteps, learnPythonSteps} = this.props;
         return(
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -76,6 +75,10 @@ class UserStepDetails extends Component{
                                         <div>{generateFileViewers(userCodeSteps !== undefined && userCodeSteps[index] && userCodeSteps[index])}</div>
                                         <label>Learn R</label>
                                         <div>{generateFileViewers(learnRSteps !== undefined  && learnRSteps[index])}</div>
+                                        <label>Learn SASS</label>
+                                        <div>{generateFileViewers(learnSasSteps !== undefined && learnSasSteps[index])}</div>
+                                        <label>Learn Python</label>
+                                        <div>{generateFileViewers(learnPythonSteps !== undefined && learnPythonSteps[index])}</div>
                                     </Card.Body>
                                 </Accordion.Collapse>
                             </div>
