@@ -15,9 +15,6 @@ class StepList extends Component {
         open_user_steps: false,
     };
 
-    toggleSteps = () => {
-        this.setState((state) => ({is_steps_open: !state.is_steps_open}))
-    };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(this.props.function_execution_succeeded && this.props.function_execution_succeeded !== prevProps.function_execution_succeeded){
@@ -91,7 +88,6 @@ class StepList extends Component {
                         }
                     </div>
                 </div>
-                <hr/>
                 <div className="steps__list-container">
                     <ul className="steps__list">
                         { steps &&
@@ -111,12 +107,12 @@ class StepList extends Component {
                     </ul>
                 </div>
 
-                <div className={is_steps_open? "steps__toggle-btn--1" : "steps__toggle-btn--1-hide"} onClick={this.toggleSteps}>
-                    <span className="steps__toggle-icon">&rarr;</span>
+                <div className={is_steps_open? "steps__toggle-btn--1" : "steps__toggle-btn--1-hide"} onClick={toggleSteps}>
+                    <img src={right_arrow_icon} alt="right arrow" className="steps__toggle-icon"/>
                 </div>
 
-                <div className={is_steps_open? "steps__toggle-btn--2 steps__toggle-btn--2-hide" : "steps__toggle-btn--2"} onClick={this.toggleSteps}>
-                    <span className="steps__toggle-icon">&larr;</span>
+                <div className={is_steps_open? "steps__toggle-btn--2 steps__toggle-btn--2-hide" : "steps__toggle-btn--2"} onClick={toggleSteps}>
+                    <img src={left_arrow_icon} alt="left arrow" className="steps__toggle-icon u-margin-left-small"/>
                 </div>
                 {this.state.open_user_steps && <UserStepDetails show={this.state.open_user_steps} handleClose={this.closeUserStepDetails}/>}
             </div>
