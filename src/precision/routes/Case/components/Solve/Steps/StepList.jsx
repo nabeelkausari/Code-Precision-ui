@@ -56,7 +56,7 @@ class StepList extends Component {
                         {
                         <Tooltip placement={"bottom"} text={"Show User Steps"}>
                             <div className="steps__action-wrapper">
-                                <div onClick={this.handleUserStepDetails}>Show Steps</div>
+                                <div onClick={this.handleUserStepDetails}>User Steps</div>
                             </div>
                         </Tooltip>
                         }
