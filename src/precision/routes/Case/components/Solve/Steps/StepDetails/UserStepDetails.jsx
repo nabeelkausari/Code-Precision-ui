@@ -50,12 +50,6 @@ class UserStepDetails extends Component{
         }
     }
 
-    toggleCollapse = collapseID => () => {
-        this.setState({
-            collapseID: collapseID
-        });
-    };
-
     render() {
         const { show, handleClose, userSteps, userCode, userCodeSteps, learnRSteps, learnSasSteps, learnPythonSteps} = this.props;
         return(
