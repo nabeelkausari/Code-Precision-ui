@@ -20,6 +20,10 @@ import CaseDetail from "./Case/components/Detail";
 import CaseSolve from "./Case/components/Solve";
 import CaseListHeader from "./Case/components/List/CaseListHeader";
 import CreateCase from "./Case/components/Create";
+import BusinessGoal from "./Case/components/Create/BusinessGoal";
+import Recommendations from "./Case/components/Create/Recommendations";
+import CaseInfo from "./Case/components/Create/CaseInfo";
+import {CreateCaseHeader} from "./Case/components/Create/CreateCaseHeader";
 
 toast.configure({autoClose:1000})
 
@@ -40,11 +44,31 @@ const CaseRoutes = () => (
     <Switch>
         <Route path="/cases">
             <CaseListHeader>
-                <Route exact path="/cases" component={CaseList}/>
+                <Route exact  path="/cases" component={CaseList}/>
                 <Route exact path="/cases/all_cases" component={AllCases}/>
             </CaseListHeader>
         </Route>
-        <Route exact path="/cases/:case_id" component={CaseDetail}/>
+        {/*<Route exact path="/cases/:case_id" component={CaseDetail}/>*/}
+    </Switch>
+);
+const CaseCreateRoutes = () => (
+    <Switch>
+        <Route  path="/create">
+            <CreateCaseHeader history={history}>
+                <Route exact path="/create" component={BusinessGoal}/>
+                <Route exact path="/create/our_recommendations" component={Recommendations}/>
+                <Route exact path="/create/case_info" component={CaseInfo}/>
+            </CreateCaseHeader>
+        </Route>
+    </Switch>
+);
+
+const AuthRoutes = () => (
+    <Switch>
+        <Route  path="/cases/:case_id/:scenario_id" component={ScenarioRoutes} />
+        <Route  path="/cases" component={CaseRoutes} />
+        <Route  path="/create" component={CaseCreateRoutes}/>
+        <Redirect to="/cases"/>
     </Switch>
 );
 
@@ -54,11 +78,8 @@ export default (props) => {
           <Router history={history}>
               <ToastContainer  transition={Slide}/>
             <Switch>
-              <Route path="/cases/:case_id/:scenario_id" component={requireAuth(ScenarioRoutes)} />
-              {/*<Route  path="/cases/create" component={requireAuth(CreateCase)}/>*/}
-              <Route path="/cases" component={requireAuth(CaseRoutes)} />
-              <Route path="/auth/login" component={requireUnAuth(Login)} />
-              <Redirect from="/" to="/cases" />
+                <Route path="/auth/login" component={requireUnAuth(Login)} />
+                <Route path="/" component={requireAuth(AuthRoutes)}/>
             </Switch>
           </Router>
         </Provider>

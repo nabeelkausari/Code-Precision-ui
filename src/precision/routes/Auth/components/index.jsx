@@ -18,7 +18,7 @@ class Login extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     const { loginSuccess, history } = this.props;
     if (loginSuccess && prevProps.loginSuccess !== loginSuccess) {
-      history.push('/cases/4/5')
+      history.push('/cases')
     }
   }
 

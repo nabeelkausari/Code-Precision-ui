@@ -2,12 +2,14 @@ import React, {Component, Fragment} from 'react';
 import {Dropdown, Nav, Navbar} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 import {Logo} from "../../../../images";
+import caseListHeaderContainer from "../../containers/list/caseListHeader";
 
 class CaseListHeader extends Component {
     render() {
+        const {profile} = this.props;
         return (
             <Fragment>
-                <Navbar bg="case-list-header">
+               { <Navbar bg="case-list-header">
                     <Navbar.Brand href="/">
                         <img className="logo" src={Logo} alt="Logo"/>
                     </Navbar.Brand>
@@ -21,19 +23,19 @@ class CaseListHeader extends Component {
                     </Nav>
                     <Dropdown bsPrefix="user-profile">
                         <Dropdown.Toggle variant="success" id="dropdown-basic">
-                            <img className="user-profile__logo" src="http://keenthemes.com/preview/metronic/theme/assets/pages/media/profile/profile_user.jpg" alt=""/>
-                            <p>Sandeep Sharma</p>
+                            <img className="user-profile__logo" src={profile.profile_pic_url} alt=""/>
+                            <p>{profile.name}</p>
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                            <Dropdown.Item href="#/action-1">Sandeep.sharma@ath.com</Dropdown.Item>
-                            <Dropdown.Item href="#/action-1">Log out</Dropdown.Item>
+                            <Dropdown.Item href="#/action-1">{profile.email_id}<br/><p>"Account"</p></Dropdown.Item>
+                            <Dropdown.Item onClick={this.props.logout}>Log out</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
-                </Navbar>
+                </Navbar>}
                 {this.props.children}
             </Fragment>
         );
     }
 }
 
-export default CaseListHeader;
+export default caseListHeaderContainer(CaseListHeader);

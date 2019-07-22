@@ -6,6 +6,7 @@ import functionsReducer from '../modules/case/toolbar/reducer';
 import datasetReducer from '../modules/datasets/reducer';
 import notesReducer from '../modules/steps/notes/reducers';
 import consoleReducer from '../modules/console/reducer';
+import profileReducer from '../modules/profile/reducer';
 
 export default combineReducers({
   auth: authReducer,
@@ -14,4 +15,5 @@ export default combineReducers({
   datasets: datasetReducer,
   console: consoleReducer,
   notes: notesReducer,
+  profile: profileReducer
 })

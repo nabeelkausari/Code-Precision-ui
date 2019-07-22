@@ -2,6 +2,11 @@ import * as types from './types';
 import {byUri} from "../../utils/byUri";
 
 const initialState = {
+  current_case:{
+    reference:"",
+    info:{},
+    current_scenario:{}
+  },
   data_sets: [],
   results : {
     is_primary_flyout_open : false,
@@ -26,15 +31,51 @@ const initialState = {
     fetch_case_categories_requested: null,
     fetch_case_categories_succeeded: null,
     fetch_case_categories_error: null,
-
+  },
+  create:{
+    problem:{},
+    create_problem_requested: null,
+    create_problem_succeeded: null,
+    create_problem_error: null
+  },
+  recommendations:{
+    list:[],
+    by_uri:{
+    },
+    selections:[],
+    fetch_case_recommendations_requested: null,
+    fetch_case_recommendations_succeeded: null,
+    fetch_case_recommendations_error: null
   }
 };
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
 
+    case types.SAVE_CASE_DETAILS:
+      return {
+        ...state,
+        current_case:{
+          ...state.current_case,
+          info:payload,
+
+        },
+      };
+    case types.SAVE_SCENARIO_DETAILS:
+      return {
+        ...state,
+        current_case:{
+          ...state.current_case,
+          current_scenario: payload
+        },
+      };
+
     case types.FETCH_CASE_REQUESTED:
-      return { ...state, case_loading: true, fetch_case_error: null, fetch_case_succeeded: null };
+      return { ...state,
+        case_loading: true,
+        fetch_case_error: null,
+        fetch_case_succeeded: null
+      };
     case types.FETCH_CASE_SUCCEEDED:
       return {
         ...state,
@@ -258,6 +299,81 @@ export default (state = initialState, { type, payload }) => {
           ...state.categories,
           fetch_case_categories_requested: false,
           fetch_case_categories_error: payload
+        }
+      }
+    }
+
+    case types.CREATE_PROBLEM_REQUESTED : {
+      return{
+        ...state,
+        create:{
+          ...state.create,
+          create_problem_requested: true,
+        }
+      }
+    }
+
+    case types.CREATE_PROBLEM_SUCCEEDED : {
+      return{
+        ...state,
+        create:{
+          ...state.create,
+          problem:payload,
+          create_problem_requested: false,
+          create_problem_succeeded: true
+        }
+      }
+    }
+
+    case types.CREATE_PROBLEM_FAILED : {
+      return{
+        ...state,
+        create:{
+          ...state.create,
+          create_problem_requested: false,
+          create_problem_succeeded: false,
+          create_problem_error: payload
+        }
+      }
+    }
+
+    case types.GET_CASE_RECOMMENDATIONS_REQUESTED : {
+      return{
+        ...state,
+        recommendations:{
+            fetch_case_recommendations_requested: true,
+        }
+      }
+    }
+
+    case types.GET_CASE_RECOMMENDATIONS_SUCCEEDED : {
+      return{
+        ...state,
+        recommendations:{
+          list: payload,
+          fetch_case_recommendations_requested: false,
+          fetch_case_recommendations_succeeded: true,
+        }
+      }
+    }
+
+    case types.GET_CASE_RECOMMENDATIONS_FAILED : {
+      return{
+        ...state,
+        recommendations:{
+          fetch_case_recommendations_requested: false,
+          fetch_case_recommendations_succeeded: false,
+          fetch_case_recommendations_error: payload,
+        }
+      }
+    }
+
+    case types.SELECT_RECOMMENDATIONS : {
+      return{
+        ...state,
+        recommendations:{
+          ...state.recommendations,
+          selections:payload
         }
       }
     }

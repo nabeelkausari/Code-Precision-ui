@@ -1,0 +1,70 @@
+.container {
+  width: 800px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.assignTimelineWrapper {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.assignTimelineText {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.assignTimeLine {
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+
+  &:before {
+    content: '';
+    display: block;
+    height: 4px;
+    width: 100%;
+    position: absolute;
+    top: 6px;
+    background: lightgrey;
+  }
+
+  div{
+    display: flex;
+    justify-content: space-between;
+    z-index: 1;
+  }
+}
+
+.timeline-text {
+  font-family: LatoSemiBold;
+  margin-top: 15px;
+}
+
+.timeLineButton {
+  background: lightgrey;
+  border: 3px solid white;
+  border-radius: 50%;
+  padding: 8px;
+  margin-top: -3px;
+  cursor: pointer;
+}
+
+.timeLineButton-active {
+  background: #52a7dc;
+  border: 3px solid white;
+  border-radius: 50%;
+  padding: 8px;
+  margin-top: -3px;
+  cursor: pointer;
+}
+
+.btn-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+

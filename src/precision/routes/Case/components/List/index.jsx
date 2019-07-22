@@ -11,10 +11,16 @@ import './List.scss'
 
 class CaseList extends Component {
 
+    state ={
+        search_query:""
+    }
     componentDidMount() {
         this.props.getCases();
         this.props.getCaseCategories();
+    }
 
+    onSearch = (e) => {
+        this.setState({[e.target.name]:e.target.value});
     }
 
     render() {
@@ -23,13 +29,12 @@ class CaseList extends Component {
            <Fragment>
                <Loader loading={is_fetching}/>
                <div className="case-container">
-                   <Link to={'/cases/4'}>List</Link>
-                   <FormInput type="text" placeholder="Search by tag, Keyboard"/>
+                   <FormInput type="text" name="search_query" value={this.state.search_query}  onChange={this.onSearch} placeholder="Search by tag, Keyword"/>
                    <div style={{display:"flex",flexWrap: "wrap"}}>
-                       <CreateCaseCard/>
+                       <CreateCaseCard  createCase={() =>this.props.history.push('/create')}/>
                        {
                            my_cases.map((item) => (
-                               <CaseCard key={item.id} case={item} />
+                               <CaseCard showView key={item.id} case={item} />
                            ))
                        }
                    </div>

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import {getCase, getSteps} from "../../../../modules/case/actions"
+import {getCase, getCaseAndScenario, getSteps} from "../../../../modules/case/actions"
 import {getCategoryAndFunctions} from "../../../../modules/case/toolbar/actions";
 
 const mapStateToProps = (state, props) =>{
@@ -15,9 +15,10 @@ const mapStateToProps = (state, props) =>{
         is_secondary_flyout_open,
         show_notes_flyout,
         notes_info,
-        is_fetching: steps_loading || function_categories_loading || functions_loading || case_loading
+        is_fetching: steps_loading || function_categories_loading || functions_loading || case_loading,
+        current_case: state.cases.current_case
     }
 }
 
 
-export const SolveContainer = connect(mapStateToProps, {getCase, getSteps, getCategoryAndFunctions});
+export const SolveContainer = connect(mapStateToProps, {getCase, getSteps, getCategoryAndFunctions, getCaseAndScenario});
