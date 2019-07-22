@@ -23,6 +23,10 @@ class CaseList extends Component {
         this.setState({[e.target.name]:e.target.value});
     }
 
+    viewCase = (currentCase) => {
+        this.props.getCaseDetails(currentCase._links.get_case_details);
+    }
+
     render() {
         const {is_fetching, my_cases} = this.props;
         return (
@@ -34,7 +38,7 @@ class CaseList extends Component {
                        <CreateCaseCard  createCase={() =>this.props.history.push('/create')}/>
                        {
                            my_cases.map((item) => (
-                               <CaseCard showView key={item.id} case={item} />
+                               <CaseCard showView key={item.id} viewCase={this.viewCase} case={item} />
                            ))
                        }
                    </div>
