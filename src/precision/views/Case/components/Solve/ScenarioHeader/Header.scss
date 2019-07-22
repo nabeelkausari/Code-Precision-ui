@@ -1,6 +1,7 @@
 @import "../../../../../styles/abstracts/variables";
 
 .bg-scenario-header {
+  flex: 1;
   padding: 2rem 2rem 1rem 2rem;
   display: flex;
   align-items: center;
@@ -46,4 +47,18 @@
       padding: 1rem 1.7rem .5rem 1.7rem;
     }
   }
+}
+
+.user-details{
+  width: 25rem;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0rem;
+  //margin-left: 2rem ;
+  background-color: $color-primary-bg;
+  color: $color-white;
+  box-shadow: -.4rem 0 2rem rgba($color-black, 1);
+  z-index: 50;
 }
