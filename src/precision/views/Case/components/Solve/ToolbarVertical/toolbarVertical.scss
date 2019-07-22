@@ -1,0 +1,83 @@
+@import "../../../../../styles/abstracts/variables";
+
+.toolbar{
+
+  margin-top: 2rem;
+  position: relative;
+  z-index: 45;
+
+  &__main-container{
+    display: flex;
+    flex-direction: column;
+    width : 16rem;
+    height: 100%;
+    color: $color-white;
+  }
+
+  &__datasets{
+
+    max-height: 40%;
+    margin-bottom: .5rem;
+    background-color: var(--bg-2);
+  }
+
+  &__functions{
+    flex: 1;
+    background-color: var(--bg-2);
+  }
+
+  &__header{
+    display: flex;
+    padding: 1rem 2rem;
+  }
+
+  &__header-icon{
+
+    height: 1.5rem;
+    margin-right: .5rem;
+  }
+
+
+
+  &__header-text{
+    color: var(--text-primary);
+  }
+
+  &__search-bar{
+
+  }
+
+
+
+  &__list{
+    height: 80%;
+    overflow: scroll;
+    margin-bottom: 1rem;
+  }
+
+  &__item{
+    display: flex;
+    padding: 1rem 2rem;
+    cursor: pointer;
+
+
+    &--active{
+      color: var(--highlight-primary);
+    }
+  }
+
+  &__title{
+    margin-right: auto;
+  }
+
+  &__arrow-icon{
+    height: 1rem;
+  }
+
+  //&__flyout-container{
+  //  position: absolute;
+  //  top: 0;
+  //  left: 16rem;
+  //}
+
+}

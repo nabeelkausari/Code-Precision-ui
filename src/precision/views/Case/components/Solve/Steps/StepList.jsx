@@ -4,7 +4,7 @@ import Step from './Step'
 import Tooltip from '../../../../../components/Tooltip/Tooltip'
 import StepsContainer from '../../../containers/solve/steps'
 import './StepList.scss'
-import {undo_icon, redo_icon, reset_icon} from '../../../../../images/index'
+import {undo_icon, redo_icon, reset_icon, right_arrow_icon, left_arrow_icon} from '../../../../../images/index'
 import StepSkeleton from '../../../../../components/Skeletons/StepSkeleton'
 import UserStepDetails from "./StepDetails/UserStepDetails";
 
@@ -12,13 +12,9 @@ import UserStepDetails from "./StepDetails/UserStepDetails";
 class StepList extends Component {
 
     state = {
-        is_steps_open : true,
         open_user_steps: false,
     };
 
-    toggleSteps = () => {
-        this.setState((state) => ({is_steps_open: !state.is_steps_open}))
-    };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(this.props.function_execution_succeeded && this.props.function_execution_succeeded !== prevProps.function_execution_succeeded){
@@ -42,8 +38,9 @@ class StepList extends Component {
         const {
             steps, onShowResultClick, undo_available, redo_available, last_step, onUndoClick,
             onRedoClick, redo_requested, undo_requested, can_reset, onResetClick, reset_requested
-        } = this.props;
-        const {is_steps_open} = this.state;
+        } = this.props
+
+        const {is_steps_open, toggleSteps} = this.props
         return (
             <div className={is_steps_open ? 'steps' : 'steps steps--closed'}>
 
@@ -56,7 +53,7 @@ class StepList extends Component {
                         {
                         <Tooltip placement={"bottom"} text={"Show User Steps"}>
                             <div className="steps__action-wrapper">
-                                <div onClick={this.handleUserStepDetails}>User Steps</div>
+                                <div onClick={this.handleUserStepDetails}>Show Steps</div>
                             </div>
                         </Tooltip>
                         }
@@ -91,7 +88,6 @@ class StepList extends Component {
                         }
                     </div>
                 </div>
-                <hr/>
                 <div className="steps__list-container">
                     <ul className="steps__list">
                         { steps &&
@@ -111,14 +107,14 @@ class StepList extends Component {
                     </ul>
                 </div>
 
-                <div className={is_steps_open? "steps__toggle-btn--1" : "steps__toggle-btn--1-hide"} onClick={this.toggleSteps}>
-                    <span className="steps__toggle-icon">&rarr;</span>
+                <div className={is_steps_open? "steps__toggle-btn--1" : "steps__toggle-btn--1-hide"} onClick={toggleSteps}>
+                    <img src={right_arrow_icon} alt="right arrow" className="steps__toggle-icon"/>
                 </div>
 
-                <div className={is_steps_open? "steps__toggle-btn--2 steps__toggle-btn--2-hide" : "steps__toggle-btn--2"} onClick={this.toggleSteps}>
-                    <span className="steps__toggle-icon">&larr;</span>
+                <div className={is_steps_open? "steps__toggle-btn--2 steps__toggle-btn--2-hide" : "steps__toggle-btn--2"} onClick={toggleSteps}>
+                    <img src={left_arrow_icon} alt="left arrow" className="steps__toggle-icon u-margin-left-small"/>
                 </div>
-                {this.state.open_user_steps && <UserStepDetails show={this.state.open_user_steps} handleClose={this.closeUserStepDetails}/>}
+                {/*{this.state.open_user_steps && <UserStepDetails show={this.state.open_user_steps} handleClose={this.closeUserStepDetails}/>}*/}
             </div>
         );
     }

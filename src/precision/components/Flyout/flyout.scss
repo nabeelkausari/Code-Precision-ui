@@ -30,7 +30,7 @@
   top : .1rem;
   //border: .1rem solid black;
   //padding: 1rem 2rem;
-  background-color: $color-white;
+  background-color: var(--bg-3);
   z-index: 31;
 
   &--1{
@@ -55,7 +55,7 @@
     display: flex;
     align-items: center;
     padding: 1rem 1rem;
-    background-color: $color-tertiary;
+    background-color: var(--bg-2);
     position: relative;
   }
 

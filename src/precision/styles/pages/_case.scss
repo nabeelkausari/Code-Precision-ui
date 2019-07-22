@@ -3,3 +3,39 @@
   //width: 100%;
   height: calc(100vh - 15.8rem);;
 }
+
+.scenario{
+
+  background-color: var(--bg-1);
+  display: flex;
+  overflow : hidden;
+
+  &__container{
+    flex: 1;
+    position: relative;
+  }
+
+  &__main-content{
+    display: flex;
+    height: calc(100vh - 10.9rem);
+  }
+}
+
+//<div className="scenario" style={}}>
+//<div className="scenario__container" style={{flex: "1", position: 'relative'}}>
+//<SubHeader/>
+//<div className="scenario__main-content" style={{display: "flex", height : "calc(100vh - 10.9rem)"}}>
+//                                                                                                   {!is_console && <ToolBar/>}
+//{this.renderCaseView()}
+//</div>
+//  {(is_primary_flyout_open || is_secondary_flyout_open) &&
+//  <div className="flyoutContainer">
+//  {is_primary_flyout_open && <ResultsFlyout hideFlyout={hidePrimaryFlyout}/>}
+//  {is_secondary_flyout_open &&
+//                                    <ResultsFlyout secondary hideFlyout={hideSecondaryFlyout}/>}
+//  </div>
+//  }
+//{!!show_notes_flyout && <Notes notes={notes_info}/>}
+//</div>
+//  {this.renderSteps()}
+//</div>

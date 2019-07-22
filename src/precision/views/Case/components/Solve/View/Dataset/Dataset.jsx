@@ -5,11 +5,11 @@ import TableSkeleton from '../../../../../../components/Skeletons/TableSkeleton'
 
 class Dataset extends Component {
     render() {
-        const {dataset_loading, fetch_dataset_succeeded} = this.props
+        const {dataset_loading, fetch_dataset_succeeded, is_steps_open} = this.props
         return (
             <div>
                 {
-                    <Table />
+                    <Table is_steps_open={is_steps_open}/>
                 }
             </div>
         );

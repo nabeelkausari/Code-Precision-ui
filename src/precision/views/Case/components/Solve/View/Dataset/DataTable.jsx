@@ -82,6 +82,7 @@ export class DataTable extends Component {
 
 
     render() {
+        const {is_steps_open} = this.props
         let rows = this.state.csvData;
         const selection_arr = this.props.column_selections[this.props.dataset_reference];
         let headerRow = [...this.state.headerRow];
@@ -94,7 +95,7 @@ export class DataTable extends Component {
             }
         });
         return(
-            <div className="data-table">
+            <div className={is_steps_open? "data-table data-table--1" : "data-table data-table--2"}>
                {!this.state.table_loading ?
                    <ReactTable
                     data={rows}
@@ -104,7 +105,7 @@ export class DataTable extends Component {
                     defaultPageSize = {200}
                     resizable={false}
                 /> :
-                   <TableSkeleton/>
+                   <TableSkeleton is_steps_open={is_steps_open}/>
                }
             </div>
         )

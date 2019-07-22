@@ -1,0 +1,27 @@
+@import "../../../../../../styles/abstracts/variables";
+
+
+.columns-box {
+  background-color: transparent;
+  margin-left: 0.3rem;
+  overflow: auto;
+  display: flex;
+  width: 60rem;
+  padding: 1rem;
+  color: $color-white;
+
+
+  &__left{
+    flex: 1;
+    margin-right: 5rem;
+  }
+
+
+  &__right {
+    flex: 1;
+    margin-left: 2rem;
+  }
+}
+
+
+
