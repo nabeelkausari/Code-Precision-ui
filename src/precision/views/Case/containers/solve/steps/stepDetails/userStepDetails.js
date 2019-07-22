@@ -10,13 +10,13 @@ export const getActiveSteps = (user_steps = []) => {
     return user_steps.filter(user_step => user_step.active && !user_step.is_rollback_step) || [];
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
     const sorted_user_steps = (state.cases.steps) || []
         .sort((a, b) => a.sequence_number - b.sequence_number)
         .map(user_step => user_step);
     if(state.userStepDetails.user_step_details_info === undefined) return ;
     const {userStepDetails: { user_step_details_info, current_tab_reference ,fetch_user_code_succeeded, by_uri}} = state;
-    const userSteps = getActiveSteps(sorted_user_steps).filter(step => step.description !== "Preliminary Dataset");
+    const userSteps = getActiveSteps(sorted_user_steps).filter(step => step.description !== "Preliminary Dataset").filter(step => step._links.self.href === props.current_step._links.self.href);
     const userCodeTab = user_step_details_info.filter(tab => tab.category.toUpperCase() === 'USER').filter(tab => tab.name.toUpperCase() === "CODE").shift();
     const learnRTab = user_step_details_info.filter(tab => tab.category.toUpperCase() === 'USER').filter(tab => tab.name.toUpperCase() === "LEARN R").shift();
     const learnSassTab = user_step_details_info.filter(tab => tab.category.toUpperCase() === 'USER').filter(tab => tab.name.toUpperCase() === "LEARN SAS").shift();

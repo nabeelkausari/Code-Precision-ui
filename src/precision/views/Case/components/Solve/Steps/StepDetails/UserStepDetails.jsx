@@ -23,26 +23,8 @@ class UserStepDetails extends Component{
         this.props.fetchShowCodeTabs()
     }
 
-    getSelectedColumns = (step) => {
-        return flatten(values(step.selections)).map(header => header.label).join(',');
-    };
-
-    getParameterName = (step) => {
-        const stepParameters = toPairs(step.parameters) || undefined;
-        return stepParameters.map(parameter => {
-            return {
-                name: parameter[0].toString(),
-                value: parameter[1].toString()
-            };
-        });
-    };
-
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(this.props.fetch_user_step && this.props.fetch_user_step !== prevProps.fetch_user_step){
-            this.props.fetchShowCodeSteps()
-        }
-
-        if (prevProps.userCodeSteps !== this.props.userCodeSteps && this.props.userCodeSteps !== undefined && !!this.props.learnRStepsReference && this.props.show) {
+        if (prevProps.userCodeSteps !== this.props.userCodeSteps && this.props.userCodeSteps !== undefined && !!this.props.learnRStepsReference && this.props.current_step) {
             console.log("Coming here....");
             this.props.setCurrentShowCodeTab(this.props.learnRStepsReference);
             this.props.setCurrentShowCodeTab(this.props.learnSassStepsReference);
@@ -51,9 +33,11 @@ class UserStepDetails extends Component{
     }
 
     render() {
-        const { show, handleClose, userSteps, userCode, userCodeSteps, learnRSteps, learnSasSteps, learnPythonSteps} = this.props;
+        const { show, handleClose, userSteps, userCode, userCodeSteps, learnRSteps, learnSasSteps, learnPythonSteps, current_step} = this.props;
+        console.log("Components are loading....");
+        console.log('current_step: ', current_step)
         return(
-            <Modal show={show} onHide={handleClose} size="lg" aria-labelledby="example-modal-sizes-title-lg" className="bg-user-step-container">
+            <div>
                 <Modal.Header closeButton>
                     <Modal.Title>User Step Details</Modal.Title>
                 </Modal.Header>
@@ -61,7 +45,7 @@ class UserStepDetails extends Component{
                     <Tab.Container id="left-tabs-example" defaultActiveKey={0}>
                         <Row>
                             <Col className="border-right steps-list" sm={3}>
-                                {userSteps !== undefined && userSteps.length > 0 && userSteps.map((step, index) =>
+                                {userSteps !== undefined && userSteps.length > 0 && userSteps.filter(step => step._links.self.href === this.props.current_step._links.self.href).map((step, index) =>
                                     <Nav variant="pills">
                                         <Nav.Item>
                                             <Nav.Link eventKey={index}>
@@ -80,26 +64,6 @@ class UserStepDetails extends Component{
                                         <Col>
                                             <Tab.Content>
                                                 <Tab.Pane eventKey={index}>
-                                                    {this.getSelectedColumns(step).length > 0 &&
-                                                    <div>
-                                                        <h4>Selected Columns</h4>
-                                                        <div>{this.getSelectedColumns(step)}</div>
-                                                    </div>
-                                                    }
-                                                    {this.getParameterName(step).length > 0 &&
-                                                    <div>
-                                                        <h4>Parameters</h4>
-                                                        <div>
-                                                            {this.getParameterName(step).map(parameter =>
-                                                                <p>{parameter.name} : {parameter.value} </p>)}
-                                                        </div>
-                                                    </div>
-                                                    }
-                                                    <h4>Function Description</h4>
-                                                    <div></div>
-                                                    <h4>Results</h4>
-                                                    <div></div>
-                                                    <div></div>
                                                     {userCodeSteps !== undefined && userCodeSteps[index] &&
                                                     <div>
                                                         <h4>Code</h4>
@@ -129,7 +93,7 @@ class UserStepDetails extends Component{
 
                     </Tab.Container>}
                 </Modal.Body>
-            </Modal>
+            </div>
         )
     }
 }

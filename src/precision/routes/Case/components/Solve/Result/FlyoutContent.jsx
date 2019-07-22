@@ -3,6 +3,7 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import ResultFlyout from "./ResultFlyout";
 import Notes from "../View/Notes/Notes";
+import UserStepDetails from "../Steps/StepDetails/UserStepDetails";
 
 export class FlyoutContent extends Component {
 
@@ -18,17 +19,17 @@ export class FlyoutContent extends Component {
 
     render() {
         const { key } = this.state;
-        console.log(key)
+        const result = !this.props.secondary ? this.props.result1 : this.props.result2;
         return (
             <Tabs id="controlled-tab-example" activeKey={key} onSelect={k => this.setKey(k)}>
                 <Tab eventKey={0} title="Results">
-                   <ResultFlyout results={this.props.is_primary_step_set ? this.props.result1 : this.props.result2}/>
+                   <ResultFlyout results={result}/>
                 </Tab>
                 <Tab eventKey={1} title="Code">
-                    Code
+                    <UserStepDetails current_step={result}/>
                 </Tab>
                 <Tab eventKey={2} title="Notes" >
-                   Notes
+                   <Notes results={result} secondary={this.props.secondary}/>
                 </Tab>
             </Tabs>
         );

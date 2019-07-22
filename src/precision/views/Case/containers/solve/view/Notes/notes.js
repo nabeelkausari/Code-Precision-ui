@@ -1,10 +1,20 @@
 import { connect} from 'react-redux'
-import {closeNotesFlyout, handleSave} from "../../../../../../modules/steps/notes/actions";
+import {closeNotesFlyout, getUserNotes, handleSave} from "../../../../../../modules/steps/notes/actions";
 
-const mapStateToProps = ({notes: { notes_info, fetch_notes_succeeded }}) => ({
-    notes_details: notes_info.noteDetails,
-    fetch_notes_succeeded
-});
+const mapStateToProps = (state, props) => {
+    const secondary = props.secondary;
+    console.log(props)
+    console.log("secondary ",secondary);
+    return{
+        note1: state.notes.notes_output.note1,
+        note2: state.notes.notes_output.note2,
+        is_primary_flyout_open: state.notes.notes_output.is_primary_flyout_open,
+        is_secondary_flyout_open: state.notes.notes_output.is_secondary_flyout_open,
+        is_primary_step_set: state.notes.notes_output.is_primary_step_set,
+        is_secondary_step_set: state.notes.notes_output.is_secondary_step_set,
+        secondary
+    }
+};
 
 
-export const NotesContainer = connect( mapStateToProps, { closeNotesFlyout, handleSave  });
+export const NotesContainer = connect( mapStateToProps, { getUserNotes, closeNotesFlyout, handleSave  });

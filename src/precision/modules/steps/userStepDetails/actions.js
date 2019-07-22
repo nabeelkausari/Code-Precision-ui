@@ -5,7 +5,10 @@ export const fetchShowCodeTabs = () => (dispatch, getState) => {
     dispatch({ type: types.FETCH_USER_STEP_DETAILS_REQUESTED });
     const { cases: {info} } = getState();
     fetchLinkAs(info._links.show_code_tabs)
-        .then(payload => dispatch({ type: types.FETCH_USER_STEP_DETAILS_SUCCEEDED, payload}))
+        .then(payload => {
+            dispatch({ type: types.FETCH_USER_STEP_DETAILS_SUCCEEDED, payload})
+            dispatch(fetchShowCodeSteps())
+        })
         .catch(payload => dispatch({ type: types.FETCH_USER_STEP_DETAILS_FAILED, payload}));
 };
 

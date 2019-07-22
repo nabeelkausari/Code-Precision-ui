@@ -101,8 +101,6 @@ export const setCurrentStep = (payload) => (dispatch, getState) => {
     }
 };
 
-
-
 export const showPrimaryFlyout = () => (dispatch, getState) => {
     const {cases : {results : {is_primary_flyout_set}}} = getState()
     console.log("CURRENT REF : ", is_primary_flyout_set)

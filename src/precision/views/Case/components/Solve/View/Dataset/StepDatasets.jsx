@@ -15,14 +15,18 @@ class StepDataset extends Component{
                 {this.props.csv_info &&
                 <Table striped bordered variant={"dark"}>
                     <thead>
-                    {csv_info.csvData.map(head =>
-                        <th>{head}</th>
-                    )}
+                    <tr>
+                        {csv_info.csvData.map((head, i) =>
+                            <th key={i}>{head}</th>
+                        )}
+                    </tr>
                     </thead>
                     <tbody>
-                    {csv_info.headerRow.map(row =>
-                        row.map(row_name => <td>{row_name}</td>)
-                    )}
+                    <tr>
+                        {csv_info.headerRow.map(row =>
+                            row.map((row_name, i) => <td key={i}>{row_name}</td>)
+                        )}
+                    </tr>
                     </tbody>
                 </Table>
                 }

@@ -49,7 +49,7 @@ class ResultFlyout extends Component {
             <Fragment>
                 {
                     results !== undefined && results.results[0] !== undefined  &&renderResult(results.results[0])
-             }
+                }
             </Fragment>
 
         );

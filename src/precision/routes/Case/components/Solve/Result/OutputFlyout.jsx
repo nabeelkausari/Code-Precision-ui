@@ -66,6 +66,7 @@ class OutputFlyout extends Component {
                             {is_primary_step_set &&
                             <FlyoutContent
                                 result1={this.props.results1}
+                                secondary={false}
                                 is_primary_step_set={is_primary_step_set}/>
                             }
                         </Flyout>
@@ -83,6 +84,7 @@ class OutputFlyout extends Component {
                             >
                                 {is_secondary_step_set &&
                                 <FlyoutContent
+                                    secondary={true}
                                     result2={this.props.results2}
                                     is_secondary_step_set={is_secondary_step_set}/>
                                 }
