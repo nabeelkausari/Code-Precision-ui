@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import {getResultsError, showPrimaryFlyout, hideFlyout} from "../../../../modules/case/actions"
+import {getUserNotes} from "../../../../modules/steps/notes/actions";
 
 function mapStateToProps({ cases: {  results : {results1, results2, is_primary_flyout_open, is_secondary_flyout_open, is_primary_step_set, is_secondary_step_set} } }, ownProps) {
     return {
@@ -12,4 +13,4 @@ function mapStateToProps({ cases: {  results : {results1, results2, is_primary_f
     }
 }
 
-export default connect( mapStateToProps, {getResultsError, showPrimaryFlyout, hideFlyout })
+export default connect( mapStateToProps, {getResultsError, showPrimaryFlyout, hideFlyout, getUserNotes })

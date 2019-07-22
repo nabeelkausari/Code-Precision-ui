@@ -2,9 +2,6 @@ import { connect} from 'react-redux'
 import {closeNotesFlyout, getUserNotes, handleSave} from "../../../../../../modules/steps/notes/actions";
 
 const mapStateToProps = (state, props) => {
-    const secondary = props.secondary;
-    console.log(props)
-    console.log("secondary ",secondary);
     return{
         note1: state.notes.notes_output.note1,
         note2: state.notes.notes_output.note2,
@@ -12,7 +9,6 @@ const mapStateToProps = (state, props) => {
         is_secondary_flyout_open: state.notes.notes_output.is_secondary_flyout_open,
         is_primary_step_set: state.notes.notes_output.is_primary_step_set,
         is_secondary_step_set: state.notes.notes_output.is_secondary_step_set,
-        secondary
     }
 };
 
