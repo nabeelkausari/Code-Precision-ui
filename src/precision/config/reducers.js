@@ -8,6 +8,7 @@ import notesReducer from '../modules/steps/notes/reducers';
 import consoleReducer from '../modules/console/reducer';
 import userStepDetailsReducer from '../modules/steps/userStepDetails/reducer';
 
+import profileReducer from '../modules/profile/reducer';
 
 export default combineReducers({
   auth: authReducer,
@@ -16,5 +17,6 @@ export default combineReducers({
   datasets: datasetReducer,
   console: consoleReducer,
   notes: notesReducer,
-  userStepDetails: userStepDetailsReducer
+  userStepDetails: userStepDetailsReducer,
+  profile: profileReducer
 })

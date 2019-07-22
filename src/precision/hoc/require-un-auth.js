@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 export default ComposedComponent => {
   class UnAuth extends Component {
 
@@ -11,7 +12,7 @@ export default ComposedComponent => {
     }
 
     componentDidMount() {
-      this.checkUnAuth()
+      this.checkUnAuth();
     }
 
     componentDidUpdate() {
