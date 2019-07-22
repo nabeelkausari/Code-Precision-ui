@@ -58,7 +58,7 @@
   top: .1rem;
   width: .4rem;
   height: .8rem;
-  border: solid $color-primary-bg-2;
+  border: solid var(--bg-2);
   border-width: 0 .2rem .2rem 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);

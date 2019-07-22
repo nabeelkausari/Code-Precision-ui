@@ -5,9 +5,9 @@
   padding: 2rem 2rem 1rem 2rem;
   display: flex;
   align-items: center;
-  background-color: $color-primary-bg;
+  background-color: var(--bg-1);
   z-index: 30;
-  color : $color-white;
+  color : var(--text-primary);
 
   .logo{
     width: 80%;
@@ -25,7 +25,7 @@
 
   .scenario-item  {
     font-size: 1.6rem;
-    color: $color-white;
+    color: var(--text-primary);
     font-weight: 300;
 
     margin-left: 1rem;
@@ -33,7 +33,7 @@
 
 
     .reference {
-      color: $color-white;
+      color: var(--text-primary);
       letter-spacing: 0.4px;
       line-height: 2.1rem;
       text-decoration: none;
@@ -42,8 +42,8 @@
     }
 
     .active {
-      border-bottom: .2rem solid $color-secondary;
-      color: $color-secondary;
+      border-bottom: .2rem solid var(--highlight-primary);
+      color: var(--highlight-primary);
       padding: 1rem 1.7rem .5rem 1.7rem;
     }
   }
@@ -57,8 +57,8 @@
   align-items: center;
   padding: 1rem 0rem;
   //margin-left: 2rem ;
-  background-color: $color-primary-bg;
-  color: $color-white;
+  background-color: var(--bg-1);
+  color: var(--text-primary);
   box-shadow: -.4rem 0 2rem rgba($color-black, 1);
   z-index: 50;
 }

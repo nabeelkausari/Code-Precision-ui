@@ -18,12 +18,12 @@
 
     max-height: 40%;
     margin-bottom: .5rem;
-    background-color: $color-primary-bg-2;
+    background-color: var(--bg-2);
   }
 
   &__functions{
     flex: 1;
-    background-color: $color-primary-bg-2;
+    background-color: var(--bg-2);
   }
 
   &__header{
@@ -40,7 +40,7 @@
 
 
   &__header-text{
-    color: $color-grey-light-1;
+    color: var(--text-primary);
   }
 
   &__search-bar{
@@ -62,7 +62,7 @@
 
 
     &--active{
-      color: $color-secondary;
+      color: var(--highlight-primary);
     }
   }
 

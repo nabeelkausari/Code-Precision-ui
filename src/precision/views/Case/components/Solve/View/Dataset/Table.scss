@@ -31,23 +31,23 @@
     //border-left: .2rem solid rgba($color-white, 0.02);
     font-size: 1rem;
     cursor: pointer;
-    background-color: $color-primary-bg-cells;
+    background-color: var(--bg-2);
     color: $color-white;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 .1rem;
-    border-bottom: .1rem solid $color-primary-bg-cells;
+    border-bottom: .1rem solid var(--bg-2);
 
     &:hover{
 
     }
 
     &--active {
-      background-color: $color-primary-bg-2;
-      border: .1px solid $color-primary-bg-2;
-      color: $color-secondary;
-      border-left: .3rem solid $color-secondary;
+      background-color: var(--bg-2);
+      border: .1px solid var(--bg-2);
+      color: var(--highlight-primary);
+      border-left: .3rem solid var(--highlight-primary);
     }
   }
 
@@ -86,7 +86,7 @@
   .rt-tr {
     text-align: left !important;
   }
-  color: $color-grey-light-1;
+  color: var(--text-secondary);
 }
 
 .ReactTable .rt-noData {
@@ -142,7 +142,7 @@
 .ReactTable .rt-thead .rt-th,
 .ReactTable .rt-thead .rt-td {
   padding: .8rem 2rem !important;
-  background-color: $color-primary-bg-2 !important;
+  background-color: var(--bg-2) !important;
   font-size: 1.1rem;
 }
 
@@ -153,7 +153,7 @@
 .ReactTable .rt-tbody .rt-td {
   //border-right: .3rem solid rgba($color-white,0.2) !important;
   margin-right: .1rem;
-  background-color: $color-primary-bg-cells;
+  background-color: var(--bg-2);
   font-size: 1rem;
   padding: .7rem 1rem;
 }

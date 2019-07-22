@@ -6,10 +6,10 @@
   width: 25rem;
   height: calc(100vh - 5.5rem);
   z-index: 29;
-  background-color: $color-primary-bg-3;
+  background-color: var(--bg-3);
   box-shadow: -.4rem 0 2rem rgba($color-black, .4);
   transition: transform .5s ease-out, width .6s .1s;
-  color: $color-grey-light-1;
+  color: var(--text-primary);
 
   &__header{
     padding: 1.5rem 2.5rem 3rem 2.5rem;
@@ -34,7 +34,7 @@
       position: absolute;
       right: 2rem;
       bottom: 2rem;
-      background-color: $color-grey-light-1;
+      background-color: $color-white;
       border-radius: 50%;
       transition: opacity .1s;
       &:hover{
@@ -57,7 +57,7 @@
       bottom: 5rem;
       border-top-left-radius: 5rem;
       border-bottom-left-radius: 5rem;
-      background-color: $color-primary;
+      background-color: var(--bg-1);
       transition: all .2s .8s, left .2s, opacity .2s .8s, width .2s;
       opacity: 1;
 

@@ -114,7 +114,7 @@ class StepList extends Component {
                 <div className={is_steps_open? "steps__toggle-btn--2 steps__toggle-btn--2-hide" : "steps__toggle-btn--2"} onClick={toggleSteps}>
                     <img src={left_arrow_icon} alt="left arrow" className="steps__toggle-icon u-margin-left-small"/>
                 </div>
-                {this.state.open_user_steps && <UserStepDetails show={this.state.open_user_steps} handleClose={this.closeUserStepDetails}/>}
+                {/*{this.state.open_user_steps && <UserStepDetails show={this.state.open_user_steps} handleClose={this.closeUserStepDetails}/>}*/}
             </div>
         );
     }

@@ -1,7 +1,7 @@
 @import "../../../../../../styles/abstracts/variables";
 
 .flyout{
-  background-color: $color-primary-bg-2;
+  background-color: var(--bg-2);
   position: absolute;
   top: 0;
   left: 16rem;
