@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import OutputContainer from "../../../containers/solve/results";
-import {fetchUserCode, fetchUserLearnPython, fetchUserLearnR} from "../../../../../modules/case/actions";
 
 class UserCode extends Component {
 

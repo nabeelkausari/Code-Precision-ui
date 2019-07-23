@@ -51,7 +51,7 @@ class Step extends Component {
 
     render() {
 
-        const {step, onShowResultClick, resetResultsFlyouts, resetNotesFlyout, lastChild, undo_requested } = this.props
+        const {step, onShowResultClick, lastChild, undo_requested } = this.props
         const {is_column_truncated} = this.state;
         const is_step_active = step.active;
         const is_rollback_step = step.is_rollback_step;

@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import ToolBar from "./ToolbarVertical/ToolbarVertical";
 
-// import ToolBar from "./Toolbar/ToolBar";
-
-
 import SubHeader from "./SubHeader/SubHeader";
 import Steps from "./Steps/StepList";
 import Dataset from "./View/Dataset/Dataset";
@@ -13,7 +10,6 @@ import {SolveContainer} from '../../containers/solve/solve'
 import Console from "./View/Console/Console";
 import Process from "./View/Process/Process";
 import Dashboard from "./View/Dashboard/Dashboard";
-import ResultsFlyout from "./Result/ResultFlyout";
 import Notes from "./View/Notes/Notes";
 import Loader from "../../../../components/Loader";
 import OutputFlyout from "./Result/OutputFlyout";
