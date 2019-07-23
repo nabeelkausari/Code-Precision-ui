@@ -1,11 +1,15 @@
 import React, {Component, Fragment} from 'react';
 import {Nav, Navbar} from "react-bootstrap";
 import { NavLink } from 'react-router-dom'
+
+import ScenarioHeaderContainer from '../../../containers/solve/scenarioHeader'
+
 import {Logo} from "../../../../../images";
 import './Header.scss';
 
 class ScenarioHeader extends Component {
     render() {
+        const {current_case, profile} = this.props;
         return (
             <Fragment>
                 <div style={{display : 'flex'}}>
@@ -17,9 +21,13 @@ class ScenarioHeader extends Component {
                             <Nav.Item bsPrefix="scenario-item">
                                 <NavLink exact to="/cases/3/4" className='reference' activeClassName="active">Reference</NavLink>
                             </Nav.Item>
-                            <Nav.Item bsPrefix="scenario-item">
-                                <NavLink to="/cases/3/5/" className='scenarios' activeClassName="active">Scenario 1</NavLink>
-                            </Nav.Item>
+                            {
+                                current_case.scenarios && current_case.scenarios.map(scenario =>(
+                                    <Nav.Item bsPrefix="scenario-item" key={scenario.id}>
+                                        <NavLink to={`/cases/${current_case.id}/${scenario.id}`} className='scenarios' activeClassName="active">{scenario.name}</NavLink>
+                                    </Nav.Item>
+                                ))
+                            }
                         </Nav>
                         <h4 className="case-title">Case: Lowering Attrition Rate</h4>
 
@@ -29,7 +37,7 @@ class ScenarioHeader extends Component {
                     </Navbar>
                     <div className="user-details">
                         <span className="user-details__icon">NK</span>
-                        Nabeel Kausari
+                        {profile.name}
                     </div>
                 </div>
                 {this.props.children}
@@ -38,4 +46,4 @@ class ScenarioHeader extends Component {
     }
 }
 
-export default ScenarioHeader;
+export default ScenarioHeaderContainer(ScenarioHeader);

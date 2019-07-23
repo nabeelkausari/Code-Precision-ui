@@ -108,7 +108,7 @@ class CreatePreloadDatasetModal extends Component{
     };
 
     render() {
-        const {categories, datasets, sub_categories, titles} = this.state;
+        const {categories, sub_categories, titles} = this.state;
         return(
             <div className="upload-container">
                 <div style={{marginBottom: '20px', display: 'flex', flexFlow: 'column'}}>
@@ -125,7 +125,7 @@ class CreatePreloadDatasetModal extends Component{
                 </div>
                 <div style={{marginBottom: '20px', display: 'flex', flexFlow: 'column'}}>
                     <label>Dataset </label>
-                    <select style={{marginRight: '25px'}} ref={ref => (this.datasetInputSelect = ref)} onChange={ev => this.handleTitleChange(ev.target.value)} style={{width: '300px'}}>
+                    <select style={{marginRight: '25px',width: '300px'}} ref={ref => (this.datasetInputSelect = ref)} onChange={ev => this.handleTitleChange(ev.target.value)} >
                         {titles && titles.map((title, i) => <option key={i}>{title}</option>)}
                     </select>
                 </div>

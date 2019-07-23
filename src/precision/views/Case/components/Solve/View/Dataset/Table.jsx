@@ -22,7 +22,7 @@ class Table extends Component {
             this.props.selectTable(this.props.data_sets[0].ref)
         }
         if(this.props.dataset_created_succeeded && this.props.dataset_created_succeeded !== prevProps.dataset_created_succeeded){
-            this.props.getCase();
+            this.props.getScenarioDetails();
             this.closeCreateDataset()
         }
     }
@@ -40,7 +40,7 @@ class Table extends Component {
     };
 
     render() {
-        const {data_sets, fetch_steps_succeeded, dataset_loading, selected_table_reference, is_steps_open} = this.props;
+        const {data_sets, fetch_steps_succeeded,selected_table_reference, is_steps_open} = this.props;
         const {handleCreateDataset} = this.state;
         return (
             <div>

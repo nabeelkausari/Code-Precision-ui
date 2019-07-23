@@ -1,0 +1,99 @@
+//case header
+.bg-case-list-header {
+  padding: 1rem 2rem;
+  background-color: #FFFFFF;
+  box-shadow: 1.3rem .5rem 1.6rem -1.1rem rgba(0,0,0,0.26);
+  z-index: 30;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .active {
+    color: #0068E0 !important;
+    border-bottom: .4rem solid currentColor;
+
+    padding: 1.7rem !important;
+  }
+  .logo{
+    width: 80%;
+    height: 40%;
+  }
+
+  .case-list-header__item {
+    font-size: 1.4rem;
+
+    &-link {
+      color: #9B9B9B;
+      letter-spacing: 0.4px;
+      line-height: 2.1rem;
+      text-decoration: none;
+      padding: 1.5rem;
+      font-family: inherit;
+    }
+  }
+
+  .user-profile {
+    position: relative;
+      .dropdown-toggle,
+      .dropdown-toggle:active,
+      .dropdown-toggle:focus{
+        display: flex;
+        align-items: center;
+        color: blue;
+        background: #ffffff !important;
+        border: none;
+        box-shadow: none;
+
+       p{
+          margin: 0;
+        }
+      }
+
+    &__logo {
+      width: 3rem;
+      height:3rem;
+      border-radius: 50%;
+    }
+
+    .dropdown-menu {
+      top: 130%;
+      left: -12rem;
+
+      .dropdown-item{
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+.case-container{
+  padding: 0 10rem;
+}
+
+
+//case card
+.case-card {
+  width: 39rem;
+  height: 20rem;
+  border: 1px solid #808080;
+  border-radius: 1rem;
+  border-bottom-left-radius: 3rem;
+  margin: 1rem ;
+  padding: 1rem;
+  &__title {
+  }
+}
+
+.case-card-create {
+  width: 39rem;
+  height: 20rem;
+  border: 1px dotted #808080;
+  border-radius: 1rem;
+  border-bottom-left-radius: 3rem;
+  margin: 1rem ;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+

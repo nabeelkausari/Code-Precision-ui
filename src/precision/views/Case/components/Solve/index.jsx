@@ -25,7 +25,7 @@ class CaseSolve extends Component {
     };
 
     componentDidMount() {
-        this.props.getCase();
+        this.props.getScenarioDetails();
         this.props.getCategoryAndFunctions()
     }
 
@@ -33,6 +33,11 @@ class CaseSolve extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         const {fetch_case_succeeded} = this.props;
+
+        const {case_id, scenario_id} = this.props.match.params;
+        if(Object.keys(this.props.current_case.info).length === 0){
+            this.props.getCaseAndScenario(case_id, scenario_id)
+        }
 
         if (fetch_case_succeeded && prevProps.fetch_case_succeeded !== fetch_case_succeeded) {
             this.props.getSteps()

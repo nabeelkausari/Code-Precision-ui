@@ -5,7 +5,6 @@ import Tooltip from '../../../../../components/Tooltip/Tooltip'
 import './StepList.scss'
 import {StepContainer} from "../../../containers/solve/steps/step";
 import {function_icon, column_icon} from '../../../../../images/index'
-import {pathOr} from "ramda";
 
 
 class Step extends Component {
@@ -52,11 +51,10 @@ class Step extends Component {
 
     render() {
 
-        const {step, onShowResultClick, resetResultsFlyouts, resetNotesFlyout, lastChild, undo_requested } = this.props
+        const {step, lastChild, undo_requested } = this.props
         const {is_column_truncated} = this.state;
         const is_step_active = step.active;
         const is_rollback_step = step.is_rollback_step;
-        const has_rollback_link = pathOr(undefined, ['_links', 'rollback'], step) !== undefined;
         return (
             <div>
             {is_step_active ?

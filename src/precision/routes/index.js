@@ -7,7 +7,6 @@ import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import store from "../config/store"
 import MainRoutes from './main';
-import keydown from 'react-keydown';
 
 import '../styles/main.scss'
 

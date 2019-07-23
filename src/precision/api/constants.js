@@ -14,3 +14,4 @@ export const DEFAULT_REQUEST_INIT = {
 };
 export const BASE_URI = process.env.REACT_APP_API_GATEWAY_URL + '/';
 export const API_GATEWAY_URI = process.env.REACT_APP_API_GATEWAY_URL;
+// export const API_GATEWAY_URI = "http://192.168.51.181:8081";

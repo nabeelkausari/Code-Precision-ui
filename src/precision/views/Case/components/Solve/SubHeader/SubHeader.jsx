@@ -2,7 +2,6 @@ import React, {Component, Fragment} from 'react';
 import {Nav, Navbar} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 import './SubHeader.scss';
-import {dataset_icon} from "../../../../../images/index"
 
 class SubHeader extends Component {
     render() {
