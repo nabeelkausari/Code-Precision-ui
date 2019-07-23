@@ -22,7 +22,7 @@ class Table extends Component {
             this.props.selectTable(this.props.data_sets[0].ref)
         }
         if(this.props.dataset_created_succeeded && this.props.dataset_created_succeeded !== prevProps.dataset_created_succeeded){
-            this.props.getCase();
+            this.props.getScenarioDetails();
             this.closeCreateDataset()
         }
     }

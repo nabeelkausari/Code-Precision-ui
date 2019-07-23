@@ -27,7 +27,7 @@ class CaseListHeader extends Component {
                             <p>{profile.name}</p>
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                            <Dropdown.Item href="#/action-1">{profile.email_id}<br/><p>"Account"</p></Dropdown.Item>
+                            <Dropdown.Item href="#/action-1">{profile.email_id}</Dropdown.Item>
                             <Dropdown.Item onClick={this.props.logout}>Log out</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>

@@ -6,7 +6,7 @@ class Console extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(this.props.fetch_case_succeeded === null){
-            this.props.getCase()
+            this.props.getScenarioDetails()
         }
         if(this.props.fetch_case_succeeded && this.props.fetch_case_succeeded !== prevProps.fetch_case_succeeded){
             this.props.fetchConsole()

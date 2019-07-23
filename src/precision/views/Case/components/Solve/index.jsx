@@ -25,7 +25,7 @@ class CaseSolve extends Component {
     };
 
     componentDidMount() {
-        this.props.getCase();
+        this.props.getScenarioDetails();
         this.props.getCategoryAndFunctions()
     }
 
