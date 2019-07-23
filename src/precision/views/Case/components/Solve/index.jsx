@@ -50,7 +50,8 @@ class CaseSolve extends Component {
             case 'dataset': return <Dataset is_steps_open={this.state.is_steps_open}/>;
             case 'console': return <Console/>;
             case 'process': return <Process/>;
-            default: return  <Dashboard />
+            case 'dashboard': return  <Dashboard />;
+            default: this.props.history.push('/cases')
 
         }
     };
@@ -74,7 +75,7 @@ class CaseSolve extends Component {
                 <Loader loading={is_fetching}/>
                 <div className="scenario">
                         <div className="scenario__container">
-                            <SubHeader/>
+                            <SubHeader {...this.props}/>
                             <div className="scenario__main-content">
                                 {!is_console && <ToolBar/>}
                                 {this.renderCaseView()}

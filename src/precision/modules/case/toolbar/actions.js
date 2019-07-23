@@ -12,7 +12,7 @@ export const getCategoryAndFunctions = () => (dispatch, getState) => {
     functions.categories()
         .then(payload => {
             dispatch({ type: types.FETCH_FUNCTION_CATEGORIES_SUCCEEDED, payload });
-            return dispatch(getFunctions())
+            dispatch(getFunctions())
         })
         .catch(payload => dispatch({ type: types.FETCH_FUNCTION_CATEGORIES_FAILED, payload }))
 };
@@ -173,7 +173,6 @@ export const setSelectedFunctionParameters = (name, value) => (dispatch, getStat
             const validations = function_params[0].validations ? function_params[0].validations : [];
             const validationFailed = validations.some(validation => {
                 if (!validateParams(value, validation)) {
-                    console.log('Validation error' , validation.description);
                     return true;
                 }
                 return false;

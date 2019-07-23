@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ProfileContainer from '../views/Profile/containers/profile'
+import {getUserProfileLink} from "../utils/storage";
+import {doLogout} from "../utils/doLogout";
 
 export default ComposedComponent => {
   class Authentication extends Component {
@@ -9,8 +11,9 @@ export default ComposedComponent => {
 
     checkAuth = () => {
       let token = localStorage.getItem('__auth');
-      if (!token) {
-        this.props.history.push('/auth/login')
+      let profile_link = getUserProfileLink();
+      if (!token || !profile_link) {
+        doLogout();
       }
     };
 

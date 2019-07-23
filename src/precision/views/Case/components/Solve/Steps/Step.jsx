@@ -32,8 +32,7 @@ class Step extends Component {
             for (let key in selections) {
                 selected_column_string.push(selections[key].map(column => (" " + column.key)));
             }
-            // debugger
-            console.log("SELCTED COLUMNS : ", selected_column_string.join(","))
+
             return selected_column_string.join(",");
         } else {
             return ""
