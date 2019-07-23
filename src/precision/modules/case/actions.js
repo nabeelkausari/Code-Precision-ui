@@ -1,3 +1,5 @@
+import get from 'lodash/get'
+
 import { history } from "../../routes";
 import {fetchLink, fetchLinkAs} from "../../api/helpers";
 import * as types from './types'
@@ -83,43 +85,76 @@ export const getResultsError = (payload) => (dispatch, getState) => {
         })
 };
 
+
 export const setCurrentStep = (payload) => (dispatch, getState) => {
-    const {cases : {results : { is_primary_step_set, is_primary_flyout_open, results1 }} } = getState();
-    if(is_primary_flyout_open && results1 && results1._links.self.href !== payload._links.self.href)
-        {
-            if(is_primary_step_set)
-            {
-                dispatch({type : types.SET_PREVIOUS_STEP});
-                dispatch({type : types.OPEN_FLYOUT_SECONDARY})
-            }
-            dispatch({type : types.SET_CURRENT_STEP, payload});
-            dispatch({type : types.OPEN_FLYOUT_PRIMARY})
-        }
-    else if(results1 === undefined || !is_primary_flyout_open){
-        dispatch({type : types.SET_CURRENT_STEP, payload});
-        dispatch({type : types.OPEN_FLYOUT_PRIMARY})
-        }
+
+    const {cases : {flyout : {primary}}} = getState();
+
+    const is_primary_open = primary.is_open && Object.keys(primary.step).length !== 0;
+    const is_not_duplicate_step = get(primary, 'step._links.self.href') !== get(payload, '_links.self.href');
+
+    if(is_primary_open && is_not_duplicate_step){
+        dispatch({type : types.SET_PREVIOUS_STEP})
+        // dispatch({type : types.OPEN_FLYOUT_SECONDARY})
+    }
+
+    dispatch({type : types.SET_CURRENT_STEP, payload})
+    // dispatch(fetchUserCode(payload));
+    // dispatch(fetchUserLearnPython(payload));
+    // dispatch(fetchUserLearnR(payload));
+    // dispatch({type : types.OPEN_FLYOUT_PRIMARY})
+
     };
 
-export const showPrimaryFlyout = () => (dispatch, getState) => {
-    const {cases : {results : {is_primary_flyout_set}}} = getState()
-    console.log("CURRENT REF : ", is_primary_flyout_set)
-    if(is_primary_flyout_set || is_primary_flyout_set === undefined){
-        dispatch(types.OPEN_FLYOUT_SECONDARY)
-    }
-    else{
-        dispatch({type : types.OPEN_FLYOUT_PRIMARY})
-    }
-};
+// export const showPrimaryFlyout = () => (dispatch, getState) => {
+//     const {cases : {flyout_primary : {is_open}}} = getState();
+//     if(is_primary_flyout_set || is_primary_flyout_set === undefined){
+//         dispatch(types.OPEN_FLYOUT_SECONDARY)
+//     }
+//     else{
+//         dispatch({type : types.OPEN_FLYOUT_PRIMARY})
+//     }
+// };
+
+
+
+// export const setCurrentStep = (payload) => (dispatch, getState) => {
+//     const {cases : {results : { is_primary_step_set, is_primary_flyout_open, primary }} } = getState();
+//     if(is_primary_flyout_open && primary && primary._links.self.href !== payload._links.self.href)
+//         {
+//             if(is_primary_step_set)
+//             {
+//                 dispatch({type : types.SET_PREVIOUS_STEP});
+//                 dispatch({type : types.OPEN_FLYOUT_SECONDARY})
+//             }
+//             dispatch({type : types.SET_CURRENT_STEP, payload});
+//             dispatch({type : types.OPEN_FLYOUT_PRIMARY})
+//         }
+//     else if(primary === undefined || !is_primary_flyout_open){
+//         dispatch({type : types.SET_CURRENT_STEP, payload});
+//         dispatch({type : types.OPEN_FLYOUT_PRIMARY})
+//         }
+//     };
+
+// export const showPrimaryFlyout = () => (dispatch, getState) => {
+//     const {cases : {results : {is_primary_flyout_set}}} = getState()
+//     console.log("CURRENT REF : ", is_primary_flyout_set)
+//     if(is_primary_flyout_set || is_primary_flyout_set === undefined){
+//         dispatch(types.OPEN_FLYOUT_SECONDARY)
+//     }
+//     else{
+//         dispatch({type : types.OPEN_FLYOUT_PRIMARY})
+//     }
+// };
 
 export const hideFlyout = (close_secondary) => (dispatch, getState) => {
-    const {cases : {results : { is_secondary_flyout_open, results2 }} } = getState();
-    console.log("CLOSE SECONDARY : ", close_secondary, results2)
+    const {cases : {flyout : {secondary}}} = getState();
+    console.log("CLOSE SECONDARY : ", close_secondary, secondary)
     if(close_secondary){
         dispatch({type : types.CLOSE_FLYOUT_SECONDARY})
     }
-    else if(is_secondary_flyout_open && !close_secondary){
-        dispatch({type : types.SET_CURRENT_STEP, payload : results2})
+    else if(secondary.is_open && !close_secondary){
+        dispatch(setCurrentStep(secondary.step))
         dispatch({type : types.CLOSE_FLYOUT_SECONDARY})
     }
     else{
@@ -127,10 +162,32 @@ export const hideFlyout = (close_secondary) => (dispatch, getState) => {
     }
 };
 
-export const resetResultsFlyouts = () => (dispatch, getState) => {
-    dispatch({type : types.CLOSE_FLYOUT_PRIMARY})
-    dispatch({type : types.CLOSE_FLYOUT_SECONDARY})
+export const fetchUserCode = (step) => (dispatch) => {
+    dispatch({ type: types.FETCH_USER_CODE_REQUESTED});
+    fetchLinkAs({href: step._links.get_step_user_code.href, method: 'GET', type: 'application/json'})
+        .then(payload => dispatch({ type: types.FETCH_USER_CODE_SUCCEEDED, payload }))
+        .catch(payload => dispatch({ type: types.FETCH_USER_CODE_FAILED, payload}))
 };
+
+export const fetchUserLearnR = (step) => (dispatch) => {
+    dispatch({ type: types.FETCH_USER_R_CODE_REQUESTED});
+    fetchLinkAs({href: step._links.get_step_user_learn_r_code.href, method: 'GET', type: 'application/json'})
+        .then(payload => dispatch({ type: types.FETCH_USER_R_CODE_SUCCEEDED, payload}))
+        .catch(payload => dispatch({ type: types.FETCH_USER_R_CODE_FAILED, payload}))
+};
+
+export const fetchUserLearnPython = (step) => (dispatch) => {
+    dispatch({ type: types.FETCH_USER_PYTHON_CODE_REQUESTED});
+    fetchLinkAs({href: step._links.get_step_user_learn_python_code.href, method: 'GET', type: 'application/json'})
+        .then(payload => dispatch({ type: types.FETCH_USER_PYTHON_CODE_SUCCEEDED, payload}))
+        .catch(payload => dispatch({ type: types.FETCH_USER_PYTHON_CODE_FAILED, payload}))
+};
+
+
+// export const resetResultsFlyouts = () => (dispatch, getState) => {
+//     dispatch({type : types.CLOSE_FLYOUT_PRIMARY})
+//     dispatch({type : types.CLOSE_FLYOUT_SECONDARY})
+// };
 
 export const undo = (link) => (dispatch, getState) => {
     const { cases: { info } } = getState();
@@ -182,12 +239,16 @@ export const rollback = (link) => (dispatch) => {
         .catch((payload)=> {dispatch({ type: types.ROLLBACK_FAILED, payload })})
 };
 
+
+
+
 export const fetchUserCode = (step, key) => (dispatch) => {
     dispatch({ type: types.FETCH_USER_CODE_REQUESTED});
     fetchLinkAs({href: step._links.get_step_user_code.href, method: 'GET', type: 'application/json'})
         .then(payload => dispatch({ type: types.FETCH_USER_CODE_SUCCEEDED, payload: {...payload, key}}))
         .catch(payload => dispatch({ type: types.FETCH_USER_CODE_FAILED, payload}))
 };
+
 export const getCases = () => (dispatch, getState) =>{
     const {profile:{info:{_links}}} = getState();
     const get_cases_link = {
@@ -232,13 +293,11 @@ export const createBusinessProblem = (params) => (dispatch, getState) => {
         .catch(error => dispatch({type:types.CREATE_PROBLEM_FAILED, error}))
 };
 
-export const fetchUserLearnR = (step, key) => (dispatch) => {
-    dispatch({ type: types.FETCH_USER_R_CODE_REQUESTED});
-    fetchLinkAs({href: step._links.get_step_user_learn_r_code.href, method: 'GET', type: 'application/json'})
-        .then(payload => dispatch({ type: types.FETCH_USER_R_CODE_SUCCEEDED, payload: {...payload, key}}))
-        .catch(payload => dispatch({ type: types.FETCH_USER_R_CODE_FAILED, payload}))
-};
 
+
+// export const setCurrentFlyoutTab = (key) => (dispatch) => {
+//     dispatch({type : types.SET_CURRENT_FLYOUT_TAB, payload : key})
+// }
 export const fetchUserLearnPython = (step, key) => (dispatch) => {
     dispatch({ type: types.FETCH_USER_PYTHON_CODE_REQUESTED});
     fetchLinkAs({href: step._links.get_step_user_learn_python_code.href, method: 'GET', type: 'application/json'})

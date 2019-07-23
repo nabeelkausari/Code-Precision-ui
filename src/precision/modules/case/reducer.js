@@ -7,13 +7,59 @@ const initialState = {
     current_scenario:{}
   },
   data_sets: [],
-  results : {
-    is_primary_flyout_open : false,
-    is_secondary_flyout_open : false
-  },
-  code: {
-    primary: {},
-    secondary: {}
+
+  flyout : {
+    primary : {
+      step : {},
+      code : {
+
+        ath_code : {},
+        python_code : {},
+        r_code : {},
+
+        fetch_ath_code_loading : null,
+        fetch_ath_code_succeeded : null,
+        fetch_ath_code_error : null,
+
+        fetch_python_code_loading : null,
+        fetch_python_code_succeeded : null,
+        fetch_python_code_error : null,
+
+        fetch_r_code_loading : null,
+        fetch_r_code_succeeded : null,
+        fetch_r_code_error : null,
+
+      },
+      notes : {},
+      is_open : false,
+      is_full_screen : false,
+      is_step_set : false
+    },
+
+    secondary : {
+      step : {},
+      code : {
+        ath_code : {},
+        python_code : {},
+        r_code : {},
+
+        fetch_ath_code_loading : null,
+        fetch_ath_code_succeeded : null,
+        fetch_ath_code_error : null,
+
+        fetch_python_code_loading : null,
+        fetch_python_code_succeeded : null,
+        fetch_python_code_error : null,
+
+        fetch_r_code_loading : null,
+        fetch_r_code_succeeded : null,
+        fetch_r_code_error : null,
+      },
+      notes : {},
+      is_open : false,
+      is_full_screen : false,
+      is_step_set : false
+    }
   },
   list:{
     items:[],
@@ -85,7 +131,7 @@ export default (state = initialState, { type, payload }) => {
         case_loading: false,
         fetch_case_succeeded: true,
         info: payload
-    };
+      };
 
     case types.FETCH_CASE_FAILED:
       return { ...state, case_loading: false, fetch_case_succeeded: false, fetch_case_error: payload };
@@ -162,65 +208,280 @@ export default (state = initialState, { type, payload }) => {
         data_sets: [...state.data_sets, ...payload],
       };
 
-    case types.SET_CURRENT_STEP :
-      return {
-        ...state, results: {
-          ...state.results,
-          is_primary_step_set: true,
-          results1: payload
-        }
-      };
 
-
-    case types.SET_PREVIOUS_STEP :
+    case types.SET_CURRENT_STEP:
       return {
         ...state,
-        results: {
-          ...state.results,
-          results2: state.results.results1,
-          code : {secondary: state.code.primary},
-          is_secondary_step_set: true
+        flyout : {
+          ...state.flyout,
+          primary : {
+            ...state.flyout.primary,
+            step : payload,
+            is_step_set : true,
+            is_open: true
+          }
+        }
+      }
+
+    case types.SET_PREVIOUS_STEP:
+      return {
+        ...state,
+        flyout : {
+          ...state.flyout,
+          secondary : {
+            step : state.flyout.primary.step,
+            code : state.flyout.primary.code,
+            notes : state.flyout.primary.notes,
+            is_step_set : true,
+            is_open : true
+          }
         }
       }
 
     case types.OPEN_FLYOUT_PRIMARY :
-      return {
-        ...state,
-        results: {
-          ...state.results,
-          is_primary_flyout_open: true
+        return {
+          ...state,
+          flyout : {
+            ...state.flyout,
+            primary : {
+              ...state.flyout.primary,
+              is_open : true
+            }
+          }
         }
-      }
 
     case types.CLOSE_FLYOUT_PRIMARY :
-      return {
-        ...state,
-        results: {
-          ...state.results,
-          is_primary_flyout_open: false,
-          results1: undefined,
-          is_primary_step_set: false
+        return {
+          ...state,
+          flyout : {
+            ...state.flyout,
+            primary : {
+              ...state.flyout.primary,
+              is_open : false,
+              step : {},
+              code : {},
+              notes : {}
+            }
+          }
         }
-      }
+
 
     case types.OPEN_FLYOUT_SECONDARY :
       return {
         ...state,
-        results: {
-          ...state.results,
-          is_secondary_flyout_open: true
+        flyout : {
+          ...state.flyout,
+          secondary : {
+            ...state.flyout.secondary,
+            is_open : true
+          }
         }
       }
 
-    case types.CLOSE_FLYOUT_SECONDARY :
+      case types.CLOSE_FLYOUT_SECONDARY :
+        return {
+          ...state,
+          flyout : {
+            ...state.flyout,
+            secondary : {
+              ...state.flyout.secondary,
+              is_open : false,
+              step : {},
+              code : {},
+              notes : {}
+            }
+          }
+        }
+
+
+    case types.FETCH_USER_CODE_REQUESTED: {
       return {
-        ...state, results: {
-          ...state.results,
-          is_secondary_flyout_open: false,
-          results2: undefined,
-          is_secondary_step_set: false
+        ...state,
+        flyout: {
+          ...state.flyout,
+          primary: {
+            ...state.flyout.primary,
+            code: {
+              ...state.flyout.primary.code,
+              fetch_ath_code_loading: true,
+              fetch_ath_code_succeeded: null,
+              fetch_ath_code_error: null
+            }
+          }
         }
       }
+    }
+
+    case types.FETCH_USER_CODE_SUCCEEDED: {
+
+      return {
+        ...state,
+        flyout : {
+          ...state.flyout,
+          primary : {
+            ...state.flyout.primary,
+            code : {
+              ...state.flyout.primary.code,
+              fetch_ath_code_loading : false,
+              fetch_ath_code_succeeded : true,
+              fetch_ath_code_error : false,
+              ath_code : payload
+
+            }
+          }
+        }
+      }
+    }
+
+    case types.FETCH_USER_CODE_FAILED: {
+      return {
+        ...state,
+        flyout: {
+          ...state.flyout,
+          primary: {
+            ...state.flyout.primary,
+            code: {
+              ...state.flyout.primary.code,
+              fetch_ath_code_loading: false,
+              fetch_ath_code_succeeded: false,
+              fetch_ath_code_error: true,
+              ath_code : {
+                error : payload
+              }
+            }
+          }
+        }
+      }
+    }
+
+
+
+    case types.FETCH_USER_R_CODE_REQUESTED: {
+      return {
+        ...state,
+        flyout: {
+          ...state.flyout,
+          primary: {
+            ...state.flyout.primary,
+            code: {
+              ...state.flyout.primary.code,
+              fetch_r_code_loading: true,
+              fetch_r_code_succeeded: null,
+              fetch_r_code_error: null
+            }
+          }
+        }
+      }
+    }
+
+    case types.FETCH_USER_R_CODE_SUCCEEDED: {
+      return {
+        ...state,
+        flyout: {
+          ...state.flyout,
+          primary: {
+            ...state.flyout.primary,
+            code: {
+              ...state.flyout.primary.code,
+              fetch_r_code_loading: false,
+              fetch_r_code_succeeded: true,
+              fetch_r_code_error: false,
+              r_code : payload
+            }
+          }
+        }
+      }
+    }
+
+    case types.FETCH_USER_R_CODE_FAILED: {
+      return {
+        ...state,
+        flyout: {
+          ...state.flyout,
+          primary: {
+            ...state.flyout.primary,
+            code: {
+              ...state.flyout.primary.code,
+              fetch_r_code_loading: false,
+              fetch_r_code_succeeded: false,
+              fetch_r_code_error: true,
+              r_code : {
+                error : payload
+              }
+            }
+          }
+        }
+      }
+    }
+
+    case types.FETCH_USER_PYTHON_CODE_REQUESTED: {
+      return {
+        ...state,
+        flyout: {
+          ...state.flyout,
+          primary: {
+            ...state.flyout.primary,
+            code: {
+              ...state.flyout.primary.code,
+              fetch_python_code_loading: true,
+              fetch_python_code_succeeded: null,
+              fetch_python_code_error: null
+            }
+          }
+        }
+      }
+    }
+
+    case types.FETCH_USER_PYTHON_CODE_SUCCEEDED: {
+      return {
+        ...state,
+        flyout: {
+          ...state.flyout,
+          primary: {
+            ...state.flyout.primary,
+            code: {
+              ...state.flyout.primary.code,
+              fetch_python_code_loading: false,
+              fetch_python_code_succeeded: true,
+              fetch_python_code_error: false,
+              python_code : payload
+            }
+          }
+        }
+      }
+    }
+
+    case types.FETCH_USER_PYTHON_CODE_FAILED: {
+      return {
+        ...state,
+        flyout: {
+          ...state.flyout,
+          primary: {
+            ...state.flyout.primary,
+            code: {
+              ...state.flyout.primary.code,
+              fetch_python_code_loading: false,
+              fetch_python_code_succeeded: false,
+              fetch_python_code_error: true,
+              python_code : {
+                error : payload
+              }
+            }
+          }
+        }
+      }
+    }
+      //
+      // case types.SET_CURRENT_FLYOUT_TAB: {
+      //   return {
+      //     ...state,
+      //     current_flyout_tab : payload
+      //   }
+      // }
+
+
+
+
 
 
     case types.UNDO_REQUESTED : {
@@ -475,33 +736,8 @@ export default (state = initialState, { type, payload }) => {
       }
     }
 
-    case types.FETCH_USER_PYTHON_CODE_SUCCEEDED: {
-      return {
-        ...state,
-        fetch_user_python_code_loading: false,
-        fetch_user_python_code_succeeded: true,
-        fetch_user_python_code_error: false,
-        code: {
-          ...state.code,
-          [payload.key]: {
-            ...state.code[payload.key],
-            'user_python_code': payload
-          }
-        }
-      }
-    }
-
-    case types.FETCH_USER_PYTHON_CODE_FAILED: {
-      return {
-        ...state,
-        fetch_user_python_code_loading: false,
-        fetch_user_python_code_succeeded: false,
-        fetch_user_python_code_error: true,
-        user_python_code_error: payload
-      }
-    }
 
     default:
       return state;
+    }
   }
-}

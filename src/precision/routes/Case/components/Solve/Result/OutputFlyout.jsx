@@ -2,37 +2,68 @@ import React, {Component, Fragment} from 'react';
 import Flyout from "../../../../../components/Flyout/Flyout";
 import OutputContainer from '../../../containers/solve/results';
 import {FlyoutContent} from "./FlyoutContent";
-import {fetchUserCode, fetchUserLearnPython, fetchUserLearnR} from "../../../../../modules/case/actions";
+import {
+    fetchUserCode,
+    fetchUserLearnPython,
+    fetchUserLearnR,
+    setCurrentFlyoutTab
+} from "../../../../../modules/case/actions";
 
 class OutputFlyout extends Component {
     render() {
-        const {secondary, results1, results2, is_primary_step_set, is_secondary_step_set,  hideFlyout, note1, note2, code_primary, code_secondary} = this.props;
-        console.log("PRIMARY STEP : ", is_primary_step_set);
+
+        const {secondary, is_primary_step_set, is_secondary_step_set,
+               hideFlyout, note1, note2, results_primary, results_secondary,
+                code_primary, code_secondary, fetchUserCode, fetchUserLearnR, fetchUserLearnPython,
+                setCurrentFlyoutTab, current_flyout_tab} = this.props;
         return (
             <Fragment>
+
                 <Flyout
                     require_pin = {true}
                     require_download = {true} require_full_screen ={true}
-                    sequence_no={results1 && !secondary? results1.sequence_number : results2 && is_secondary_step_set && results2.sequence_number}
-                    title={results1 && !secondary? results1.operation_name : results2 && is_secondary_step_set && results2.operation_name }
+
+                    sequence_no={results_primary &&
+                    !secondary?
+                        results_primary.sequence_number
+                        :
+                        results_secondary && is_secondary_step_set && results_secondary.sequence_number
+                    }
+
+                    title={results_primary &&
+                    !secondary?
+                        results_primary.operation_name
+                        :
+                        results_secondary && is_secondary_step_set && results_secondary.operation_name
+                    }
+
                     secondary = {secondary}
                     hideFlyout = {hideFlyout}
                 >
-                <FlyoutContent
-                    secondary={secondary}
-                    is_primary_step_set={is_primary_step_set}
-                    result2={results2}
-                    result1={results1}
-                    is_secondary_step_set={is_secondary_step_set}
-                    getUserNotes={this.props.getUserNotes}
-                    userCode={this.props.fetchUserCode}
-                    userRCode={this.props.fetchUserLearnR}
-                    userPythonCode={this.props.fetchUserLearnPython}
-                    note1={note1}
-                    note2={note2}
-                    code_primary = {code_primary}
-                    code_secondary = {code_secondary}
-                />
+
+                    <FlyoutContent
+                        secondary={secondary}
+
+                        results_primary={results_primary}
+                        results_secondary={results_secondary}
+
+                        code_primary = {code_primary}
+                        code_secondary = {code_secondary}
+
+                        note1={note1}
+                        note2={note2}
+
+                        is_primary_step_set={is_primary_step_set}
+                        is_secondary_step_set={is_secondary_step_set}
+
+                        fetchUserCode = {fetchUserCode}
+                        fetchUserLearnR = {fetchUserLearnR}
+                        fetchUserLearnPython = {fetchUserLearnPython}
+
+                        setCurrentFlyoutTab={setCurrentFlyoutTab}
+                        current_flyout_tab= {current_flyout_tab}
+                        />
+
                 </Flyout>
             </Fragment>
 

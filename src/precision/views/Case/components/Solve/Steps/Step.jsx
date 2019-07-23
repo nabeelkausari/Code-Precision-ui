@@ -105,8 +105,8 @@ class Step extends Component {
 
                     </div>
                     <div className="step__actions-container">
-                        <button className="step__action btn-link" onClick={() => {resetNotesFlyout();onShowResultClick(this.props.step)}}>Result</button>
-                        <button className="step__action btn-link" onClick={() => {resetResultsFlyouts(); this.props.getUserNotes(step)}}>Notes</button>
+                        <button className="step__action btn-link" onClick={() => {onShowResultClick(this.props.step)}}>Result</button>
+                        <button className="step__action btn-link" onClick={() => {this.props.getUserNotes(step)}}>Notes</button>
                         {has_rollback_link && <button className="step__action btn-link" onClick={() => this.props.rollback(step._links.rollback)}>Rollback</button>}
                     </div>
                 </div>}

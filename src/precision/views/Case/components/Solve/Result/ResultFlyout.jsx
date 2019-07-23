@@ -15,7 +15,7 @@ export const renderResult = ({ name, _links: { data, image, table, error, chart,
     if (table !== undefined) {
         return (<div key={table.href}>
             {name && <h6>{formatHeader(name)}</h6>}
-            {console.log(table.href)}
+            {/*{console.log(table.href)}*/}
             {<StepDataset csv={table.href}/>}
         </div>);
     }
@@ -48,7 +48,7 @@ class ResultFlyout extends Component {
         return (
             <Fragment>
                 {
-                    results !== undefined && results.results[0] !== undefined  &&renderResult(results.results[0])
+                    results !== undefined && results.results[0] !== undefined  && renderResult(results.results[0])
                 }
             </Fragment>
 

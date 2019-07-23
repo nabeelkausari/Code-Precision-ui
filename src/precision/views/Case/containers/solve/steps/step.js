@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import {getUserNotes, resetNotesFlyout} from "../../../../../modules/steps/notes/actions";
-import {getSteps, resetResultsFlyouts, rollback} from "../../../../../modules/case/actions"
+import {getSteps, rollback} from "../../../../../modules/case/actions"
 
 const mapStateToProps = (state, ownProps ) => {
     const undo_requested = state.cases.undo_requested;
@@ -11,4 +11,4 @@ const mapStateToProps = (state, ownProps ) => {
     }
 };
 
-export const StepContainer = connect(mapStateToProps, { getUserNotes, resetNotesFlyout, resetResultsFlyouts, getSteps, rollback });
+export const StepContainer = connect(mapStateToProps, { getUserNotes, resetNotesFlyout, getSteps, rollback });
