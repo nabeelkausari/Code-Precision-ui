@@ -25,8 +25,8 @@
 .flyout-container{
 
   position: absolute;
-  width: 50%;
-  height: calc(100vh - 5.8rem);
+  width: 35.75%;
+  //height: calc(100vh - 5.8rem);
   top : .1rem;
   //border: .1rem solid black;
   //padding: 1rem 2rem;
@@ -34,11 +34,11 @@
   z-index: 31;
 
   &--1{
-    right: 0;
+    right: 25rem;
   }
 
   &--2{
-    right: 50%;
+    left : 16rem;
   }
 
   &__action-icon{
@@ -100,7 +100,7 @@
 
   &__content{
     padding: 1rem 2.5rem;
-    height: calc(100vh - 15.8rem);
+    height: calc(100vh - 6.5rem);
     overflow: auto;
   }
 }

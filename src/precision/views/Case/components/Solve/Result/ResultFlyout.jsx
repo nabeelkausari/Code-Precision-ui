@@ -1,6 +1,4 @@
 import React, {Component, Fragment} from 'react';
-import Flyout from "../../../../../components/Flyout/Flyout";
-import resultsContainer from '../../../containers/solve/results';
 import StepDataset from "../View/Dataset/StepDatasets";
 
 
@@ -17,7 +15,7 @@ export const renderResult = ({ name, _links: { data, image, table, error, chart,
     if (table !== undefined) {
         return (<div key={table.href}>
             {name && <h6>{formatHeader(name)}</h6>}
-            {console.log(table.href)}
+            {/*{console.log(table.href)}*/}
             {<StepDataset csv={table.href}/>}
         </div>);
     }
@@ -46,32 +44,16 @@ const formatHeader = (label) => {
 
 class ResultFlyout extends Component {
     render() {
-        const {secondary, results1, results2, is_primary_step_set, is_secondary_step_set,  hideFlyout} = this.props
-        console.log("PRIMARY STEP : ", is_primary_step_set)
+        const {results} = this.props;
         return (
-               <Fragment> {
-                   is_primary_step_set &&
-                   (results1 && !secondary?
-                       <Flyout require_pin = {true} require_download = {true} require_full_screen ={true} sequence_no = {results1.sequence_number} title={results1.operation_name} secondary = {secondary} hideFlyout = {hideFlyout}>
-                           {is_primary_step_set && results1.results[0] !== undefined && renderResult(results1.results[0])}
-                       </Flyout>
-                       :
-                       <Fragment>
-                           {
-                               results2 && is_secondary_step_set?
-                                   <Flyout require_pin = {true} require_download = {true} require_full_screen ={true} sequence_no = {results2.sequence_number} title={results2.operation_name} secondary = {secondary} hideFlyout = {hideFlyout}>
-                                       {is_secondary_step_set && results2.results[0] !== undefined  &&renderResult(results2.results[0])}
-                                   </Flyout>
-                                   :
-                                   <Fragment></Fragment>
-                           }
-                       </Fragment>
-                       )
-               }
-               </Fragment>
+            <Fragment>
+                {
+                    results !== undefined && results.results[0] !== undefined  && renderResult(results.results[0])
+                }
+            </Fragment>
 
         );
     }
 }
 
-export default resultsContainer(ResultFlyout);
+export default ResultFlyout;

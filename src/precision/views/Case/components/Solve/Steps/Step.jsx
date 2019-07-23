@@ -5,6 +5,7 @@ import Tooltip from '../../../../../components/Tooltip/Tooltip'
 import './StepList.scss'
 import {StepContainer} from "../../../containers/solve/steps/step";
 import {function_icon, column_icon} from '../../../../../images/index'
+import {pathOr} from "ramda";
 
 
 class Step extends Component {
@@ -16,9 +17,9 @@ class Step extends Component {
 
     // Function to determine whether the sequence of the step needs to have an appended 0
     getPrefix = (sequence_number) => {
-        let string_number = sequence_number.toString();
+        let string_number = sequence_number !== undefined && sequence_number.toString();
         if(string_number.length === 1)
-            return ("0"+string_number)
+            return ("0"+string_number);
         else
             return string_number
     };
@@ -51,10 +52,11 @@ class Step extends Component {
 
     render() {
 
-        const {step, lastChild, undo_requested } = this.props
+        const {step, onShowResultClick, resetResultsFlyouts, resetNotesFlyout, lastChild, undo_requested } = this.props
         const {is_column_truncated} = this.state;
         const is_step_active = step.active;
         const is_rollback_step = step.is_rollback_step;
+        const has_rollback_link = pathOr(undefined, ['_links', 'rollback'], step) !== undefined;
         return (
             <div>
             {is_step_active ?
@@ -102,11 +104,11 @@ class Step extends Component {
                         }
 
                     </div>
-                    {/*<div className="step__actions-container">*/}
-                        {/*<button className="step__action btn-link" onClick={() => {resetNotesFlyout(); onShowResultClick(this.props.step)}}>Result</button>*/}
-                        {/*<button className="step__action btn-link" onClick={() => {resetResultsFlyouts(); this.props.getUserNotes(step)}}>Notes</button>*/}
-                        {/*{has_rollback_link && <button className="step__action btn-link" onClick={() => this.props.rollback(step._links.rollback)}>Rollback</button>}*/}
-                    {/*</div>*/}
+                    <div className="step__actions-container">
+                        <button className="step__action btn-link" onClick={() => {onShowResultClick(this.props.step)}}>Result</button>
+                        <button className="step__action btn-link" onClick={() => {this.props.getUserNotes(step)}}>Notes</button>
+                        {has_rollback_link && <button className="step__action btn-link" onClick={() => this.props.rollback(step._links.rollback)}>Rollback</button>}
+                    </div>
                 </div>}
             </div>
                 :<div className = {lastChild? undo_requested? "step step--undo":"step":"step"} style={{color: '#ccc'}}>
