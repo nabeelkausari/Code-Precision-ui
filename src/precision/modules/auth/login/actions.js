@@ -17,7 +17,7 @@ export const login = ({ email, password }) => (dispatch) => {
 };
 
 
-export const logout = () => (dispatch) => {
+export const logout = () => () => {
   localStorage.clear();
-  dispatch(history.push('/auth/login'));
+  history.push('/auth/login');
 }

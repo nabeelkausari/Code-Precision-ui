@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './flyout.scss'
-import {print_icon, full_screen_icon, pin_active_icon, pin_icon} from "../../images";
+import {print_icon, full_screen_icon, pin_icon} from "../../images";
 import Tooltip from "../Tooltip/Tooltip";
 
 class Flyout extends Component {

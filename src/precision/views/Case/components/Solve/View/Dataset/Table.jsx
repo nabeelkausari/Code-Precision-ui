@@ -40,7 +40,7 @@ class Table extends Component {
     };
 
     render() {
-        const {data_sets, fetch_steps_succeeded, dataset_loading, selected_table_reference, is_steps_open} = this.props;
+        const {data_sets, fetch_steps_succeeded,selected_table_reference, is_steps_open} = this.props;
         const {handleCreateDataset} = this.state;
         return (
             <div>

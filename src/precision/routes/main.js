@@ -10,7 +10,6 @@ import requireUnAuth from '../hoc/require-un-auth';
 import Login from "../views/Auth/components";
 import CaseSolve from "../views/Case/components/Solve";
 import CaseListHeader from "../views/Case/components/List/CaseListHeader";
-import CreateCase from "../views/Case/components/Create";
 import BusinessGoal from "../views/Case/components/Create/BusinessGoal";
 import Recommendations from "../views/Case/components/Create/Recommendations";
 import CaseInfo from "../views/Case/components/Create/CaseInfo";

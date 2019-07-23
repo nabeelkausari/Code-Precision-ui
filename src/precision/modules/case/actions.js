@@ -1,5 +1,5 @@
 import { history } from "../../routes";
-import {fetchLink, fetchLinkAs, fetchLinkDirectly, fetchLinkDirectlyAs} from "../../api/helpers";
+import {fetchLink, fetchLinkAs} from "../../api/helpers";
 import * as types from './types'
 import {getDatasets} from "../datasets/actions";
 import {getUserId} from "../../utils/storage";

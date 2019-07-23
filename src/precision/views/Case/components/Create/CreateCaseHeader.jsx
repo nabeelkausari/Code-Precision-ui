@@ -1,7 +1,9 @@
 import * as React from 'react';
 import {Logo} from "../../../../images";
 import {Fragment} from "react";
-import {history} from '../../../../routes/index'
+import {history} from '../../../../routes/index';
+
+import './Create.scss'
 
 export const CreateCaseHeader = (props) => {
     const cancelCreateCase = () =>{

@@ -8,7 +8,7 @@ import "./toolbarFlyout.scss"
 class FunctionsFlyout extends Component {
     render() {
 
-        const {active_category:{name, sub_categories },description, active_function, selections, parameters, parameter_flyout_open, addFunction, execution, onFunctionClick} = this.props
+        const {active_category:{ sub_categories },description, active_function, selections, parameters, parameter_flyout_open, addFunction, execution, onFunctionClick} = this.props
         // const is_fx_add_disabled = Object.keys(selections).length === 0 ;
         const is_fx_add_disabled = false;
         return (

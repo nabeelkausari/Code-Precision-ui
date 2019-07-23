@@ -34,11 +34,12 @@ class AllCases extends Component {
 
     renderSelectedCategoryCases = () => {
         let cases_list = [];
-        this.props.all_cases.map(item =>{
+        this.props.all_cases.map(item => {
             if(item.category === this.state.current_category){
-                cases_list.push(<CaseCard showView={false} key={item.id} viewCase={this.viewCase}  case={item}/>)
+               cases_list.push(<CaseCard showView={false} key={item.id} viewCase={this.viewCase}  case={item}/>)
             }
-        })
+            return [];
+        });
         if (cases_list.length === 0) cases_list.push(<NoCases/>)
         return cases_list
     };
@@ -46,7 +47,7 @@ class AllCases extends Component {
 
 
     render() {
-        const {all_cases, case_categories, is_fetching} = this.props;
+        const { case_categories, is_fetching} = this.props;
         const {search_query,current_category} = this.state;
         return (
             <Fragment>

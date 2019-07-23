@@ -1,5 +1,4 @@
 import React, {Component, Fragment} from 'react';
-import Error from './Error'
 import Flyout from "../../../../../components/Flyout/Flyout";
 import resultsContainer from '../../../containers/solve/results';
 import StepDataset from "../View/Dataset/StepDatasets";

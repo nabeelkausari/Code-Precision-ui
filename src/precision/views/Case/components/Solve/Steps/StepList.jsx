@@ -6,7 +6,6 @@ import StepsContainer from '../../../containers/solve/steps'
 import './StepList.scss'
 import {undo_icon, redo_icon, reset_icon, right_arrow_icon, left_arrow_icon} from '../../../../../images/index'
 import StepSkeleton from '../../../../../components/Skeletons/StepSkeleton'
-import UserStepDetails from "./StepDetails/UserStepDetails";
 
 
 class StepList extends Component {

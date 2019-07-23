@@ -45,7 +45,7 @@ class Recommendations extends Component {
                 <Loader loading={recommendations.fetch_case_recommendations_requested}/>
                 <div style={{display:"flex",justifyContent:"space-between"}}>
                     <h4>Select any of our recommended reference case</h4>
-                    <a onClick={this.skipToCaseInfo}>skip</a>
+                    <p onClick={this.skipToCaseInfo}>skip</p>
                     <Button buttonType="primary" onClick={this.continueToCaseInfo}>Continue</Button>
                 </div>
                 <div>

@@ -120,7 +120,7 @@ class ToolbarVertical extends Component {
 
 
     render() {
-        const {is_function_flyout_open, is_table_flyout_open, fx_selected, fx_name} = this.state;
+        const {is_function_flyout_open, is_table_flyout_open} = this.state;
         const {current_dataset, columns} = this.state;
         const {dataset_list : {items}, dataset_list, categories, execution } = this.props;
         const active_category =  execution.current_function_category

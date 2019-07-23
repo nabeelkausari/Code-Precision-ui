@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Button} from "../../../../components/Buttons/Button";
 
 export const CaseCard = (props) => {
-    const {name, description,tags} = props.case;
+    const {name, description} = props.case;
     return (
         <div className="case-card">
             <div className="case-card__title">{name}</div>
@@ -12,7 +12,7 @@ export const CaseCard = (props) => {
     );
 };
 export const SelectableCaseCard = (props) => {
-    const {case:{id,name, description,tags},selectRecommendation } = props;
+    const {case:{id,name, description},selectRecommendation } = props;
     return (
         <div className="case-card" onClick={() =>selectRecommendation(id)}>
             <div className="case-card__title">{name}</div>

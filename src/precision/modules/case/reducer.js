@@ -1,5 +1,4 @@
 import * as types from './types';
-import {byUri} from "../../utils/byUri";
 
 const initialState = {
   current_case:{
