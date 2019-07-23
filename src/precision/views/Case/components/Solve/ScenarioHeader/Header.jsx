@@ -23,7 +23,7 @@ class ScenarioHeader extends Component {
                             </Nav.Item>
                             {
                                 current_case.scenarios && current_case.scenarios.map(scenario =>(
-                                    <Nav.Item bsPrefix="scenario-item">
+                                    <Nav.Item bsPrefix="scenario-item" key={scenario.id}>
                                         <NavLink to={`/cases/${current_case.id}/${scenario.id}`} className='scenarios' activeClassName="active">{scenario.name}</NavLink>
                                     </Nav.Item>
                                 ))
