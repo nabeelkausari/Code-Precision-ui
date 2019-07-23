@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import {getCase, getCaseAndScenario, getSteps} from "../../../../modules/case/actions"
+import {getScenarioDetails, getCaseAndScenario, getSteps} from "../../../../modules/case/actions"
 import {getCategoryAndFunctions} from "../../../../modules/case/toolbar/actions";
 
 const mapStateToProps = (state, props) =>{
@@ -21,4 +21,4 @@ const mapStateToProps = (state, props) =>{
 }
 
 
-export const SolveContainer = connect(mapStateToProps, {getCase, getSteps, getCategoryAndFunctions, getCaseAndScenario});
+export const SolveContainer = connect(mapStateToProps, {getScenarioDetails, getSteps, getCategoryAndFunctions, getCaseAndScenario});

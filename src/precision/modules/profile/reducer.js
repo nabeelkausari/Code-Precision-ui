@@ -12,7 +12,9 @@ export default (state = initialState, { type, payload } ) => {
         case types.FETCH_PROFILE_REQUESTED:
             return {
                 ...state,
-                fetch_profile_loading: true
+                fetch_profile_loading: true,
+                fetch_profile_succeeded: null,
+                fetch_profile_error: null,
             };
             case types.FETCH_PROFILE_SUCCEEDED:
             return {

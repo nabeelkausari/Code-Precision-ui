@@ -11,11 +11,11 @@ class Recommendations extends Component {
         selected_recommendations:[]
     }
     continueToCaseInfo = () =>{
-       this.props.history.push("/create/case_info")
+        this.props.selectRecommendation(this.state.selected_recommendations);
+        this.props.history.push("/create/case_info")
     }
 
     skipToCaseInfo = () =>{
-        this.props.selectRecommendation(this.state.selected_recommendations);
         this.props.history.push("/create/case_info")
     }
 
@@ -26,7 +26,6 @@ class Recommendations extends Component {
     }
 
     selectRecommendation = (id) => {
-        debugger
         const {selected_recommendations} = this.state;
         let newSelections = [...selected_recommendations];
         const index = selected_recommendations.indexOf(id);

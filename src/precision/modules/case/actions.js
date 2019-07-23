@@ -48,7 +48,7 @@ export const getCaseAndScenario = (case_id, scenario_id) => (dispatch, getState)
 
 export const addDataSets = (payload) => ({ type: types.ADD_DATASETS, payload });
 
-export const getCase = () => (dispatch, getState) => {
+export const getScenarioDetails = () => (dispatch, getState) => {
     const {cases:{current_case:{current_scenario}}} = getState();
     if(current_scenario._links === undefined) return;
     dispatch({ type: types.FETCH_CASE_REQUESTED });
@@ -165,7 +165,7 @@ export const reset = () => (dispatch, getState) => {
     dispatch({type : types.RESET_REQUESTED});
     const { cases : {info: {_links: { reset }}}} = getState();
     fetchLink(reset)
-        .then(() => {dispatch(getCase())})
+        .then(() => {dispatch(getScenarioDetails())})
         .then(() =>{
             dispatch(getSteps());
             dispatch({type: types.RESET_SUCCEEDED});
@@ -238,16 +238,16 @@ export const getRecommendations = () => (dispatch, getState) => {
 };
 
 export const createCase = (payload) => (dispatch, getState) => {
-    const {cases:{create:{problem:{_links:{create_case}}}}} = getState();
+    const {cases:{create:{problem:{_links:{create_case}}},recommendations:{selections}}} = getState();
     let params = {
         ...payload,
-        referenceCaseIds:[]
+        referenceCaseIds:selections
     }
     dispatch({type:types.CREATE_CASE_REQUESTED});
     return fetchLinkAs(create_case,params)
         .then(payload => {
             dispatch({type:types.CREATE_CASE_SUCCEEDED, payload});
-            getCaseDetails(payload._links.get_case_details);
+           dispatch(getCaseDetails(payload._links.get_case_details));
         })
         .catch(error => dispatch({type:types.CREATE_CASE_FAILED, error}))
 };

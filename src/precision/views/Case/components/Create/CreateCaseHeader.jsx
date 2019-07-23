@@ -1,11 +1,12 @@
 import * as React from 'react';
 import {Logo} from "../../../../images";
 import {Fragment} from "react";
+import {history} from '../../../../routes/index'
 
 export const CreateCaseHeader = (props) => {
     const cancelCreateCase = () =>{
-        props.history.push("/cases")
-    }
+       history.push("/cases")
+    };
     return (
       <Fragment>
           <header className="header-create">

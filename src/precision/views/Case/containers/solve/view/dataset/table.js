@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import {selectTable} from "../../../../../../modules/datasets/actions";
-import {getCase} from "../../../../../../modules/case/actions";
+import {getScenarioDetails} from "../../../../../../modules/case/actions";
 
 const mapStateToProps = ({ cases: { fetch_steps_succeeded }, functions: {selections}, datasets: {fetch_dataset_succeeded, list, selected_table_reference,dataset_created_succeeded } }) => ({
     data_sets: list.items,
@@ -14,4 +14,4 @@ const mapStateToProps = ({ cases: { fetch_steps_succeeded }, functions: {selecti
 });
 
 
-export const TableContainer = connect(mapStateToProps, { selectTable, getCase });
+export const TableContainer = connect(mapStateToProps, { selectTable, getScenarioDetails });
