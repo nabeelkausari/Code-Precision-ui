@@ -48,8 +48,9 @@ class MainRoutes extends Component {
     };
 
     componentWillReceiveProps( { keydown } ) {
+        console.log(keydown.event)
 
-        if (keydown.event && keydown.event.code === 'ArrowRight') {
+        if (keydown.event && keydown.event.code === 'KeyQ') {
             this.changeTheme()
         } else {
             return;
@@ -78,7 +79,7 @@ class MainRoutes extends Component {
     }
 }
 
-export default keydown(MainRoutes);
+export default keydown('q')(MainRoutes);
 
 
 
