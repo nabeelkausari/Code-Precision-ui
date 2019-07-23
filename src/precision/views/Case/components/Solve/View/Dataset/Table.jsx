@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react'
+import get from 'lodash/get'
 import {TableContainer} from "../../../../containers/solve/view/dataset/table";
 import './Table.scss';
 import DataTable from "./DataTable";
@@ -17,10 +18,16 @@ class Table extends Component {
         this.closeCreateDataset()
     };
 
+    componentDidMount() {
+        if(this.props.data_sets.length === 0) {
+            this.handleCreateDataset()
+        }
+    }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.fetch_dataset_succeeded && this.props.fetch_dataset_succeeded !== prevProps.fetch_dataset_succeeded) {
-            this.props.selectTable(this.props.data_sets[0].ref);
-            if(this.props.data_sets.length === 0){
+            this.props.selectTable(get(this.props, 'data_sets[0].ref'));
+            if(this.props.data_sets.length === 0) {
                 this.handleCreateDataset()
             }
         }
@@ -69,11 +76,11 @@ class Table extends Component {
                                <div className="table-tabs__name table-tabs__name--active">
                                    New Dataset
                                </div>
-                               <Tooltip placement="right" text="Cancel">
+                               {data_sets && data_sets.length !== 0 && <Tooltip placement="right" text="Cancel">
                                    <div className="table-tabs__btn-container" onClick={this.closeCreateDataset}>
                                        <img src={add_button_icon} alt="add button" className="table-tabs__cancel-btn"/>
                                    </div>
-                               </Tooltip>
+                               </Tooltip>}
                            </Fragment>
                         }
 

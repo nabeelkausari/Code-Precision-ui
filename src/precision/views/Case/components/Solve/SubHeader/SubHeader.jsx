@@ -16,15 +16,15 @@ class SubHeader extends Component {
                     <Nav>
                         <div className="bg-sub-header__container">
 
-                            <Nav.Item bsPrefix="bg-sub-header__items">
-                                <NavLink exact to={`${current_route}/dashboard`}
-                                         className='bg-sub-header__link'
-                                         activeClassName="active"
-                                >
+                            {/*<Nav.Item bsPrefix="bg-sub-header__items">*/}
+                            {/*    <NavLink exact to={`${current_route}/dashboard`}*/}
+                            {/*             className='bg-sub-header__link'*/}
+                            {/*             activeClassName="active"*/}
+                            {/*    >*/}
 
-                                    Dashboard
-                                </NavLink>
-                            </Nav.Item>
+                            {/*        Dashboard*/}
+                            {/*    </NavLink>*/}
+                            {/*</Nav.Item>*/}
 
                             <Nav.Item bsPrefix="bg-sub-header__items">
                                 <NavLink exact to={`${current_route}/dataset`}
