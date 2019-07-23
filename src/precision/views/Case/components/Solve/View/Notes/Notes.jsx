@@ -12,19 +12,6 @@ class Notes extends Component {
         stepNoteLimit: 0
     };
 
-    // componentDidMount() {
-    //     if(this.props.results !== undefined){
-    //         this.props.getUserNotes(this.props.results)
-    //     }
-    // }
-    //
-    // componentDidUpdate(prevProps, prevState, snapshot) {
-    //     if(this.props.results && this.props.results.sequence_number !== prevProps.results.sequence_number){
-    //         this.props.getUserNotes(this.props.results)
-    //     }
-    // }
-
-
     handleChangeNote = (newValue) => {
         this.setState({
             notes: newValue
@@ -49,12 +36,11 @@ class Notes extends Component {
         const payload = {stepNotes: [{sequence: !this.props.secondary ? this.props.note1.noteDetails.sequence : this.props.note2.noteDetails.sequence, note: notes}]};
         if (notes === null && sequence === 0)
             return;
-        this.props.handleSave(this.props.results, payload);
+        this.props.handleSave(this.props.results, payload, this.handleExitEditNotes);
     };
 
     render() {
         const {closeNotesFlyout, fetch_notes_succeeded, secondary, note1, note2, is_secondary_step_set, is_primary_step_set} = this.props;
-        debugger
         const {sequence, notes} = this.state;
         const note_1 = !secondary && note1 !== undefined && note1.noteDetails.note;
         const note_2 =  secondary && note2 !== undefined && note2.noteDetails.note;

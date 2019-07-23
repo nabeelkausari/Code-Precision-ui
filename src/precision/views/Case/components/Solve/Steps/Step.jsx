@@ -17,9 +17,9 @@ class Step extends Component {
 
     // Function to determine whether the sequence of the step needs to have an appended 0
     getPrefix = (sequence_number) => {
-        let string_number = sequence_number.toString();
+        let string_number = sequence_number !== undefined && sequence_number.toString();
         if(string_number.length === 1)
-            return ("0"+string_number)
+            return ("0"+string_number);
         else
             return string_number
     };

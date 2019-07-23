@@ -9,6 +9,7 @@ const mapStateToProps = (state, props) => {
         is_secondary_flyout_open: state.notes.notes_output.is_secondary_flyout_open,
         is_primary_step_set: state.notes.notes_output.is_primary_step_set,
         is_secondary_step_set: state.notes.notes_output.is_secondary_step_set,
+        save_notes_succeeded: state.notes.notes_output.save_notes_succeeded
     }
 };
 

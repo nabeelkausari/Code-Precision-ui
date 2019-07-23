@@ -3,7 +3,8 @@ import * as types from "./types";
 const initialState = {
     notes_output : {
         is_primary_flyout_open : false,
-        is_secondary_flyout_open : false
+        is_secondary_flyout_open : false,
+        save_notes_succeeded: null
     }
 };
 
@@ -55,7 +56,8 @@ export default (state = initialState, { type, payload }) => {
                 notes_output: {
                     ...state.notes_output,
                     is_primary_step_set: true,
-                    note1: payload
+                    note1: payload,
+                    save_notes_succeeded: true,
                 }
             };
 
@@ -66,7 +68,8 @@ export default (state = initialState, { type, payload }) => {
                 notes_output: {
                     ...state.notes_output,
                     note2: state.notes_output.note1,
-                    is_secondary_step_set: true
+                    is_secondary_step_set: true,
+                    save_notes_succeeded: true
                 }
             };
 
@@ -108,6 +111,29 @@ export default (state = initialState, { type, payload }) => {
                     note2: undefined,
                     is_secondary_step_set: false
                 }
+            };
+
+        case types.SAVE_NOTES_REQUESTED:
+            return {
+                ...state,
+                save_notes_loading: true,
+                save_notes_error: null,
+                save_notes_succeeded: null
+            };
+
+        case types.SAVE_NOTES_SUCCEEDED:
+            return {
+                ...state,
+                save_notes_loading: false,
+                save_notes_succeeded: true,
+            };
+
+        case types.SAVE_NOTES_FAILED:
+            return {
+                ...state,
+                save_notes_loading: false,
+                save_notes_succeeded: null,
+                save_notes_error: true,
             };
 
         default:

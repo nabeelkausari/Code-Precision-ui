@@ -86,20 +86,20 @@ export const getResultsError = (payload) => (dispatch, getState) => {
 export const setCurrentStep = (payload) => (dispatch, getState) => {
     const {cases : {results : { is_primary_step_set, is_primary_flyout_open, results1 }} } = getState();
     if(is_primary_flyout_open && results1 && results1._links.self.href !== payload._links.self.href)
-    {
-        if(is_primary_step_set)
         {
-            dispatch({type : types.SET_PREVIOUS_STEP});
-            dispatch({type : types.OPEN_FLYOUT_SECONDARY})
+            if(is_primary_step_set)
+            {
+                dispatch({type : types.SET_PREVIOUS_STEP});
+                dispatch({type : types.OPEN_FLYOUT_SECONDARY})
+            }
+            dispatch({type : types.SET_CURRENT_STEP, payload});
+            dispatch({type : types.OPEN_FLYOUT_PRIMARY})
         }
-        dispatch({type : types.SET_CURRENT_STEP, payload});
-        dispatch({type : types.OPEN_FLYOUT_PRIMARY})
-    }
     else if(results1 === undefined || !is_primary_flyout_open){
         dispatch({type : types.SET_CURRENT_STEP, payload});
         dispatch({type : types.OPEN_FLYOUT_PRIMARY})
-    }
-};
+        }
+    };
 
 export const showPrimaryFlyout = () => (dispatch, getState) => {
     const {cases : {results : {is_primary_flyout_set}}} = getState()
@@ -182,6 +182,12 @@ export const rollback = (link) => (dispatch) => {
         .catch((payload)=> {dispatch({ type: types.ROLLBACK_FAILED, payload })})
 };
 
+export const fetchUserCode = (step, key) => (dispatch) => {
+    dispatch({ type: types.FETCH_USER_CODE_REQUESTED});
+    fetchLinkAs({href: step._links.get_step_user_code.href, method: 'GET', type: 'application/json'})
+        .then(payload => dispatch({ type: types.FETCH_USER_CODE_SUCCEEDED, payload: {...payload, key}}))
+        .catch(payload => dispatch({ type: types.FETCH_USER_CODE_FAILED, payload}))
+};
 export const getCases = () => (dispatch, getState) =>{
     const {profile:{info:{_links}}} = getState();
     const get_cases_link = {
@@ -226,6 +232,19 @@ export const createBusinessProblem = (params) => (dispatch, getState) => {
         .catch(error => dispatch({type:types.CREATE_PROBLEM_FAILED, error}))
 };
 
+export const fetchUserLearnR = (step, key) => (dispatch) => {
+    dispatch({ type: types.FETCH_USER_R_CODE_REQUESTED});
+    fetchLinkAs({href: step._links.get_step_user_learn_r_code.href, method: 'GET', type: 'application/json'})
+        .then(payload => dispatch({ type: types.FETCH_USER_R_CODE_SUCCEEDED, payload: {...payload, key}}))
+        .catch(payload => dispatch({ type: types.FETCH_USER_R_CODE_FAILED, payload}))
+};
+
+export const fetchUserLearnPython = (step, key) => (dispatch) => {
+    dispatch({ type: types.FETCH_USER_PYTHON_CODE_REQUESTED});
+    fetchLinkAs({href: step._links.get_step_user_learn_python_code.href, method: 'GET', type: 'application/json'})
+        .then(payload => dispatch({ type: types.FETCH_USER_PYTHON_CODE_SUCCEEDED, payload: {...payload, key}}))
+        .catch(payload => dispatch({ type: types.FETCH_USER_PYTHON_CODE_FAILED, payload}))
+};
 export const getRecommendations = () => (dispatch, getState) => {
     const {cases:{create:{problem:{_links:{case_recommendations}}}}} = getState();
 

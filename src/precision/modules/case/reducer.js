@@ -11,6 +11,10 @@ const initialState = {
     is_primary_flyout_open : false,
     is_secondary_flyout_open : false
   },
+  code: {
+    primary: {},
+    secondary: {}
+  },
   list:{
     items:[],
     by_uri:{},
@@ -174,6 +178,7 @@ export default (state = initialState, { type, payload }) => {
         results: {
           ...state.results,
           results2: state.results.results1,
+          code : {secondary: state.code.primary},
           is_secondary_step_set: true
         }
       }
@@ -387,6 +392,112 @@ export default (state = initialState, { type, payload }) => {
           ...state.recommendations,
           selections:payload
         }
+      }
+    }
+
+    case types.FETCH_USER_CODE_REQUESTED: {
+      return {
+        ...state,
+        fetch_user_code_loading: true,
+        fetch_user_code_succeeded: null,
+        fetch_user_code_error: false
+      }
+    }
+
+    case types.FETCH_USER_CODE_SUCCEEDED: {
+
+      return {
+        ...state,
+        fetch_user_code_loading: false,
+        fetch_user_code_succeeded: true,
+        fetch_user_code_error: false,
+        code: {
+          ...state.code,
+          [payload.key]: {
+            ...state.code[payload.key],
+            'ath': payload
+          }
+        }
+      }
+    }
+
+    case types.FETCH_USER_CODE_FAILED: {
+      return {
+        ...state,
+        fetch_user_code_loading: false,
+        fetch_user_code_succeeded: false,
+        fetch_user_code_error: true,
+        user_code_error: payload
+      }
+    }
+
+    case types.FETCH_USER_R_CODE_REQUESTED: {
+      return {
+        ...state,
+        fetch_user_r_code_loading: true,
+        fetch_user_code_succeeded: null,
+        fetch_user_code_error: false
+      }
+    }
+
+    case types.FETCH_USER_R_CODE_SUCCEEDED: {
+      return {
+        ...state,
+        fetch_user_r_code_loading: false,
+        fetch_user_r_code_succeeded: true,
+        fetch_user_r_code_error: false,
+        code: {
+          ...state.code,
+          [payload.key]: {
+            ...state.code[payload.key],
+            'r_code': payload
+          }
+        }
+      }
+    }
+
+    case types.FETCH_USER_R_CODE_FAILED: {
+      return {
+        ...state,
+        fetch_user_r_code_loading: false,
+        fetch_user_r_code_succeeded: false,
+        fetch_user_r_code_error: true,
+        user_r_code_error: payload
+      }
+    }
+
+    case types.FETCH_USER_PYTHON_CODE_REQUESTED: {
+      return {
+        ...state,
+        fetch_user_python_code_loading: true,
+        fetch_user_python_code_succeeded: null,
+        fetch_user_python_code_error: false
+      }
+    }
+
+    case types.FETCH_USER_PYTHON_CODE_SUCCEEDED: {
+      return {
+        ...state,
+        fetch_user_python_code_loading: false,
+        fetch_user_python_code_succeeded: true,
+        fetch_user_python_code_error: false,
+        code: {
+          ...state.code,
+          [payload.key]: {
+            ...state.code[payload.key],
+            'user_python_code': payload
+          }
+        }
+      }
+    }
+
+    case types.FETCH_USER_PYTHON_CODE_FAILED: {
+      return {
+        ...state,
+        fetch_user_python_code_loading: false,
+        fetch_user_python_code_succeeded: false,
+        fetch_user_python_code_error: true,
+        user_python_code_error: payload
       }
     }
 
