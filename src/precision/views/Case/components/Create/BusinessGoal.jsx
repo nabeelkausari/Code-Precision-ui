@@ -5,9 +5,9 @@ import CaseContainer from "../../containers/Create/createCase"
 
 class BusinessGoal extends Component {
     state ={
-        description:"dsa",
-        issue:"fads",
-        outcome:"fdsa"
+        description:"",
+        issue:"",
+        outcome:""
     };
 
     componentDidMount() {
