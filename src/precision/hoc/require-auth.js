@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProfileContainer from '../routes/Profile/containers/profile'
+import ProfileContainer from '../views/Profile/containers/profile'
 
 export default ComposedComponent => {
   class Authentication extends Component {

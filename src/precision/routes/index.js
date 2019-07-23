@@ -25,20 +25,17 @@ export default class AppRoutes extends Component {
     };
 
     changeTheme = () => {
-
-        if(this.state.theme === 'dark')
-            this.setState({ theme: 'light'})
-        else
-            this.setState({theme : 'dark'})
+        this.setState(state => ({
+            theme: state.theme === 'dark' ? 'light' : 'dark'
+        }));
     }
 
     render() {
         const { theme } = this.state;
         return (
-
             <Provider store={store}>
                 <Router history={history}>
-                    <ToastContainer  transition={Slide}/>
+                    <ToastContainer transition={Slide}/>
                     <button onClick={this.changeTheme}>Change Theme</button>
                     <div className={`body--${theme}`}>
                         <MainRoutes/>

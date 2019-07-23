@@ -1,4 +1,3 @@
-@import "../../../../styles/abstracts/variables";
 //case header
 .bg-case-list-header {
   padding: 1rem 2rem;
@@ -40,8 +39,8 @@
       .dropdown-toggle:focus{
         display: flex;
         align-items: center;
-        color: $color-primary;
-        background: $color-white !important;
+        color: blue;
+        background: #ffffff !important;
         border: none;
         box-shadow: none;
 
