@@ -2,12 +2,7 @@ import React, {Component, Fragment} from 'react';
 import Flyout from "../../../../../components/Flyout/Flyout";
 import OutputContainer from '../../../containers/solve/results';
 import {FlyoutContent} from "./FlyoutContent";
-import {
-    fetchUserCode,
-    fetchUserLearnPython,
-    fetchUserLearnR,
-    setCurrentFlyoutTab
-} from "../../../../../modules/case/actions";
+
 
 class OutputFlyout extends Component {
     render() {

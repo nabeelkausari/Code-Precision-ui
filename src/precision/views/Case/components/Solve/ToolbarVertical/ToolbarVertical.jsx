@@ -95,7 +95,7 @@ class ToolbarVertical extends Component {
             is_table_flyout_open : false,
             selected_dataset : null
         })
-        this.props.setSelectedFunctionCategory(category)
+        this.props.setSelectedFunctionCategory(category);
 
         if(this.state.selected_category == null){
             this.toggleFunction();
@@ -103,8 +103,7 @@ class ToolbarVertical extends Component {
         if(category !== this.state.selected_category)
         {
             this.setState({selected_category : category})
-        }
-        else {
+        } else {
             this.toggleFunction();
             this.setState({selected_category : null});
 

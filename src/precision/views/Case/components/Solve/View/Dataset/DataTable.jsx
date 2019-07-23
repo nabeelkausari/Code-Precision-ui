@@ -103,7 +103,6 @@ export class DataTable extends Component {
                     getTheadThProps={this.getTheadThProps}
                     showPagination= {false}
                     defaultPageSize = {200}
-                    resizable={false}
                 /> :
                    <TableSkeleton is_steps_open={is_steps_open}/>
                }

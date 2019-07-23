@@ -208,7 +208,6 @@ class FixedTableHeader extends Component {
         return JSON.stringify(nextProps) !== JSON.stringify(this.props);
     }
     render() {
-        console.log('Table header re-rendered');
         const { width, headers, widths, selectedColumnIndices, onColumnHeaderClick } = this.props;
         return (<div className='fixedTableHeader' style={{ display: 'table', width: width, minWidth: '100%' }}>
             {headers.map((header, index) => <HeaderCol title={header.label} style={{ width: `${widths[index]}%` }} onClick={() => onColumnHeaderClick && onColumnHeaderClick(header, headers, selectedColumnIndices)} key={index}>
@@ -233,7 +232,6 @@ class ContentTable extends Component {
         return JSON.stringify(nextProps) !== JSON.stringify(this.props);
     }
     render() {
-        console.log('Table got re-rendered');
         const { responsive, bordered, width, headers, widths, rows, selectedStyle, selectedColumnIndices } = this.props;
         return (<Table className='dataTable' responsive={responsive} bordered={bordered} style={{ width: width, minWidth: '100%' }}>
             <colgroup>

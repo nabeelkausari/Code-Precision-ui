@@ -1,7 +1,7 @@
 import {tokens} from "../../../api/tokens"
 import * as types from "./types";
 import {setUserId, setUserProfileLink} from "../../../utils/storage";
-import {history} from "../../../routes";
+import {doLogout} from "../../../utils/doLogout";
 
 
 export const login = ({ email, password }) => (dispatch) => {
@@ -18,6 +18,5 @@ export const login = ({ email, password }) => (dispatch) => {
 
 
 export const logout = () => () => {
-  localStorage.clear();
-  history.push('/auth/login');
+    doLogout();
 }

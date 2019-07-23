@@ -25,7 +25,6 @@ class UserStepDetails extends Component{
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.userCodeSteps !== this.props.userCodeSteps && this.props.userCodeSteps !== undefined && !!this.props.learnRStepsReference && this.props.current_step) {
-            console.log("Coming here....");
             this.props.setCurrentShowCodeTab(this.props.learnRStepsReference);
             this.props.setCurrentShowCodeTab(this.props.learnSassStepsReference);
             this.props.setCurrentShowCodeTab(this.props.learnPythonStepsReference);
@@ -34,8 +33,6 @@ class UserStepDetails extends Component{
 
     render() {
         const { show, handleClose, userSteps, userCode, userCodeSteps, learnRSteps, learnSasSteps, learnPythonSteps, current_step} = this.props;
-        console.log("Components are loading....");
-        console.log('current_step: ', current_step)
         return(
             <div>
                 <Modal.Header closeButton>

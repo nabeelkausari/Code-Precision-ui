@@ -29,14 +29,14 @@ class ScenarioHeader extends Component {
                                 ))
                             }
                         </Nav>
-                        <h4 className="case-title">Case: Lowering Attrition Rate</h4>
+                        <h4 className="case-title">{current_case.case_name}</h4>
 
                         {/*<div>*/}
                         {/*<img src="" alt="Add Scenario"/>*/}
                         {/*</div>*/}
                     </Navbar>
                     <div className="user-details">
-                        <span className="user-details__icon">NK</span>
+                        <span className="user-details__icon">{profile.name.split(' ')[0][0]}{profile.name.split(' ')[1][0]}</span>
                         {profile.name}
                     </div>
                 </div>

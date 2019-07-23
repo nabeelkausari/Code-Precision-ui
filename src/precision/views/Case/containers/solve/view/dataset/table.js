@@ -8,9 +8,10 @@ const mapStateToProps = ({ cases: { fetch_steps_succeeded }, functions: {selecti
     selected_table_reference:
         selected_table_reference !== ""
         ? selected_table_reference
-        : fetch_dataset_succeeded && list.items[0].ref,
+        : fetch_dataset_succeeded && list.items.length >0 &&  list.items[0].ref,
     selections,
-    dataset_created_succeeded
+    dataset_created_succeeded,
+    fetch_dataset_succeeded
 });
 
 

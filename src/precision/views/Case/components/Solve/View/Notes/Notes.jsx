@@ -40,8 +40,8 @@ class Notes extends Component {
     };
 
     render() {
-        const {closeNotesFlyout, fetch_notes_succeeded, secondary, note1, note2, is_secondary_step_set, is_primary_step_set} = this.props;
-        const {sequence, notes} = this.state;
+        const {closeNotesFlyout, secondary, note1, note2} = this.props;
+        const { notes} = this.state;
         const note_1 = !secondary && note1 !== undefined && note1.noteDetails.note;
         const note_2 =  secondary && note2 !== undefined && note2.noteDetails.note;
         return (

@@ -71,6 +71,10 @@
   &__add-btn{
     height: 2rem;
   }
+  &__cancel-btn{
+    height: 2rem;
+    transform: rotate(45deg);
+  }
 }
 
 .data-table {

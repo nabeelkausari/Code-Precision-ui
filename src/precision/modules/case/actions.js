@@ -23,7 +23,7 @@ export const getCaseDetails = (case_detail_link) => (dispatch, getState) => {
             fetchLinkAs(get_scenario_details_link)
                 .then(scenario_details_response => {
                     dispatch({type:types.SAVE_SCENARIO_DETAILS, payload:scenario_details_response});
-                    dispatch(history.push(`/cases/${case_detail_response.id}/${case_detail_response.scenarios[0].id}/dashboard`))
+                    history.push(`/cases/${case_detail_response.id}/${case_detail_response.scenarios[0].id}/dataset`)
                 })
         })
 }
@@ -33,18 +33,15 @@ export const getCaseAndScenario = (case_id, scenario_id) => (dispatch, getState)
             dispatch({type:types.SAVE_CASE_DETAILS, payload:case_detail_response});
             const scenario_detail = case_detail_response.scenarios.filter(item => String(scenario_id) === String(item.id)).shift();
             if (!scenario_detail) {
-                dispatch(history.push(`/cases`))
+                history.push(`/cases`)
             }
             return fetchLinkAs(scenario_detail._links.get_scenario_details)
         })
         .then(scenario_details_response => {
-            return fetchLinkAs(scenario_details_response._links.resume);
-            // dispatch({type:types.SAVE_SCENARIO_DETAILS, payload:scenario_details_response});
+            dispatch({type:types.SAVE_SCENARIO_DETAILS, payload:scenario_details_response});
+             dispatch(getScenarioDetails());
         })
-        .then(({ data_sets, ...payload }) => {
-            dispatch(getDatasets(payload));
-            return dispatch({ type: types.FETCH_CASE_SUCCEEDED, payload });
-        })
+
 }
 
 
@@ -55,9 +52,9 @@ export const getScenarioDetails = () => (dispatch, getState) => {
     if(current_scenario._links === undefined) return;
     dispatch({ type: types.FETCH_CASE_REQUESTED });
     fetchLinkAs(current_scenario._links.resume)
-        .then(({ data_sets, ...payload }) => {
+        .then((payload) => {
             dispatch(getDatasets(payload));
-            return dispatch({ type: types.FETCH_CASE_SUCCEEDED, payload });
+            dispatch({ type: types.FETCH_CASE_SUCCEEDED, payload });
         })
         .catch(payload => dispatch({ type: types.FETCH_CASE_FAILED, payload }));
 };

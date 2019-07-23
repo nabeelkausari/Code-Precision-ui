@@ -5,10 +5,12 @@ import Papa from "papaparse";
 
 export const selectTable = (payload) => ({ type: types.SELECT_TABLE, payload });
 
-export const getDatasets = (payload) => (dispatch) => {
+export const getDatasets = (scenario) => (dispatch) => {
     dispatch({ type: types.FETCH_DATASET_REQUESTED });
-    return fetchLinkAs(payload._links.tables_with_columns)
-        .then(payload => dispatch({ type: types.FETCH_DATASET_SUCCEEDED, payload }))
+     fetchLinkAs(scenario._links.tables_with_columns)
+        .then(payload => {
+            dispatch({ type: types.FETCH_DATASET_SUCCEEDED, payload })
+        })
         .catch(payload => dispatch({ type: types.FETCH_DATASET_FAILED, payload }))
 };
 

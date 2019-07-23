@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import ToolBar from "./ToolbarVertical/ToolbarVertical";
 
-// import ToolBar from "./Toolbar/ToolBar";
-
-
 import SubHeader from "./SubHeader/SubHeader";
 import Steps from "./Steps/StepList";
 import Dataset from "./View/Dataset/Dataset";
@@ -13,7 +10,6 @@ import {SolveContainer} from '../../containers/solve/solve'
 import Console from "./View/Console/Console";
 import Process from "./View/Process/Process";
 import Dashboard from "./View/Dashboard/Dashboard";
-import ResultsFlyout from "./Result/ResultFlyout";
 import Notes from "./View/Notes/Notes";
 import Loader from "../../../../components/Loader";
 import OutputFlyout from "./Result/OutputFlyout";
@@ -50,7 +46,8 @@ class CaseSolve extends Component {
             case 'dataset': return <Dataset is_steps_open={this.state.is_steps_open}/>;
             case 'console': return <Console/>;
             case 'process': return <Process/>;
-            default: return  <Dashboard />
+            case 'dashboard': return  <Dashboard />;
+            default: this.props.history.push('/cases')
 
         }
     };
@@ -74,7 +71,7 @@ class CaseSolve extends Component {
                 <Loader loading={is_fetching}/>
                 <div className="scenario">
                         <div className="scenario__container">
-                            <SubHeader/>
+                            <SubHeader {...this.props}/>
                             <div className="scenario__main-content">
                                 {!is_console && <ToolBar/>}
                                 {this.renderCaseView()}
