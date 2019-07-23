@@ -31,23 +31,33 @@
     //border-left: .2rem solid rgba($color-white, 0.02);
     font-size: 1rem;
     cursor: pointer;
-    background-color: var(--bg-2);
+    background-color: var(--bg-3);
     color: $color-white;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 .1rem;
-    border-bottom: .1rem solid var(--bg-2);
+    border-bottom: .1rem solid var(--bg-3);
+    position: relative;
 
     &:hover{
 
     }
 
     &--active {
-      background-color: var(--bg-2);
-      border: .1px solid var(--bg-2);
+      background-color: var(--bg-3);
+      border: .1px solid var(--bg-3);
       color: var(--highlight-primary);
       border-left: .3rem solid var(--highlight-primary);
+    }
+
+    &__selected-col-notifier{
+      height: 1rem;
+      width: 1rem;
+      background-color: var(--highlight-primary);
+      position: absolute;
+      top: 0;
+      right: 2rem;
     }
   }
 
@@ -69,14 +79,16 @@
   margin: 0 0 0 2rem;
   font-size: 12px;
   overflow-y: hidden;
-  transition: width .2s .1s ease-out;
+
 
   &--1{
     width: calc(100vw - 43rem);
+    transition: width .2s .2s ease-out;
   }
 
   &--2{
-    width: calc(100vw - 15rem);
+    width: calc(100vw - 20rem);
+    transition: width .2s .1s ease-out;
   }
 }
 
@@ -153,7 +165,7 @@
 .ReactTable .rt-tbody .rt-td {
   //border-right: .3rem solid rgba($color-white,0.2) !important;
   margin-right: .1rem;
-  background-color: var(--bg-2);
+  background-color: var(--bg-3);
   font-size: 1rem;
   padding: .7rem 1rem;
 }

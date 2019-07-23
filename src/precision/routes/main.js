@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Switch, Route, Redirect } from "react-router-dom";
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,6 +18,7 @@ import Header from "../views/Case/components/Solve/ScenarioHeader/Header";
 import AllCases from "../views/Case/components/List/AllCases";
 import CaseList from "../views/Case/components/List/index";
 
+import keydown from "react-keydown";
 
 const ScenarioRoutes = () => (
     <Header>
@@ -41,6 +42,7 @@ const CaseRoutes = () => (
         {/*<Route exact path="/cases/:case_id" component={CaseDetail}/>*/}
     </Switch>
 );
+
 const CaseCreateRoutes = () => (
     <Switch>
         <Route  path="/create">
@@ -62,12 +64,41 @@ const AuthRoutes = () => (
     </Switch>
 );
 
-export const MainRoutes = () => {
-    return (
-        <Switch>
-            <Route path="/auth/login" component={requireUnAuth(Login)} />
-            <Route path="/" component={requireAuth(AuthRoutes)}/>
-        </Switch>
-    );
-};
+class MainRoutes extends Component {
+
+    state = {
+        theme: 'dark'
+    };
+
+    componentWillReceiveProps( { keydown } ) {
+        if (keydown.event && keydown.event.code === 'KeyQ') {
+            this.changeTheme()
+        } else {
+            return;
+        }
+    }
+
+    changeTheme = () => {
+
+        if(this.state.theme === 'dark')
+            this.setState({ theme: 'light'})
+        else
+            this.setState({theme : 'dark'})
+    }
+
+    render() {
+        return (
+            <div className={`body--${this.state.theme}`}>
+                <Switch>
+                    <Route path="/auth/login" component={requireUnAuth(Login)} />
+                    <Route path="/" component={requireAuth(AuthRoutes)}/>
+                </Switch>
+            </div>
+        )
+    }
+}
+
+export default keydown('q')(MainRoutes);
+
+
 

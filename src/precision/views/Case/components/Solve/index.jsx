@@ -29,6 +29,8 @@ class CaseSolve extends Component {
         this.props.getCategoryAndFunctions()
     }
 
+
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         const {fetch_case_succeeded} = this.props;
 

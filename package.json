@@ -21,6 +21,7 @@
     "react-dom": "^16.8.6",
     "react-froala-wysiwyg": "^3.0.3",
     "react-fusioncharts": "^3.0.1",
+    "react-keydown": "^1.9.11",
     "react-loader": "^2.4.5",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
@@ -37,7 +38,7 @@
   },
   "scripts": {
     "start": "HTTPS=true REACT_APP_API_GATEWAY_URL=https://devapi.analyttica.com REACT_APP_APP_URL=http://localhost:3030 PORT=3030 react-scripts start",
-    "build:dev": "REACT_APP_API_GATEWAY_URL=https://devapi.analyttica.com REACT_APP_APP_URL=https://devprecision.analyttica.com yarn run build",
+    "build:dev": "NODE_ENV=development REACT_APP_API_GATEWAY_URL=https://devapi.analyttica.com REACT_APP_APP_URL=https://devprecision.analyttica.com yarn run build",
     "build": "react-scripts build",
     "test": "true"
   },

@@ -11,19 +11,19 @@
     flex-direction: column;
     width : 16rem;
     height: 100%;
-    color: $color-white;
+    color: var(--text-secondary);
   }
 
   &__datasets{
 
     max-height: 40%;
     margin-bottom: .5rem;
-    background-color: var(--bg-2);
+    background-color: var(--bg-3);
   }
 
   &__functions{
     flex: 1;
-    background-color: var(--bg-2);
+    background-color: var(--bg-3);
   }
 
   &__header{
@@ -40,7 +40,7 @@
 
 
   &__header-text{
-    color: var(--text-primary);
+    color: var(--text-secondary);
   }
 
   &__search-bar{
