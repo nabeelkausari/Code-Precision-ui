@@ -21,6 +21,7 @@
     "react-dom": "^16.8.6",
     "react-froala-wysiwyg": "^3.0.3",
     "react-fusioncharts": "^3.0.1",
+    "react-keydown": "^1.9.11",
     "react-loader": "^2.4.5",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
