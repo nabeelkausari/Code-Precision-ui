@@ -45,6 +45,11 @@
       border-bottom: .2rem solid var(--highlight-primary);
       color: var(--highlight-primary);
       padding: 1rem 1.7rem .5rem 1.7rem;
+      font-weight: 500;
+
+      &:hover{
+        text-decoration: none;
+      }
     }
   }
 }
@@ -56,9 +61,20 @@
   justify-content: center;
   align-items: center;
   padding: 1rem 0rem;
-  //margin-left: 2rem ;
   background-color: var(--bg-1);
   color: var(--text-primary);
-  box-shadow: -.4rem 0 2rem rgba($color-black, 1);
-  z-index: 50;
+  z-index: 35;
+
+  &__icon{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    background-color: #9B9B9B;
+    margin-right: 1rem;
+  }
 }

@@ -28,6 +28,7 @@ class ScenarioHeader extends Component {
                         {/*</div>*/}
                     </Navbar>
                     <div className="user-details">
+                        <span className="user-details__icon">NK</span>
                         Nabeel Kausari
                     </div>
                 </div>

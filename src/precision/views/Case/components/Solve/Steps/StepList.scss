@@ -3,13 +3,22 @@
 
 //STEPS COMPONENT
 .steps{
+
+  position: absolute;
+  top: 0;
+  right: 0;
+
   width: 25rem;
   height: calc(100vh - 5.5rem);
-  z-index: 29;
-  background-color: var(--bg-3);
-  box-shadow: -.4rem 0 2rem rgba($color-black, .4);
-  transition: transform .5s ease-out, width .6s .1s;
   color: var(--text-primary);
+
+  z-index: 40;
+
+  background-color: var(--bg-3);
+  box-shadow: -.4rem 1rem 1rem .3rem rgba(var(--shadow), .5);
+
+  transition: right .4s ease-out;
+
 
   &__header{
     padding: 1.5rem 2.5rem 3rem 2.5rem;
@@ -34,7 +43,7 @@
       position: absolute;
       right: 2rem;
       bottom: 2rem;
-      background-color: $color-white;
+      background-color: var(--bg-1);
       border-radius: 50%;
       transition: opacity .1s;
       &:hover{
@@ -50,26 +59,35 @@
     &--2{
       display: flex;
       align-items: center;
-      width: 3rem;
-      height: 4rem;
+
       position: absolute;
-      left: -31rem;
+      left: -3rem;
       bottom: 5rem;
+
+      width: 6rem;
+      height: 4rem;
+
       border-top-left-radius: 5rem;
       border-bottom-left-radius: 5rem;
+
       background-color: var(--bg-1);
-      transition: all .2s .8s, left .2s, opacity .2s .8s, width .2s;
       opacity: 1;
 
+      transition: left .2s .4s, opacity .1s .4s, width .2s .4s;
+
+
+
+
       &:hover{
-        left : -35rem;
-        width: 5rem;
+
+        left: -6rem;
+        width: 6rem;
+        transition: left .2s, width .2s !important;
       }
 
-      &-hide{
+       &-hide  {
+        left: 0;
         opacity: 0;
-        transform: translateX(4rem);
-        transition: opacity .3s, transform .2s 1.2s;
         visibility: hidden;
       }
     }
@@ -110,8 +128,7 @@
   }
 
   &--closed{
-    transform: translateX(25rem);
-    width: 0;
+   right : -25rem
     //display: none;
   }
 
@@ -124,7 +141,7 @@
   padding: 2rem 1rem 2.5rem 1.5rem;
   font-size: 1.4rem;
   display: flex;
-  border-bottom: .1rem solid rgba($color-white, 0.1);
+  border-bottom: .1rem solid rgba(var(--border-step), .2);
 
   &__main-container{
     padding: 0 1.5rem;
@@ -174,3 +191,4 @@
     background-color: black;
   }
 }
+

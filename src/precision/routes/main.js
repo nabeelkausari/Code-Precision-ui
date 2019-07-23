@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Switch, Route, Redirect } from "react-router-dom";
 
 import { createBrowserHistory } from "history";
@@ -15,6 +15,9 @@ import Header from "../views/Case/components/Solve/ScenarioHeader/Header";
 import CaseList from "../views/Case/components/List";
 import CaseDetail from "../views/Case/components/Detail";
 import CaseSolve from "../views/Case/components/Solve";
+
+import keydown from "react-keydown";
+
 
 toast.configure({autoClose:1000})
 
@@ -38,13 +41,45 @@ const CaseRoutes = () => (
     </Switch>
 );
 
-export const MainRoutes = () => (
-  <Switch>
-    <Route path="/cases/:case_id/:scenario_id" component={requireAuth(ScenarioRoutes)} />
-    <Route path="/cases" component={requireAuth(CaseRoutes)} />
-    <Route path="/auth/login" component={requireUnAuth(Login)} />
-    <Redirect from="/" to="/cases" />
-  </Switch>
-);
+class MainRoutes extends Component {
+
+    state = {
+        theme: 'dark'
+    };
+
+    componentWillReceiveProps( { keydown } ) {
+        console.log(keydown.event)
+
+        if (keydown.event && keydown.event.code === 'KeyQ') {
+            this.changeTheme()
+        } else {
+            return;
+        }
+    }
+
+    changeTheme = () => {
+
+        if(this.state.theme === 'dark')
+            this.setState({ theme: 'light'})
+        else
+            this.setState({theme : 'dark'})
+    }
+
+    render() {
+        return (
+            <div className={`body--${this.state.theme}`}>
+                <Switch>
+                    <Route path="/cases/:case_id/:scenario_id" component={requireAuth(ScenarioRoutes)} />
+                    <Route path="/cases" component={requireAuth(CaseRoutes)} />
+                    <Route path="/auth/login" component={requireUnAuth(Login)} />
+                    <Redirect from="/" to="/cases" />
+                </Switch>
+            </div>
+        )
+    }
+}
+
+export default keydown('q')(MainRoutes);
+
 
 

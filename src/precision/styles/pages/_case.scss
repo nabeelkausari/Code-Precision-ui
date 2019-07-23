@@ -9,6 +9,7 @@
   background-color: var(--bg-1);
   display: flex;
   overflow : hidden;
+  position: relative;
 
   &__container{
     flex: 1;
