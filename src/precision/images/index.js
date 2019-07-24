@@ -14,7 +14,7 @@ import right_arrow_icon from './icons/icon-right-arrow.svg'
 import left_arrow_icon from './icons/icon-left-arrow.svg'
 import tv_icon from './icons/icon-tv.svg'
 import results_icon from './icons/icon-results.svg'
-
+import search_icon from './icons/icon-search.svg'
 
 
 
@@ -38,5 +38,6 @@ export {
     left_arrow_icon,
     dataset_icon,
     results_icon,
-    tv_icon
+    tv_icon,
+    search_icon
 }
