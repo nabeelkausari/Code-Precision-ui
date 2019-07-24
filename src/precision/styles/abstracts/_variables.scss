@@ -3,6 +3,9 @@
   --highlight-primary: #FBA202;
   --highlight-secondary: #FFFFFF;
 
+  --highlight-primary-opaque: 251,162,2;
+  --highlight-secondary-opaque: 255,255,255;
+
   --bg-1: #0B233F;
   --bg-2: #192E49;
   --bg-3: #253952;
@@ -20,6 +23,9 @@
 .body--light{
   --highlight-primary: #FBA202;
   --highlight-secondary: #2D4D6F;
+
+  --highlight-primary-opaque: 251,162,2;
+  --highlight-secondary-opaque: 45,77,111;
 
   --bg-1: #E6EDF6;
   --bg-2: #D6E3F2;

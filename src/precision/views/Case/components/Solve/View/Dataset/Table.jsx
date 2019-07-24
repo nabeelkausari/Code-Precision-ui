@@ -4,7 +4,7 @@ import {TableContainer} from "../../../../containers/solve/view/dataset/table";
 import './Table.scss';
 import DataTable from "./DataTable";
 import CreateDataset from './CreateDataset/CreateDataset';
-import {add_button_icon} from "../../../../../../images/index"
+import {AddIcon} from "../../../../../../images/index"
 import Tooltip from "../../../../../../components/Tooltip/Tooltip"
 
 class Table extends Component {
@@ -78,7 +78,8 @@ class Table extends Component {
                                </div>
                                {data_sets && data_sets.length !== 0 && <Tooltip placement="right" text="Cancel">
                                    <div className="table-tabs__btn-container" onClick={this.closeCreateDataset}>
-                                       <img src={add_button_icon} alt="add button" className="table-tabs__cancel-btn"/>
+                                       <AddIcon className="table-tabs__cancel-btn"/>
+                                       {/*<img src={add_button_icon} alt="add button" className="table-tabs__cancel-btn"/>*/}
                                    </div>
                                </Tooltip>}
                            </Fragment>
@@ -87,7 +88,8 @@ class Table extends Component {
                        {! handleCreateDataset &&
                             <Tooltip placement="right" text="Add Dataset">
                                 <div className="table-tabs__btn-container" onClick={this.handleCreateDataset}>
-                                    <img src={add_button_icon} alt="add button" className="table-tabs__add-btn"/>
+                                    <AddIcon className="table-tabs__add-btn"/>
+                                    {/*<img src={add_button_icon} alt="add button" className="table-tabs__add-btn"/>*/}
                                 </div>
                             </Tooltip>
                        }

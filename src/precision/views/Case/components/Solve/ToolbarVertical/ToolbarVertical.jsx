@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import cx from "classnames";
 import {ToolbarContainer} from "../../../containers/solve/view/toolbar/toolbar";
 import "./toolbarVertical.scss"
-import {function_icon, dataset_icon, right_arrow_icon} from "../../../../../images/index"
+import {FunctionsIcon, DatasetIcon, RightArrowIcon} from "../../../../../images/index"
 import FunctionsFlyout from "./Flyouts/FunctionsFlyout";
 import TablesFlyout from "./Flyouts/TablesFlyout";
 
@@ -136,7 +136,10 @@ class ToolbarVertical extends Component {
               <div className="toolbar__main-container">
                   <div className="toolbar__datasets">
                       <div className="toolbar__header">
-                          <img src={dataset_icon} alt="function icon" className="toolbar__header-icon"/>
+                          <div className="toolbar__icon-wrapper">
+                              <DatasetIcon className="toolbar__header-icon"/>
+                              {/*<img src={dataset_icon} alt="function icon" className="toolbar__header-icon"/>*/}
+                          </div>
                           <h5 className="toolbar__header-text">Datasets</h5>
                       </div>
                       <div className="toolbar__search-bar"></div>
@@ -149,7 +152,10 @@ class ToolbarVertical extends Component {
                                   <div className={cx("toolbar__item",{'toolbar__item--active':current_dataset === ds.ref})}>
                                       <h6 className="toolbar__title">{ds.name}</h6>
                                       <span className={this.renderSelectionsNotifier(ds.ref)?"toolbar__selected-col-notifier" : ""}>{this.renderSelectionsNotifier(ds.ref)}</span>
-                                      <img src={right_arrow_icon} alt="left arrow" className="toolbar__arrow-icon"/>
+                                      <div className="toolbar__arrow-wrapper">
+                                          <RightArrowIcon className="toolbar__arrow-icon"/>
+                                          {/*<img src={right_arrow_icon} alt="left arrow" className="toolbar__arrow-icon"/>*/}
+                                      </div>
                                   </div>
                               </li>
                           )}
@@ -158,7 +164,10 @@ class ToolbarVertical extends Component {
 
                   <div className="toolbar__functions">
                       <div className="toolbar__header">
-                          <img src={function_icon} alt="function icon" className="toolbar__header-icon"/>
+                          <div className="toolbar__icon-wrapper">
+                              <FunctionsIcon className="toolbar__header-icon"/>
+                              {/*<img src={functions_icon} alt="function icon" className="toolbar__header-icon"/>*/}
+                          </div>
                           <h5 className="toolbar__header-text">Functions</h5>
                       </div>
                       <div className="toolbar__search-bar"></div>
@@ -171,7 +180,10 @@ class ToolbarVertical extends Component {
                                        key={i}
                                   >
                                       <h6 className="toolbar__title">{category.name}</h6>
-                                      <img src={right_arrow_icon} alt="left arrow" className="toolbar__arrow-icon"/>
+                                      <div className="toolbar__arrow-wrapper">
+                                          <RightArrowIcon className="toolbar__arrow-icon"/>
+                                          {/*<img src={right_arrow_icon} alt="left arrow" className="toolbar__arrow-icon"/>*/}
+                                      </div>
                                   </div>
                               </li>
                           )}

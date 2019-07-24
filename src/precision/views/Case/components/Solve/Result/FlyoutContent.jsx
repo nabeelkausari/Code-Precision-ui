@@ -5,7 +5,7 @@ import ResultFlyout from "./ResultFlyout";
 import UserCode from "./UserCode";
 import './flyout.scss'
 
-import {results_icon, tv_icon} from '../../../../../images/index'
+import {ResultsIcon, TvIcon} from '../../../../../images/index'
 
 export class FlyoutContent extends Component {
 
@@ -31,12 +31,12 @@ export class FlyoutContent extends Component {
         return (
             <div className="tabs-container">
                 <Tabs id="controlled-tab-example" activeKey={key} onSelect={(key) => this.handleSelect(key)}>
-                    <Tab eventKey={0} title={<span> <img className="icon-result" src={results_icon} alt="results icon"/> <span> Results</span></span>}>
+                    <Tab eventKey={0} title={<span> <ResultsIcon className="icon-result"/> <span> Results</span></span>}>
                         {is_primary_step_set && results_primary &&
                         <ResultFlyout results={ secondary? results_secondary : results_primary}/>
                         }
                     </Tab>
-                    <Tab eventKey={1}  title={<span> <img className="icon-code" src={tv_icon} alt="code icon"/> <span> Code</span></span>}>
+                    <Tab eventKey={1}  title={<span> <TvIcon className="icon-code"/> <span> Code</span></span>}>
                         {is_primary_step_set &&
                         <UserCode  secondary={secondary} code_primary={code_primary} code_secondary={code_secondary} />
                         }

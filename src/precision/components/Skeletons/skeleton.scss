@@ -1,14 +1,27 @@
-$base-color: #f2f2f2;
-$shine-color: rgba(255,255,255,0.6);
+$base-color: var(--bg-4);
+$base-color-cells: var(--bg-4);
+$base-color-header: var(--bg-3);
+$shine-color: rgba(var(--highlight-secondary-opaque),0.4);
 
 @mixin background-gradient-step{
   background-image: linear-gradient(90deg, $base-color 0px, $shine-color 40px, $base-color 80px);
   background-size: 60rem;
 }
 
+
+
 @mixin background-gradient-table{
-  background-image: linear-gradient(90deg, $base-color 0px, $shine-color 40px, $base-color 80px);
+  background-image: linear-gradient(90deg, $base-color-cells 0px, $shine-color 40px, $base-color 80px);
   background-size: 60rem;
+}
+
+@mixin background-gradient-table-head{
+  background-image: linear-gradient(90deg, $base-color-header 0px, $shine-color 40px, $base-color 80px);
+  background-size: 60rem;
+}
+
+ul{
+  margin: 0;
 }
 
 .step-skeleton{
@@ -77,13 +90,13 @@ $shine-color: rgba(255,255,255,0.6);
   }
 
   &__header{
-    height: 3.5rem;
-    margin-bottom: .8rem;
+    height: 3.3rem;
+    background-color: var(--bg3);
   }
 
   &__header-row{
     display: flex;
-    @include background-gradient-table;
+    @include background-gradient-table-head;
     animation: animate-table-lines 1s infinite linear;
   }
 
@@ -93,22 +106,18 @@ $shine-color: rgba(255,255,255,0.6);
 
   &__row{
     display: flex;
-
-    &:not(:last-child){
-      margin-bottom: .5rem;
-    }
   }
 
   &__line{
     width: .1rem;
-    background-color: #d9d9d9;
+    background-color: var(--bg-1);
 
     &--header{
-      height: 3.5rem;
+      height: 3.3rem;
     }
 
     &--body{
-      height: 2.5rem;
+      height: 2.8rem;
     }
   }
 
@@ -119,13 +128,16 @@ $shine-color: rgba(255,255,255,0.6);
     height: 2.5rem;
     @include background-gradient-table;
     animation: animate-table-lines 1s infinite linear;
+    background-color: var(--bg4);
+    border-bottom: .1rem solid var(--bg-1);
 
     &:not(:last-child){
-      border-right: .1rem solid #d9d9d9;
+      border-right: .1rem solid var(--bg-1);
     }
 
     &--header{
-      height: 3.5rem;
+      height: 3.3rem;
+      border-bottom: .2rem solid var(--bg-1);
     }
   }
 

@@ -36,7 +36,7 @@
     justify-content: center;
     align-items: center;
     margin: 0 .1rem;
-    border-bottom: .1rem solid var(--bg-3);
+    //border-bottom: .1rem solid var(--bg-3);
     position: relative;
 
     &:hover{
@@ -45,12 +45,10 @@
 
     &--active {
       background-color: var(--bg-3);
-      border: .1px solid var(--bg-3);
+      //border: .1px solid var(--bg-3);
       color: var(--highlight-primary);
       border-left: .3rem solid var(--highlight-primary);
     }
-
-
   }
 
   &__selected-col-notifier{
@@ -78,10 +76,22 @@
 
   &__add-btn{
     height: 2rem;
+    path {
+      fill : var(--text-secondary)
+    }
   }
   &__cancel-btn{
+
     height: 2rem;
     transform: rotate(45deg);
+
+    path {
+      fill : var(--text-secondary)
+    }
+  }
+
+  &__btn-container{
+
   }
 }
 
