@@ -1,0 +1,80 @@
+@import "../../../../../styles/abstracts/variables";
+
+
+.bg-sub-header {
+  background-color: var(--bg-1);
+  padding: 1.5rem 1.5rem 1.1rem 2rem;
+  z-index: 28;
+
+  .navbar-nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  //&__left-container {
+  //
+  //}
+  //
+  //&__right-container {
+  //  display: flex;
+  //  justify-content: flex-end;
+  //}
+
+  &__container{
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  &__items {
+    font-size: 1.4rem;
+  }
+
+  &__link {
+    &:link, &:visited{
+      color: var(--text-primary);
+      letter-spacing: 0.4px;
+      line-height: 21px;
+      //text-decoration: none;
+      padding : 1rem 1.5rem .5rem .5rem;
+      font-family: inherit;
+      font-size: 1.4rem;
+      font-weight: 300;
+    }
+
+    &:hover{
+      text-decoration: none;
+      color: var(--highlight-secondary) ;
+    }
+  }
+
+  .active {
+    border-bottom: .2rem solid var(--highlight-primary);
+    color: var(--highlight-primary);
+  }
+}
+
+.tab-wrapper{
+
+  &__icon-wrapper{
+
+  }
+
+  &__icon{
+    height: 3rem !important;
+    width: 3rem !important;
+
+    path {
+      fill: currentColor;
+    }
+
+    &--dataset{
+      padding: .8rem;
+    }
+
+    &--console{
+      padding: .5rem;
+
+    }
+  }
+}

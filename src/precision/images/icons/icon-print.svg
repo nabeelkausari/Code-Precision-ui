@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="outline-print-24px" width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+        <style>
+            .cls-1{fill:none}.cls-2{fill:#f0f0f0}
+        </style>
+    </defs>
+    <path id="Path_785" d="M0 0h24v24H0z" class="cls-1" data-name="Path 785"/>
+    <path id="Path_786" d="M19 8h-1V3H6v5H5a3 3 0 0 0-3 3v6h4v4h12v-4h4v-6a3 3 0 0 0-3-3zM8 5h8v3H8zm8 12v2H8v-4h8zm2-2v-2H6v2H4v-4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v4z" class="cls-2" data-name="Path 786"/>
+    <circle id="Ellipse_353" cx="1" cy="1" r="1" class="cls-2" data-name="Ellipse 353" transform="translate(17 10.5)"/>
+</svg>

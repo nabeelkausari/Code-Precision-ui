@@ -1,7 +1,11 @@
 import * as types from "./types";
 
 const initialState = {
-
+    notes_output : {
+        is_primary_flyout_open : false,
+        is_secondary_flyout_open : false,
+        save_notes_succeeded: null
+    }
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -9,6 +13,7 @@ export default (state = initialState, { type, payload }) => {
 
         case types.SAVE_CURRENT_STEP:
             return {
+                ...state,
                 current_step: payload
             };
 
@@ -42,6 +47,93 @@ export default (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 show_notes_flyout: false
+            };
+
+
+        case types.SET_CURRENT_NOTES :
+            return {
+                ...state,
+                notes_output: {
+                    ...state.notes_output,
+                    is_primary_step_set: true,
+                    note1: payload,
+                    save_notes_succeeded: true,
+                }
+            };
+
+
+        case types.SET_PREVIOUS_NOTES :
+            return {
+                ...state,
+                notes_output: {
+                    ...state.notes_output,
+                    note2: state.notes_output.note1,
+                    is_secondary_step_set: true,
+                    save_notes_succeeded: true
+                }
+            };
+
+        case types.OPEN_FLYOUT_PRIMARY :
+            return {
+                ...state,
+                notes_output: {
+                    ...state.notes_output,
+                    is_primary_flyout_open: true
+                }
+            };
+
+        case types.CLOSE_FLYOUT_PRIMARY :
+            return {
+                ...state,
+                notes_output: {
+                    ...state.notes_output,
+                    is_primary_flyout_open: false,
+                    note1: undefined,
+                    is_primary_step_set: false
+                }
+            };
+
+        case types.OPEN_FLYOUT_SECONDARY :
+            return {
+                ...state,
+                notes_output: {
+                    ...state.notes_output,
+                    is_secondary_flyout_open: true
+                }
+            };
+
+        case types.CLOSE_FLYOUT_SECONDARY :
+            return {
+                ...state,
+                notes_output: {
+                    ...state.notes_output,
+                    is_secondary_flyout_open: false,
+                    note2: undefined,
+                    is_secondary_step_set: false
+                }
+            };
+
+        case types.SAVE_NOTES_REQUESTED:
+            return {
+                ...state,
+                save_notes_loading: true,
+                save_notes_error: null,
+                save_notes_succeeded: null
+            };
+
+        case types.SAVE_NOTES_SUCCEEDED:
+            return {
+                ...state,
+                save_notes_loading: false,
+                save_notes_succeeded: true,
+            };
+
+        case types.SAVE_NOTES_FAILED:
+            return {
+                ...state,
+                save_notes_loading: false,
+                save_notes_succeeded: null,
+                save_notes_error: true,
             };
 
         default:

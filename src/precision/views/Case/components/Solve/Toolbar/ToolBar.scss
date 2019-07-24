@@ -1,0 +1,76 @@
+@import "../../../../../styles/abstracts/variables";
+
+.toolbar-container {
+  display: flex;
+  justify-content: flex-start;
+  border: 1px solid $color-grey-light-1;
+  background-color: $color-white;
+  box-shadow: 13px 5px 16px -11px rgba(0,0,0,0.26);
+  padding: .5rem 0;
+
+  .tool {
+    display: flex;
+    flex-basis: 20%;
+    align-items: center;
+    padding: 0.4rem;
+    color: $color-grey-dark-2;
+    border: 1px solid $color-grey-light-1;
+    border-radius: 2px;
+    background-color: $color-white;
+    margin: .3rem;
+    cursor: pointer;
+    z-index: 50;
+
+    &:not(:last-child){
+      margin-right: 1rem;
+    }
+
+    &__image {
+
+    }
+
+    &__title {
+      color: $color-grey-dark-2;
+      font-size: 1.2rem;
+      letter-spacing: 0.04rem;
+      margin: 0 .5rem 0 0;
+    }
+
+    .pill-container {
+        display: flex;
+        cursor: pointer;
+      &__placeholder {
+        font-size: 1.2rem;
+      }
+
+      .pill {
+        border: 1px solid $color-primary-light-1;
+        border-radius: .6rem;
+        background-color: #F5F7F8;
+        padding: 0 .5rem;
+
+        &:not(:first-child){
+          margin-left: 2px;
+        }
+
+        &__text {
+          font-size: 1rem;
+          white-space: nowrap;
+        }
+
+        &__cancel{
+          margin-left: 5px;
+          font-size: 1rem;
+          color: $color-primary-light-1;
+          cursor: pointer;
+        }
+      }
+    }
+
+  }
+}
+
+
+
+
+

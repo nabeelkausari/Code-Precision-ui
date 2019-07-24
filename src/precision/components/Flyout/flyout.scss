@@ -25,20 +25,28 @@
 .flyout-container{
 
   position: absolute;
-  width: 50%;
-  height: calc(100vh - 5.8rem);
+  width: 35.6%;
+  //height: calc(100vh - 5.8rem);
   top : .1rem;
   //border: .1rem solid black;
   //padding: 1rem 2rem;
-  background-color: $color-white;
+  background-color: var(--bg-1);
   z-index: 31;
 
   &--1{
-    right: 0;
+    right: 25rem;
   }
 
   &--2{
-    right: 50%;
+    left : 16rem;
+  }
+
+  &__action-icon{
+    height: 2rem;
+  }
+
+  &__action-wrapper{
+      margin-right: 2rem;
   }
 
 
@@ -46,24 +54,46 @@
   &__header{
     display: flex;
     align-items: center;
-    padding: 1rem 1rem;
-    background-color: $color-tertiary;
+    padding: .5rem 1rem;
+    background-color: var(--bg-3);
     position: relative;
+    margin-left: 8rem;
   }
 
   &__index-no-wrapper{
+    position: absolute;
+    top: 0;
+    left: -8rem;
+    height: 8rem;
+    width: 8rem;
+    background-color: var(--bg-4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
+  &__index-no{
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 2.5rem;
+  }
+
+  &__title-wrapper{
+    margin-right: auto;
+    padding: 0 1rem;
   }
 
 
   &__title{
-    margin: 0 auto 0 5rem;
-    font-size: 2rem;
+
+    font-size: 1.8rem;
     font-weight: 400;
+    color: var(--text-secondary);
   }
 
   &__options{
-
+    display: flex;
+    align-items: center;
   }
 
   &__download-option{
@@ -85,13 +115,14 @@
     line-height: 1;
     margin-left: 1rem;
     margin-right: 1rem;
+    color: var(--text-primary);
   }
 
   //Flyout Content
 
   &__content{
     padding: 1rem 2.5rem;
-    height: calc(100vh - 15.8rem);
+    height: calc(100vh - 6.5rem);
     overflow: auto;
   }
 }

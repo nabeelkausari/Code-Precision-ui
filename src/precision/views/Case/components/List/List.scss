@@ -1,0 +1,168 @@
+//case header
+.bg-case-list-header {
+  padding: 1rem 2rem;
+  background-color: var(--bg-1);
+  box-shadow: 1.3rem .5rem 1.6rem -1.1rem rgba(0,0,0,0.26);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+
+  .active {
+    color: var(--highlight-primary) !important;
+    border-bottom: .2rem solid currentColor;
+  }
+  .logo{
+    width: 80%;
+    height: 40%;
+  }
+
+  .case-list-header__item {
+    font-size: 1.4rem;
+
+    &-link {
+      color: #9B9B9B;
+      letter-spacing: 0.4px;
+      line-height: 2.1rem;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      font-family: inherit;
+    }
+  }
+
+  .navbar-nav{
+    margin-right: auto;
+    margin-left: 2rem;
+  }
+
+  .user-profile {
+    position: relative;
+      .dropdown-toggle,
+      .dropdown-toggle:active,
+      .dropdown-toggle:focus{
+        display: flex;
+        align-items: center;
+        color: blue;
+        background: #ffffff !important;
+        border: none;
+        box-shadow: none;
+
+       p{
+          margin: 0;
+        }
+      }
+
+    &__logo {
+      width: 3rem;
+      height:3rem;
+      border-radius: 50%;
+    }
+
+    .dropdown-menu {
+      top: 130%;
+      left: -12rem;
+
+      .dropdown-item{
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+.case-container{
+  height: calc(100vh - 5.8rem);
+  overflow: scroll;
+  padding: 0 9rem;
+  background-color: var(--bg-1);
+  &__header{
+    padding-top: 4rem;
+    display: flex;
+  }
+
+  &__search-wrapper{
+    width: 40rem;
+    height: 4rem;
+
+    input{
+      height: 4rem;
+    }
+  }
+
+  &__create-wrapper{
+    margin-right: auto;
+  }
+
+  &__cases{
+    margin-top: 5rem;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+
+//case card
+.case-card {
+
+  width: 40rem;
+  height: 28rem;
+  background-color: var(--bg-4);
+  margin-bottom: 2.9rem;
+  padding: 1rem 1rem 1rem 2rem;
+
+  &:not(:nth-child(3)){
+    margin-right: 2.9rem;
+  }
+
+
+  &__title {
+    margin-top: 10%;
+    height: 25%;
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    padding: .5rem;
+
+  }
+
+  &__desc{
+    height: 25%;
+    overflow-y: scroll;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    padding: .5rem;
+  }
+
+  &__btn{
+    margin-top: 5rem;
+    margin-left: 25rem;
+    width: 10rem;
+  }
+
+
+}
+
+.case-card-create {
+  width: 18rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: .1rem solid var(--text-primary);
+  border-radius: .2rem;
+  cursor: pointer;
+
+  &:hover{
+    background-color: darkgray;
+  }
+
+  &__icon{
+    height: 2rem;
+    margin-right: 1rem;
+  }
+
+  &__text{
+    margin-bottom: 0;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-right: 2rem;
+  }
+}
+

@@ -1,0 +1,211 @@
+@import "../../../../../styles/abstracts/variables";
+
+
+//STEPS COMPONENT
+.steps{
+
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  width: 25rem;
+  height: calc(100vh - 5.5rem);
+  color: var(--text-primary);
+
+  z-index: 40;
+
+  background-color: var(--bg-3);
+  box-shadow: -.4rem 1rem 1rem .3rem rgba(var(--shadow), .5);
+
+  transition: right .4s ease-out;
+
+
+  &__header{
+    padding: 1.5rem 2.5rem 3rem 2.5rem;
+  }
+
+  &__list-container{
+    height: calc(100vh - 12.5rem);
+    overflow: scroll;
+  }
+
+  &__item{
+    list-style: none;
+  }
+
+  &__toggle-btn{
+    &--1{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 4rem;
+      height: 4rem;
+      position: absolute;
+      right: 2rem;
+      bottom: 2rem;
+      background-color: var(--bg-1);
+      border-radius: 50%;
+      transition: opacity .1s;
+      &:hover{
+        background-color: rgba(#777, .6);
+      }
+
+      &-hide{
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    &--2{
+      display: flex;
+      align-items: center;
+
+      position: absolute;
+      left: -3rem;
+      bottom: 5rem;
+
+      width: 6rem;
+      height: 4rem;
+
+      border-top-left-radius: 5rem;
+      border-bottom-left-radius: 5rem;
+
+      background-color: var(--bg-1);
+      opacity: 1;
+
+      transition: left .2s .4s, opacity .1s .4s, width .2s .4s;
+
+
+
+
+      &:hover{
+
+        left: -6rem;
+        width: 6rem;
+        transition: left .2s, width .2s !important;
+      }
+
+       &-hide  {
+        left: 0;
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+  }
+
+  &__sub-container{
+    display: flex;
+    align-items: center;
+  }
+
+  &__number-of-selected{
+    margin-right: auto;
+  }
+
+  &__action-wrapper{
+
+    &:not(:last-child){
+      margin-right: 1.5rem;
+    }
+  }
+
+  &__toggle-icon{
+    height: 1.5rem;
+  }
+
+  &__icon-wrapper{
+    height: 1.4rem;
+    width: 1.4rem;
+  }
+
+  &__action-icon{
+    height: 1.2rem;
+    cursor: pointer;
+    transition: opacity .1s;
+    fill: var(--text-secondary);
+    width: 1.2rem;
+
+    path{
+      fill : var(--text-secondary)
+    }
+
+    &--active{
+      opacity: .3;
+    }
+
+    &--bigger{
+      height: 1.6rem;
+    }
+  }
+
+  &--closed{
+   right : -25rem
+    //display: none;
+  }
+
+
+}
+
+
+//STEP COMPONENT (individual step)
+.step{
+  padding: 2rem 1rem 2.5rem 1.5rem;
+  font-size: 1.4rem;
+  display: flex;
+  border-bottom: .1rem solid rgba(var(--border-step), .2);
+  cursor: pointer;
+
+  &:hover{
+    background-color: var(--bg-1);
+  }
+
+  &__main-container{
+    padding: 0 1.5rem;
+    flex: 1;
+  }
+
+  &__info-container{
+
+  }
+
+  &__functions-wrapper, &__columns-wrapper{
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 200;
+  }
+
+  &__icon-wrapper{
+    margin-right: 1rem;
+  }
+
+  &__actions-container{
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__icon{
+    height: 1.3rem;
+    width: 1.4rem;
+  }
+
+  &__action{
+    background: transparent;
+    border: none;
+    color: gray;
+    //padding-bottom: .5rem;
+    border-bottom: 1px solid gray;
+    font-size: 1.3rem;
+
+    &:hover{
+      text-decoration: none;
+      color: gray;
+  }
+  }
+
+  &--undo{
+    background-color: black;
+  }
+}
+

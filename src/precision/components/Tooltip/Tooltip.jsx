@@ -13,8 +13,8 @@ class TooltipComponent extends Component {
                         <Tooltip id={`tooltip-${placement}`}>
                             {text}
                         </Tooltip>
-                    }
-                >
+                    }>
+
                     {children}
                 </OverlayTrigger>
         );

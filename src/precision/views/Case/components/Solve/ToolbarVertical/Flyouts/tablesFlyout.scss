@@ -1,0 +1,61 @@
+@import "../../../../../../styles/abstracts/variables";
+
+
+.columns-box {
+  background-color: transparent;
+  margin-left: 0.3rem;
+  overflow: auto;
+  display: flex;
+  width: 60rem;
+  padding: 1rem;
+  color: $color-white;
+
+
+  &__left{
+    flex: 1;
+    margin-right: 5rem;
+  }
+
+
+  &__right {
+    flex: 1;
+    margin-left: 2rem;
+  }
+}
+
+.search-columns {
+  width: 19rem;
+  margin: 2rem;
+  float: left;
+  height: 3rem;
+
+  &__input {
+    background: none !important;
+    height: 100%;
+    width: 100%;
+    padding: 0 4rem;
+    border: 1px solid white;
+    color: white;
+    border-radius: .2rem;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: white;
+    }
+
+  }
+
+  &__icon {
+    position: absolute;
+    margin: 0.8rem 2rem;
+  }
+
+}
+
+
+
+
+
