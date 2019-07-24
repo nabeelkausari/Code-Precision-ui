@@ -4,7 +4,10 @@ import Step from './Step'
 import Tooltip from '../../../../../components/Tooltip/Tooltip'
 import StepsContainer from '../../../containers/solve/steps'
 import './StepList.scss'
-import {undo_icon, redo_icon, reset_icon, right_arrow_icon, left_arrow_icon} from '../../../../../images/index'
+import {UndoIcon, RedoIcon, ResetIcon, RightArrowIcon, LeftArrowIcon} from '../../../../../images/index';
+
+// import  {ReactComponent as RedoIcon} from '../../../../../images/icons/icon_redo.svg';
+
 import StepSkeleton from '../../../../../components/Skeletons/StepSkeleton'
 import Extract from '../Extract/Extract'
 
@@ -50,7 +53,8 @@ class StepList extends Component {
         const {
             steps, onShowResultClick, undo_available, redo_available, last_step, onUndoClick,
             onRedoClick, redo_requested, undo_requested, can_reset, onResetClick, reset_requested
-        } = this.props
+        } = this.props;
+
 
         const {is_steps_open, toggleSteps} = this.props;
         return (
@@ -65,21 +69,23 @@ class StepList extends Component {
                         <span className="steps__number-of-selected">0 selected</span>
 
 
-                        {
-                        <Tooltip placement={"bottom"} text={"Show User Steps"}>
-                            <div className="steps__action-wrapper">
-                                <div onClick={this.handleUserStepDetails}>Show Steps</div>
-                            </div>
-                        </Tooltip>
-                        }
+                        {/*{*/}
+                        {/*<Tooltip placement={"bottom"} text={"Show User Steps"}>*/}
+                            {/*<div className="steps__action-wrapper">*/}
+                                {/*<div onClick={this.handleUserStepDetails}>Show Steps</div>*/}
+                            {/*</div>*/}
+                        {/*</Tooltip>*/}
+                        {/*}*/}
 
                         {undo_available &&
                         <Tooltip placement={"bottom"} text={"Undo"}>
                             <div className="steps__action-wrapper">
 
-                                <img src={undo_icon} alt="undo icon"
-                                     className={undo_requested ? "steps__action-icon steps__action-icon--active u-disable" : "steps__action-icon"}
-                                     onClick={() => onUndoClick(last_step._links.undo)}/>
+                                <UndoIcon className={undo_requested ? "steps__action-icon steps__action-icon--active u-disable" : "steps__action-icon"}
+                                          onClick={() => onUndoClick(last_step._links.undo)}/>
+                                {/*<img src={undo_icon} alt="undo icon"*/}
+                                     {/*className={undo_requested ? "steps__action-icon steps__action-icon--active u-disable" : "steps__action-icon"}*/}
+                                     {/*onClick={() => onUndoClick(last_step._links.undo)}/>*/}
                             </div>
                         </Tooltip>
                         }
@@ -87,8 +93,11 @@ class StepList extends Component {
                         {redo_available &&
                         <Tooltip placement={"bottom"} text={"Redo"}>
                             <div className="steps__action-wrapper">
-                                <img src={redo_icon} alt="redo icon" className={redo_requested? "steps__action-icon steps__action-icon--active  u-disable" : "steps__action-icon"}
-                                     onClick={() => onRedoClick(last_step._links.redo)}/>
+
+                                <RedoIcon className={redo_requested? "steps__action-icon steps__action-icon--active  u-disable" : "steps__action-icon"}
+                                        onClick={() => onRedoClick(last_step._links.redo)}/>
+                                {/*<img src={redo_icon} alt="redo icon" className={redo_requested? "steps__action-icon steps__action-icon--active  u-disable" : "steps__action-icon"}*/}
+
                             </div>
                         </Tooltip>
                         }
@@ -96,8 +105,10 @@ class StepList extends Component {
                         {can_reset &&
                         <Tooltip placement={"bottom"} text={"Reset"}>
                             <div className="steps__action-wrapper">
-                                <img src={reset_icon} alt="reset icon" className={reset_requested? "steps__action-icon steps__action-icon--active  u-disable" : "steps__action-icon"}
-                                     onClick={() => onResetClick()}/>
+                                <ResetIcon className={reset_requested? "steps__action-icon steps__action-icon--active  u-disable" : "steps__action-icon"}
+                                           onClick={() => onResetClick()}/>
+                                {/*<img src={reset_icon} alt="reset icon" className={reset_requested? "steps__action-icon steps__action-icon--active  u-disable" : "steps__action-icon"}*/}
+                                     {/*onClick={() => onResetClick()}/>*/}
                             </div>
                         </Tooltip>
                         }
@@ -123,11 +134,17 @@ class StepList extends Component {
                 </div>
 
                 <div className={is_steps_open? "steps__toggle-btn--1" : "steps__toggle-btn--1-hide"} onClick={toggleSteps}>
-                    <img src={right_arrow_icon} alt="right arrow" className="steps__toggle-icon"/>
+                    {/*<img src={right_arrow_icon} alt="right arrow" className="steps__toggle-icon"/>*/}
+                    <div className="steps__btn-icon-wrapper">
+                        <RightArrowIcon className="steps__toggle-icon"/>
+                    </div>
                 </div>
 
                 <div className={is_steps_open? "steps__toggle-btn--2 steps__toggle-btn--2-hide" : "steps__toggle-btn--2"} onClick={toggleSteps}>
-                    <img src={left_arrow_icon} alt="left arrow" className="steps__toggle-icon u-margin-left-small"/>
+                    <div className="steps__btn-icon-wrapper">
+                        <LeftArrowIcon className="steps__toggle-icon"/>
+                    </div>
+                    {/*<img src={left_arrow_icon} alt="left arrow" className="steps__toggle-icon u-margin-left-small"/>*/}
                 </div>
                 {/*{this.state.open_user_steps && <UserStepDetails show={this.state.open_user_steps} handleClose={this.closeUserStepDetails}/>}*/}
                 {this.state.open_extract_modal && <Extract show={this.state.open_extract_modal} handleClose={this.closeExtractModal} scenario_id={this.props.scenario_id}/>}

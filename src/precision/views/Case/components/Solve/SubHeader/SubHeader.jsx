@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {Nav, Navbar} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
+import {DatasetIcon, ConsoleIcon} from '../../../../../images/index'
 
 import './SubHeader.scss';
 
@@ -30,7 +31,15 @@ class SubHeader extends Component {
                                 <NavLink exact to={`${current_route}/dataset`}
                                          className='bg-sub-header__link'
                                          activeClassName="active">
-                                    Data Set
+                                    {/*<div className="tab-wrapper">*/}
+                                        <span className="tab-wrapper__icon-wrapper">
+                                            <DatasetIcon className="tab-wrapper__icon tab-wrapper__icon--dataset"/>
+                                        </span>
+                                        <span className="tab-wrapper__text">
+                                            Data Set
+                                        </span>
+                                    {/*</div>*/}
+
                                 </NavLink>
                             </Nav.Item>
 
@@ -38,7 +47,15 @@ class SubHeader extends Component {
                                 <NavLink exact to={`${current_route}/console`}
                                          className='bg-sub-header__link'
                                          activeClassName="active"
-                                >Console
+                                >
+                                    {/*<div className="tab-wrapper">*/}
+                                        <span className="tab-wrapper__icon-wrapper">
+                                            <ConsoleIcon className="tab-wrapper__icon"/>
+                                        </span>
+                                        <span className="tab-wrapper__text">
+                                            Console
+                                        </span>
+                                    {/*</div>*/}
                                 </NavLink>
                             </Nav.Item>
 

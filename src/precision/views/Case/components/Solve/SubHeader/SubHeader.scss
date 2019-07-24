@@ -36,7 +36,7 @@
       letter-spacing: 0.4px;
       line-height: 21px;
       //text-decoration: none;
-      padding: 1rem 1.5rem .5rem 1.5rem;
+      padding : 1rem 1.5rem .5rem .5rem;
       font-family: inherit;
       font-size: 1.4rem;
       font-weight: 300;
@@ -51,5 +51,25 @@
   .active {
     border-bottom: .2rem solid var(--highlight-primary);
     color: var(--highlight-primary);
+  }
+}
+
+.tab-wrapper{
+
+  &__icon-wrapper{
+
+  }
+
+  &__icon{
+    height: 3rem !important;
+    width: 3rem !important;
+
+    &--dataset{
+      padding: .8rem;
+
+      path {
+        fill: currentColor;
+      }
+    }
   }
 }

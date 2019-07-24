@@ -113,10 +113,21 @@
     height: 1.5rem;
   }
 
+  &__icon-wrapper{
+    height: 1.4rem;
+    width: 1.4rem;
+  }
+
   &__action-icon{
     height: 1.2rem;
     cursor: pointer;
     transition: opacity .1s;
+    fill: var(--text-secondary);
+    width: 1.2rem;
+
+    path{
+      fill : var(--text-secondary)
+    }
 
     &--active{
       opacity: .3;
@@ -142,6 +153,11 @@
   font-size: 1.4rem;
   display: flex;
   border-bottom: .1rem solid rgba(var(--border-step), .2);
+  cursor: pointer;
+
+  &:hover{
+    background-color: var(--bg-1);
+  }
 
   &__main-container{
     padding: 0 1.5rem;
@@ -171,6 +187,7 @@
 
   &__icon{
     height: 1.3rem;
+    width: 1.4rem;
   }
 
   &__action{
