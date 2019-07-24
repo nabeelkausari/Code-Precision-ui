@@ -53,14 +53,21 @@ class AllCases extends Component {
             <Fragment>
                 <Loader loading={is_fetching}/>
                 <div className="case-container">
-                    <FormInput type="text" name="search_query" value={search_query}  onChange={this.onSearch} placeholder="Search by tag, Keyword"/>
-                    {!is_fetching && <div style={{display: "flex",justifyContent: "space-around", flexWrap: "wrap"}}>
-                        {
-                            case_categories.map((category,i) =>(
-                                <p key={i} onClick={() =>this.setState({current_category:category})}>{category}</p>
-                            ))
-                        }
-                    </div>}
+
+                    <div className="case-container__create-wrapper">
+
+                    </div>
+
+                    <div className="case-container__search-wrapper">
+                        <FormInput type="text" name="search_query" value={search_query}  onChange={this.onSearch} placeholder="Search by tag, Keyword" className="SEARCH"/>
+                        {!is_fetching && <div style={{display: "flex",justifyContent: "space-around", flexWrap: "wrap"}}>
+                            {
+                                case_categories.map((category,i) =>(
+                                    <p key={i} onClick={() =>this.setState({current_category:category})}>{category}</p>
+                                ))
+                            }
+                        </div>}
+                    </div>
                     <div style={{display:"flex",flexWrap: "wrap"}}>
                         {
                             current_category === "All Categories" ?

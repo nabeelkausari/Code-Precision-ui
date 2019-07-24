@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="outline-dvr-24px" width="14" height="14" viewBox="0 0 14 14">
+    <defs>
+        <style>
+            .cls-1{fill:none}.cls-2{fill:#ff9f00}
+        </style>
+    </defs>
+    <path id="Path_775" d="M0 0h14v14H0z" class="cls-1" data-name="Path 775"/>
+    <path id="Path_776" d="M12.664 3H2.166A1.17 1.17 0 0 0 1 4.166v6.995a1.17 1.17 0 0 0 1.166 1.166h2.917v1.166h4.665v-1.167h2.916a1.17 1.17 0 0 0 1.166-1.166V4.166A1.17 1.17 0 0 0 12.664 3zm0 8.161H2.166V4.166h10.5zM11.5 5.914H5.083V7.08H11.5zm0 2.332H5.083v1.166H11.5zm-7-2.332H3.333V7.08H4.5zm0 2.332H3.333v1.166H4.5z" class="cls-2" data-name="Path 776" transform="translate(-.415 -1.246)"/>
+</svg>

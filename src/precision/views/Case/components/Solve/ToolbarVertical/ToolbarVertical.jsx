@@ -117,6 +117,12 @@ class ToolbarVertical extends Component {
         this.props.getFunctionParameters(fx);
     };
 
+    renderSelectionsNotifier = (ref) => {
+        if(!(Object.keys(this.props.selections).length === 0 || this.props.selections === undefined)){
+            return this.props.selections[ref] && this.props.selections[ref].length
+        }
+    };
+
 
     render() {
         const {is_function_flyout_open, is_table_flyout_open} = this.state;
@@ -142,6 +148,7 @@ class ToolbarVertical extends Component {
                               >
                                   <div className={cx("toolbar__item",{'toolbar__item--active':current_dataset === ds.ref})}>
                                       <h6 className="toolbar__title">{ds.name}</h6>
+                                      <span className={this.renderSelectionsNotifier(ds.ref)?"toolbar__selected-col-notifier" : ""}>{this.renderSelectionsNotifier(ds.ref)}</span>
                                       <img src={right_arrow_icon} alt="left arrow" className="toolbar__arrow-icon"/>
                                   </div>
                               </li>
