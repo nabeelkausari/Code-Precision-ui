@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { path } from 'ramda';
 import {setAllColumnSelections, setColumnSelections} from "../../../../../../modules/case/toolbar/actions";
+import {fetchCsvData} from "../../../../../../modules/datasets/actions";
 
 const mapStateToProps = (state, props) => {
     const matched_data_set =
@@ -11,8 +12,10 @@ const mapStateToProps = (state, props) => {
         csv,
         fetch_steps_succeeded: state.cases.fetch_steps_succeeded,
         column_selections: state.functions.selections,
-        dataset_loading: state.datasets.dataset_loading
+        dataset_loading: state.datasets.dataset_loading,
+        data_by_uri: state.datasets.list.data_by_uri,
+        data_download_succeeded: state.datasets.list.data_download_succeeded
     };
 };
 
-export const DataTableContainer = connect(mapStateToProps, { setColumnSelections, setAllColumnSelections });
+export const DataTableContainer = connect(mapStateToProps, { setColumnSelections, setAllColumnSelections, fetchCsvData });

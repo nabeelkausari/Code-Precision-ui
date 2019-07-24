@@ -145,3 +145,38 @@ export const handleSubmitPreloadModal = (data) => (dispatch, getState) => {
         .then(() => dispatch({ type: types.DATASET_CREATED_SUCCEEDED }))
         .catch(payload => dispatch({ type: types.DATASET_CREATED_FAILED, payload }));
 };
+
+
+
+export const fetchCsvData = (csv_url) => (dispatch, getState) => {
+    if(!csv_url) return;
+    dispatch({type:types.FETCH_CSV_DATA_REQUESTED});
+    let csvData = [];
+    let headerRow = [];
+    Papa.parse(csv_url || "", {
+        download: true,
+        complete: (results) => {
+            csvData=results.data;
+            headerRow = csvData[0];
+            csvData.splice(0, 1);
+            let data_rows = csvData.map((row, index) => {
+                let row_obj = {};
+                headerRow.map((header, i) => {
+                    return row_obj[header] = row[i];
+                });
+                row_obj[" "] = index;
+                return row_obj
+            });
+            headerRow.unshift(" ");
+
+            const payload = {
+                [csv_url]: {
+                    rows: data_rows.splice(0,data_rows.length -1),
+                    header: headerRow.map((item, i) => ({ Header: item, accessor: item, index:i })),
+                }
+            };
+
+            dispatch({type:types.FETCH_CSV_DATA_SUCCEEDED, payload})
+        }
+    });
+};
