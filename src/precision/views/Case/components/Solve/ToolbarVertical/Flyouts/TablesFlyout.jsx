@@ -43,7 +43,7 @@ class TablesFlyout extends Component {
                         <div className="columns-box__left">
                             {columns.length > 0 && columns.slice(0,Math.ceil(columns.length/2)).map((column,i) =>
 
-                                <Checkbox checked={selected.indexOf(column) >= 0}  onChange={() => this.handleAvailableColumnSelect(column)} label={column.key} key={i}/>
+                                <Checkbox checked={selected.some((item)=> item.key === column.key)}  onChange={() => this.handleAvailableColumnSelect(column)} label={column.key} key={i}/>
 
                             )}
                         </div>
@@ -51,7 +51,7 @@ class TablesFlyout extends Component {
                         <div className="columns-box__right">
                             {columns.length > 0 && columns.slice(Math.ceil(columns.length/2),columns.length).map((column,i) =>
 
-                                <Checkbox checked={selected.indexOf(column) >= 0}  onChange={() => this.handleAvailableColumnSelect(column)} label={column.key} key={i}/>
+                                <Checkbox checked={selected.some((item)=> item.key === column.key)}  onChange={() => this.handleAvailableColumnSelect(column)} label={column.key} key={i}/>
                             )}
                         </div>
 

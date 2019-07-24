@@ -3,14 +3,14 @@ import cx from "classnames";
 import ToolbarFlyout from "./ToolbarFlyout";
 import {Button} from "../../../../../../components/Buttons/Button";
 import FunctionParams from "../../Toolbar/FunctionFlyout/FunctionParams";
+import {add_button_icon} from '../../../../../../images/index';
 import "./toolbarFlyout.scss"
 
 class FunctionsFlyout extends Component {
     render() {
 
         const {active_category:{ sub_categories },description, active_function, selections, parameters, parameter_flyout_open, addFunction, execution, onFunctionClick} = this.props
-        // const is_fx_add_disabled = Object.keys(selections).length === 0 ;
-        const is_fx_add_disabled = false;
+        const no_table_selections = Object.keys(selections).length === 0 ;
         return (
             <Fragment>
                 <ToolbarFlyout>
@@ -57,14 +57,22 @@ class FunctionsFlyout extends Component {
                                        ) }
                                </div>
                            </div>
+                          {active_function.name && <div className="fx__description">
+                               <div className="fx__description-title">
+                                   <h4>Description - {active_function.name}</h4>
+                               </div>
+                               <div className="fx__description-content">
+                               </div>
+                               {description.info.text}
+                           </div>}
                        </div>
 
                        {
-                           parameter_flyout_open &&
+                           !no_table_selections && parameter_flyout_open &&
                            <div className="function-flyout__right">
                                <div className="fx__header">
-                                   <h2 className="fx__header-title">{execution.current_function.name}</h2>
-                                   <Button buttonType="primary" disabled={is_fx_add_disabled} onClick={addFunction}>Add</Button>
+                                   <h2 className="fx__header-title">Parameter</h2>
+                                   <img onClick={this.props.closeParameterFlyout} className="fx__header-close" src={add_button_icon}/>
                                </div>
                                <div className="">
                                    { Object.keys(selections).length > 0 && <div className="fx__parameters">
@@ -77,10 +85,12 @@ class FunctionsFlyout extends Component {
                                                    multi_table={multi_table}/>
                                            )
                                        }
-                                   </div>}
-                                   <div className="fx__description">
-                                       {description.info.text}
                                    </div>
+                                   }
+
+                               </div>
+                               <div className="fx__footer">
+                                   <Button onClick={this.props.execute}>Execute</Button>
                                </div>
                            </div>
 

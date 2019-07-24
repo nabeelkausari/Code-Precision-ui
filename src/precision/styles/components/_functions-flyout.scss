@@ -50,6 +50,32 @@
   //
   //}
 
+  &__description {
+    padding: 2rem;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-title {
+      font-size: 1.6rem;
+    }
+    &-close {
+      transform: rotate(45deg);
+      height: 2rem;
+      width: 2rem;
+      cursor: pointer;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 4rem;
+  }
+
   &__list {
     display: flex;
     width: 100%;

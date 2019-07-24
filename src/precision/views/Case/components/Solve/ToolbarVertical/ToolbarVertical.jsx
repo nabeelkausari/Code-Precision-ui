@@ -91,6 +91,7 @@ class ToolbarVertical extends Component {
     };
 
     onCategorySelect = (category) => {
+        this.props.removeSelectedFunctionsAndParameters();
         this.setState({
             is_table_flyout_open : false,
             selected_dataset : null
@@ -116,6 +117,11 @@ class ToolbarVertical extends Component {
         this.props.getFunctionDescription(fx._links.material);
         this.props.getFunctionParameters(fx);
     };
+
+    executeFunction = () => {
+        this.props.executeFunction();
+        this.toggleFunction();
+    }
 
     renderSelectionsNotifier = (ref) => {
         if(!(Object.keys(this.props.selections).length === 0 || this.props.selections === undefined)){
@@ -177,7 +183,6 @@ class ToolbarVertical extends Component {
                           )}
                       </ul>
                   </div>
-                  <button onClick={this.props.executeFunction}>EXECUTE</button>
               </div>
                 {/*<div className="toolbar__flyout-container">*/}
                 {/*</div>*/}
@@ -190,6 +195,7 @@ class ToolbarVertical extends Component {
                         onFunctionClick={this.onFunctionClick}
                         {...this.props}
                         toggleFlyout = {this.toggleFunction}
+                        execute={this.executeFunction}
                     />
                 }
                 {
