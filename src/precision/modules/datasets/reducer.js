@@ -186,10 +186,7 @@ export default (state = initialState, { type, payload }) => {
                 list:{
                     ...state.list,
                     data_download_loading: true,
-                    data_download_succeeded: null,
-                    data_by_uri: {
-                        ...state.list.data_by_uri
-                    }
+                    data_download_succeeded: null
                 }
             };
 
