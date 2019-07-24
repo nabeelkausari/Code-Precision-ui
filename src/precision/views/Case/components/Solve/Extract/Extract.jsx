@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {FormInput} from "../../../../../components/Forms/FormInput/FormInput";
 import ReactSelect from "react-select";
+import {Button} from "../../../../../components/Buttons/Button";
 
 class Extract extends Component {
 
@@ -84,6 +85,7 @@ class Extract extends Component {
                                         dateFormat="MMMM d, yyyy"
                             />
                         </div>
+                            <Button buttonType="primary">Run</Button>
                     </div>
                 </Modal.Body>
             </Modal>
