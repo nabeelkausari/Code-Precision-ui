@@ -1,5 +1,4 @@
 import React , { Component } from 'react';
-import Papa from 'papaparse';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import './Table.scss';
@@ -18,46 +17,44 @@ export class DataTable extends Component {
 
 
     componentDidMount() {
-        this.fetchCsv();
+        this.prepareCsvData();
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(this.props.fetch_steps_succeeded && this.props.fetch_steps_succeeded !== prevProps.fetch_steps_succeeded){
-            this.fetchCsv()
+        if (this.props.fetch_steps_succeeded && this.props.fetch_steps_succeeded !== prevProps.fetch_steps_succeeded) {
+            this.prepareCsvData()
         }
-        if(this.props.csv !== "" && this.props.csv !== prevProps.csv){
-            this.fetchCsv()
+        if ( (this.props.csv !== "" && this.props.csv !== prevProps.csv)) {
+            this.prepareCsvData()
         }
+        if (this.props.data_download_succeeded  && this.props.data_download_succeeded !== prevProps.data_download_succeeded) {
+            if (!(Object.keys(this.props.data_by_uri).length === 0 && this.props.data_by_uri[this.props.csv])) {
+                this.getCsvDataFromStore();
+            }
 
+        }
     }
 
-    fetchCsv = () => {
-        this.setState({table_loading:true});
-        let csvData = [];
-        let headerRow = [];
-        Papa.parse(this.props.csv || "", {
-            download: true,
-            complete: (results) => {
-                csvData=results.data;
-                headerRow = csvData[0];
-                csvData.splice(0, 1);
-                let csv_rows = csvData.map((row, index) => {
-                    let row_obj = {};
-                    headerRow.map((header, i) => {
-                        return row_obj[header] = row[i];
-                    });
-                    row_obj[" "] = index;
-                    return row_obj
-                });
-                headerRow.unshift(" ");
-                this.setState({
-                    csvData: csv_rows.splice(0,csv_rows.length -1),
-                    headerRow: headerRow.map((item, i) => ({ Header: item, accessor: item, index:i })),
-            });
-
-                setTimeout(() => this.setState({ table_loading: false}),1000)
-            }
+    getCsvDataFromStore = () => {
+        let csv_data = this.props.data_by_uri[this.props.csv];
+        this.setState({
+            csvData: csv_data.rows,
+            headerRow: csv_data.header
         });
+        this.setState({table_loading: false});
+    }
+
+    prepareCsvData = () => {
+        this.setState({table_loading:true});
+        if(Object.keys(this.props.data_by_uri).length === 0){
+            this.props.fetchCsvData(this.props.csv)
+        }else{
+            if(this.props.data_by_uri[this.props.csv] !== undefined){
+                this.getCsvDataFromStore();
+            }else{
+                this.props.fetchCsvData(this.props.csv);
+            }
+        }
     };
 
     getTheadThProps = (state, rowInfo, column, instance) => {
@@ -82,7 +79,7 @@ export class DataTable extends Component {
 
 
     render() {
-        const {is_steps_open} = this.props
+        const {is_steps_open} = this.props;
         let rows = this.state.csvData;
         const selection_arr = this.props.column_selections[this.props.dataset_reference];
         let headerRow = [...this.state.headerRow];

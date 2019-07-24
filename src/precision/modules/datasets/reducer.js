@@ -6,7 +6,10 @@ const initialState = {
     fetch_dataset_succeeded: null,
     list:{
         items:[],
-        by_uri:{}
+        by_uri:{},
+        data_by_uri:{},
+        data_download_loading: null,
+        data_download_succeeded: null,
     },
     selected_table_reference:"",
     selections:{},
@@ -30,6 +33,7 @@ export default (state = initialState, { type, payload }) => {
                 dataset_loading: false,
                 fetch_dataset_succeeded: true,
                 list: {
+                    ...state.list,
                     items: payload,
                     by_uri: map((payload) => payload.shift(), groupBy(item => item.ref, payload))
 
@@ -174,6 +178,33 @@ export default (state = initialState, { type, payload }) => {
                 ...state,
                 preload_dataset_succeeded: false,
                 preload_dataset_error: true
+            };
+
+        case types.FETCH_CSV_DATA_REQUESTED:
+            return {
+                ...state,
+                list:{
+                    ...state.list,
+                    data_download_loading: true,
+                    data_download_succeeded: null,
+                    data_by_uri: {
+                        ...state.list.data_by_uri
+                    }
+                }
+            };
+
+        case types.FETCH_CSV_DATA_SUCCEEDED:
+            return {
+                ...state,
+                list:{
+                    ...state.list,
+                    data_download_loading: false,
+                    data_download_succeeded: true,
+                    data_by_uri: {
+                        ...state.list.data_by_uri,
+                        ...payload
+                    }
+                }
             };
 
         default:

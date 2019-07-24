@@ -19,7 +19,7 @@ class Table extends Component {
     };
 
     componentDidMount() {
-        if(this.props.data_sets.length === 0) {
+        if(this.props.dataset_created_succeeded && this.props.data_sets.length === 0) {
             this.handleCreateDataset()
         }
     }
