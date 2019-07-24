@@ -5,6 +5,8 @@ import "./toolbarVertical.scss"
 import {FunctionsIcon, DatasetIcon, RightArrowIcon} from "../../../../../images/index"
 import FunctionsFlyout from "./Flyouts/FunctionsFlyout";
 import TablesFlyout from "./Flyouts/TablesFlyout";
+import {FormInput} from "../../../../../components/Forms/FormInput/FormInput";
+import {removeSelectedFunctionsAndParameters} from "../../../../../modules/case/toolbar/actions";
 
 
 class ToolbarVertical extends Component {
@@ -18,7 +20,8 @@ class ToolbarVertical extends Component {
         fx_selected: false,
         fx_name: "",
         selected_category : null,
-        selected_dataset : null
+        selected_dataset : null,
+        search_text:"",
     };
 
     componentDidMount() {
@@ -64,8 +67,10 @@ class ToolbarVertical extends Component {
             is_function_flyout_open: false,
             is_table_flyout_open: false,
             selected_category : null,
-            selected_dataset : null
+            selected_dataset : null,
+            search_text:""
         });
+        this.props.removeSelectedFunctionsAndParameters()
     }
 
 
@@ -129,12 +134,21 @@ class ToolbarVertical extends Component {
         }
     };
 
+    handleInputChange = (e) => {
+        if(e.target.value === ""){
+            this.setState({is_function_flyout_open:false});
+        } else{
+            this.setState({is_function_flyout_open:true});
+            this.props.suggestFunctions(e.target.value);
+        }
+        this.setState({[e.target.name]:e.target.value});
+    };
+
 
     render() {
-        const {is_function_flyout_open, is_table_flyout_open} = this.state;
-        const {current_dataset, columns} = this.state;
+        const {is_function_flyout_open, is_table_flyout_open, search_text, current_dataset, columns} = this.state;
         const {dataset_list : {items}, dataset_list, categories, execution } = this.props;
-        const active_category =  execution.current_function_category
+        const active_category =  execution.current_function_category;
 
 
         return (
@@ -176,7 +190,16 @@ class ToolbarVertical extends Component {
                           </div>
                           <h5 className="toolbar__header-text">Functions</h5>
                       </div>
-                      <div className="toolbar__search-bar"></div>
+                      <div className="toolbar__search-bar">
+                          <FormInput
+                              type="text"
+                              placeholder="Search functions"
+                              name="search_text"
+                              onChange={this.handleInputChange}
+                              value={search_text}
+                              autocomplete="off"
+                          />
+                      </div>
                       <ul className="toolbar__list">
 
                           {categories && categories.map((category,i) =>
@@ -208,6 +231,7 @@ class ToolbarVertical extends Component {
                         {...this.props}
                         toggleFlyout = {this.toggleFunction}
                         execute={this.executeFunction}
+                        search_text={this.state.search_text}
                     />
                 }
                 {
