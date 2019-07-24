@@ -165,6 +165,12 @@ export default (state = initialState, { type, payload }) => {
                selections: payload
             };
 
+        case types.UNSET_COLUMN_SELECTION:
+            return {
+                ...state,
+               selections: {}
+            };
+
         case types.FETCH_FUNCTION_PARAMETERS_REQUESTED:
             return {
                 ...state,
@@ -228,9 +234,22 @@ export default (state = initialState, { type, payload }) => {
         case types.UNSET_FUNCTION_PARAMETERS:
             return {
                 ...state,
+                parameters:{
+                    ...state.parameters,
+                    list:[]
+                },
                 execution:{
                     ...state.execution,
                     selected_parameters:{}
+                }
+            };
+
+        case types.UNSET_FUNCTION_DESCRIPTION:
+            return {
+                ...state,
+                description:{
+                    ...state.description,
+                    info:{}
                 }
             };
 

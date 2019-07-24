@@ -39,7 +39,7 @@ class FunctionParams extends Component {
         const { type, label, multi_table, value, pattern, onChange, required, options, multi_select, readonly, note, data_set } = this.props;
         const datasetOptions = data_set && data_set.map(ds => ({value:ds.path,label:ds.name}));
         const datasetColumnOptions = this.state.columns && this.state.columns.map(column => ({value:column,label:column}));
-        return (<div>{!!multi_table ?
+        return (<div style={{"marginTop": "2rem"}}>{!!multi_table ?
             <FormGroup>
                 <h4>{label}:</h4>
                 {type === 'select' &&

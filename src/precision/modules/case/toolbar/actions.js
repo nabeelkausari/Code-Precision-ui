@@ -205,7 +205,11 @@ export const executeFunction = () => (dispatch, getState) => {
         function_id: functions.execution.current_function.function_id
     };
     return fetchLinkAs(cases.info._links.create_user_step, param)
-        .then(payload => dispatch({ type: types.FUNCTION_EXECUTION_SUCCEEDED, payload }))
+        .then(payload => {
+            dispatch({ type: types.FUNCTION_EXECUTION_SUCCEEDED, payload });
+            dispatch(removeSelectedFunctionsAndParameters());
+            dispatch(removeColumnSelection())
+        })
         .catch(payload => {
             notify("error",payload.message)
         })
@@ -216,6 +220,8 @@ export const removeSelectedFunctionsAndParameters = () => (dispatch, getState) =
     dispatch({type:types.UNSET_CURRENT_FUNCTION});
     dispatch({type:types.UNSET_FUNCTION_PARAMETERS});
     dispatch({type:types.UNSET_CURRENT_FUNCTION_CATEGORY});
+    dispatch({type:types.UNSET_PARAMETER_FLYOUT});
+    dispatch({type:types.UNSET_FUNCTION_DESCRIPTION});
 };
 
 export const setSelectedFunction = (payload) => (dispatch, getState) => {
@@ -226,5 +232,10 @@ export const setSelectedFunctionCategory = (payload) => (dispatch, getState) => 
     dispatch({type:types.SET_CURRENT_FUNCTION_CATEGORY, payload});
 };
 export const closeParameterFlyout = () => (dispatch, getState) => {
-    dispatch({type:types.UNSET_PARAMETER_FLYOUT})
+    dispatch({type:types.UNSET_PARAMETER_FLYOUT});
+    dispatch({type:types.UNSET_FUNCTION_PARAMETERS});
+};
+
+export const removeColumnSelection = () => (dispatch, getState) => {
+    dispatch({type:types.UNSET_COLUMN_SELECTION});
 };
