@@ -9,7 +9,7 @@ import "./toolbarFlyout.scss"
 class FunctionsFlyout extends Component {
     render() {
 
-        const {active_category:{ sub_categories },description, active_function, selections, parameters, parameter_flyout_open, addFunction, execution, onFunctionClick} = this.props
+        const {active_category:{ sub_categories },description, active_function, selections, parameters, parameter_flyout_open, onFunctionClick} = this.props
         const no_table_selections = Object.keys(selections).length === 0 ;
         return (
             <Fragment>
@@ -72,7 +72,7 @@ class FunctionsFlyout extends Component {
                            <div className="function-flyout__right">
                                <div className="fx__header">
                                    <h2 className="fx__header-title">Parameter</h2>
-                                   <img onClick={this.props.closeParameterFlyout} className="fx__header-close" src={add_button_icon}/>
+                                   <img onClick={this.props.closeParameterFlyout} className="fx__header-close" src={add_button_icon} alt="cancel"/>
                                </div>
                                <div className="">
                                    { Object.keys(selections).length > 0 && <div className="fx__parameters">
