@@ -64,12 +64,17 @@
     height: 3rem !important;
     width: 3rem !important;
 
+    path {
+      fill: currentColor;
+    }
+
     &--dataset{
       padding: .8rem;
+    }
 
-      path {
-        fill: currentColor;
-      }
+    &--console{
+      padding: .5rem;
+
     }
   }
 }
