@@ -17,6 +17,8 @@ import {ReactComponent as ConsoleIcon} from './icons/icon-console.svg'
 import print_icon from './icons/icon-print.svg'
 import full_screen_icon from './icons/icon-full-screen.svg'
 import pin_icon from './icons/icon-pin.svg'
+import search_icon from './icons/icon-search.svg'
+import add_button_icon from './icons/icon-add-button.svg'
 
 
 
@@ -41,5 +43,7 @@ export {
     ConsoleIcon,
     print_icon,
     full_screen_icon,
-    pin_icon
+    pin_icon,
+    search_icon,
+    add_button_icon
 }
