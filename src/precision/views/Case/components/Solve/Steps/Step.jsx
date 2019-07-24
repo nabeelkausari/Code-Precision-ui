@@ -4,7 +4,7 @@ import ReactTruncate from 'react-truncate'
 import Tooltip from '../../../../../components/Tooltip/Tooltip'
 import './StepList.scss'
 import {StepContainer} from "../../../containers/solve/steps/step";
-import {function_icon, column_icon} from '../../../../../images/index'
+import {FunctionsIcon, ColumnIcon} from '../../../../../images/index'
 import {pathOr} from "ramda";
 
 
@@ -59,7 +59,7 @@ class Step extends Component {
         return (
             <div>
             {is_step_active ?
-            <div className = {lastChild? undo_requested? "step step--undo":"step":"step"} >
+            <div className = {lastChild? undo_requested? "step step--undo":"step":"step"} onClick={() => {onShowResultClick(this.props.step)}}>
 
                 {!is_rollback_step &&
                     <div className="index-no__wrapper">
@@ -71,10 +71,11 @@ class Step extends Component {
                     :
                     <div className="step__main-container">
                         <div className="step__info-container">
-                            <div className="step__functions-wrapper">
-                            <div className="step__icon-wrapper">
-                                <img src={function_icon} alt="" className="step__icon step__icon--function"/>
-                            </div>
+                            <div className="step__functions-wrapper u-margin-bottom-small">
+                                <div className="step__icon-wrapper">
+                                    <FunctionsIcon className="step__icon step__icon--function"/>
+                                    {/*<img src={function_icon} alt="" "/>*/}
+                                </div>
                             <ReactTruncate lines={1} onTruncate={(default_value) => this.didTruncate(default_value, "is_function_truncated")}>
                                 <div className="step__function-name">
                                    {step.operation_name}
@@ -85,7 +86,8 @@ class Step extends Component {
                             ? <Tooltip placement={"bottom"} text={this.getSelectedColumns(step.selections)}>
                                 <div className="step__columns-wrapper">
                                     <div className="step__icon-wrapper">
-                                        <img src={column_icon} alt="" className="step__icon step__icon--column"/>
+                                        <ColumnIcon className="step__icon step__icon--column"/>
+                                        {/*<img src={ColumnIcon} alt="" className="step__icon step__icon--column"/>*/}
                                     </div>
                                     <ReactTruncate lines={1} onTruncate={(default_value) => this.didTruncate(default_value, "is_column_truncated")} width={185}>
                                         <div className="step__columns-name">{this.getSelectedColumns(step.selections)}</div>
@@ -93,8 +95,9 @@ class Step extends Component {
                                 </div>
                             </Tooltip>
                             : <div className="step__columns-wrapper">
-                                <div className="step__icon-wrapper step__icon--column">
-                                    <img src={column_icon} alt="" className="step__icon step__icon--column"/>
+                                <div className="step__icon-wrapper ">
+                                    <ColumnIcon className="step__icon step__icon--column"/>
+                                    {/*<img src={column_icon} alt="" className="step__icon step__icon--column"/>*/}
                                 </div>
                                 <ReactTruncate lines={1} onTruncate={(default_value) => this.didTruncate(default_value, "is_column_truncated")} width={185}>
                                     <span className="step__columns-name">{this.getSelectedColumns(step.selections)}</span>
@@ -103,11 +106,11 @@ class Step extends Component {
                         }
 
                     </div>
-                    <div className="step__actions-container">
-                        <button className="step__action btn-link" onClick={() => {onShowResultClick(this.props.step)}}>Result</button>
-                        <button className="step__action btn-link" onClick={() => {this.props.getUserNotes(step)}}>Notes</button>
-                        {has_rollback_link && <button className="step__action btn-link" onClick={() => this.props.rollback(step._links.rollback)}>Rollback</button>}
-                    </div>
+                    {/*<div className="step__actions-container">*/}
+                        {/*<button className="step__action btn-link" onClick={() => {onShowResultClick(this.props.step)}}>Result</button>*/}
+                        {/*<button className="step__action btn-link" onClick={() => {this.props.getUserNotes(step)}}>Notes</button>*/}
+                        {/*{has_rollback_link && <button className="step__action btn-link" onClick={() => this.props.rollback(step._links.rollback)}>Rollback</button>}*/}
+                    {/*</div>*/}
                 </div>}
             </div>
                 :<div className = {lastChild? undo_requested? "step step--undo":"step":"step"} style={{color: '#ccc'}}>
@@ -116,9 +119,9 @@ class Step extends Component {
                     </div>
                     <div className="step__main-container">
                         <div className="step__info-container">
-                            <div className="step__functions-wrapper">
+                            <div className="step__functions-wrapper u-margin-bottom-small">
                             <div className="step__icon-wrapper">
-                                <img src={function_icon} alt="" className="step__icon step__icon--function"/>
+                                <FunctionsIcon className="step__icon step__icon--functions"/>
                             </div>
                             <ReactTruncate lines={1} onTruncate={(default_value) => this.didTruncate(default_value, "is_function_truncated")}>
                                 <div className="step__function-name">
@@ -130,7 +133,7 @@ class Step extends Component {
                                 ? <Tooltip placement={"bottom"} text={this.getSelectedColumns(step.selections)}>
                                     <div className="step__columns-wrapper">
                                         <div className="step__icon-wrapper">
-                                            <img src={column_icon} alt="" className="step__icon step__icon--column"/>
+                                            <ColumnIcon className="step__icon step__icon--column"/>
                                         </div>
                                         <ReactTruncate lines={1}
                                                        onTruncate={(default_value) => this.didTruncate(default_value, "is_column_truncated")}
@@ -141,8 +144,8 @@ class Step extends Component {
                                     </div>
                                 </Tooltip>
                                 : <div className="step__columns-wrapper">
-                                    <div className="step__icon-wrapper step__icon--column">
-                                        <img src={column_icon} alt="" className="step__icon step__icon--column"/>
+                                    <div className="step__icon-wrapper">
+                                        <ColumnIcon className="step__icon step__icon--column"/>
                                     </div>
                                     <ReactTruncate lines={1}
                                                    onTruncate={(default_value) => this.didTruncate(default_value, "is_column_truncated")}
