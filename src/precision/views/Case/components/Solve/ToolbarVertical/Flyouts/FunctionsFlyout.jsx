@@ -5,11 +5,13 @@ import {Button} from "../../../../../../components/Buttons/Button";
 import FunctionParams from "../../Toolbar/FunctionFlyout/FunctionParams";
 import {add_button_icon} from '../../../../../../images/index';
 import "./toolbarFlyout.scss"
+import {SearchResults} from "../../Toolbar/FunctionFlyout/SearchResults";
 
 class FunctionsFlyout extends Component {
+
     render() {
 
-        const {active_category:{ sub_categories },description, active_function, selections, parameters, parameter_flyout_open, onFunctionClick} = this.props
+        const {search_text,active_category:{ sub_categories },description, active_function, selections, parameters, parameter_flyout_open, onFunctionClick, suggestions} = this.props
         const no_table_selections = Object.keys(selections).length === 0 ;
         return (
             <Fragment>
@@ -17,7 +19,9 @@ class FunctionsFlyout extends Component {
                    <div className="function-flyout">
 
                        <div className="function-flyout__left">
-                           <div className="fx__list fx__list--1">
+                        {search_text !== "" ?
+                            <SearchResults suggestions={suggestions}  onFunctionClick={this.props.onFunctionClick}/> :
+                            <div className="fx__list fx__list--1">
                                <div className="fx__list-left">
                                    {sub_categories && sub_categories
                                        .slice(0,Math.ceil(sub_categories.length/2))
@@ -56,7 +60,7 @@ class FunctionsFlyout extends Component {
                                            </div>
                                        ) }
                                </div>
-                           </div>
+                           </div>}
                           {active_function.name && <div className="fx__description">
                                <div className="fx__description-title">
                                    <h4>Description - {active_function.name}</h4>

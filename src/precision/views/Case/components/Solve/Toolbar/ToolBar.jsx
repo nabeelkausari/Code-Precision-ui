@@ -65,7 +65,6 @@ class ToolBar extends Component {
     }
 
     render() {
-        console.log("TOOLBAR : ", this.props)
         const {is_function_flyout_open, is_table_flyout_open, fx_selected, fx_name} = this.state;
         return (
                 <div style={{position:"relative"}}>
