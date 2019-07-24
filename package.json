@@ -41,6 +41,7 @@
     "start": "HTTPS=true REACT_APP_API_GATEWAY_URL=https://devapi.analyttica.com REACT_APP_APP_URL=http://localhost:3030 PORT=3030 react-scripts start",
     "build:dev": "NODE_ENV=development REACT_APP_API_GATEWAY_URL=https://devapi.analyttica.com REACT_APP_APP_URL=https://devprecision.analyttica.com yarn run build",
     "build:qa": "NODE_ENV=production REACT_APP_API_GATEWAY_URL=https://qaapi.analyttica.com REACT_APP_APP_URL=https://qaprecision.analyttica.com yarn run build",
+    "build:uat": "NODE_ENV=production REACT_APP_API_GATEWAY_URL=https://api.analyttica.com REACT_APP_APP_URL=https://uatprecision.analyttica.com yarn run build",
     "build": "react-scripts build",
     "test": "true"
   },
