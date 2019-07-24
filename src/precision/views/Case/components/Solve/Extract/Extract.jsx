@@ -4,7 +4,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {FormInput} from "../../../../../components/Forms/FormInput/FormInput";
 import ReactSelect from "react-select";
-import {Button} from "../../../../../components/Buttons/Button";
 import {ExtractContainer} from "../../../containers/solve/extract/extract";
 
 class Extract extends Component {
