@@ -6,7 +6,6 @@ import {FormInput} from "../../../../../components/Forms/FormInput/FormInput";
 import ReactSelect from "react-select";
 import {Button} from "../../../../../components/Buttons/Button";
 import {ExtractContainer} from "../../../containers/solve/extract/extract";
-import {Navbar} from "react-bootstrap";
 
 class Extract extends Component {
 
@@ -88,7 +87,9 @@ class Extract extends Component {
                                         dateFormat="MMMM d, yyyy"
                             />
                         </div>
-                            <Button buttonType="primary">Run</Button>
+                        <div style={{display: 'flex', justifyContent: 'center'}}>
+                            <button buttonType="primary" style={{height: '30px', width: '100px', backgroundColor: '#0B233F', color: 'white'}}>Run</button>
+                        </div>
                     </div>
                 </Modal.Body>
             </Modal>
