@@ -12,6 +12,8 @@ import pin_active_icon from './icons/icon-pin-active.svg'
 import add_button_icon from './icons/icon-add-button.svg'
 import right_arrow_icon from './icons/icon-right-arrow.svg'
 import left_arrow_icon from './icons/icon-left-arrow.svg'
+import tv_icon from './icons/icon-tv.svg'
+import results_icon from './icons/icon-results.svg'
 
 
 
@@ -34,5 +36,7 @@ export {
     add_button_icon,
     right_arrow_icon,
     left_arrow_icon,
-    dataset_icon
+    dataset_icon,
+    results_icon,
+    tv_icon
 }

@@ -32,9 +32,18 @@ class CaseList extends Component {
            <Fragment>
                <Loader loading={is_fetching}/>
                <div className="case-container">
-                   <FormInput type="text" name="search_query" value={this.state.search_query}  onChange={this.onSearch} placeholder="Search by tag, Keyword"/>
-                   <div style={{display:"flex",flexWrap: "wrap"}}>
-                       <CreateCaseCard  createCase={() =>this.props.history.push('/create')}/>
+                   <div className="case-container__header">
+
+                       <div className="case-container__create-wrapper">
+                           <CreateCaseCard  createCase={() =>this.props.history.push('/create')}/>
+                       </div>
+
+                       <div className="case-container__search-wrapper">
+                           <FormInput type="text" name="search_query" value={this.state.search_query}  onChange={this.onSearch} placeholder="Search by tag, Keyword"/>
+                       </div>
+
+                   </div>
+                   <div className="case-container__cases">
                        {
                            my_cases.map((item) => (
                                <CaseCard showView key={item.id} viewCase={this.viewCase} case={item} />

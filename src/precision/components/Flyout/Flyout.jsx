@@ -24,8 +24,12 @@ class Flyout extends Component {
             <div className={secondary? "flyout-container flyout-container--2" : " flyout-container flyout-container--1"}>
 
                 <div className="flyout-container__header">
-                    <span className="index-no--1">{this.getPrefix(sequence_no)}</span>
-                    <h6 className="flyout-container__title">{title}</h6>
+                    <div className="flyout-container__index-no-wrapper">
+                        <span className="flyout-container__index-no">{this.getPrefix(sequence_no)}</span>
+                    </div>
+                    <div className="flyout-container__title-wrapper">
+                        <h6 className="flyout-container__title">{title}</h6>
+                    </div>
                     <div className="flyout-container__options">
 
                         { require_download &&

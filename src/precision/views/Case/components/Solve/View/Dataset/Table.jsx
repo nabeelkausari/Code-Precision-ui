@@ -67,7 +67,7 @@ class Table extends Component {
                                  className={ds.ref === selected_table_reference && !handleCreateDataset ? "table-tabs__name table-tabs__name--active" : "table-tabs__name"}
                                  onClick={() => this.handleSelectTable(ds.ref)}>
                                 {ds.name}
-                                <span className="table-tabs__selected-col-notifier">{this.renderSelectionsNotifier(ds.ref)}</span>
+                                <span className={this.renderSelectionsNotifier(ds.ref)?"table-tabs__selected-col-notifier" : ""}>{this.renderSelectionsNotifier(ds.ref)}</span>
                             </div>
                         ))}
                         {

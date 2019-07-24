@@ -74,6 +74,20 @@
     height: 1rem;
   }
 
+  &__selected-col-notifier{
+    height: 1.2rem;
+    width: 1.2rem;
+    background-color: var(--highlight-primary);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $color-black;
+    font-size: .8rem;
+    padding-top: .2rem;
+    margin-right: 1.5rem;
+  }
+
   //&__flyout-container{
   //  position: absolute;
   //  top: 0;
