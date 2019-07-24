@@ -50,7 +50,7 @@ class SubHeader extends Component {
                                 >
                                     {/*<div className="tab-wrapper">*/}
                                         <span className="tab-wrapper__icon-wrapper">
-                                            <ConsoleIcon className="tab-wrapper__icon"/>
+                                            <ConsoleIcon className="tab-wrapper__icon tab-wrapper__icon--console"/>
                                         </span>
                                         <span className="tab-wrapper__text">
                                             Console
