@@ -130,7 +130,7 @@ class StepList extends Component {
                     <img src={left_arrow_icon} alt="left arrow" className="steps__toggle-icon u-margin-left-small"/>
                 </div>
                 {/*{this.state.open_user_steps && <UserStepDetails show={this.state.open_user_steps} handleClose={this.closeUserStepDetails}/>}*/}
-                {this.state.open_extract_modal && <Extract show={this.state.open_extract_modal} handleClose={this.closeExtractModal}/>}
+                {this.state.open_extract_modal && <Extract show={this.state.open_extract_modal} handleClose={this.closeExtractModal} scenario_id={this.props.scenario_id}/>}
             </div>
         );
     }

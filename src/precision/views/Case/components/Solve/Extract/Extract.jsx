@@ -5,6 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import {FormInput} from "../../../../../components/Forms/FormInput/FormInput";
 import ReactSelect from "react-select";
 import {Button} from "../../../../../components/Buttons/Button";
+import {ExtractContainer} from "../../../containers/solve/extract/extract";
+import {Navbar} from "react-bootstrap";
 
 class Extract extends Component {
 
@@ -39,9 +41,10 @@ class Extract extends Component {
 
 
     render() {
-        const {show, handleClose } = this.props;
+        const {show, handleClose , current_case, scenarios, scenario_id } = this.props;
         const { runTimeEnv, deployName, outputPath } = this.state;
         const options = [{value: "Weekly",label:"Weekly"} ,{value: "monthly",label:"Monthly"} ,{value: "daily",label:"Daily"}];
+        const scenario = scenarios.filter(s => toString(s.id) === toString(scenario_id)).shift();
         return(
             <Modal show={show} onHide={handleClose} size="lg" aria-labelledby="example-modal-sizes-title-lg" className="bg-user-step-container">
                 <Modal.Header closeButton>
@@ -51,11 +54,11 @@ class Extract extends Component {
                     <div>
                         <div style={{display:"flex", flexDirection:"column", marginBottom: "25px"}}>
                             <p>Case Name <span></span></p>
-                            <p>Case : Lowering Attrition Rate</p>
+                            <p>Case :  <h4 className="case-title">{current_case.case_name}</h4></p>
                         </div>
                         <div style={{display:"flex", flexDirection:"column", marginBottom: "25px"}}>
                             <p>Scenario Name <span></span></p>
-                            <p>Scenario 1</p>
+                            <p>{scenario.name}</p>
                         </div>
                         <div style={{display:"flex", flexDirection:"column", marginBottom: "25px"}}>
                             <p>Run time environment</p>
@@ -93,4 +96,4 @@ class Extract extends Component {
     }
 }
 
-export default Extract
+export default ExtractContainer(Extract)
