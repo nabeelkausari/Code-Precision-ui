@@ -6,12 +6,13 @@ import StepsContainer from '../../../containers/solve/steps'
 import './StepList.scss'
 import {undo_icon, redo_icon, reset_icon, right_arrow_icon, left_arrow_icon} from '../../../../../images/index'
 import StepSkeleton from '../../../../../components/Skeletons/StepSkeleton'
-
+import Extract from '../Extract/Extract'
 
 class StepList extends Component {
 
     state = {
         open_user_steps: false,
+        open_extract_modal: false
     };
 
 
@@ -33,18 +34,33 @@ class StepList extends Component {
         })
     };
 
+    handleExtractModal = () => {
+        this.setState({
+            open_extract_modal: true
+        })
+    };
+
+    closeExtractModal = () => {
+        this.setState({
+            open_extract_modal: false
+        })
+    };
+
     render() {
         const {
             steps, onShowResultClick, undo_available, redo_available, last_step, onUndoClick,
             onRedoClick, redo_requested, undo_requested, can_reset, onResetClick, reset_requested
         } = this.props
 
-        const {is_steps_open, toggleSteps} = this.props
+        const {is_steps_open, toggleSteps} = this.props;
         return (
             <div className={is_steps_open ? 'steps' : 'steps steps--closed'}>
 
                 <div className="steps__header">
+                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
                     <h3 className="steps__title">STEPS</h3>
+                    <h3 className="steps__title" onClick={this.handleExtractModal}>EXTRACT</h3>
+                    </div>
                     <div className="steps__sub-container">
                         <span className="steps__number-of-selected">0 selected</span>
 
@@ -114,6 +130,7 @@ class StepList extends Component {
                     <img src={left_arrow_icon} alt="left arrow" className="steps__toggle-icon u-margin-left-small"/>
                 </div>
                 {/*{this.state.open_user_steps && <UserStepDetails show={this.state.open_user_steps} handleClose={this.closeUserStepDetails}/>}*/}
+                {this.state.open_extract_modal && <Extract show={this.state.open_extract_modal} handleClose={this.closeExtractModal} scenario_id={this.props.scenario_id}/>}
             </div>
         );
     }

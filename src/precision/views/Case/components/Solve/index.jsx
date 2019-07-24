@@ -55,7 +55,7 @@ class CaseSolve extends Component {
     renderSteps = () => {
         let route = this.props.match.params.view;
         if (route === 'dataset' || route === 'dashboard') {
-            return <Steps is_steps_open={this.state.is_steps_open} toggleSteps={this.toggleSteps}/>
+            return <Steps is_steps_open={this.state.is_steps_open} toggleSteps={this.toggleSteps} scenario_id={this.props.match.params.scenario_id}/>
         }
     };
 
